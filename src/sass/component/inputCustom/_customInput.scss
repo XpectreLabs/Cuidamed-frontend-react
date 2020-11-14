@@ -1,0 +1,136 @@
+.input-container {
+  width: 100%;
+  position: relative;
+
+  & > input,
+  & > .react-datepicker-wrapper > .react-datepicker__input-container > input {
+    height: 3.1em;
+    outline: none;
+    border: 1px solid #707070;
+  }
+
+  .react-datepicker-wrapper {
+    width: 100%;
+  }
+  &.smallStyle {
+    & > input:not(:placeholder-shown) + label::before,
+    & > .react-datepicker-wrapper:not(:placeholder-shown) + label::before,
+    & > .show-label:not(:placeholder-shown) + label::before {
+      top: -30px;
+      opacity: 1;
+    }
+  }
+  &.newDesign {
+    & > label::before {
+      font-size: 20px;
+      color: white;
+      background-color: transparent;
+    }
+    & > input:not(:placeholder-shown) + label::before,
+    & > .react-datepicker-wrapper:not(:placeholder-shown) + label::before,
+    & > .show-label:not(:placeholder-shown) + label::before {
+      top: -35px;
+      opacity: 1;
+    }
+    /*& > input:not(:placeholder-shown) + label::before,
+    & > .react-datepicker-wrapper:not(:placeholder-shown) + label::before,
+    & > .show-label:not(:placeholder-shown) + label::before {
+      top: -20px;
+      background-color: white;
+      color: $text-secondary;
+    }*/
+
+    & > input[type='number']:not(:placeholder-shown) {
+      padding-left: 0;
+      text-align: center;
+    }
+
+    & > input:not(:placeholder-shown),
+    & > .show-label:not(:placeholder-shown) {
+      padding-left: 25px;
+      text-align: left;
+    }
+
+    & > .react-datepicker-wrapper:not(:placeholder-shown) {
+      > .react-datepicker__input-container {
+        > input {
+          padding-left: 25px;
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  .react-datepicker__month-container {
+    font-size: 1.3em;
+  }
+
+  & > .custom-select {
+    width: 100%;
+    font-size: 1.5em;
+    height: 3.1em;
+    border-radius: 1.5em !important;
+    border: 1px solid #707070 !important;
+    text-align: center;
+    padding-top: 1.2em;
+  }
+
+  & > input[type='number']::-webkit-inner-spin-button {
+    opacity: 1;
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+  }
+
+  /* for mozilla */
+  & > input[type='number'] {
+    text-align: center;
+  }
+
+  & > input::placeholder,
+  & > input::-webkit-input-placeholder,
+  &
+    > .react-datepicker-wrapper
+    > .react-datepicker__input-container
+    > input::placeholder {
+    color: $text-secondary;
+  }
+
+  & > input + label,
+  & > .custom-select + label,
+  & > .react-datepicker-wrapper + label {
+    font-size: 16px;
+    display: block;
+    pointer-events: none;
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    left: 10px;
+    color: transparent;
+    opacity: 1;
+  }
+
+  & > label::before,
+  label {
+    content: attr(placeholder);
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+    left: 15px;
+    color: $color-dark-light;
+    font-size: 30px;
+    background-color: white;
+  }
+
+  & > input:not(:placeholder-shown) + label::before,
+  & > .react-datepicker-wrapper:not(:placeholder-shown) + label::before,
+  & > .show-label:not(:placeholder-shown) + label::before {
+    top: -20px;
+    opacity: 1;
+  }
+
+  // .date {
+  //   opacity: 0;
+  // }
+}

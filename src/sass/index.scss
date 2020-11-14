@@ -1,0 +1,22 @@
+@import "./base/colors";
+@import "./base/breakpoints";
+@import "./base/global";
+
+//Layouts
+@import "./layouts/BasicLayout/BasicLayout";
+
+//Components
+@import "./component/inputCustom/Date/Date";
+@import "./component/Login/Login";
+@import "./component/inputCustom/Number/Number";
+@import "./component/inputCustom/Select/Select";
+@import "./component/inputCustom/Text/Text";
+@import "./component/NavBarSecundary/NavBarSecundary";
+@import "./component/NavBarSecundary/IconsBar/IconsBar";
+@import "./component/Slider/Slider";
+@import "./component/inputCustom/customInput";
+@import "./component/Buttons/Buttons";
+@import "./component/header";
+@import "./component/Verify-code/verifyCode";
+@import "./component/ModalComponent/modal";
+@import "./component/Sliders/MedicalHistory/MedicalHistory";

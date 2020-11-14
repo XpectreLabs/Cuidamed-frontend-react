@@ -1,0 +1,30 @@
+.icon-selected {
+  background-color: #fff;
+  border-top-left-radius: 2em;
+  border-bottom-left-radius: 2em;
+   >svg path {
+     stroke:$main ;
+   }
+}
+
+.icon-container {
+  margin: 2.6em 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .bineta {
+    stroke: white;
+    stroke-width: 1px;
+    stroke-linejoin: round;
+  }
+
+  > svg {
+    margin: 0.5em 0px;
+    margin-left: 5px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}

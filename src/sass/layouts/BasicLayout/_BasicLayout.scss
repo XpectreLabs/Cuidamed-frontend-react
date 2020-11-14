@@ -1,0 +1,81 @@
+.basic-layout {
+
+  > .ui.grid {
+    margin: 0 !important;
+    min-height: 100vh;
+
+    > .column {
+      padding: 0;
+
+      &:first-of-type {
+        background-color: $main;
+      }
+
+      &:last-of-type {
+        .justify-content {
+          display: flex;
+          justify-content: center;
+          margin-top: 35px;
+
+          > h2 {
+            margin-bottom: 2em;
+          }
+        }
+
+        // > .row .swiper-container {
+        //   >.swiper-wrapper {
+        //     >.swiper-slide {
+
+        //       > .inputs-sex {
+        //         display: flex;
+        //         justify-items: center;
+        //         justify-content: space-around;
+        //         margin-bottom: 8em;
+      
+        //         > input {
+        //           display: none;
+        //         }
+      
+        //         >input[type=radio]:checked + label {
+        //           >svg path {
+        //               fill: $color-acua;
+        //               stroke: $white;   
+                    
+        //           }
+        //           > svg g g rect{
+        //             fill: $color-acua;
+        //             stroke: $white;   
+        //           }
+        //         }
+      
+      
+        //         > label {
+      
+        //           &:hover {
+        //             cursor: pointer;
+        //           }
+      
+        //           > svg {
+        //             width: 17em;
+        //           }
+        //         } 
+      
+                
+        //       }
+
+        //       > .slider-two {
+        //         display: flex;
+        //         justify-content: space-around;
+        //         > svg {
+        //           width: 12em;
+        //         }
+        //       }
+        //     }
+
+        //   }
+        // }
+      }
+    }
+  }
+
+}

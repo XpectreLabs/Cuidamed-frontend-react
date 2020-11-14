@@ -1,0 +1,31 @@
+.modal__title {
+  color: $red;
+  font-size: 3rem;
+}
+.modal-form {
+  &__paragraph {
+    color: $text-secondary;
+    text-align: center;
+    font-size: 2rem;
+  }
+  &__input-container {
+    margin: 0 auto;
+    padding-top: 40px;
+    width: 40%;
+  }
+  &__button-submit-container {
+    text-align: center;
+    margin-top: 45px;
+  }
+  &__button-submit {
+    outline: none;
+    background-color: #2c2e81;
+    border: none;
+    font-family: "Comfortaa";
+    color: white;
+    width: 20rem;
+    height: 70px;
+    border-radius: 80px;
+    font-size: 3rem;
+  }
+}

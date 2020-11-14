@@ -1,0 +1,260 @@
+h2 {
+  // margin-left: 4em;
+  // text-align: center;
+  // margin-top: 3em !important;
+  margin: 0 auto;
+  margin-top: 0.5em !important;
+}
+
+.container-enfermedades {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 1em;
+  // margin-left: 4em;
+  // margin-top: 2em;
+  &__btn {
+    // background-color: green;
+    width: 30%;
+    margin-bottom: 4.5em;
+    margin-left: 1.5em;
+
+    & > label {
+      padding-top: 10px !important;
+      border-color: $main !important;
+      color: $main !important;
+    }
+
+    > input {
+      display: none;
+    }
+
+    & > input:checked + label {
+      background-color: $main !important;
+      color: white !important;
+    }
+  }
+}
+
+.slider {
+  // .medical-history {
+  //     height: inherit !important;
+  //     margin-top: 0;
+  //     padding-top: 0;
+  // }
+
+  > .row:first-child {
+    height: 1em;
+    margin-top: 2em;
+  }
+  > .row:last-child {
+    height: 94%;
+  }
+
+  & .capeta-enfermedades {
+    & .row {
+      padding-bottom: 0;
+
+      > h3 {
+        margin-top: 1.5em;
+        font-size: 1.5em;
+      }
+
+      .carpeta {
+        .button {
+          font-size: 0.8em;
+          margin-top: -2em;
+          display: inline-block;
+          width: fit-content;
+          padding: 0.5em;
+          background-color: $gray;
+          border-color: $gray;
+          color: #000000;
+          margin-bottom: 0.5em;
+
+          &:first-child {
+            margin-right: 1em;
+            background-color: $dark-red;
+            border-color: $dark-red;
+            color: white;
+          }
+        }
+
+        & svg {
+          transition: all 300ms;
+        }
+        & svg:hover {
+          transform: scale(1.1);
+        }
+      }
+
+      .column {
+        > div {
+          text-align: center;
+        }
+        svg {
+          width: 8em;
+          margin-bottom: 1em;
+          text-align: center;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .grid {
+    height: 100%;
+
+    .system {
+      // height: 1em;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0;
+
+      .subtitle {
+        font-size: 3em;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        height: 3.2em;
+        margin: 0;
+        height: 2.4em;
+
+        .subtitle-icon {
+          margin: 0;
+          margin-right: 0.5em;
+          svg {
+            width: 2em;
+            margin: 0;
+            height: auto;
+          }
+        }
+      }
+
+      > h3 {
+        margin: 0;
+      }
+    }
+
+    .diseases.left {
+      height: 60vh;
+
+      h3 {
+        text-align: center;
+        margin-bottom: 1em;
+      }
+
+      .plate {
+        margin-left: 6em;
+        margin-right: 6em;
+        // padding: 3em;
+        height: inherit;
+        border: 1em solid red;
+        border-top-width: 3em;
+        border-radius: 2em;
+        height: 100%;
+
+        > .row:first-child {
+          height: 85%;
+          overflow: scroll;
+        }
+
+        .no-disease {
+          & .button {
+            margin-top: 0.5em;
+            width: fit-content;
+            // margin-left: 1em;
+            // margin-right: 1em;
+            padding: 0.5em;
+            height: auto;
+            font-size: 1.3em;
+            background-color: $main;
+            color: #ffffff;
+            border-color: $main;
+          }
+        }
+
+        .ui.button.disease {
+          width: fit-content;
+          height: auto;
+          padding: 0.5em;
+          padding-left: 1em;
+          padding-right: 1em;
+          margin-top: 1em;
+          font-size: 1.3em;
+          background-color: $gray;
+          color: #000000;
+          border-color: $gray;
+        }
+
+        // .internal-plate {
+        //     width: 100%;
+        //     height: 100%;
+        //     border: 2em solid red;
+        //     border-top-right-radius: 2em;
+        //     border-top-left-radius: 2em;
+        // }
+      }
+    }
+
+    .diseases.right {
+      height: 60vh;
+
+      h3 {
+        text-align: center;
+        margin-bottom: 1em;
+      }
+
+      .eyelash {
+        background-color: green;
+        width: 20em;
+        height: 3em;
+        border-top-left-radius: 2em;
+        border-top-right-radius: 2em;
+
+        .pacient p {
+          color: white;
+          line-height: 3.5em;
+          margin-left: 1em;
+        }
+      }
+
+      .folder {
+        height: 53vh;
+        margin-right: 3.5em;
+        border: 3px solid green;
+        border-radius: 2em;
+        border-top-left-radius: 0;
+
+        .drag {
+          height: 80%;
+        }
+
+        & .no-disease {
+          height: 20%;
+
+          & .button {
+            margin-top: 0.5em;
+            width: fit-content;
+            // margin-left: 1em;
+            // margin-right: 1em;
+            padding: 0.5em;
+            height: auto;
+            font-size: 1.3em;
+            background-color: $main;
+            color: #ffffff;
+            border-color: $main;
+          }
+        }
+      }
+    }
+  }
+}
+
+// svg {
+//     width: 1em;
+//     text-align: center;
+// }

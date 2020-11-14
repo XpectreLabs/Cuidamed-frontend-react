@@ -1,0 +1,61 @@
+// .date-input {
+
+//   position: relative;
+//   width: fit-content;
+//   margin: 0 auto;
+
+//   .move-label {
+//     animation: slide-in 0.5s forwards ease-in-out;
+//     font-size: 1.5em !important;
+//   }
+
+//   label {
+//     margin: auto auto !important;
+//     font-family: "Myanmar Text";
+//     font-weight: normal;
+//     padding: 0;
+//     color: $color-dark-light;
+//     background-color: transparent;
+//     font-size: 1.8em;
+//     left: 0;
+//     right: 0;
+//     //posicionamiento
+//     position: absolute;
+//     top: 0.7em;
+//     text-align: center;
+//     z-index: 2;
+//   }
+
+//   .react-datepicker-wrapper {
+
+//     input {
+//       // width: 100%;
+      
+//       font-size: 1.5em;
+//       height: 2.4em;
+//       border-radius: 1.5em !important; 
+//       border-color: $color-dark-light; 
+//       border: 1px solid rgba(34,36,38,.15);
+//       outline: none;
+//       padding-left: 0.5em;
+//   }
+
+//   }
+
+//   .react-datepicker__month-container {
+//     font-size: 1.3em;
+//   }
+  
+//   @keyframes slide-in {
+//     from {
+//     }
+  
+//     to {
+//       right: 4em;
+//       top: -0.35em;
+//       width: fit-content;
+//       background-color: $white;
+//       margin-left: auto;
+//     }
+//   }
+// }
