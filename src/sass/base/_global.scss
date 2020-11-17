@@ -78,10 +78,79 @@ input {
   background-color: transparent;
   margin-top: 3em;
   margin-bottom: 1.5em;
-  font-family: 'Comfortaa';
+  font-family: "Comfortaa";
   font-size: 4.5em;
   font-weight: lighter;
   color: #ffffff;
   text-align: center;
   padding: 0;
+}
+
+
+//DRAG AND DROP 
+// .row {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+// }
+
+.item {
+  font-size: 15px;
+  // margin-bottom: 10px;
+  // padding: 10px;
+  // border-radius: 5px;
+  z-index: 1;
+  // background-color: white;
+}
+
+.item:hover {
+  cursor: pointer;
+}
+
+.item-title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.item-status {
+  text-align: right;
+}
+
+.color-bar {
+  width: 40px;
+  height: 10px;
+  border-radius: 5px;
+}
+
+.drop-wrapper {
+  flex: 1 25%;
+  width: 100%;
+  min-height: 150px;
+  min-width: 300px;
+}
+
+.col-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  // padding: 20px;
+  // background-color: var(--background-color);
+  border-radius: 5px;
+}
+
+.col-header {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.col {
+  min-height: 250px;
+  min-width: 300px;
+  // width: 300px;
+}
+
+.highlight-region {
+  background-color: $main;
 }
