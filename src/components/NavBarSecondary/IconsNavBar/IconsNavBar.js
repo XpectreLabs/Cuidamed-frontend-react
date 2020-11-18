@@ -15,7 +15,7 @@ const dataIcons = [
   },
   {
     icon: <IconIndMedHistorial></IconIndMedHistorial>,
-    link: '/historial-medico',
+    link: '/enfermedades-comunes',
   },
   {
     icon: <IconIndTratamiento></IconIndTratamiento>,
