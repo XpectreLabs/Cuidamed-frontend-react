@@ -2,6 +2,10 @@
   width: 100%;
   position: relative;
 
+  #date {
+    opacity: 0;
+  }
+
   & > input,
   & > .react-datepicker-wrapper > .react-datepicker__input-container > input {
     height: 3.1em;
@@ -23,13 +27,13 @@
   &.newDesign {
     & > label::before {
       font-size: 20px;
-      color: white;
-      background-color: transparent;
+      color: $text-secondary;
+      // background-color: transparent;
     }
     & > input:not(:placeholder-shown) + label::before,
     & > .react-datepicker-wrapper:not(:placeholder-shown) + label::before,
     & > .show-label:not(:placeholder-shown) + label::before {
-      top: -35px;
+      top: -20px;
       opacity: 1;
     }
     /*& > input:not(:placeholder-shown) + label::before,
@@ -118,8 +122,8 @@
     opacity: 0;
     transition: all 0.3s ease;
     left: 15px;
-    color: $color-dark-light;
-    font-size: 30px;
+    color: $text-secondary;
+    font-size: 20px;
     background-color: white;
   }
 

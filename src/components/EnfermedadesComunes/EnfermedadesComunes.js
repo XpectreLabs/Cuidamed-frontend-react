@@ -33,32 +33,32 @@ export default function EnfermedadesComunes() {
                     <Grid.Row className="subtitle">
                         <h2 className="subtitle-diseas">¿Tienes algunas de estas enfermedades?</h2>
                     </Grid.Row>
-                        <Grid.Row verticalAlign="middle">
-                            <Grid.Column width={15} verticalAlign="middle">
-                                <div className="container-enfermedades">
-                                    {commonDiseases.map((disease, index) => (
-                                        <div
-                                            key={index}
-                                            className="container-enfermedades__btn">
-                                            <input
-                                                type="checkbox"
-                                                id={disease.id}
-                                                value={disease.id}
-                                                onChange={handleCheckedInput}></input>
-                                            <label htmlFor={disease.id} className="ui button">
-                                                {disease.name}
-                                            </label>
-                                        </div>
-                                    ))}
-                                </div>
-                            </Grid.Column>
-                            <Grid.Column width={1}>
-                            {/* to={icon.link} */}
-                            <Link to={"/sistemas"}>
-                                <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-5ee101923810c92463" aria-disabled="false"></div>
-                            </Link>
-                            </Grid.Column>
-                        </Grid.Row>
+                    <Grid.Row verticalAlign="middle" className="list-enfermedades-comunes">
+                        <Grid.Column width={15} verticalAlign="middle">
+                            <div className="container-enfermedades">
+                                {commonDiseases.map((disease, index) => (
+                                    <div
+                                        key={index}
+                                        className="container-enfermedades__btn">
+                                        <input
+                                            type="checkbox"
+                                            id={disease.id}
+                                            value={disease.id}
+                                            onChange={handleCheckedInput}></input>
+                                        <label htmlFor={disease.id} className="ui button">
+                                            {disease.name}
+                                        </label>
+                                    </div>
+                                ))}
+                            </div>
+                        </Grid.Column>
+                        <Grid.Column width={1}>
+                        {/* to={icon.link} */}
+                        <Link to={"/sistemas"}>
+                            <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-5ee101923810c92463" aria-disabled="false"></div>
+                        </Link>
+                        </Grid.Column>
+                    </Grid.Row>
                 </Grid>
             </Container>
         </div>
