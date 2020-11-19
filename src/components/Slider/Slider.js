@@ -286,8 +286,14 @@ export default function Slider() {
     }
   };
 
-  // const [activeSlide, setActiveSlide] = useState(0);
+  
+  const slide  = (s) => {
+    var mySwiper = document.querySelector('.swiper-container').swiper
+    mySwiper.slideTo(s)
+  }
 
+  // const [activeSlide, setActiveSlide] = useState(0);
+  
   // const handleEditarInfo = (e) => {
   //     e.preventDefault();
   //     var mySwiper = document.querySelector('.swiper-container').swiper
@@ -599,10 +605,10 @@ export default function Slider() {
                         <div className="icon">{value.iconFirst}</div>
                         <div className="data">
                           <label>
-                            {value.labelFirst} {value.slideFirst}{' '}
-                            <a href="#">
-                              <Icon name="pencil alternate" size="small" />
-                            </a>
+                            {value.labelFirst} {' '}
+                            {/* <a href="#"> */}
+                              <Icon name="pencil alternate" size="small" onClick={() => slide(value.slideFirst)}/>
+                            {/* </a> */}
                           </label>
                           {/* onClick={handleEditarInfo} */}
                           <span>{value.dataFirst}</span>
@@ -613,7 +619,7 @@ export default function Slider() {
                         <div className="data">
                           <label>
                             {value.labelSecond}{' '}
-                            <Icon name="pencil alternate" size="small" />
+                            <Icon name="pencil alternate" size="small" onClick={() => slide(value.slideSecond)}/>
                           </label>
                           <span>{value.dataSecond}</span>
                         </div>

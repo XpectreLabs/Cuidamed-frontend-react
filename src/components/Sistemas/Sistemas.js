@@ -75,7 +75,7 @@ import {
 export default function Sistemas() {
     return (
         <div>
-            <Grid className="capeta-enfermedades" centered>
+            <Grid className="carpeta-enfermedades" centered>
                 <Grid.Row>
                     <h1 className="title-diseas">Historial Médico</h1>
                 </Grid.Row>

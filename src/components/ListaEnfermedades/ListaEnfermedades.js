@@ -39,14 +39,14 @@ export default function ListaEnfermedades() {
 
     return (
         <div>
-            <Grid centered>
+            <Grid centered className="lista-enfermedades">
                 <Grid.Row>
-                <h1 className="title-list"><span className="title-list-icon"><Oseo /></span>Sistema óseo</h1>
+                    <h1 className="title-list"><span className="title-list-icon"><Oseo /></span>Sistema óseo</h1>
                 </Grid.Row>
-                <Grid.Row className="system" centered>
-                    <h3 className="subtitle">Arrastre las enfermedades que tenga a mis enfermedades</h3>
+                <Grid.Row className="instructions" centered>
+                    <h3>Arrastre las enfermedades que tenga a mis enfermedades</h3>
                 </Grid.Row>
-                <Grid.Row columns="2">
+                <Grid.Row columns="2" className="container-diseases">
                     <Grid.Column className="diseases left">
                         <Grid.Row>
                             <h3>Enfermedades</h3>
