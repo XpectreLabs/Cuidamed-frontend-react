@@ -26,6 +26,13 @@ const data = [{
 {
     id: 5,
     icon: "⭕️",
+    status: "misEnfermedades",
+    title: "",
+    content: "SIDA"
+},
+{
+    id: 6,
+    icon: "⭕️",
     status: "enfermedades",
     title: "Daily reading",
     content: "Otra enfermedad"

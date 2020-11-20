@@ -4,7 +4,7 @@ import {
     Button
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { carpetaSistemas } from './data';
+
 import {
     CarpDigestivo,
     CarpEndocrino,
@@ -16,7 +16,7 @@ import {
     CarpSanguineo,
     CarpSexual,
     CarpUrinario,
-    Oseo,
+
 } from '../../images/icons/icons';
 
 // {carpetaSistemas.map((sistema, index) => (
@@ -85,7 +85,12 @@ export default function Sistemas() {
                 <Grid.Row className="row-carpetas">
                     <Grid.Column width={3}>
                         <div className="carpeta">
-                            <Link to="/lista-enfermedades">
+                            <Link
+                                to={{
+                                    pathname: "/lista-enfermedades",
+                                    state: { humanSystem: 'óseo' }
+                                }}
+                            >
                                 <CarpOseo />
                             </Link>
                             <Grid.Row>
@@ -99,7 +104,12 @@ export default function Sistemas() {
                     </Grid.Column>
                     <Grid.Column width={3}>
                         <div className="carpeta">
-                            <Link to="/lista-enfermedades">
+                            <Link
+                                to={{
+                                    pathname: "/lista-enfermedades",
+                                    state: { humanSystem: "muscular" }
+                                }}
+                            >
                                 <CarpMuscular />
                             </Link>
                             <Grid.Row>
@@ -113,7 +123,12 @@ export default function Sistemas() {
                     </Grid.Column>
                     <Grid.Column width={3}>
                         <div className="carpeta">
-                            <Link to="/lista-enfermedades">
+                            <Link
+                                to={{
+                                    pathname: "/lista-enfermedades",
+                                    state: { humanSystem: 'digestivo' }
+                                }}
+                            >
                                 <CarpDigestivo />
                             </Link>
                             <Grid.Row>
@@ -127,7 +142,12 @@ export default function Sistemas() {
                     </Grid.Column>
                     <Grid.Column width={3}>
                         <div className="carpeta">
-                            <Link to="/lista-enfermedades">
+                            <Link
+                                to={{
+                                    pathname: "/lista-enfermedades",
+                                    state: { humanSystem: 'circulatorio' }
+                                }}
+                            >
                                 <CarpSanguineo />
                             </Link>
                             <Grid.Row>
@@ -143,7 +163,12 @@ export default function Sistemas() {
                 <Grid.Row className="row-carpetas">
                     <Grid.Column width={3}>
                         <div className="carpeta">
-                            <Link to="/lista-enfermedades">
+                            <Link
+                                to={{
+                                    pathname: "/lista-enfermedades",
+                                    state: { humanSystem: 'urinario' }
+                                }}
+                            >
                                 <CarpUrinario />
                             </Link>
                             <Grid.Row>
@@ -157,7 +182,12 @@ export default function Sistemas() {
                     </Grid.Column>
                     <Grid.Column width={3}>
                         <div className="carpeta">
-                            <Link to="/lista-enfermedades">
+                            <Link
+                                to={{
+                                    pathname: "/lista-enfermedades",
+                                    state: { humanSystem: 'nervioso' }
+                                }}
+                            >
                                 <CarpNervioso />
                             </Link>
                             <Grid.Row>
@@ -171,7 +201,12 @@ export default function Sistemas() {
                     </Grid.Column>
                     <Grid.Column width={3}>
                         <div className="carpeta">
-                            <Link to="/lista-enfermedades">
+                            <Link
+                                to={{
+                                    pathname: "/lista-enfermedades",
+                                    state: { humanSystem: 'reproductivo' }
+                                }}
+                            >
                                 <CarpSexual />
                             </Link>
                             <Grid.Row>
@@ -185,7 +220,12 @@ export default function Sistemas() {
                     </Grid.Column>
                     <Grid.Column width={3}>
                         <div className="carpeta">
-                            <Link to="/lista-enfermedades">
+                            <Link
+                                to={{
+                                    pathname: "/lista-enfermedades",
+                                    state: { humanSystem: 'endocrino' }
+                                }}
+                            >
                                 <CarpEndocrino />
                             </Link>
                             <Grid.Row>
@@ -201,7 +241,12 @@ export default function Sistemas() {
                 <Grid.Row className="row-carpetas">
                     <Grid.Column width={3}>
                         <div className="carpeta">
-                            <Link to="/lista-enfermedades">
+                            <Link
+                                to={{
+                                    pathname: "/lista-enfermedades",
+                                    state: { humanSystem: 'respiratorio' }
+                                }}
+                            >
                                 <CarpRespiratorio />
                             </Link>
                             <Grid.Row>
@@ -215,7 +260,12 @@ export default function Sistemas() {
                     </Grid.Column>
                     <Grid.Column width={3}>
                         <div className="carpeta">
-                            <Link to="/lista-enfermedades">
+                            <Link
+                                to={{
+                                    pathname: "/lista-enfermedades",
+                                    state: { humanSystem: 'piel' }
+                                }}
+                            >
                                 <CarpPiel />
                             </Link>
                             <Grid.Row>
@@ -228,7 +278,7 @@ export default function Sistemas() {
                         </div>
                     </Grid.Column>
                 </Grid.Row>
-            </Grid>  
+            </Grid>
         </div>
     )
 }

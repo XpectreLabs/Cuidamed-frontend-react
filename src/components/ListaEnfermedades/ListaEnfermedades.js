@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Grid, Button } from 'semantic-ui-react'
-import { Oseo } from '../../images/icons/icons';
+
+import { arrayIconHumanSys } from './data'
 
 //DRAG ANDD DROP
 import { HTML5Backend } from 'react-dnd-html5-backend'
@@ -11,37 +12,62 @@ import DropWrapper from "../DragAndDrop/DropWrapper";
 import Col from "../DragAndDrop/Col";
 import { data, statuses } from "../DragAndDrop/data";
 
-export default function ListaEnfermedades() {
+const ListaEnfermedades = () => {
+    const { humanSystem } = window.history.state.state
 
-        //DRAG AND DROP
-        const [items, setItems] = useState(data);
+    //DRAG AND DROP
+    const [items, setItems] = useState(data);
 
-        const onDrop = (item, monitor, status = "") => {
-            const mapping = statuses.find(si => si.status === status);
-    
-            setItems(prevState => {
-                const newItems = prevState
-                    .filter(i => i.id !== item.id)
-                    .concat({ ...item, status, icon: mapping.icon });
-                return [...newItems];
-            });
-        };
-    
-        const moveItem = (dragIndex, hoverIndex) => {
-            const item = items[dragIndex];
-            setItems(prevState => {
-                const newItems = prevState.filter((i, idx) => idx !== dragIndex);
-                newItems.splice(hoverIndex, 0, item);
-                return [...newItems];
-            });
-        };
+
+
+    useEffect(() => {
+        console.log(items.includes(si => si.status === 'misEnfermedades'));
+    }, [items])
+    // (
+    //     items
+    //         .filter(i => i.status === "misEnfermedades")
+    //         .map((i, idx) => <Button key={idx}>Ingresar a expediente</Button>)
+    //     {items
+    //         .filter(i => i.status === "enfermedades")
+    //         .map((i, idx) => <Button key={idx}>No tengo ninguna de estas enfermedades</Button>)
+    //     }
+    // )
+
+    const onDrop = (item, monitor, status = "") => {
+        const mapping = statuses.find(si => si.status === status);
+        console.log(mapping);
+        setItems(prevState => {
+            const newItems = prevState
+                .filter(i => i.id !== item.id)
+                .concat({ ...item, status, icon: mapping.icon });
+            return [...newItems];
+        });
+    };
+
+    const moveItem = (dragIndex, hoverIndex) => {
+        const item = items[dragIndex];
+        setItems(prevState => {
+            const newItems = prevState.filter((i, idx) => idx !== dragIndex);
+            newItems.splice(hoverIndex, 0, item);
+            return [...newItems];
+        });
+    };
 
 
     return (
-        <div>
+        <div >
             <Grid centered>
                 <Grid.Row>
-                <h1 className="title-list"><span className="title-list-icon"><Oseo /></span>Sistema óseo</h1>
+                    {arrayIconHumanSys
+                        .filter(icon => icon.name === humanSystem)
+                        .map((icon, index) => (
+                            <h1 key={index} className="title-list">
+                                <span className="title-list-icon">
+                                    {icon.component}
+                                </span> {icon.system}
+                            </h1>
+                        ))}
+
                 </Grid.Row>
                 <Grid.Row className="system" centered>
                     <h3 className="subtitle">Arrastre las enfermedades que tenga a mis enfermedades</h3>
@@ -98,13 +124,14 @@ export default function ListaEnfermedades() {
                                 </DndProvider>
                             </Grid.Row>
                             <Grid.Row className="no-disease">
-                                <Button>No tengo ninguna de estas enfermedades</Button>
                             </Grid.Row>
                         </Grid.Row>
 
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
-        </div>
+        </div >
     )
 }
+
+export default ListaEnfermedades

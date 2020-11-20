@@ -22,7 +22,7 @@ const AppRouter = () => {
           <Route exact component={Login} path="/login" />
           <Route exact component={HistorialMedico} path="/historial-medico" />
           <Route exact component={Sistemas} path="/sistemas" />
-          <Route exact component={Enfermedades} path="/enfermedades-comunes" />
+          <Route component={Enfermedades} path="/enfermedades-comunes" />
           <Route exact component={ListaEnfermedades} path="/lista-enfermedades" />
           <Route exact component={InfoBasic} path="/info-basic" />
           <Route exact component={Register} path="/register" />
