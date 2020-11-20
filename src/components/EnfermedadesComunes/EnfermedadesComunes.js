@@ -53,10 +53,10 @@ export default function EnfermedadesComunes() {
                             </div>
                         </Grid.Column>
                         <Grid.Column width={1}>
-                        {/* to={icon.link} */}
-                        <Link to={"/sistemas"}>
-                            <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-5ee101923810c92463" aria-disabled="false"></div>
-                        </Link>
+                            {/* to={icon.link} */}
+                            <Link to={"/sistemas"}>
+                                <div className="swiper-button-next" tabIndex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-5ee101923810c92463" aria-disabled="false"></div>
+                            </Link>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

@@ -26,6 +26,15 @@ import { ReactComponent as CarpSanguineo } from "./CarpSanguineo.svg"
 import { ReactComponent as CarpSexual } from "./CarpSexual.svg"
 import { ReactComponent as CarpUrinario } from "./CarpUrinario.svg"
 import { ReactComponent as Oseo } from "./Oseo.svg"
+import { ReactComponent as Reproductivo } from "./reproductivo.svg"
+import { ReactComponent as Respiratorio } from "./respiratorio.svg"
+import { ReactComponent as Urinario } from "./urinario.svg"
+import { ReactComponent as Piel } from "./piel.svg"
+import { ReactComponent as Nervioso } from "./nervioso.svg"
+import { ReactComponent as Endocrino } from "./endocrino.svg"
+import { ReactComponent as Digestivo } from "./digestivo.svg"
+import { ReactComponent as Muscular } from "./muscular.svg"
+import { ReactComponent as Circulatorio } from "./circulatorio.svg"
 
 
 
@@ -56,5 +65,14 @@ export {
   CarpSanguineo,
   CarpSexual,
   CarpUrinario,
-  Oseo
+  Oseo,
+  Reproductivo,
+  Respiratorio,
+  Urinario,
+  Piel,
+  Endocrino,
+  Nervioso,
+  Digestivo,
+  Muscular,
+  Circulatorio,
 }
