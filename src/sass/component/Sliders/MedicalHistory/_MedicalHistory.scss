@@ -5,20 +5,24 @@
 //   margin: 0 auto;
 //   margin-top: 0.5em !important;
 // }
-
+.list-enfermedades-comunes {
+  padding: 0 !important;
+}
 .container-enfermedades {
   width: 100%;
+  height: 74vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 1em;
+  align-items: center;
+  padding: 0;
   // margin-left: 4em;
   // margin-top: 2em;
   &__btn {
     // background-color: green;
     width: 30%;
-    margin-bottom: 4.5em;
-    margin-left: 1.5em;
+    // margin-bottom: 4.5em;
+    // margin-left: 1.5em;
 
     & > label {
       padding-top: 10px !important;
@@ -35,6 +39,10 @@
       color: white !important;
     }
   }
+  &__btn:last-child, &__btn:nth-child(10)  {
+    margin-bottom: 0;
+  }
+
 }
 
 .slider {
@@ -49,7 +57,7 @@
     margin-top: 2em;
   }
   > .row:last-child {
-    height: 94%;
+    height: 93%;
   }
 
   & .capeta-enfermedades {

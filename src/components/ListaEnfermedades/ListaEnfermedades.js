@@ -69,10 +69,10 @@ const ListaEnfermedades = () => {
                         ))}
 
                 </Grid.Row>
-                <Grid.Row className="system" centered>
-                    <h3 className="subtitle">Arrastre las enfermedades que tenga a mis enfermedades</h3>
+                <Grid.Row className="instructions" centered>
+                    <h3>Arrastre las enfermedades que tenga a mis enfermedades</h3>
                 </Grid.Row>
-                <Grid.Row columns="2">
+                <Grid.Row columns="2" className="container-diseases">
                     <Grid.Column className="diseases left">
                         <Grid.Row>
                             <h3>Enfermedades</h3>

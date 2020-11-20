@@ -33,7 +33,7 @@ export default function EnfermedadesComunes() {
                     <Grid.Row className="subtitle">
                         <h2 className="subtitle-diseas">¿Tienes algunas de estas enfermedades?</h2>
                     </Grid.Row>
-                    <Grid.Row verticalAlign="middle">
+                    <Grid.Row verticalAlign="middle" className="list-enfermedades-comunes">
                         <Grid.Column width={15} verticalAlign="middle">
                             <div className="container-enfermedades">
                                 {commonDiseases.map((disease, index) => (

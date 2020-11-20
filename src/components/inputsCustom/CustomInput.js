@@ -3,7 +3,7 @@ import React from 'react';
 export const CustomInput = ({
   placeholder = 'Input Example',
   type = 'text',
-  areYouInLogin = false,
+  areYouInLogin = true,
   functionPlaces = null,
   smallStyle = false,
   setValue,

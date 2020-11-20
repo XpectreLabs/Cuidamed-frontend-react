@@ -184,6 +184,10 @@
           flex-direction: column;
           justify-content: center;
 
+           i {
+            cursor: pointer;
+          }
+
           > span {
             font-size: 1.2em;
             margin-top: 0.5em;
@@ -193,6 +197,7 @@
           > label {
             font-weight: bold;
             font-size: 1.2em;
+            text-align: left;
           }
         }
       }
