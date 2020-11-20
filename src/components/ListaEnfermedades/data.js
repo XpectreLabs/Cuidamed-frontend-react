@@ -16,6 +16,7 @@ const arrayIconHumanSys = [
         name: "óseo",
         component: <Oseo></Oseo>,
         system: "Sistema óseo",
+        color: "#43ffdf",
     },
     {
         name: "respiratorio",

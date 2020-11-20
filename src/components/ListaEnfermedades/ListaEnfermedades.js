@@ -56,7 +56,7 @@ const ListaEnfermedades = () => {
 
     return (
         <div >
-            <Grid centered>
+            <Grid centered className="lista-enfermedades">
                 <Grid.Row>
                     {arrayIconHumanSys
                         .filter(icon => icon.name === humanSystem)
@@ -64,7 +64,7 @@ const ListaEnfermedades = () => {
                             <h1 key={index} className="title-list">
                                 <span className="title-list-icon">
                                     {icon.component}
-                                </span> {icon.system}
+                                </span> <span style={{ color: icon.color }}>{icon.system}</span>
                             </h1>
                         ))}
 
