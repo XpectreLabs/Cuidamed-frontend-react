@@ -13,35 +13,32 @@ import Col from "../DragAndDrop/Col";
 import { data, statuses } from "../DragAndDrop/data";
 
 const ListaEnfermedades = () => {
-    const { humanSystem } = window.history.state.state
+    const { humanSystem, arrayData, colorFolder } = window.history.state.state
 
     //DRAG AND DROP
-    const [items, setItems] = useState(data);
+    const [items, setItems] = useState(arrayData);
 
-
+    const [btnAddExp, setBtnAddExp] = useState(null);
 
     useEffect(() => {
-        console.log(items.includes(si => si.status === 'misEnfermedades'));
+        if (items.some(si => si.status === "misEnfermedades")) {
+            setBtnAddExp(<Button>Ingresar a expediente</Button>);
+        } else {
+            setBtnAddExp(<Button >No tengo ninguna de estas enfermedades</Button>);
+        }
     }, [items])
-    // (
-    //     items
-    //         .filter(i => i.status === "misEnfermedades")
-    //         .map((i, idx) => <Button key={idx}>Ingresar a expediente</Button>)
-    //     {items
-    //         .filter(i => i.status === "enfermedades")
-    //         .map((i, idx) => <Button key={idx}>No tengo ninguna de estas enfermedades</Button>)
-    //     }
-    // )
 
     const onDrop = (item, monitor, status = "") => {
         const mapping = statuses.find(si => si.status === status);
-        console.log(mapping);
         setItems(prevState => {
             const newItems = prevState
                 .filter(i => i.id !== item.id)
-                .concat({ ...item, status, icon: mapping.icon });
+                .concat({ ...item, status });
+            console.log(newItems);
             return [...newItems];
         });
+
+
     };
 
     const moveItem = (dragIndex, hoverIndex) => {
@@ -101,12 +98,12 @@ const ListaEnfermedades = () => {
                         <Grid.Row>
                             <h3>Mis enfermedades</h3>
                         </Grid.Row>
-                        <Grid.Row className="eyelash">
+                        <Grid.Row className="eyelash" style={{ backgroundColor: colorFolder }}>
                             <Grid.Row className="pacient">
                                 <p>Fabrizio Castellanos</p>
                             </Grid.Row>
                         </Grid.Row>
-                        <Grid.Row className="folder">
+                        <Grid.Row className="folder" style={{ border: `3px solid ${colorFolder}` }}>
                             <Grid.Row className="drag">
                                 <DndProvider backend={HTML5Backend}>
                                     <div className={"row"}>
@@ -124,6 +121,7 @@ const ListaEnfermedades = () => {
                                 </DndProvider>
                             </Grid.Row>
                             <Grid.Row className="no-disease">
+                                {btnAddExp}
                             </Grid.Row>
                         </Grid.Row>
 
