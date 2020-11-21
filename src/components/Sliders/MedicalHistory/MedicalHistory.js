@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
-import Moment from 'react-moment';
 import {
     Grid,
     Container,
-    Icon,
     Button,
-    GridColumn,
     GridRow,
 } from 'semantic-ui-react';
 
@@ -45,7 +41,7 @@ import { DndProvider } from 'react-dnd'
 import Item from "../../DragAndDrop/Item";
 import DropWrapper from "../../DragAndDrop/DropWrapper";
 import Col from "../../DragAndDrop/Col";
-import { data, statuses } from "../../DragAndDrop/data";
+import { arrayPiel, statuses } from "../../DragAndDrop/data";
 
 // import "./Slider.scss"
 // install Swiper components
@@ -71,7 +67,7 @@ export default function MedicalHistory() {
     }, [listCommonDiseases]);
 
     //DRAG AND DROP
-    const [items, setItems] = useState(data);
+    const [items, setItems] = useState(arrayPiel);
 
     const onDrop = (item, monitor, status = "") => {
         const mapping = statuses.find(si => si.status === status);
