@@ -4,6 +4,19 @@ import {
     Button
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import {
+    arrayCirculatorio,
+    arrayDigestivo,
+    arrayPiel,
+    arrayEndocrino,
+    arrayMuscular,
+    arrayRespiratorio,
+    arrayReproductor,
+    arrayNervioso,
+    arrayUrinario,
+    arrayOseo,
+} from '../DragAndDrop/data'
+
 
 import {
     CarpDigestivo,
@@ -88,7 +101,11 @@ export default function Sistemas() {
                             <Link
                                 to={{
                                     pathname: "/lista-enfermedades",
-                                    state: { humanSystem: 'óseo' }
+                                    state: {
+                                        humanSystem: 'óseo',
+                                        arrayData: arrayOseo,
+                                        color: '#2b19a0',
+                                    }
                                 }}
                             >
                                 <CarpOseo />
@@ -107,7 +124,11 @@ export default function Sistemas() {
                             <Link
                                 to={{
                                     pathname: "/lista-enfermedades",
-                                    state: { humanSystem: "muscular" }
+                                    state: {
+                                        humanSystem: "muscular",
+                                        arrayData: arrayMuscular,
+                                        color: '#772d11',
+                                    }
                                 }}
                             >
                                 <CarpMuscular />
@@ -126,7 +147,11 @@ export default function Sistemas() {
                             <Link
                                 to={{
                                     pathname: "/lista-enfermedades",
-                                    state: { humanSystem: 'digestivo' }
+                                    state: {
+                                        humanSystem: 'digestivo',
+                                        arrayData: arrayDigestivo,
+                                        color: '#19a054',
+                                    }
                                 }}
                             >
                                 <CarpDigestivo />
@@ -145,7 +170,11 @@ export default function Sistemas() {
                             <Link
                                 to={{
                                     pathname: "/lista-enfermedades",
-                                    state: { humanSystem: 'circulatorio' }
+                                    state: {
+                                        humanSystem: 'circulatorio',
+                                        arrayData: arrayCirculatorio,
+                                        color: '#a01919',
+                                    }
                                 }}
                             >
                                 <CarpSanguineo />
@@ -166,7 +195,11 @@ export default function Sistemas() {
                             <Link
                                 to={{
                                     pathname: "/lista-enfermedades",
-                                    state: { humanSystem: 'urinario' }
+                                    state: {
+                                        humanSystem: 'urinario',
+                                        arrayData: arrayUrinario,
+                                        color: '#86a019',
+                                    }
                                 }}
                             >
                                 <CarpUrinario />
@@ -185,7 +218,11 @@ export default function Sistemas() {
                             <Link
                                 to={{
                                     pathname: "/lista-enfermedades",
-                                    state: { humanSystem: 'nervioso' }
+                                    state: {
+                                        humanSystem: 'nervioso',
+                                        arrayData: arrayNervioso,
+                                        color: '#32812c',
+                                    }
                                 }}
                             >
                                 <CarpNervioso />
@@ -204,7 +241,11 @@ export default function Sistemas() {
                             <Link
                                 to={{
                                     pathname: "/lista-enfermedades",
-                                    state: { humanSystem: 'reproductivo' }
+                                    state: {
+                                        humanSystem: 'reproductivo',
+                                        arrayData: arrayReproductor,
+                                        color: '#ff1695',
+                                    }
                                 }}
                             >
                                 <CarpSexual />
@@ -223,7 +264,11 @@ export default function Sistemas() {
                             <Link
                                 to={{
                                     pathname: "/lista-enfermedades",
-                                    state: { humanSystem: 'endocrino' }
+                                    state: {
+                                        humanSystem: 'endocrino',
+                                        arrayData: arrayEndocrino,
+                                        color: '#a07319',
+                                    }
                                 }}
                             >
                                 <CarpEndocrino />
@@ -244,7 +289,11 @@ export default function Sistemas() {
                             <Link
                                 to={{
                                     pathname: "/lista-enfermedades",
-                                    state: { humanSystem: 'respiratorio' }
+                                    state: {
+                                        humanSystem: 'respiratorio',
+                                        arrayData: arrayRespiratorio,
+                                        color: '#2c6d81',
+                                    }
                                 }}
                             >
                                 <CarpRespiratorio />
@@ -263,7 +312,11 @@ export default function Sistemas() {
                             <Link
                                 to={{
                                     pathname: "/lista-enfermedades",
-                                    state: { humanSystem: 'piel' }
+                                    state: {
+                                        humanSystem: 'piel',
+                                        arrayData: arrayPiel,
+                                        color: '#81452c',
+                                    }
                                 }}
                             >
                                 <CarpPiel />

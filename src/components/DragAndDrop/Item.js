@@ -51,7 +51,7 @@ const Item = ({ item, index, moveItem, status }) => {
                 style={{ opacity: isDragging ? 0 : 1 }}
                 className={"item"}
             >
-                <p className="ui button disease">{item.content}</p>
+                <p className="ui button disease" style={{backgroundColor: status, borderColor: status}}>{item.content}</p>
                 {/* <div className={"color-bar"} style={{ backgroundColor: status }} />
                 <p className={"item-title"}>{item.content}</p>
                 <p className={"item-status"}>{item.icon}</p> */}

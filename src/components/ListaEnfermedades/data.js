@@ -15,62 +15,52 @@ const arrayIconHumanSys = [
     {
         name: "óseo",
         component: <Oseo></Oseo>,
-        system: "Sistema óseo",
-        color: "#2b19a0",
+        system: "Sistema óseo"
     },
     {
         name: "respiratorio",
         component: <Respiratorio></Respiratorio>,
-        system: "Sistema respiratorio",
-        color: "#2c6d81",
+        system: "Sistema respiratorio"
     },
     {
         name: "reproductivo",
         component: <Reproductivo></Reproductivo>,
-        system: "Sistema reproductivo",
-        color: "#ff1695",
+        system: "Sistema reproductivo"
     },
     {
         name: "piel",
         component: <Piel></Piel>,
-        system: "Piel",
-        color: "#81452c",
+        system: "Piel"
     },
     {
         name: "endocrino",
         component: <Endocrino></Endocrino>,
-        system: "Sistema endocrino",
-        color: "#a07319",
+        system: "Sistema endocrino"
     },
     {
         name: "urinario",
         component: <Urinario></Urinario>,
-        system: "Sistema urinario",
-        color: "#86a019",
+        system: "Sistema urinario"
     },
     {
         name: "muscular",
         component: <Muscular></Muscular>,
-        system: "Sistema muscular",
-        color: "#772d11",
+        system: "Sistema muscular"
     },
     {
         name: "nervioso",
         component: <Nervioso></Nervioso>,
-        system: "Sistema nervioso",
-        color: "#32812c",
+        system: "Sistema nervioso"
     },
     {
         name: "digestivo",
         component: <Digestivo></Digestivo>,
-        system: "Sistema digestivo",
-        color: "#19a054",
+        system: "Sistema digestivo"
     },
     {
         name: "circulatorio",
         component: <Circulatorio></Circulatorio>,
-        system: "Sistema circulatorio",
-        color: "#a01919",
+        system: "Sistema circulatorio"
     }
 
 ]
