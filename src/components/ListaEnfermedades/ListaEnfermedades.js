@@ -13,7 +13,7 @@ import Col from "../DragAndDrop/Col";
 import { data, statuses } from "../DragAndDrop/data";
 
 const ListaEnfermedades = () => {
-    const { humanSystem, arrayData, colorFolder } = window.history.state.state
+    const { humanSystem, arrayData, color } = window.history.state.state
 
     //DRAG AND DROP
     const [items, setItems] = useState(arrayData);
@@ -61,7 +61,7 @@ const ListaEnfermedades = () => {
                             <h1 key={index} className="title-list">
                                 <span className="title-list-icon">
                                     {icon.component}
-                                </span> <span style={{ color: icon.color }}>{icon.system}</span>
+                                </span> <span style={{ color: color }}>{icon.system}</span>
                             </h1>
                         ))}
 
@@ -82,7 +82,7 @@ const ListaEnfermedades = () => {
                                             <Col>
                                                 {items
                                                     .filter(i => i.status === "enfermedades")
-                                                    .map((i, idx) => <Item key={i.id} item={i} index={idx} moveItem={moveItem} status={'#EB5A46'} />)
+                                                    .map((i, idx) => <Item key={i.id} item={i} index={idx} moveItem={moveItem}  />)
                                                 }
                                             </Col>
                                         </DropWrapper>
@@ -98,12 +98,12 @@ const ListaEnfermedades = () => {
                         <Grid.Row>
                             <h3>Mis enfermedades</h3>
                         </Grid.Row>
-                        <Grid.Row className="eyelash" style={{ backgroundColor: colorFolder }}>
+                        <Grid.Row className="eyelash" style={{ backgroundColor: color }}>
                             <Grid.Row className="pacient">
                                 <p>Fabrizio Castellanos</p>
                             </Grid.Row>
                         </Grid.Row>
-                        <Grid.Row className="folder" style={{ border: `3px solid ${colorFolder}` }}>
+                        <Grid.Row className="folder" style={{ border: `3px solid ${color}` }}>
                             <Grid.Row className="drag">
                                 <DndProvider backend={HTML5Backend}>
                                     <div className={"row"}>
@@ -112,7 +112,7 @@ const ListaEnfermedades = () => {
                                                 <Col>
                                                     {items
                                                         .filter(i => i.status === "misEnfermedades")
-                                                        .map((i, idx) => <Item key={i.id} item={i} index={idx} moveItem={moveItem} status={'#00C2E0'} />)
+                                                        .map((i, idx) => <Item key={i.id} item={i} index={idx} moveItem={moveItem} status={color} />)
                                                     }
                                                 </Col>
                                             </DropWrapper>

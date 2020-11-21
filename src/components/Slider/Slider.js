@@ -318,7 +318,7 @@ export default function Slider() {
           slidesPerView={1}
           navigation
           allowSlideNext={isValidIndex}
-          allowSlidePrev={isValidIndex}
+          // allowSlidePrev={isValidIndex}
           pagination={{ clickable: false }}
           // scrollbar={{ draggable: true }}
           onSwiper={(swiper) => console.log(swiper)}

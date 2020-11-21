@@ -104,7 +104,7 @@ export default function Sistemas() {
                                     state: {
                                         humanSystem: 'óseo',
                                         arrayData: arrayOseo,
-                                        colorFolder: '#2b19a0',
+                                        color: '#2b19a0',
                                     }
                                 }}
                             >
@@ -127,7 +127,7 @@ export default function Sistemas() {
                                     state: {
                                         humanSystem: "muscular",
                                         arrayData: arrayMuscular,
-                                        colorFolder: '#772d11',
+                                        color: '#772d11',
                                     }
                                 }}
                             >
@@ -150,7 +150,7 @@ export default function Sistemas() {
                                     state: {
                                         humanSystem: 'digestivo',
                                         arrayData: arrayDigestivo,
-                                        colorFolder: '#19a054',
+                                        color: '#19a054',
                                     }
                                 }}
                             >
@@ -173,7 +173,7 @@ export default function Sistemas() {
                                     state: {
                                         humanSystem: 'circulatorio',
                                         arrayData: arrayCirculatorio,
-                                        colorFolder: '#a01919',
+                                        color: '#a01919',
                                     }
                                 }}
                             >
@@ -198,7 +198,7 @@ export default function Sistemas() {
                                     state: {
                                         humanSystem: 'urinario',
                                         arrayData: arrayUrinario,
-                                        colorFolder: '#86a019',
+                                        color: '#86a019',
                                     }
                                 }}
                             >
@@ -221,7 +221,7 @@ export default function Sistemas() {
                                     state: {
                                         humanSystem: 'nervioso',
                                         arrayData: arrayNervioso,
-                                        colorFolder: '#32812c',
+                                        color: '#32812c',
                                     }
                                 }}
                             >
@@ -244,7 +244,7 @@ export default function Sistemas() {
                                     state: {
                                         humanSystem: 'reproductivo',
                                         arrayData: arrayReproductor,
-                                        colorFolder: '#ff1695',
+                                        color: '#ff1695',
                                     }
                                 }}
                             >
@@ -267,7 +267,7 @@ export default function Sistemas() {
                                     state: {
                                         humanSystem: 'endocrino',
                                         arrayData: arrayEndocrino,
-                                        colorFolder: '#a07319',
+                                        color: '#a07319',
                                     }
                                 }}
                             >
@@ -292,7 +292,7 @@ export default function Sistemas() {
                                     state: {
                                         humanSystem: 'respiratorio',
                                         arrayData: arrayRespiratorio,
-                                        colorFolder: '#2c6d81',
+                                        color: '#2c6d81',
                                     }
                                 }}
                             >
@@ -315,7 +315,7 @@ export default function Sistemas() {
                                     state: {
                                         humanSystem: 'piel',
                                         arrayData: arrayPiel,
-                                        colorFolder: '#81452c',
+                                        color: '#81452c',
                                     }
                                 }}
                             >

@@ -16,6 +16,8 @@ const dataIcons = [
   {
     icon: <IconIndMedHistorial></IconIndMedHistorial>,
     link: '/enfermedades-comunes',
+    link2: '/sistemas',
+    link3: '/lista-enfermedades',
   },
   {
     icon: <IconIndTratamiento></IconIndTratamiento>,
@@ -39,7 +41,7 @@ export default function IconsNavBar() {
   return (
     <>
       {map(dataIcons, (icon, index) => {
-        if (window.location.pathname === icon.link) {
+        if (window.location.pathname === icon.link || window.location.pathname === icon.link2 || window.location.pathname === icon.link3) {
           return (
             <Link
               key={index}
