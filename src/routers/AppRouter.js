@@ -5,30 +5,32 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import Login from '../pages/login';
-import HistorialMedico from '../pages/historial-medico';
-import Enfermedades from '../pages/enfermedades-comunes';
-import Sistemas from '../pages/sistemas';
-import ListaEnfermedades from '../pages/lista-enfermedades';
-import VerifyCode from '../pages/verify-code';
-import InfoBasic from '../pages/info-basic';
-import Register from '../pages/register';
-import Error404 from '../pages/404';
+import { DashboardRoutes } from './DashboardRoutes';
+import { PrivateRoute } from './PrivateRoute';
+import { useDispatch } from 'react-redux';
+import { PublicRoute } from './PublicRoute';
+import { AuthRouter } from './AuthRouter';
 const AppRouter = () => {
+  const dispatch = useDispatch();
+  const [isLogged, setIsLogged] = useState(false);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token && token !== '') setIsLogged(true);
+  }, [dispatch]);
   return (
     <Router>
       <div>
         <Switch>
-          <Route exact component={Login} path="/login" />
-          <Route exact component={HistorialMedico} path="/historial-medico" />
-          <Route exact component={Sistemas} path="/sistemas" />
-          <Route exact component={Enfermedades} path="/enfermedades-comunes" />
-          <Route exact component={ListaEnfermedades} path="/lista-enfermedades" />
-          <Route exact component={InfoBasic} path="/info-basic" />
-          <Route exact component={Register} path="/register" />
-          <Route exact component={VerifyCode} path="/verify-code" />
-          <Route exact component={Error404} path="/404" />
-          <Redirect to="/404" />
+          <PrivateRoute
+            isAuthenticated={isLogged}
+            component={DashboardRoutes}
+            path="/dashboard"
+          />
+          <PublicRoute
+            isAuthenticated={isLogged}
+            component={AuthRouter}
+            path="/"
+          />
         </Switch>
       </div>
     </Router>

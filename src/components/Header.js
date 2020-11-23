@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Image } from 'semantic-ui-react';
 import Logo from '../images/CuidaMEDLogo.png';
 export const Header = ({ hideElements = false, openModal }) => {
@@ -9,15 +10,17 @@ export const Header = ({ hideElements = false, openModal }) => {
           <div className="header__register">
             <p>
               ¿No tienes cuenta?
-              <a href="/register">
+              <Link to="/register">
                 <span>Crea cuenta</span>
-              </a>
+              </Link>
             </p>
           </div>
         )}
       </div>
       <div className="header__img-container">
-        <Image src={Logo} className="logo" centered />
+        <Link to="/login">
+          <Image src={Logo} className="logo" centered />
+        </Link>
       </div>
       <div>
         {!hideElements && (
