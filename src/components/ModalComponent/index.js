@@ -1,24 +1,39 @@
 import React, { useState } from 'react';
 import { Modal, Button, Header, Image } from 'semantic-ui-react';
 import { CustomInput } from '../inputsCustom/CustomInput';
-const ModalComponent = ({ open = false, onOpen, onClose }) => {
+import { Carpeta } from '../../images/icons/icons'
+
+const ModalComponent = ({ 
+  open = false, 
+  onOpen, 
+  onClose, 
+  title = 'Modal',
+  textModal = '',
+  buttonText = '',
+  placeholder = '',
+  icon = false
+}) => {
   const [code, setCode] = useState('');
   return (
     <Modal open={open} onClose={onClose} onOpen={onOpen}>
-      <Modal.Content>
+      <Modal.Content className={`${icon ? 'modal-enfermedades' : '' }`}>
         <h1 style={{ textAlign: 'center' }} className="modal__title">
-          Emergencia
+          {title}
         </h1>
         <div>
           <form className="modal-form">
+            
             <p className="modal-form__paragraph">
-              Ingrese el código que tiene la pulsera del paciente
+              {textModal}
             </p>
+            <div className={`icon-carpeta ${icon ? '' : 'hidden-icon' } `}>
+              <Carpeta />
+            </div>
             <div className="modal-form__input-container">
               <CustomInput
                 type="text"
                 value={code}
-                placeholder="Código"
+                placeholder={placeholder}
                 smallStyle={true}
                 setValue={(e) => {
                   setCode(e);
@@ -27,7 +42,7 @@ const ModalComponent = ({ open = false, onOpen, onClose }) => {
             </div>
             <div className="modal-form__button-submit-container">
               <button type="submit" className="modal-form__button-submit">
-                Entrar
+                {buttonText}
               </button>
             </div>
           </form>

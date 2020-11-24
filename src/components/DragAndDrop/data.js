@@ -25,26 +25,26 @@ const arrayOseo = [{
     status: "enfermedades",
     content: "Osteodistrofia Renal"
 },
-{
-    id: 7,
-    status: "enfermedades",
-    content: "Osteogénesis Imperfecta"
-},
-{
-    id: 8,
-    status: "enfermedades",
-    content: "Osteomalacia"
-},
-{
-    id: 9,
-    status: "enfermedades",
-    content: "Osteomielitis"
-},
-{
-    id: 10,
-    status: "enfermedades",
-    content: "Osteoporosis"
-}
+// {
+//     id: 7,
+//     status: "enfermedades",
+//     content: "Osteogénesis Imperfecta"
+// },
+// {
+//     id: 8,
+//     status: "enfermedades",
+//     content: "Osteomalacia"
+// },
+// {
+//     id: 9,
+//     status: "enfermedades",
+//     content: "Osteomielitis"
+// },
+// {
+//     id: 10,
+//     status: "enfermedades",
+//     content: "Osteoporosis"
+// }
 ];
 
 const arrayMuscular = [{
@@ -79,26 +79,26 @@ const arrayMuscular = [{
     status: "enfermedades",
     content: "Síndrome de Poland"
 },
-{
-    id: 8,
-    status: "enfermedades",
-    content: "Síndrome de Walker-Warburg"
-},
-{
-    id: 9,
-    status: "enfermedades",
-    content: "Síndrome del piramidal"
-},
-{
-    id: 10,
-    status: "enfermedades",
-    content: "Síndrome del túnel carpiano"
-},
-{
-    id: 11,
-    status: "enfermedades",
-    content: "Síndrome miasténico de Lambert-Eaton"
-}
+// {
+//     id: 8,
+//     status: "enfermedades",
+//     content: "Síndrome de Walker-Warburg"
+// },
+// {
+//     id: 9,
+//     status: "enfermedades",
+//     content: "Síndrome del piramidal"
+// },
+// {
+//     id: 10,
+//     status: "enfermedades",
+//     content: "Síndrome del túnel carpiano"
+// },
+// {
+//     id: 11,
+//     status: "enfermedades",
+//     content: "Síndrome miasténico de Lambert-Eaton"
+// }
 ];
 
 const arrayCirculatorio = [{
@@ -133,31 +133,31 @@ const arrayCirculatorio = [{
     status: "enfermedades",
     content: "Hemofilia"
 },
-{
-    id: 8,
-    status: "enfermedades",
-    content: "Hipertensión arterial"
-},
-{
-    id: 9,
-    status: "enfermedades",
-    content: "Insuficiencia cardíaca congestiva"
-},
-{
-    id: 10,
-    status: "enfermedades",
-    content: "Leucemia"
-},
-{
-    id: 11,
-    status: "enfermedades",
-    content: "Lupus"
-},
-{
-    id: 12,
-    status: "enfermedades",
-    content: "Vasculitis"
-}
+// {
+//     id: 8,
+//     status: "enfermedades",
+//     content: "Hipertensión arterial"
+// },
+// {
+//     id: 9,
+//     status: "enfermedades",
+//     content: "Insuficiencia cardíaca congestiva"
+// },
+// {
+//     id: 10,
+//     status: "enfermedades",
+//     content: "Leucemia"
+// },
+// {
+//     id: 11,
+//     status: "enfermedades",
+//     content: "Lupus"
+// },
+// {
+//     id: 12,
+//     status: "enfermedades",
+//     content: "Vasculitis"
+// }
 
 ];
 
@@ -188,11 +188,11 @@ const arrayDigestivo = [{
     status: "enfermedades",
     content: "Enfermedad de Crohn"
 },
-{
-    id: 7,
-    status: "enfermedades",
-    content: "Enfermedad de Reflujo Gastroesofágico"
-},
+// {
+//     id: 7,
+//     status: "enfermedades",
+//     content: "Enfermedad de Reflujo Gastroesofágico"
+// },
 {
     id: 8,
     status: "enfermedades",
@@ -203,26 +203,26 @@ const arrayDigestivo = [{
     status: "enfermedades",
     content: "Hemorroides"
 },
-{
-    id: 10,
-    status: "enfermedades",
-    content: "Hernia Abdominal"
-},
-{
-    id: 11,
-    status: "enfermedades",
-    content: " Insuficiencia Hepática"
-},
-{
-    id: 12,
-    status: "enfermedades",
-    content: "Síndrome del Intestino Irritable"
-},
-{
-    id: 13,
-    status: "enfermedades",
-    content: "Úlcera Gástrica"
-}
+// {
+//     id: 10,
+//     status: "enfermedades",
+//     content: "Hernia Abdominal"
+// },
+// {
+//     id: 11,
+//     status: "enfermedades",
+//     content: " Insuficiencia Hepática"
+// },
+// {
+//     id: 12,
+//     status: "enfermedades",
+//     content: "Síndrome del Intestino Irritable"
+// },
+// {
+//     id: 13,
+//     status: "enfermedades",
+//     content: "Úlcera Gástrica"
+// }
 ];
 
 const arrayUrinario = [{
@@ -286,76 +286,76 @@ const arrayNervioso = [{
     status: "enfermedades",
     content: "Esclerosis Lateral Amiotrófica"
 },
-{
-    id: 8,
-    status: "enfermedades",
-    content: "Esclerosis Múltiple"
-},
-{
-    id: 9,
-    status: "enfermedades",
-    content: "Esquizofrenia"
-},
-{
-    id: 10,
-    status: "enfermedades",
-    content: "Huntington"
-},
-{
-    id: 11,
-    status: "enfermedades",
-    content: "Lesión Cerebral Traumática"
-},
-{
-    id: 12,
-    status: "enfermedades",
-    content: "Meningitis"
-},
-{
-    id: 13,
-    status: "enfermedades",
-    content: "Migraña"
-},
-{
-    id: 14,
-    status: "enfermedades",
-    content: "Parálisis Cerebral"
-},
-{
-    id: 15,
-    status: "enfermedades",
-    content: "Parkinson"
-},
-{
-    id: 16,
-    status: "enfermedades",
-    content: "Síndrome de Asperger"
-},
-{
-    id: 17,
-    status: "enfermedades",
-    content: "Síndrome de Down"
-},
-{
-    id: 18,
-    status: "enfermedades",
-    content: "Síndrome de Tourette"
-},
-{
-    id: 19,
-    status: "enfermedades",
-    content: "Trastorno Bipolar"
-},
-{
-    id: 20,
-    status: "enfermedades",
-    content: "Trastorno de la alimentación"
-},
-{
-    id: 21,
-    status: "enfermedades",
-    content: "Tumor cerebral"
-}
+// {
+//     id: 8,
+//     status: "enfermedades",
+//     content: "Esclerosis Múltiple"
+// },
+// {
+//     id: 9,
+//     status: "enfermedades",
+//     content: "Esquizofrenia"
+// },
+// {
+//     id: 10,
+//     status: "enfermedades",
+//     content: "Huntington"
+// },
+// {
+//     id: 11,
+//     status: "enfermedades",
+//     content: "Lesión Cerebral Traumática"
+// },
+// {
+//     id: 12,
+//     status: "enfermedades",
+//     content: "Meningitis"
+// },
+// {
+//     id: 13,
+//     status: "enfermedades",
+//     content: "Migraña"
+// },
+// {
+//     id: 14,
+//     status: "enfermedades",
+//     content: "Parálisis Cerebral"
+// },
+// {
+//     id: 15,
+//     status: "enfermedades",
+//     content: "Parkinson"
+// },
+// {
+//     id: 16,
+//     status: "enfermedades",
+//     content: "Síndrome de Asperger"
+// },
+// {
+//     id: 17,
+//     status: "enfermedades",
+//     content: "Síndrome de Down"
+// },
+// {
+//     id: 18,
+//     status: "enfermedades",
+//     content: "Síndrome de Tourette"
+// },
+// {
+//     id: 19,
+//     status: "enfermedades",
+//     content: "Trastorno Bipolar"
+// },
+// {
+//     id: 20,
+//     status: "enfermedades",
+//     content: "Trastorno de la alimentación"
+// },
+// {
+//     id: 21,
+//     status: "enfermedades",
+//     content: "Tumor cerebral"
+// }
 ];
 
 const arrayReproductor = [{
@@ -385,11 +385,11 @@ const arrayReproductor = [{
     status: "enfermedades",
     content: "Sífilis"
 },
-{
-    id: 7,
-    status: "enfermedades",
-    content: " Síndrome del Ovario Poliquístico"
-},
+// {
+//     id: 7,
+//     status: "enfermedades",
+//     content: " Síndrome del Ovario Poliquístico"
+// },
 {
     id: 8,
     status: "enfermedades",
@@ -419,36 +419,36 @@ const arrayEndocrino = [{
     status: "enfermedades",
     content: "Enfermedad de Addison"
 },
-{
-    id: 6,
-    status: "enfermedades",
-    content: "Enfermedad de Cushing"
-},
-{
-    id: 7,
-    status: "enfermedades",
-    content: "Gigantismo"
-},
-{
-    id: 8,
-    status: "enfermedades",
-    content: "Hipertiroidismo"
-},
-{
-    id: 9,
-    status: "enfermedades",
-    content: "Hipogonadismo"
-},
-{
-    id: 10,
-    status: "enfermedades",
-    content: "Hipotiroidismo"
-},
-{
-    id: 11,
-    status: "enfermedades",
-    content: "Insuficiencia suprarrenal"
-}
+// {
+//     id: 6,
+//     status: "enfermedades",
+//     content: "Enfermedad de Cushing"
+// },
+// {
+//     id: 7,
+//     status: "enfermedades",
+//     content: "Gigantismo"
+// },
+// {
+//     id: 8,
+//     status: "enfermedades",
+//     content: "Hipertiroidismo"
+// },
+// {
+//     id: 9,
+//     status: "enfermedades",
+//     content: "Hipogonadismo"
+// },
+// {
+//     id: 10,
+//     status: "enfermedades",
+//     content: "Hipotiroidismo"
+// },
+// {
+//     id: 11,
+//     status: "enfermedades",
+//     content: "Insuficiencia suprarrenal"
+// }
 ];
 
 const arrayRespiratorio = [{
@@ -493,16 +493,16 @@ const arrayRespiratorio = [{
     status: "enfermedades",
     content: "Laringitis"
 },
-{
-    id: 10,
-    status: "enfermedades",
-    content: "Neumoconiosis"
-},
-{
-    id: 11,
-    status: "enfermedades",
-    content: "Sinusitis"
-}
+// {
+//     id: 10,
+//     status: "enfermedades",
+//     content: "Neumoconiosis"
+// },
+// {
+//     id: 11,
+//     status: "enfermedades",
+//     content: "Sinusitis"
+// }
 ];
 
 const arrayPiel = [{

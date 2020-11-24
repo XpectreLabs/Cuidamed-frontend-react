@@ -61,7 +61,7 @@ export default function Login() {
           <Button type="submit">Iniciar sesión</Button>
         </form>
       </div>
-      <ModalComponent open={open} onClose={() => setOpen(false)} />
+      <ModalComponent open={open} onClose={() => setOpen(false)}  title = 'Emergencia' textModal = 'Ingrese el código que tiene la pulsera del paciente' buttonText = 'Entrar' placeholder = 'Código'/>
     </div>
   );
 }

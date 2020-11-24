@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Grid, Button } from 'semantic-ui-react';
+import React, { useState, useEffect } from 'react'
+import { Grid, Button, Icon } from 'semantic-ui-react'
 
 import { arrayIconHumanSys } from './data';
 
@@ -12,6 +12,7 @@ import DropWrapper from '../DragAndDrop/DropWrapper';
 import Col from '../DragAndDrop/Col';
 import { data, statuses } from '../DragAndDrop/data';
 import { Redirect } from 'react-router-dom';
+import ModalComponent from '../ModalComponent';
 
 const ListaEnfermedades = React.memo(() => {
   const { humanSystem, arrayData, color } = window.history.state.state;
@@ -49,6 +50,8 @@ const ListaEnfermedades = React.memo(() => {
     });
   };
 
+  const [open, setOpen] = useState(false);
+
   return (
     <div>
       <Grid centered className="lista-enfermedades">
@@ -71,6 +74,8 @@ const ListaEnfermedades = React.memo(() => {
               <h3>Enfermedades</h3>
             </Grid.Row>
             <Grid.Row className="plate">
+              <Icon name='search' />
+              <input type='text' id='search' placeholder='Buscar'/>
               <DndProvider backend={HTML5Backend}>
                 <div className={'row'}>
                   <div className={'col-wrapper'}>
@@ -92,7 +97,7 @@ const ListaEnfermedades = React.memo(() => {
                 </div>
               </DndProvider>
               <Grid.Row className="no-disease">
-                <Button>No encuentro mi enfermedad</Button>
+                <Button onClick={() => setOpen(true)}>No encuentro mi enfermedad</Button>
               </Grid.Row>
             </Grid.Row>
           </Grid.Column>
@@ -136,6 +141,7 @@ const ListaEnfermedades = React.memo(() => {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+      <ModalComponent open={open} onClose={() => setOpen(false)}  title = '¿Qué enfermedad tienes?' textModal = 'Ingrese la enfermedad que tenga en el sistema.' buttonText = 'Ingresar al expediente' placeholder = 'Enfermedad' icon={true}/>
     </div>
   );
 });
