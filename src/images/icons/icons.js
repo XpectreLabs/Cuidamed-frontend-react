@@ -35,6 +35,7 @@ import { ReactComponent as Endocrino } from "./endocrino.svg"
 import { ReactComponent as Digestivo } from "./digestivo.svg"
 import { ReactComponent as Muscular } from "./muscular.svg"
 import { ReactComponent as Circulatorio } from "./circulatorio.svg"
+import { ReactComponent as Carpeta } from "./Carpeta.svg";
 
 
 
@@ -75,4 +76,5 @@ export {
   Digestivo,
   Muscular,
   Circulatorio,
+  Carpeta
 }

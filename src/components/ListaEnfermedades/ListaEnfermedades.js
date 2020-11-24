@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Grid, Button } from 'semantic-ui-react'
+import { Grid, Button, Icon } from 'semantic-ui-react'
 
 import { arrayIconHumanSys } from './data'
 
@@ -11,6 +11,7 @@ import Item from "../DragAndDrop/Item";
 import DropWrapper from "../DragAndDrop/DropWrapper";
 import Col from "../DragAndDrop/Col";
 import { data, statuses } from "../DragAndDrop/data";
+import ModalComponent from '../ModalComponent';
 
 const ListaEnfermedades = () => {
     const { humanSystem, arrayData, color } = window.history.state.state
@@ -50,6 +51,11 @@ const ListaEnfermedades = () => {
         });
     };
 
+    const [open, setOpen] = useState(false);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
+
 
     return (
         <div >
@@ -75,6 +81,8 @@ const ListaEnfermedades = () => {
                             <h3>Enfermedades</h3>
                         </Grid.Row>
                         <Grid.Row className="plate">
+                            <Icon name="search" />
+                            <input type="text" id="search" placeholder="Buscar"/>
                             <DndProvider backend={HTML5Backend}>
                                 <div className={"row"}>
                                     <div className={"col-wrapper"}>
@@ -90,7 +98,7 @@ const ListaEnfermedades = () => {
                                 </div>
                             </DndProvider>
                             <Grid.Row className="no-disease">
-                                <Button>No encuentro mi enfermedad</Button>
+                                <Button onClick={() => setOpen(true)}>No encuentro mi enfermedad</Button>
                             </Grid.Row>
                         </Grid.Row>
                     </Grid.Column>
@@ -128,6 +136,9 @@ const ListaEnfermedades = () => {
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
+            <div className="modal-enfermedades">
+                <ModalComponent open={open} onClose={() => setOpen(false)}  title = '¿Qué enfermedad tienes?' textModal = 'Ingrese la enfermedad que tenga en el sistema.' buttonText = 'Ingresar al expediente' placeholder = 'Enfermedad' icon={true}/>
+            </div>
         </div >
     )
 }

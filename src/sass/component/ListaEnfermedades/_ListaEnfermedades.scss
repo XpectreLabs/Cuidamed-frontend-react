@@ -52,31 +52,56 @@
             .plate {
                 margin-left: 4em;
                 margin-right: 4em;
-                // padding: 3em;
+                // padding: 1em;
                 height: inherit;
                 border: 1em solid $color-acua;
                 border-top-width: 3em;
                 border-radius: 2em;
                 height: 100%;
+                position: relative;
                 
-                >.row:first-child {
-                    height: 85%;
-                    overflow-y: auto;
+                >i {
+                    position: absolute;
+                    top: -30px;
+                    left: 10px;
+                    z-index: 2;
+                    
+                }
+                >input {
+                    position: absolute;
+                    top: -35px;
+                    left: 0;
+                    text-align: left;
+                    padding-left: 2em;
+                    font-size: 1.2em;
+                    line-height: 1.5em;
+                    outline: none;
+                }
+                
+                >.row:nth-child(3) {
+                    height: 80%;
+                    // overflow-y: auto;
                 }
     
                 .no-disease {
     
                     & .button {
+                        display: block;
+                        width: 98%;
                         margin-top: 0.5em;
-                        width: fit-content;
-                        // margin-left: 1em;
-                        // margin-right: 1em;
-                        padding: 0.5em;
-                        height: auto;
                         font-size: 1.3em;
                         background-color: $main;
                         color: #ffffff;
                         border-color: $main;
+                        // margin-left: 0.5em;
+                        // margin-right: 0.5em;
+                        // width: 90%;
+                        // margin: 0 auto;
+                        // margin-left: 1em;
+                        // margin-right: 1em;
+                        // padding: 0.5em;
+                        // height: auto;
+                        
                     }
                 }
     
@@ -88,7 +113,7 @@
                     padding: 0.5em;
                     padding-left: 1em;
                     padding-right: 1em;
-                    margin-top: 1em;
+                    margin-bottom: 1em;
                     font-size: 1.3em;
                     background-color: $color-acua;
                     color: #ffffff;
@@ -165,8 +190,9 @@
                     height: 20%;
     
                         & .button {
+                            display: block;
+                            width: 98%;
                             // margin-top: 0.5em;
-                            width: fit-content;
                             // margin-left: 1em;
                             // margin-right: 1em;
                             padding: 0.5em;
@@ -201,4 +227,31 @@
     }
 
 
+}
+
+.modal-enfermedades.content {
+    background-color: red;
+
+    .modal__title {
+        font-size: 2em;
+        color: $main;
+    }
+
+    .modal-form {
+        p {
+            font-size: 1.5em;
+        }
+
+        &__input-container {
+            padding-top: 0;
+        }
+
+        &__button-submit-container > button {
+            font-size: 1.5em;
+            width: fit-content;
+            height: 2.5em;
+            padding-left: 4em;
+            padding-right: 4em;
+        }
+    }
 }
