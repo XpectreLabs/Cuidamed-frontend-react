@@ -1,12 +1,12 @@
-import React from "react"
-import { Container, Grid } from "semantic-ui-react"
-import NavBarSecondary from "../../components/NavBarSecondary"
+import React from 'react';
+import { Container, Grid } from 'semantic-ui-react';
+import NavBarSecondary from '../../components/NavBarSecondary';
 
 //css
-import "../../sass/index.scss"
+import '../../sass/index.scss';
 
-export default function BasicLayout(props) {
-  const { children, view } = props
+const BasicLayout = React.memo((props) => {
+  const { children, view } = props;
 
   return (
     <Container fluid className="basic-layout">
@@ -19,5 +19,6 @@ export default function BasicLayout(props) {
         </Grid.Column>
       </Grid>
     </Container>
-  )
-}
+  );
+});
+export default BasicLayout;

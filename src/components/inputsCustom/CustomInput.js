@@ -3,11 +3,16 @@ import React from 'react';
 export const CustomInput = ({
   placeholder = 'Input Example',
   type = 'text',
-  areYouInLogin = true,
+  value,
+  areYouInLogin = false,
   functionPlaces = null,
   smallStyle = false,
-  setValue,
+  setValue = (e) => {},
+  name = '',
+  setRef = (e) => {},
+  required = false,
   onblur = (e) => {},
+  errorComponent,
 }) => {
   return (
     <div
@@ -15,17 +20,22 @@ export const CustomInput = ({
         smallStyle ? 'smallStyle' : ''
       }`}>
       <input
+        ref={(e) => setRef(e)}
         type={type}
         placeholder={placeholder}
+        value={value}
         onChange={(e) => {
           setValue(e.currentTarget.value);
         }}
         onBlur={(e) => {
           onblur(e.currentTarget.value);
         }}
+        name={name}
+        required={required}
         {...functionPlaces}
       />
       <label placeholder={placeholder}></label>
+      {errorComponent}
     </div>
   );
 };

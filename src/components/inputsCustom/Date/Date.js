@@ -25,7 +25,7 @@ const DateInput = ({
   };
 
   return (
-    <div className="input-container newDesign">
+    <div className="input-container">
       <DatePicker
         selected={fecha}
         onChange={handleInputChange}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal, Button, Header, Image } from 'semantic-ui-react';
 import { CustomInput } from '../inputsCustom/CustomInput';
 import { Carpeta } from '../../images/icons/icons'
@@ -13,7 +13,7 @@ const ModalComponent = ({
   placeholder = '',
   icon = false
 }) => {
-  
+  const [code, setCode] = useState('');
   return (
     <Modal open={open} onClose={onClose} onOpen={onOpen}>
       <Modal.Content className={`${icon ? 'modal-enfermedades' : '' }`}>
@@ -32,10 +32,11 @@ const ModalComponent = ({
             <div className="modal-form__input-container">
               <CustomInput
                 type="text"
+                value={code}
                 placeholder={placeholder}
                 smallStyle={true}
-                setValue={() => {
-                  console.log('hola');
+                setValue={(e) => {
+                  setCode(e);
                 }}
               />
             </div>
