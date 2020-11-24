@@ -1,22 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { DashboardRoutes } from './DashboardRoutes';
 import { PrivateRoute } from './PrivateRoute';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { PublicRoute } from './PublicRoute';
 import { AuthRouter } from './AuthRouter';
-const AppRouter = () => {
-  const dispatch = useDispatch();
-  const [isLogged, setIsLogged] = useState(false);
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token && token !== '') setIsLogged(true);
-  }, [dispatch]);
+const AppRouter = React.memo(() => {
+  const { isLogged } = useSelector((state) => state.login);
+
   return (
     <Router>
       <div>
@@ -35,6 +26,6 @@ const AppRouter = () => {
       </div>
     </Router>
   );
-};
+});
 
 export default AppRouter;

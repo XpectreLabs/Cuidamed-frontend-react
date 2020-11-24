@@ -1,12 +1,13 @@
-import React from 'react'
-import BasicLayout from "../layouts/BasicLayout"
-import SistemasEnfermedades from "../components/Sistemas"
+import React from 'react';
+import BasicLayout from '../layouts/BasicLayout';
+import SistemasEnfermedades from '../components/Sistemas';
 
-export default function Sistemas() {
-
-    return (
-        <BasicLayout>
-            <SistemasEnfermedades />
-        </BasicLayout>
-    )
-}
+const Sistemas = React.memo(() => {
+  console.log('Sistenas');
+  return (
+    <BasicLayout>
+      <SistemasEnfermedades />
+    </BasicLayout>
+  );
+});
+export default Sistemas;

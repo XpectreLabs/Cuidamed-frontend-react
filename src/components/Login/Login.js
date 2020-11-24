@@ -4,48 +4,59 @@ import { Label, Button } from 'semantic-ui-react';
 import { Header } from '../Header';
 import { CustomInput } from '../inputsCustom/CustomInput';
 import { login } from '../../redux/actions/LoginAction';
+import validator from 'validator';
+import { useForm } from 'react-hook-form';
 import ModalComponent from '../ModalComponent';
 
 export default function Login() {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-  });
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(login(form.email, form.password));
+
+  const onSubmit = (e) => {
+    console.log(e);
+    dispatch(login(e.email, e.password));
   };
-  const { email, password } = form;
+
+  const { register, handleSubmit, errors } = useForm();
   return (
     <div className="login">
       <Header openModal={() => setOpen(true)} />
       <div className="background_container"></div>
       <div className="container">
         <Label className="title">Iniciar sesión</Label>
-        <form className="form-container" onSubmit={handleSubmit}>
+        <form className="form-container" onSubmit={handleSubmit(onSubmit)}>
           <CustomInput
             type="email"
             areYouInLogin={true}
             placeholder="Correo electrónico"
-            name="email"
-            required={true}
-            value={email}
-            setValue={(e) => {
-              setForm({ ...form, email: e });
-            }}
+            name={'email'}
+            setRef={register({
+              required: true,
+              validate: (input) => validator.isEmail(input),
+            })}
+            errorComponent={
+              <div>
+                {errors.email && errors.email.type === 'required' && (
+                  <p className="error_form">Este campo es requerido</p>
+                )}
+                {errors.email && errors.email.type === 'validate' && (
+                  <p className="error_form">Este campo no es un email</p>
+                )}
+              </div>
+            }
           />
           <CustomInput
             type="password"
             areYouInLogin={true}
             placeholder="Contraseña"
-            value={password}
-            name="password"
-            required={true}
-            setValue={(e) => {
-              setForm({ ...form, password: e });
-            }}
+            name={'password'}
+            setRef={register({ required: true })}
+            errorComponent={
+              errors.password &&
+              errors.password.type === 'required' && (
+                <p className="error_form">Este campo es requerido</p>
+              )
+            }
           />
           <Button type="submit">Iniciar sesión</Button>
         </form>

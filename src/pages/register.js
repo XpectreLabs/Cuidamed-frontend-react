@@ -1,40 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Label, Button } from 'semantic-ui-react';
 import { Header } from '../components/Header';
 import { CustomInput } from '../components/inputsCustom/CustomInput';
 import SpinnerComponent from '../components/spinner';
 import { createUser } from '../redux/actions/UserAction';
 import { types } from '../redux/types';
+import { useForm } from 'react-hook-form';
+import validator from 'validator';
+
 const Register = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => {
     return state.user;
   });
-  const [form, setForm] = useState({
-    identifier: '',
-    email: '',
-    password: '',
-    name: '',
-    repeat_password: '',
-  });
 
-  useEffect(() => {
-    return () => {
-      dispatch({ type: types.setUserCreated });
-    };
-  }, []);
+  const { register, handleSubmit, errors } = useForm();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(createUser(form));
+  const [password, setPassword] = useState('');
+
+  const onSubmit = (e) => {
+    dispatch(createUser(e));
   };
-  const { identifier, name, email, password, repeat_password } = form;
 
   if (state.createdUser) {
-    return <Redirect to="/login" />;
+    return <Redirect to="/verify-code" />;
   }
+  console.log(errors);
   return (
     <div className="register ">
       {state.loading && <SpinnerComponent />}
@@ -42,60 +35,95 @@ const Register = () => {
       <div className="background_container"></div>
       <div className="container animate__animated animate__bounceInLeft">
         <Label className="title">Crear Perfil</Label>
-        <form className="form-container" onSubmit={handleSubmit}>
+        <form className="form-container" onSubmit={handleSubmit(onSubmit)}>
           <CustomInput
             type="text"
-            setValue={(e) => {
-              setForm({ ...form, identifier: e });
-            }}
-            value={identifier}
+            setRef={register({ required: true })}
             areYouInLogin={true}
             placeholder="Identificador"
             name="identifier"
-            required={true}
+            errorComponent={
+              <div>
+                {errors.identifier && errors.identifier.type === 'required' && (
+                  <p className="error_form">Este campo es requerido</p>
+                )}
+              </div>
+            }
           />
           <CustomInput
             type="text"
             areYouInLogin={true}
-            value={name}
-            required={true}
+            setRef={register({ required: true })}
             placeholder="Nombre completo"
-            setValue={(e) => {
-              setForm({ ...form, name: e });
-            }}
+            name={'name'}
+            errorComponent={
+              errors.name &&
+              errors.name.type === 'required' && (
+                <p className="error_form">Este campo es requerido</p>
+              )
+            }
           />
           <CustomInput
             type="email"
             areYouInLogin={true}
-            value={email}
-            required={true}
             placeholder="Correo electrónico"
-            setValue={(e) => {
-              setForm({ ...form, email: e });
-            }}
+            setRef={register({
+              required: true,
+              validate: (input) => {
+                return validator.isEmail(input);
+              },
+            })}
+            name={'email'}
+            errorComponent={
+              <div>
+                {errors.email && errors.email.type === 'required' && (
+                  <p className="error_form">Este campo es requerido</p>
+                )}
+                {errors.email && errors.email.type === 'validate' && (
+                  <p className="error_form">Este campo no es un email</p>
+                )}
+              </div>
+            }
           />
           <CustomInput
             type="password"
             areYouInLogin={true}
-            value={password}
-            required={true}
             name={'password'}
-            placeholder="Password"
             setValue={(e) => {
-              setForm({ ...form, password: e });
+              setPassword(e);
             }}
+            placeholder="Password"
+            setRef={register({ required: true })}
+            errorComponent={
+              errors.password &&
+              errors.password.type === 'required' && (
+                <p className="error_form">Este campo es requerido</p>
+              )
+            }
           />
-
           <CustomInput
             type="password"
             areYouInLogin={true}
-            value={repeat_password}
-            required={true}
             name={'repeat_password'}
             placeholder="Confirmar contraseña"
-            setValue={(e) => {
-              setForm({ ...form, repeat_password: e });
-            }}
+            setRef={register({
+              required: true,
+              validate: (input) => {
+                return input === password;
+              },
+            })}
+            errorComponent={
+              <div>
+                {errors.repeat_password &&
+                  errors.repeat_password.type === 'required' && (
+                    <p className="error_form">Este campo es requerido</p>
+                  )}
+                {errors.repeat_password &&
+                  errors.repeat_password.type === 'validate' && (
+                    <p className="error_form">Las contraseñas no coinciden</p>
+                  )}
+              </div>
+            }
           />
           <Button type="submit">Seguir</Button>
         </form>

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal, Button, Header, Image } from 'semantic-ui-react';
 import { CustomInput } from '../inputsCustom/CustomInput';
 const ModalComponent = ({ open = false, onOpen, onClose }) => {
+  const [code, setCode] = useState('');
   return (
     <Modal open={open} onClose={onClose} onOpen={onOpen}>
       <Modal.Content>
@@ -16,10 +17,11 @@ const ModalComponent = ({ open = false, onOpen, onClose }) => {
             <div className="modal-form__input-container">
               <CustomInput
                 type="text"
+                value={code}
                 placeholder="Código"
                 smallStyle={true}
-                setValue={() => {
-                  console.log('hola');
+                setValue={(e) => {
+                  setCode(e);
                 }}
               />
             </div>

@@ -11,27 +11,29 @@ import { ReactComponent as IconIndSeguroMedico } from '../../../images/icons/Ind
 const dataIcons = [
   {
     icon: <IconIndInfBasic></IconIndInfBasic>,
-    link: '/info-basic',
+    link: '/dashboard/info-basic',
   },
   {
     icon: <IconIndMedHistorial></IconIndMedHistorial>,
-    link: '/enfermedades-comunes',
+    link: '/dashboard/enfermedades-comunes',
+    link2: '/dashboard/sistemas',
+    link3: '/dashboard/lista-enfermedades',
   },
   {
     icon: <IconIndTratamiento></IconIndTratamiento>,
-    link: '/tratamiento',
+    link: '/dashboard/tratamiento',
   },
   {
     icon: <IconIndContacto></IconIndContacto>,
-    link: '/contacto',
+    link: '/dashboard/contacto',
   },
   {
     icon: <IconIndContactoMedico></IconIndContactoMedico>,
-    link: '/contacto-medico',
+    link: '/dashboard/contacto-medico',
   },
   {
     icon: <IconIndSeguroMedico></IconIndSeguroMedico>,
-    link: '/seguro-medico',
+    link: '/dashboard/seguro-medico',
   },
 ];
 
@@ -39,7 +41,11 @@ export default function IconsNavBar() {
   return (
     <>
       {map(dataIcons, (icon, index) => {
-        if (window.location.pathname === icon.link) {
+        if (
+          window.location.pathname === icon.link ||
+          window.location.pathname === icon.link2 ||
+          window.location.pathname === icon.link3
+        ) {
           return (
             <Link
               key={index}

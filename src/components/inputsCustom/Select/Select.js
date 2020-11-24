@@ -21,7 +21,7 @@ export const SelectCustom = React.memo(
     };
 
     return (
-      <div className="input-container newDesign">
+      <div className="input-container">
         <Select
           placeholder={placeholder}
           options={dataOptions}

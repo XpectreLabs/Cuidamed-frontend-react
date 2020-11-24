@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, useHistory, Redirect } from 'react-router-dom';
 
 import HistorialMedico from '../pages/historial-medico';
 import Enfermedades from '../pages/enfermedades-comunes';
@@ -8,6 +8,8 @@ import ListaEnfermedades from '../pages/lista-enfermedades';
 import InfoBasic from '../pages/info-basic';
 
 export const DashboardRoutes = () => {
+  const history = useHistory();
+  localStorage.setItem('last_path', history.location.pathname);
   return (
     <>
       <Switch>
@@ -28,7 +30,7 @@ export const DashboardRoutes = () => {
           path="/dashboard/lista-enfermedades"
         />
         <Route exact component={InfoBasic} path="/dashboard/info-basic" />
-        <Redirect to="/404" />
+        <Redirect to="/dashboard/info-basic" />
       </Switch>
     </>
   );
