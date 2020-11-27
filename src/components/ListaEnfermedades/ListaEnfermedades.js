@@ -18,7 +18,7 @@ const ListaEnfermedades = React.memo(() => {
 
   //DRAG AND DROP
   const [items, setItems] = useState(arrayData);
-
+  const [dragItem, setDragItem] = useState([]);
   const [btnAddExp, setBtnAddExp] = useState(null);
 
   useEffect(() => {
@@ -27,15 +27,22 @@ const ListaEnfermedades = React.memo(() => {
     } else {
       setBtnAddExp(<Button>No tengo ninguna de estas enfermedades</Button>);
     }
+    setDragItem((state) => {
+      const itemsFound = items.filter((st) => st.status === 'misEnfermedades');
+      return [...itemsFound];
+    });
   }, [items]);
+  useEffect(() => {
+    if (dragItem.length > 0) {
+      console.log(dragItem);
+    }
+  }, [dragItem]);
 
   const onDrop = (item, monitor, status = '') => {
-    const mapping = statuses.find((si) => si.status === status);
     setItems((prevState) => {
       const newItems = prevState
         .filter((i) => i.id !== item.id)
         .concat({ ...item, status });
-      console.log(newItems);
       return [...newItems];
     });
   };
@@ -114,7 +121,7 @@ const ListaEnfermedades = React.memo(() => {
                     <div className={'col-wrapper'}>
                       <DropWrapper onDrop={onDrop} status={'misEnfermedades'}>
                         <Col>
-                          {items
+                          {dragItem
                             .filter((i) => i.status === 'misEnfermedades')
                             .map((i, idx) => (
                               <Item
