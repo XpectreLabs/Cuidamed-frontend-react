@@ -10,28 +10,41 @@ import { DndProvider } from 'react-dnd';
 import Item from '../DragAndDrop/Item';
 import DropWrapper from '../DragAndDrop/DropWrapper';
 import Col from '../DragAndDrop/Col';
-import { data, statuses } from '../DragAndDrop/data';
-import { Redirect } from 'react-router-dom';
+// import { statuses } from '../DragAndDrop/data';
+// import { Redirect } from 'react-router-dom';
 import ModalComponent from '../ModalComponent';
 
+//
+
 const ListaEnfermedades = React.memo(() => {
+
+  const { name } = JSON.parse(localStorage.getItem('user'));
   const { humanSystem, arrayData, color } = window.history.state.state;
 
   //DRAG AND DROP
   const [items, setItems] = useState(arrayData);
-
+  // console.log(arrayData);
+  const [dragItem, setDragItem] = useState([]);
   const [btnAddExp, setBtnAddExp] = useState(null);
 
   useEffect(() => {
-    if (items.some((si) => si.status === 'misEnfermedades')) {
+    setDragItem((state) => {
+      const itemsFound = items.filter((st) => st.status === 'misEnfermedades');
+      return [...itemsFound];
+    });
+  }, [items]);
+
+  useEffect(() => {
+    if (dragItem.length > 0) {
       setBtnAddExp(<Button>Ingresar a expediente</Button>);
     } else {
       setBtnAddExp(<Button>No tengo ninguna de estas enfermedades</Button>);
     }
-  }, [items]);
+  }, [dragItem]);
 
   const onDrop = (item, monitor, status = '') => {
-    const mapping = statuses.find((si) => si.status === status);
+    // const mapping = statuses.find((si) => si.status === status);
+
     setItems((prevState) => {
       const newItems = prevState
         .filter((i) => i.id !== item.id)
@@ -51,6 +64,67 @@ const ListaEnfermedades = React.memo(() => {
   };
 
   const [open, setOpen] = useState(false);
+
+  const handleSearch = async (e) => {
+    const search = e.currentTarget.value
+    if (search.length >= 3) {
+      const newItemsTrue = items
+        .filter((item) => item.content.toUpperCase()
+          .includes(search.toUpperCase()))
+        .map((itemx, index) => {
+          itemx.isShow = true;
+          return itemx;
+        });
+
+      setItems((prevState) => {
+        const newItems = prevState
+          .filter((data) => !data.content.toUpperCase().includes(search.toUpperCase()))
+          .map((itemd) => {
+            itemd.isShow = false;
+            return itemd;
+          })
+          .concat(...newItemsTrue);
+
+        return [...newItems];
+      })
+
+      // const newItemsSearch = items.filter((data) => data.content.toUpperCase().includes(search.toUpperCase()));
+      // if (newItemsSearch.length > 0 && newItemsSearch.length < 5) {
+      //   setItems(newItemsSearch);
+      // } else {
+
+      // }
+    } else {
+      setItems((prevState) => {
+        const newItems = prevState.map((itemdx, index) => {
+          if (itemdx.id < 7) {
+            itemdx.isShow = true;
+          } else {
+            itemdx.isShow = false;
+          }
+          return itemdx;
+        })
+        return [...newItems];
+      })
+    }
+  }
+
+  const [addDiseaNotExist, setAddDiseaNotExist] = useState();
+
+  const handleAddDiseaNotExist = () => {
+    setOpen(false);
+    const item = {
+      id: items.length + Math.floor((Math.random() * 100) + 1),
+      status: "misEnfermedades",
+      content: addDiseaNotExist,
+      isShow: true,
+    }
+    setDragItem((prevState) => {
+      const newDragItem = prevState.concat(item);
+      return [...newDragItem]
+    })
+
+  }
 
   return (
     <div>
@@ -75,14 +149,14 @@ const ListaEnfermedades = React.memo(() => {
             </Grid.Row>
             <Grid.Row className="plate">
               <Icon name='search' />
-              <input type='text' id='search' placeholder='Buscar'/>
+              <input type='text' id='search' placeholder='Buscar' onKeyUp={handleSearch} />
               <DndProvider backend={HTML5Backend}>
                 <div className={'row'}>
                   <div className={'col-wrapper'}>
                     <DropWrapper onDrop={onDrop} status={'enfermedades'}>
                       <Col>
                         {items
-                          .filter((i) => i.status === 'enfermedades')
+                          .filter((i, index) => (i.status === 'enfermedades' && i.isShow))
                           .map((i, idx) => (
                             <Item
                               key={i.id}
@@ -107,7 +181,7 @@ const ListaEnfermedades = React.memo(() => {
             </Grid.Row>
             <Grid.Row className="eyelash" style={{ backgroundColor: color }}>
               <Grid.Row className="pacient">
-                <p>Fabrizio Castellanos</p>
+                <p>{name}</p>
               </Grid.Row>
             </Grid.Row>
             <Grid.Row
@@ -119,7 +193,7 @@ const ListaEnfermedades = React.memo(() => {
                     <div className={'col-wrapper'}>
                       <DropWrapper onDrop={onDrop} status={'misEnfermedades'}>
                         <Col>
-                          {items
+                          {dragItem
                             .filter((i) => i.status === 'misEnfermedades')
                             .map((i, idx) => (
                               <Item
@@ -141,7 +215,17 @@ const ListaEnfermedades = React.memo(() => {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      <ModalComponent open={open} onClose={() => setOpen(false)}  title = '¿Qué enfermedad tienes?' textModal = 'Ingrese la enfermedad que tenga en el sistema.' buttonText = 'Ingresar al expediente' placeholder = 'Enfermedad' icon={true}/>
+      <ModalComponent
+        open={open}
+        onClose={() => setOpen(false)}
+        title='¿Qué enfermedad tienes?'
+        textModal='Ingrese la enfermedad que tenga en el sistema.'
+        buttonText='Ingresar al expediente'
+        placeholder='Enfermedad'
+        icon={true}
+        setInputData={(e) => { setAddDiseaNotExist(e) }}
+        onClick={handleAddDiseaNotExist}
+      />
     </div>
   );
 });
