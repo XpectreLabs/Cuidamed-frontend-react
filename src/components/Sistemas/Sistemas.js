@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Button } from 'semantic-ui-react';
+import { Grid, Button, Container } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import {
   arrayCirculatorio,
@@ -82,7 +82,7 @@ import {
 
 export default function Sistemas() {
   return (
-    <div>
+    <Container>
       <Grid className="carpeta-enfermedades" centered>
         <Grid.Row>
           <h1 className="title-diseas">Historial Médico</h1>
@@ -316,7 +316,19 @@ export default function Sistemas() {
             </div>
           </Grid.Column>
         </Grid.Row>
+        {/* <Grid.Column width={1}> */}
+              {/* to={icon.link} */}
+              {/* <Link to={'/dashboard/sistemas'}> */}
+                {/* <div
+                  className="swiper-button-next"
+                  tabIndex="0"
+                  role="button"
+                  aria-label="Next slide"
+                  aria-controls="swiper-wrapper-5ee101923810c92463"
+                  aria-disabled="false"></div> */}
+              {/* </Link> */}
+            {/* </Grid.Column> */}
       </Grid>
-    </div>
+    </Container>
   );
 }

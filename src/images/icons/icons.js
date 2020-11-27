@@ -37,6 +37,20 @@ import { ReactComponent as Muscular } from "./muscular.svg"
 import { ReactComponent as Circulatorio } from "./circulatorio.svg"
 import { ReactComponent as Carpeta } from "./Carpeta.svg";
 
+import { ReactComponent as Abuelo } from "./Abuelo.svg";
+import { ReactComponent as Abuela } from "./Abuela.svg";
+import { ReactComponent as Alergias } from "./Alergias.svg";
+import { ReactComponent as Bisturi } from "./Bisturi.svg";
+import { ReactComponent as Embarazada } from "./Embarazada.svg";
+import { ReactComponent as Fractura } from "./Fractura.svg";
+import { ReactComponent as Hombre } from "./Hombre.svg";
+import { ReactComponent as Madre } from "./Madre.svg";
+import { ReactComponent as Mujer } from "./Mujer.svg";
+import { ReactComponent as Padre } from "./Padre.svg";
+import { ReactComponent as Protesis } from "./Protesis.svg";
+import { ReactComponent as Silla } from "./Silla.svg";
+import { ReactComponent as UnidadSangre } from "./UnidadSangre.svg";
+import { ReactComponent as Virus } from "./Virus.svg";
 
 
 export {
@@ -76,5 +90,19 @@ export {
   Digestivo,
   Muscular,
   Circulatorio,
-  Carpeta
+  Carpeta,
+  Abuelo,
+  Abuela,
+  Alergias,
+  Bisturi,
+  Embarazada,
+  Fractura,
+  Hombre,
+  Madre,
+  Mujer,
+  Padre,
+  Protesis,
+  Silla,
+  UnidadSangre,
+  Virus
 }

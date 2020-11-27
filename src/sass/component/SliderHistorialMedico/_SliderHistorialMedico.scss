@@ -1,0 +1,48 @@
+.slider.historial {
+
+    
+
+    height: 100vh;
+    max-height: 100vh;
+
+    > .row:last-child {
+        height: 98%;
+    }
+
+    .container {
+
+        >.subtitle-record {
+            font-size: 1.8em;
+            margin: 0;
+            // margin-bottom: 1em;
+        }
+
+        .question{
+            color: $secondary;
+            font-size: 1.5em;
+        }
+        
+        .answers {
+        
+            margin: 0 auto;
+            margin-bottom: 9em;
+    
+    
+            .column {
+                
+                text-align: center;
+        
+                
+        
+                > button {
+                    width: 3em;
+        
+                  
+                }
+            }
+        }
+    }
+
+   
+}   
+
