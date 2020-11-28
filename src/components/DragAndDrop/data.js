@@ -96,15 +96,18 @@ const arrayOseo = [{
 const arrayMuscular = [{
     id: 1,
     status: "enfermedades",
-    content: "Distrofia muscular"
+    content: "Distrofia muscular",
+    isShow: true,
 }, {
     id: 2,
     status: "enfermedades",
-    content: "Estrabismo"
+    content: "Estrabismo",
+    isShow: true,
 }, {
     id: 3,
     status: "enfermedades",
-    content: "Fibromialgia"
+    content: "Fibromialgia",
+    isShow: true,
 }, {
     id: 4,
     status: "enfermedades",
@@ -113,295 +116,354 @@ const arrayMuscular = [{
 {
     id: 5,
     status: "enfermedades",
-    content: "Miastenia grave"
+    content: "Miastenia grave",
+    isShow: true,
 },
 {
     id: 6,
     status: "enfermedades",
-    content: "Miopatía"
+    content: "Miopatía",
+    isShow: true,
 },
 {
     id: 7,
     status: "enfermedades",
-    content: "Síndrome de Poland"
+    content: "Síndrome de Poland",
+    isShow: true,
 },
-    // {
-    //     id: 8,
-    //     status: "enfermedades",
-    //     content: "Síndrome de Walker-Warburg"
-    // },
-    // {
-    //     id: 9,
-    //     status: "enfermedades",
-    //     content: "Síndrome del piramidal"
-    // },
-    // {
-    //     id: 10,
-    //     status: "enfermedades",
-    //     content: "Síndrome del túnel carpiano"
-    // },
-    // {
-    //     id: 11,
-    //     status: "enfermedades",
-    //     content: "Síndrome miasténico de Lambert-Eaton"
-    // }
+{
+    id: 8,
+    status: "enfermedades",
+    content: "Síndrome de Walker-Warburg",
+    isShow: false,
+},
+{
+    id: 9,
+    status: "enfermedades",
+    content: "Síndrome del piramidal",
+    isShow: false,
+},
+{
+    id: 10,
+    status: "enfermedades",
+    content: "Síndrome del túnel carpiano",
+    isShow: false,
+},
+{
+    id: 11,
+    status: "enfermedades",
+    content: "Síndrome miasténico de Lambert-Eaton",
+    isShow: false,
+}
 ];
 
 const arrayCirculatorio = [{
     id: 1,
     status: "enfermedades",
-    content: "Accidente cerebrovascular"
+    content: "Accidente cerebrovascular",
+    isShow: true,
 }, {
     id: 2,
     status: "enfermedades",
-    content: "Angina de pecho"
+    content: "Angina de pecho",
+    isShow: true,
 }, {
     id: 3,
     status: "enfermedades",
-    content: "Arritmia"
+    content: "Arritmia",
+    isShow: true,
 }, {
     id: 4,
     status: "enfermedades",
-    content: "Arteriosclerosis"
+    content: "Arteriosclerosis",
+    isShow: true,
 },
 {
     id: 5,
     status: "enfermedades",
-    content: "Enfermedad de Von Willebrand"
+    content: "Enfermedad de Von Willebrand",
+    isShow: true,
 },
 {
     id: 6,
     status: "enfermedades",
-    content: "Glaucoma"
+    content: "Glaucoma",
+    isShow: true,
 },
 {
     id: 7,
     status: "enfermedades",
-    content: "Hemofilia"
+    content: "Hemofilia",
+    isShow: true,
 },
-    // {
-    //     id: 8,
-    //     status: "enfermedades",
-    //     content: "Hipertensión arterial"
-    // },
-    // {
-    //     id: 9,
-    //     status: "enfermedades",
-    //     content: "Insuficiencia cardíaca congestiva"
-    // },
-    // {
-    //     id: 10,
-    //     status: "enfermedades",
-    //     content: "Leucemia"
-    // },
-    // {
-    //     id: 11,
-    //     status: "enfermedades",
-    //     content: "Lupus"
-    // },
-    // {
-    //     id: 12,
-    //     status: "enfermedades",
-    //     content: "Vasculitis"
-    // }
+{
+    id: 8,
+    status: "enfermedades",
+    content: "Hipertensión arterial",
+    isShow: false,
+},
+{
+    id: 9,
+    status: "enfermedades",
+    content: "Insuficiencia cardíaca congestiva",
+    isShow: false,
+},
+{
+    id: 10,
+    status: "enfermedades",
+    content: "Leucemia",
+    isShow: false,
+},
+{
+    id: 11,
+    status: "enfermedades",
+    content: "Lupus",
+    isShow: false,
+},
+{
+    id: 12,
+    status: "enfermedades",
+    content: "Vasculitis",
+    isShow: false,
+}
 
 ];
 
 const arrayDigestivo = [{
     id: 1,
     status: "enfermedades",
-    content: "Cálculos biliares"
+    content: "Cálculos biliares",
+    isShow: true,
 }, {
     id: 2,
     status: "enfermedades",
-    content: "Cirrosis"
+    content: "Cirrosis",
+    isShow: true,
 }, {
     id: 3,
     status: "enfermedades",
-    content: "Colitis ulcerosa"
+    content: "Colitis ulcerosa",
+    isShow: true,
 }, {
     id: 4,
     status: "enfermedades",
-    content: "Diverticulitis"
+    content: "Diverticulitis",
+    isShow: true,
 },
 {
     id: 5,
     status: "enfermedades",
-    content: "Enfermedad celíaca"
+    content: "Enfermedad celíaca",
+    isShow: true,
 },
 {
     id: 6,
     status: "enfermedades",
-    content: "Enfermedad de Crohn"
+    content: "Enfermedad de Crohn",
+    isShow: true,
 },
 {
     id: 7,
     status: "enfermedades",
-    content: "Gastritis"
+    content: "Gastritis",
+    isShow: true,
 },
 {
     id: 8,
     status: "enfermedades",
-    content: "Hemorroides"
+    content: "Hemorroides",
+    isShow: true,
 },
-    // {
-    //     id: 7,
-    //     status: "enfermedades",
-    //     content: "Enfermedad de Reflujo Gastroesofágico"
-    // },
-    // {
-    //     id: 10,
-    //     status: "enfermedades",
-    //     content: "Hernia Abdominal"
-    // },
-    // {
-    //     id: 11,
-    //     status: "enfermedades",
-    //     content: " Insuficiencia Hepática"
-    // },
-    // {
-    //     id: 12,
-    //     status: "enfermedades",
-    //     content: "Síndrome del Intestino Irritable"
-    // },
-    // {
-    //     id: 13,
-    //     status: "enfermedades",
-    //     content: "Úlcera Gástrica"
-    // }
+{
+    id: 7,
+    status: "enfermedades",
+    content: "Enfermedad de Reflujo Gastroesofágico",
+    isShow: false,
+},
+{
+    id: 10,
+    status: "enfermedades",
+    content: "Hernia Abdominal",
+    isShow: false,
+},
+{
+    id: 11,
+    status: "enfermedades",
+    content: " Insuficiencia Hepática",
+    isShow: false,
+},
+{
+    id: 12,
+    status: "enfermedades",
+    content: "Síndrome del Intestino Irritable",
+    isShow: false,
+},
+{
+    id: 13,
+    status: "enfermedades",
+    content: "Úlcera Gástrica",
+    isShow: false,
+}
 ];
 
 const arrayUrinario = [{
     id: 1,
     status: "enfermedades",
-    content: "Cálculos renales"
+    content: "Cálculos renales",
+    isShow: true,
 }, {
     id: 2,
     status: "enfermedades",
-    content: "Hipertrofia prostática benigna"
+    content: "Hipertrofia prostática benigna",
+    isShow: true,
 }, {
     id: 3,
     status: "enfermedades",
-    content: "Incontinencia urinaria"
+    content: "Incontinencia urinaria",
+    isShow: true,
 }, {
     id: 4,
     status: "enfermedades",
-    content: "Insuficiencia renal"
+    content: "Insuficiencia renal",
+    isShow: true,
 },
 {
     id: 5,
     status: "enfermedades",
-    content: "Nefrosis"
+    content: "Nefrosis",
+    isShow: true,
 },
 {
     id: 6,
     status: "enfermedades",
-    content: "Síndrome nefrótico"
+    content: "Síndrome nefrótico",
+    isShow: true,
 }
 ];
 
 const arrayNervioso = [{
     id: 1,
     status: "enfermedades",
-    content: "Alzheimer"
+    content: "Alzheimer",
+    isShow: true,
 }, {
     id: 2,
     status: "enfermedades",
-    content: "Autismo"
+    content: "Autismo",
+    isShow: true,
 }, {
     id: 3,
     status: "enfermedades",
-    content: "Daltonismo"
+    content: "Daltonismo",
+    isShow: true,
 }, {
     id: 4,
     status: "enfermedades",
-    content: "Demencia Vascular"
+    content: "Demencia Vascular",
+    isShow: true,
 },
 {
     id: 5,
     status: "enfermedades",
-    content: "Depresión"
+    content: "Depresión",
+    isShow: true,
 },
 {
     id: 6,
     status: "enfermedades",
-    content: "Epilepsia"
+    content: "Epilepsia",
+    isShow: true,
 },
 {
     id: 7,
     status: "enfermedades",
-    content: "Esclerosis Lateral Amiotrófica"
+    content: "Esclerosis Lateral Amiotrófica",
+    isShow: true,
 },
-    // {
-    //     id: 8,
-    //     status: "enfermedades",
-    //     content: "Esclerosis Múltiple"
-    // },
-    // {
-    //     id: 9,
-    //     status: "enfermedades",
-    //     content: "Esquizofrenia"
-    // },
-    // {
-    //     id: 10,
-    //     status: "enfermedades",
-    //     content: "Huntington"
-    // },
-    // {
-    //     id: 11,
-    //     status: "enfermedades",
-    //     content: "Lesión Cerebral Traumática"
-    // },
-    // {
-    //     id: 12,
-    //     status: "enfermedades",
-    //     content: "Meningitis"
-    // },
-    // {
-    //     id: 13,
-    //     status: "enfermedades",
-    //     content: "Migraña"
-    // },
-    // {
-    //     id: 14,
-    //     status: "enfermedades",
-    //     content: "Parálisis Cerebral"
-    // },
-    // {
-    //     id: 15,
-    //     status: "enfermedades",
-    //     content: "Parkinson"
-    // },
-    // {
-    //     id: 16,
-    //     status: "enfermedades",
-    //     content: "Síndrome de Asperger"
-    // },
-    // {
-    //     id: 17,
-    //     status: "enfermedades",
-    //     content: "Síndrome de Down"
-    // },
-    // {
-    //     id: 18,
-    //     status: "enfermedades",
-    //     content: "Síndrome de Tourette"
-    // },
-    // {
-    //     id: 19,
-    //     status: "enfermedades",
-    //     content: "Trastorno Bipolar"
-    // },
-    // {
-    //     id: 20,
-    //     status: "enfermedades",
-    //     content: "Trastorno de la alimentación"
-    // },
-    // {
-    //     id: 21,
-    //     status: "enfermedades",
-    //     content: "Tumor cerebral"
-    // }
+{
+    id: 8,
+    status: "enfermedades",
+    content: "Esclerosis Múltiple",
+    isShow: false,
+},
+{
+    id: 9,
+    status: "enfermedades",
+    content: "Esquizofrenia",
+    isShow: false,
+},
+{
+    id: 10,
+    status: "enfermedades",
+    content: "Huntington",
+    isShow: false,
+},
+{
+    id: 11,
+    status: "enfermedades",
+    content: "Lesión Cerebral Traumática",
+    isShow: false,
+},
+{
+    id: 12,
+    status: "enfermedades",
+    content: "Meningitis",
+    isShow: false,
+},
+{
+    id: 13,
+    status: "enfermedades",
+    content: "Migraña",
+    isShow: false,
+},
+{
+    id: 14,
+    status: "enfermedades",
+    content: "Parálisis Cerebral",
+    isShow: false,
+},
+{
+    id: 15,
+    status: "enfermedades",
+    content: "Parkinson",
+    isShow: false,
+},
+{
+    id: 16,
+    status: "enfermedades",
+    content: "Síndrome de Asperger",
+    isShow: false,
+},
+{
+    id: 17,
+    status: "enfermedades",
+    content: "Síndrome de Down",
+    isShow: false,
+},
+{
+    id: 18,
+    status: "enfermedades",
+    content: "Síndrome de Tourette",
+    isShow: false,
+},
+{
+    id: 19,
+    status: "enfermedades",
+    content: "Trastorno Bipolar",
+    isShow: false,
+},
+{
+    id: 20,
+    status: "enfermedades",
+    content: "Trastorno de la alimentación",
+    isShow: false,
+},
+{
+    id: 21,
+    status: "enfermedades",
+    content: "Tumor cerebral",
+    isShow: false,
+}
 ];
 
 const arrayReproductor = [{
@@ -437,11 +499,12 @@ const arrayReproductor = [{
     content: "Sífilis",
     isShow: true,
 },
-// {
-//     id: 7,
-//     status: "enfermedades",
-//     content: " Síndrome del Ovario Poliquístico"
-// },
+{
+    id: 7,
+    status: "enfermedades",
+    content: " Síndrome del Ovario Poliquístico",
+    isShow: false,
+},
 {
     id: 8,
     status: "enfermedades",
@@ -453,132 +516,159 @@ const arrayReproductor = [{
 const arrayEndocrino = [{
     id: 1,
     status: "enfermedades",
-    content: "Acromegalia"
+    content: "Acromegalia",
+    isShow: true,
 }, {
     id: 2,
     status: "enfermedades",
-    content: "Diabetes Mellitus tipo 1"
+    content: "Diabetes Mellitus tipo 1",
+    isShow: true,
 }, {
     id: 3,
     status: "enfermedades",
-    content: "Diabetes Mellitus tipo 2"
+    content: "Diabetes Mellitus tipo 2",
+    isShow: true,
 }, {
     id: 4,
     status: "enfermedades",
-    content: "Enanismo"
+    content: "Enanismo",
+    isShow: true,
 },
 {
     id: 5,
     status: "enfermedades",
-    content: "Enfermedad de Addison"
+    content: "Enfermedad de Addison",
+    isShow: true,
 },
-    // {
-    //     id: 6,
-    //     status: "enfermedades",
-    //     content: "Enfermedad de Cushing"
-    // },
-    // {
-    //     id: 7,
-    //     status: "enfermedades",
-    //     content: "Gigantismo"
-    // },
-    // {
-    //     id: 8,
-    //     status: "enfermedades",
-    //     content: "Hipertiroidismo"
-    // },
-    // {
-    //     id: 9,
-    //     status: "enfermedades",
-    //     content: "Hipogonadismo"
-    // },
-    // {
-    //     id: 10,
-    //     status: "enfermedades",
-    //     content: "Hipotiroidismo"
-    // },
-    // {
-    //     id: 11,
-    //     status: "enfermedades",
-    //     content: "Insuficiencia suprarrenal"
-    // }
+{
+    id: 6,
+    status: "enfermedades",
+    content: "Enfermedad de Cushing",
+    isShow: false,
+},
+{
+    id: 7,
+    status: "enfermedades",
+    content: "Gigantismo",
+    isShow: false,
+},
+{
+    id: 8,
+    status: "enfermedades",
+    content: "Hipertiroidismo",
+    isShow: false,
+},
+{
+    id: 9,
+    status: "enfermedades",
+    content: "Hipogonadismo",
+    isShow: false,
+},
+{
+    id: 10,
+    status: "enfermedades",
+    content: "Hipotiroidismo",
+    isShow: false,
+},
+{
+    id: 11,
+    status: "enfermedades",
+    content: "Insuficiencia suprarrenal",
+    isShow: false,
+}
 ];
 
 const arrayRespiratorio = [{
     id: 1,
     status: "enfermedades",
-    content: "Alergias"
+    content: "Alergias",
+    isShow: true,
 }, {
     id: 2,
     status: "enfermedades",
-    content: "Apnea del Sueño"
+    content: "Apnea del Sueño",
+    isShow: true,
 }, {
     id: 3,
     status: "enfermedades",
-    content: "Asma"
+    content: "Asma",
+    isShow: true,
 }, {
     id: 4,
     status: "enfermedades",
-    content: "Bronquitis Crónica"
+    content: "Bronquitis Crónica",
+    isShow: true,
 },
 {
     id: 5,
     status: "enfermedades",
-    content: "Enfisema"
+    content: "Enfisema",
+    isShow: true,
 },
 {
     id: 6,
     status: "enfermedades",
-    content: "EPOC"
+    content: "EPOC",
+    isShow: true,
 },
 {
     id: 7,
     status: "enfermedades",
-    content: " Fibrosis pulmonar idiopática"
+    content: " Fibrosis pulmonar idiopática",
+    isShow: true,
 },
 {
     id: 8,
     status: "enfermedades",
-    content: "Fibrosis quística"
+    content: "Fibrosis quística",
+    isShow: true,
 },
 {
     id: 9,
     status: "enfermedades",
-    content: "Laringitis"
+    content: "Laringitis",
+    isShow: false,
 },
-    // {
-    //     id: 10,
-    //     status: "enfermedades",
-    //     content: "Neumoconiosis"
-    // },
-    // {
-    //     id: 11,
-    //     status: "enfermedades",
-    //     content: "Sinusitis"
-    // }
+{
+    id: 10,
+    status: "enfermedades",
+    content: "Neumoconiosis",
+    isShow: false,
+},
+{
+    id: 11,
+    status: "enfermedades",
+    content: "Sinusitis",
+    isShow: false,
+}
 ];
 
 const arrayPiel = [{
     id: 1,
     status: "enfermedades",
-    content: "Dermatitis atopica"
+    content: "Dermatitis atopica",
+    isShow: true,
 }, {
     id: 2,
     status: "enfermedades",
-    content: " Liquen plano"
+    content: " Liquen plano",
+    isShow: true,
 }, {
     id: 3,
     status: "enfermedades",
-    content: "Neurodermatitis"
+    content: "Neurodermatitis",
+    isShow: true,
 }, {
     id: 4,
     status: "enfermedades",
-    content: "Psoariasis"
+    content: "Psoariasis",
+    isShow: true,
 },
 {
     id: 5,
     status: "enfermedades",
-    content: "Vitiligo"
+    content: "Vitiligo",
+    isShow: true,
 }
 ];
 
