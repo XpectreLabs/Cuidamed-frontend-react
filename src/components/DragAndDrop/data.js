@@ -73,18 +73,18 @@ const arrayOseo = [{
     content: "sida 3",
     isShow: false,
 },
-{
-    id: 14,
-    status: "enfermedades",
-    content: "Osteoporosis 1",
-    isShow: false,
-},
-{
-    id: 15,
-    status: "enfermedades",
-    content: "Osteoporosis 2",
-    isShow: false,
-},
+// {
+//     id: 14,
+//     status: "enfermedades",
+//     content: "Osteoporosis 1",
+//     isShow: false,
+// },
+// {
+//     id: 15,
+//     status: "enfermedades",
+//     content: "Osteoporosis 2",
+//     isShow: false,
+// },
 {
     id: 16,
     status: "enfermedades",
