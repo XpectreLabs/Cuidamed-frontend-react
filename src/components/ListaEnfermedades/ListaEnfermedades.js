@@ -117,8 +117,12 @@ const ListaEnfermedades = React.memo(() => {
       id: items.length + Math.floor((Math.random() * 100) + 1),
       status: "misEnfermedades",
       content: addDiseaNotExist,
-      isShow: true,
+      isShow: false,
     }
+    setItems((prevState) => {
+      const newDragItem = prevState.concat(item);
+      return [...newDragItem]
+    })
     setDragItem((prevState) => {
       const newDragItem = prevState.concat(item);
       return [...newDragItem]
