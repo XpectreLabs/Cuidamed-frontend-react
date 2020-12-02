@@ -71,3 +71,25 @@ export const verifyCode = (pInfo) => {
     }
   };
 };
+
+export const updateInfoBasic = (pInfo) => {
+  return async (dispatch) => {
+    try {
+      if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+        const { id } = JSON.parse(localStorage.getItem('user'));
+        const request = await fetch(`${CONECTION}api/update/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('refreshToken'),
+          },
+          body: JSON.stringify(pInfo),
+        });
+        const response = await request.json();
+
+        console.log(response);
+      }
+    } catch (e) {}
+  };
+};

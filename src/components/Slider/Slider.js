@@ -40,6 +40,8 @@ import SwiperCore, {
   HashNavigation,
 } from 'swiper';
 
+import { updateInfoBasic } from '../../redux/actions/UserAction';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
@@ -47,12 +49,14 @@ import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
+import { useDispatch } from 'react-redux';
 
 // import "./Slider.scss"
 // install Swiper components
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 export default function Slider() {
+  const dispatch = useDispatch();
   const [isValidIndex, setIsValidIndex] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectSex, setSelectSex] = useState(<IconMen />);
@@ -91,6 +95,7 @@ export default function Slider() {
   } = formValues;
 
   var stringVacunas = '';
+
   const infoBasicDescriptionIcons = [
     {
       iconFirst: <IconFechaNacimiento />,
@@ -122,7 +127,6 @@ export default function Slider() {
       labelSecond: 'Tipo de sangre',
       slideSecond: 2,
     },
-    ,
     {
       iconFirst: <IconOcupacion />,
       dataFirst: employment,
@@ -133,7 +137,6 @@ export default function Slider() {
       labelSecond: 'Grado de estudios',
       slideSecond: 3,
     },
-    ,
     {
       iconFirst: <IconDonador />,
       dataFirst: organDonor,
@@ -234,6 +237,7 @@ export default function Slider() {
 
   const saveAndContinue = (e) => {
     e.preventDefault();
+    dispatch(updateInfoBasic(formValues));
   };
 
   const [vacunasNumber, setvacunasNumber] = useState();
@@ -286,14 +290,13 @@ export default function Slider() {
     }
   };
 
-  
-  const slide  = (s) => {
-    var mySwiper = document.querySelector('.swiper-container').swiper
-    mySwiper.slideTo(s)
-  }
+  const slide = (s) => {
+    var mySwiper = document.querySelector('.swiper-container').swiper;
+    mySwiper.slideTo(s);
+  };
 
   // const [activeSlide, setActiveSlide] = useState(0);
-  
+
   // const handleEditarInfo = (e) => {
   //     e.preventDefault();
   //     var mySwiper = document.querySelector('.swiper-container').swiper
@@ -605,9 +608,12 @@ export default function Slider() {
                         <div className="icon">{value.iconFirst}</div>
                         <div className="data">
                           <label>
-                            {value.labelFirst} {' '}
-                            {/* <a href="#"> */}
-                              <Icon name="pencil alternate" size="small" onClick={() => slide(value.slideFirst)}/>
+                            {value.labelFirst} {/* <a href="#"> */}
+                            <Icon
+                              name="pencil alternate"
+                              size="small"
+                              onClick={() => slide(value.slideFirst)}
+                            />
                             {/* </a> */}
                           </label>
                           {/* onClick={handleEditarInfo} */}
@@ -619,7 +625,11 @@ export default function Slider() {
                         <div className="data">
                           <label>
                             {value.labelSecond}{' '}
-                            <Icon name="pencil alternate" size="small" onClick={() => slide(value.slideSecond)}/>
+                            <Icon
+                              name="pencil alternate"
+                              size="small"
+                              onClick={() => slide(value.slideSecond)}
+                            />
                           </label>
                           <span>{value.dataSecond}</span>
                         </div>
