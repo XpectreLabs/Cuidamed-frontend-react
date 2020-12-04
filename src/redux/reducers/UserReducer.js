@@ -27,6 +27,10 @@ export const UserReducer = (state = initialState, action) => {
         createdUser: false,
         emailRegistered: null,
       };
+    case types.updateInfoBasic:
+      return { ...state, loading: false };
+    case types.saveAndContinue:
+      return { ...state, loading: false };
     default:
       return state;
   }

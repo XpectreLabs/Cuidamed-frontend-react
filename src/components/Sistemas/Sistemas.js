@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grid, Button, Container } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { carpetaSistemas } from './data';

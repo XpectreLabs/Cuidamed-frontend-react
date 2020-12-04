@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Moment from 'react-moment';
 import 'moment/locale/es';
 import { Grid, Container, Icon, Button } from 'semantic-ui-react';
-
+import { CONECTION } from '../../conection';
 //icons
 import {
   IconMen,
@@ -23,7 +24,13 @@ import {
   IconVacuna,
 } from '../../images/icons/icons';
 
-import { bloodType, gradesStudy, religion, maritalStatus, ifNot } from './data';
+import {
+  bloodType,
+  gradesStudy,
+  religionArray,
+  maritalStatus,
+  ifNot,
+} from './data';
 
 import Date from '../inputsCustom/Date';
 import { SelectCustom } from '../inputsCustom/Select/Select';
@@ -41,6 +48,8 @@ import SwiperCore, {
   HashNavigation,
 } from 'swiper';
 
+import { updateInfoBasic } from '../../redux/actions/UserAction';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
@@ -48,50 +57,105 @@ import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
+import { useDispatch } from 'react-redux';
 
 // import "./Slider.scss"
 // install Swiper components
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 export default function Slider() {
+  const dispatch = useDispatch();
   const [isValidIndex, setIsValidIndex] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectSex, setSelectSex] = useState(<IconMen />);
+
+  const { id } = JSON.parse(localStorage.getItem('user'));
+
   const [formValues, setFormValues] = useState({
     sex: '',
     birthDate: '',
-    placeBirth: '',
-    placeLived: '',
+    birth_place: '',
+    place: '',
     height: '',
     weight: '',
-    typeBlood: '',
-    studyGrade: '',
-    healthInsurance: '',
-    employment: '',
-    religionSelected: '',
+    type_blood: '',
+    career: '',
+    social_number: '',
+    ocupation: '',
+    religion: '',
     stateMarital: '',
     organDonor: '',
     vacunado: '',
+    is_vaccinated: '',
   });
-
+  useEffect(() => {
+    console.log('Hola que tal ', formValues);
+  }, [formValues]);
+  useEffect(() => {
+    fetch(`${CONECTION}api/getUser/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'x-auth-token': localStorage.getItem('refreshToken'),
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const {
+          birth_date,
+          birth_place,
+          career,
+          civil_status,
+          email,
+          height,
+          is_vaccinated,
+          ocupation,
+          organ_donor,
+          place,
+          religion,
+          sex,
+          social_number,
+          type_blood,
+          weight,
+        } = data.users[0];
+        console.log(birth_place);
+        setFormValues({
+          ...formValues,
+          sex,
+          weight,
+          height,
+          birth_place,
+          birthDate: birth_date,
+          place,
+          type_blood,
+          career,
+          social_number,
+          ocupation,
+          religion,
+          stateMarital: civil_status,
+          organDonor: organ_donor,
+          vacunado: is_vaccinated,
+        });
+      });
+  }, []);
   const {
     sex,
     birthDate,
-    placeBirth,
-    placeLived,
+    birth_place,
+    place,
     height,
     weight,
-    typeBlood,
-    studyGrade,
-    healthInsurance,
-    employment,
-    religionSelected,
+    type_blood,
+    career,
+    social_number,
+    ocupation,
+    religion,
     stateMarital,
     organDonor,
     vacunado,
   } = formValues;
 
-  var stringVacunas = '';
   const infoBasicDescriptionIcons = [
     {
       iconFirst: <IconFechaNacimiento />,
@@ -99,13 +163,13 @@ export default function Slider() {
       labelFirst: 'Fecha de nacimiento',
       slideFirst: 1,
       iconSecond: <IconMundo />,
-      dataSecond: placeBirth,
+      dataSecond: birth_place,
       labelSecond: 'Lugar de nacimiento',
       slideSecond: 1,
     },
     {
       iconFirst: <IconMapa />,
-      dataFirst: placeLived,
+      dataFirst: place,
       labelFirst: 'Lugar de residencia',
       slideFirst: 1,
       iconSecond: <IconAltura />,
@@ -119,22 +183,20 @@ export default function Slider() {
       labelFirst: 'Peso (kg)',
       slideFirst: 2,
       iconSecond: <IconGotaSangre />,
-      dataSecond: typeBlood,
+      dataSecond: type_blood,
       labelSecond: 'Tipo de sangre',
       slideSecond: 2,
     },
-    ,
     {
       iconFirst: <IconOcupacion />,
-      dataFirst: employment,
+      dataFirst: ocupation,
       labelFirst: 'Ocupación',
       slideFirst: 3,
       iconSecond: <IconGradoEstudio />,
-      dataSecond: studyGrade,
+      dataSecond: career,
       labelSecond: 'Grado de estudios',
       slideSecond: 3,
     },
-    ,
     {
       iconFirst: <IconDonador />,
       dataFirst: organDonor,
@@ -147,11 +209,11 @@ export default function Slider() {
     },
     {
       iconFirst: <IconReligion />,
-      dataFirst: religionSelected,
+      dataFirst: religion,
       labelFirst: 'Religión',
       slideFirst: 4,
       iconSecond: <IconSeguro />,
-      dataSecond: healthInsurance,
+      dataSecond: social_number,
       labelSecond: 'Seguro Medico',
       slideSecond: 3,
     },
@@ -172,6 +234,15 @@ export default function Slider() {
 
   useEffect(() => {
     console.log(formValues);
+    let flag = true;
+    if (sex) {
+      if (sex === 'M') {
+        document.getElementById('iconMen').checked = true;
+      } else {
+        document.getElementById('iconWomen').checked = true;
+      }
+    }
+    console.log(formValues);
     switch (activeIndex) {
       case 0:
         setTitleInfoBasic(false);
@@ -184,25 +255,25 @@ export default function Slider() {
         break;
       case 1:
         setTitleInfoBasic(false);
-        if (birthDate !== '' && placeBirth !== '' && placeLived !== '')
+        if (birthDate !== '' && birth_place !== '' && place !== '')
           setIsValidIndex(true);
         else setIsValidIndex(false);
         break;
       case 2:
         setTitleInfoBasic(false);
-        if (height !== '' && weight !== '' && typeBlood !== '')
+        if (height !== '' && weight !== '' && type_blood !== '')
           setIsValidIndex(true);
         else setIsValidIndex(false);
         break;
       case 3:
         setTitleInfoBasic(false);
-        if (studyGrade !== '' && healthInsurance !== '' && employment !== '')
+        if (career !== '' && social_number !== '' && ocupation !== '')
           setIsValidIndex(true);
         else setIsValidIndex(false);
         break;
       case 4:
         setTitleInfoBasic(false);
-        if (religionSelected !== '' && stateMarital !== '' && organDonor !== '')
+        if (religion !== '' && stateMarital !== '' && organDonor !== '')
           setIsValidIndex(true);
         else setIsValidIndex(false);
         break;
@@ -229,12 +300,17 @@ export default function Slider() {
         setTitleInfoBasic(false);
         break;
     }
+    return () => {
+      flag = false;
+    };
   }, [activeIndex, formValues]);
 
   const [titleInfoBasic, setTitleInfoBasic] = useState(false);
 
+  const history = useHistory();
   const saveAndContinue = (e) => {
     e.preventDefault();
+    dispatch(updateInfoBasic(formValues, history));
   };
 
   const [vacunasNumber, setvacunasNumber] = useState();
@@ -267,7 +343,7 @@ export default function Slider() {
 
   const isVacunado = (bool) => {
     if (bool) {
-      setFormValues({ ...formValues, vacunado: true });
+      setFormValues({ ...formValues, vacunado: true, is_vaccinated: 'YES' });
       setvacunasNumber(
         <>
           <Grid.Row className="vacunas__title-description">
@@ -280,21 +356,20 @@ export default function Slider() {
         </>
       );
     } else {
-      setFormValues({ ...formValues, vacunado: false });
+      setFormValues({ ...formValues, vacunado: false, is_vaccinated: 'NO' });
       setvacunasNumber('');
       setVacunasInput([]);
       vacunasQuantity.length = 0;
     }
   };
 
-  
-  const slide  = (s) => {
-    var mySwiper = document.querySelector('.swiper-container').swiper
-    mySwiper.slideTo(s)
-  }
+  const slide = (s) => {
+    var mySwiper = document.querySelector('.swiper-container').swiper;
+    mySwiper.slideTo(s);
+  };
 
   // const [activeSlide, setActiveSlide] = useState(0);
-  
+
   // const handleEditarInfo = (e) => {
   //     e.preventDefault();
   //     var mySwiper = document.querySelector('.swiper-container').swiper
@@ -387,6 +462,7 @@ export default function Slider() {
                       setValue={(e) =>
                         setFormValues({ ...formValues, birthDate: e })
                       }
+                      value={birthDate}
                     />
                     {/* <Text className="justify-content" labelPlaceholder="Fecha de nacimiento" name="fechaNacimiento" labelName="labelFechaNacimiento" /> */}
                   </div>
@@ -397,8 +473,9 @@ export default function Slider() {
                     <PlacesComplete
                       labelPlaceholder="Lugar de nacimiento"
                       setValue={(e) =>
-                        setFormValues({ ...formValues, placeBirth: e })
+                        setFormValues({ ...formValues, birth_place: e })
                       }
+                      valuePlace={birth_place}
                     />
                   </div>
                 </Grid.Column>
@@ -408,8 +485,9 @@ export default function Slider() {
                     <PlacesComplete
                       labelPlaceholder="Lugar de residencia"
                       setValue={(e) =>
-                        setFormValues({ ...formValues, placeLived: e })
+                        setFormValues({ ...formValues, place: e })
                       }
+                      valuePlace={place}
                     />
                   </div>
                 </Grid.Column>
@@ -429,6 +507,7 @@ export default function Slider() {
                       setValue={(e) =>
                         setFormValues({ ...formValues, height: e })
                       }
+                      value={height}
                     />
                   </div>
                 </Grid.Column>
@@ -443,6 +522,7 @@ export default function Slider() {
                         console.log(e);
                         setFormValues({ ...formValues, weight: e });
                       }}
+                      value={weight}
                     />
                   </div>
                 </Grid.Column>
@@ -455,8 +535,9 @@ export default function Slider() {
                       dataOptions={bloodType}
                       setValue={(e) => {
                         console.log('hola');
-                        setFormValues({ ...formValues, typeBlood: e });
+                        setFormValues({ ...formValues, type_blood: e });
                       }}
+                      value={type_blood}
                     />
                   </div>
                 </Grid.Column>
@@ -475,8 +556,9 @@ export default function Slider() {
                       dataOptions={gradesStudy}
                       name="gradoEstudio"
                       setValue={(e) =>
-                        setFormValues({ ...formValues, studyGrade: e })
+                        setFormValues({ ...formValues, career: e })
                       }
+                      value={career}
                     />
                   </div>
                 </Grid.Column>
@@ -486,8 +568,9 @@ export default function Slider() {
                     <CustomInput
                       placeholder="Seguro médico"
                       setValue={(e) =>
-                        setFormValues({ ...formValues, healthInsurance: e })
+                        setFormValues({ ...formValues, social_number: e })
                       }
+                      value={social_number}
                     />
                   </div>
                 </Grid.Column>
@@ -497,8 +580,9 @@ export default function Slider() {
                     <CustomInput
                       placeholder="Ocupación"
                       setValue={(e) =>
-                        setFormValues({ ...formValues, employment: e })
+                        setFormValues({ ...formValues, ocupation: e })
                       }
+                      value={ocupation}
                     />
                   </div>
                 </Grid.Column>
@@ -513,10 +597,11 @@ export default function Slider() {
                     <IconReligion />
                     <SelectCustom
                       placeholder="Religión"
-                      dataOptions={religion}
+                      dataOptions={religionArray}
                       setValue={(e) =>
-                        setFormValues({ ...formValues, religionSelected: e })
+                        setFormValues({ ...formValues, religion: e })
                       }
+                      value={religion}
                     />
                   </div>
                 </Grid.Column>
@@ -529,6 +614,7 @@ export default function Slider() {
                       setValue={(e) =>
                         setFormValues({ ...formValues, stateMarital: e })
                       }
+                      value={stateMarital}
                     />
                   </div>
                 </Grid.Column>
@@ -541,6 +627,7 @@ export default function Slider() {
                       setValue={(e) =>
                         setFormValues({ ...formValues, organDonor: e })
                       }
+                      value={organDonor}
                     />
                   </div>
                 </Grid.Column>
@@ -606,9 +693,12 @@ export default function Slider() {
                         <div className="icon">{value.iconFirst}</div>
                         <div className="data">
                           <label>
-                            {value.labelFirst} {' '}
-                            {/* <a href="#"> */}
-                              <Icon name="pencil alternate" size="small" onClick={() => slide(value.slideFirst)}/>
+                            {value.labelFirst} {/* <a href="#"> */}
+                            <Icon
+                              name="pencil alternate"
+                              size="small"
+                              onClick={() => slide(value.slideFirst)}
+                            />
                             {/* </a> */}
                           </label>
                           {/* onClick={handleEditarInfo} */}
@@ -620,7 +710,11 @@ export default function Slider() {
                         <div className="data">
                           <label>
                             {value.labelSecond}{' '}
-                            <Icon name="pencil alternate" size="small" onClick={() => slide(value.slideSecond)}/>
+                            <Icon
+                              name="pencil alternate"
+                              size="small"
+                              onClick={() => slide(value.slideSecond)}
+                            />
                           </label>
                           <span>{value.dataSecond}</span>
                         </div>
