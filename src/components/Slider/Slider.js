@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Moment from 'react-moment';
 import 'moment/locale/es';
 import { Grid, Container, Icon, Button } from 'semantic-ui-react';
+
 //icons
 import {
   IconMen,
