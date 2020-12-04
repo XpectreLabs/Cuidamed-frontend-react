@@ -24,7 +24,13 @@ import {
   IconVacuna,
 } from '../../images/icons/icons';
 
-import { bloodType, gradesStudy, religionArray, maritalStatus, ifNot } from './data';
+import {
+  bloodType,
+  gradesStudy,
+  religionArray,
+  maritalStatus,
+  ifNot,
+} from './data';
 
 import Date from '../inputsCustom/Date';
 import { SelectCustom } from '../inputsCustom/Select/Select';
@@ -62,11 +68,30 @@ export default function Slider() {
   const [isValidIndex, setIsValidIndex] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectSex, setSelectSex] = useState(<IconMen />);
-  const [user, setUser] = useState({});
 
   const { id } = JSON.parse(localStorage.getItem('user'));
+
+  const [formValues, setFormValues] = useState({
+    sex: '',
+    birthDate: '',
+    birth_place: '',
+    place: '',
+    height: '',
+    weight: '',
+    type_blood: '',
+    career: '',
+    social_number: '',
+    ocupation: '',
+    religion: '',
+    stateMarital: '',
+    organDonor: '',
+    vacunado: '',
+    is_vaccinated: '',
+  });
   useEffect(() => {
-    let flag = true;
+    console.log('Hola que tal ', formValues);
+  }, [formValues]);
+  useEffect(() => {
     fetch(`${CONECTION}api/getUser/${id}`, {
       method: 'GET',
       headers: {
@@ -74,41 +99,46 @@ export default function Slider() {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
         'x-auth-token': localStorage.getItem('refreshToken'),
       },
-    }).then(
-      response => response.json()
-    ).then(data => {
-      if (flag) {
-        setUser(data.users[0]);
-        // setFormValues({
-        //   ...formValues,
-        //   sex: data.users[0].sex,
-        //   weight: data.users[0].weight,
-        //   height: data.users[0].height,
-        //   birth_place: data.users[0].birth_place
-        // });
-      }
-    });
-    return () => { flag = false };
-  })
-
-  const [formValues, setFormValues] = useState({
-    sex: user.sex,
-    birthDate: '',
-    birth_place: user.birth_place,
-    place: 'user.place',
-    height: 'user.height',
-    weight: 'user.weight',
-    type_blood: 'user.type_blood',
-    career: 'user.career',
-    social_number: 'user.social_number',
-    ocupation: 'user.ocupation',
-    religion: 'user.religion',
-    stateMarital: 'user.civil_status',
-    organDonor: 'user.organ_donor',
-    vacunado: '',
-    is_vaccinated: 'user.is_vaccinated',
-  });
-
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const {
+          birth_date,
+          birth_place,
+          career,
+          civil_status,
+          email,
+          height,
+          is_vaccinated,
+          ocupation,
+          organ_donor,
+          place,
+          religion,
+          sex,
+          social_number,
+          type_blood,
+          weight,
+        } = data.users[0];
+        console.log(birth_place);
+        setFormValues({
+          ...formValues,
+          sex,
+          weight,
+          height,
+          birth_place,
+          birthDate: birth_date,
+          place,
+          type_blood,
+          career,
+          social_number,
+          ocupation,
+          religion,
+          stateMarital: civil_status,
+          organDonor: organ_donor,
+          vacunado: is_vaccinated,
+        });
+      });
+  }, []);
   const {
     sex,
     birthDate,
@@ -125,8 +155,6 @@ export default function Slider() {
     organDonor,
     vacunado,
   } = formValues;
-
-  var stringVacunas = '';
 
   const infoBasicDescriptionIcons = [
     {
@@ -208,7 +236,7 @@ export default function Slider() {
     console.log(formValues);
     let flag = true;
     if (sex) {
-      if (sex === "M") {
+      if (sex === 'M') {
         document.getElementById('iconMen').checked = true;
       } else {
         document.getElementById('iconWomen').checked = true;
@@ -272,7 +300,9 @@ export default function Slider() {
         setTitleInfoBasic(false);
         break;
     }
-    return () => { flag = false };
+    return () => {
+      flag = false;
+    };
   }, [activeIndex, formValues]);
 
   const [titleInfoBasic, setTitleInfoBasic] = useState(false);
@@ -296,7 +326,7 @@ export default function Slider() {
             <CustomInput
               placeholder="Nombre"
               type="text"
-              setValue={(e) => { }}
+              setValue={(e) => {}}
               onblur={(e) =>
                 setTotalVacunas((totalVacunas) => [...totalVacunas, e])
               }
@@ -432,6 +462,7 @@ export default function Slider() {
                       setValue={(e) =>
                         setFormValues({ ...formValues, birthDate: e })
                       }
+                      value={birthDate}
                     />
                     {/* <Text className="justify-content" labelPlaceholder="Fecha de nacimiento" name="fechaNacimiento" labelName="labelFechaNacimiento" /> */}
                   </div>

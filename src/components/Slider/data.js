@@ -20,10 +20,10 @@ const gradesStudy = [
 ];
 
 const religionArray = [
-  { key: 'r1', value: '1', text: 'Catolicismo' },
-  { key: 'r2', value: '2', text: 'Evangélico' },
-  { key: 'r3', value: '3', text: 'Cristianismo' },
-  { key: 'r4', value: '4', text: 'Testigos de Jehová' },
+  { key: 'r1', value: 'Catolicismo', text: 'Catolicismo' },
+  { key: 'r2', value: 'Evangélico', text: 'Evangélico' },
+  { key: 'r3', value: 'Cristianismo', text: 'Cristianismo' },
+  { key: 'r4', value: 'Testigos de Jehová', text: 'Testigos de Jehová' },
 ];
 
 const maritalStatus = [
