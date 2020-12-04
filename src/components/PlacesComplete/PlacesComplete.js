@@ -4,12 +4,10 @@ import PlacesAutocomplete, {
   getLatLng,
 } from 'react-places-autocomplete';
 
-import Text from '../inputsCustom/Text';
 import { CustomInput } from '../inputsCustom/CustomInput';
-import InputCustom from '../inputsCustom/Text';
 
-const PlacesComplete = React.memo(({ labelPlaceholder, setValue }) => {
-  const [address, setAddress] = React.useState('');
+const PlacesComplete = React.memo(({ labelPlaceholder, setValue, valuePlace }) => {
+  const [address, setAddress] = React.useState(valuePlace);
   const [coordinates, setCoordinates] = React.useState({
     lat: null,
     lng: null,
@@ -37,6 +35,7 @@ const PlacesComplete = React.memo(({ labelPlaceholder, setValue }) => {
             <CustomInput
               placeholder={labelPlaceholder}
               functionPlaces={{ ...getInputProps({}) }}
+              value={valuePlace}
             />
             <div className="places-complete">
               {loading ? <div>...loading</div> : null}
@@ -44,15 +43,15 @@ const PlacesComplete = React.memo(({ labelPlaceholder, setValue }) => {
               {suggestions.map((suggestion) => {
                 const style = suggestion.active
                   ? {
-                      backgroundColor: '#2c2e81',
-                      cursor: 'pointer',
-                      textAlign: 'left',
-                    }
+                    backgroundColor: '#2c2e81',
+                    cursor: 'pointer',
+                    textAlign: 'left',
+                  }
                   : {
-                      backgroundColor: '#ffffff',
-                      cursor: 'pointer',
-                      textAlign: 'left',
-                    };
+                    backgroundColor: '#ffffff',
+                    cursor: 'pointer',
+                    textAlign: 'left',
+                  };
                 return (
                   <div
                     key={suggestion.placeId}

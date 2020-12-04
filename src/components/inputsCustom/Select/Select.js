@@ -6,11 +6,11 @@ export const SelectCustom = React.memo(
     dataOptions,
     placeholder = 'Input Example',
     type = 'text',
-    setValue = (e) => console.log(e),
+    setValue = (e) => { },
     id,
+    value,
   }) => {
     const [addClass, setAddClass] = useState(false);
-    console.log('hpl select');
     const handleSetValue = async (event) => {
       if (event.currentTarget.children.length > 0)
         setValue(event.currentTarget.children[0].innerHTML);
@@ -28,6 +28,7 @@ export const SelectCustom = React.memo(
           className={`custom-select ${addClass ? 'show-label' : ''}`}
           onChange={handleSetValue}
           onOpen={handleOpen}
+          value={value}
         />
         <label placeholder={placeholder}></label>
         {/* <input

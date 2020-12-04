@@ -28,7 +28,9 @@ export const UserReducer = (state = initialState, action) => {
         emailRegistered: null,
       };
     case types.updateInfoBasic:
-      return { ...state };
+      return { ...state, loading: false };
+    case types.saveAndContinue:
+      return { ...state, loading: false };
     default:
       return state;
   }

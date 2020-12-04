@@ -1,25 +1,25 @@
 const bloodType = [
-  { key: 'bt1', value: '1', text: 'O -' },
-  { key: 'bt2', value: '2', text: 'O +' },
-  { key: 'bt3', value: '3', text: 'A -' },
-  { key: 'bt4', value: '4', text: 'A +' },
-  { key: 'bt5', value: '5', text: 'B -' },
-  { key: 'bt6', value: '6', text: 'B +' },
-  { key: 'bt7', value: '7', text: 'AB -' },
-  { key: 'bt8', value: '8', text: 'AB +' },
+  { key: 'bt1', value: 'O -', text: 'O -' },
+  { key: 'bt2', value: 'O +', text: 'O +' },
+  { key: 'bt3', value: 'A -', text: 'A -' },
+  { key: 'bt4', value: 'A +', text: 'A +' },
+  { key: 'bt5', value: 'B -', text: 'B -' },
+  { key: 'bt6', value: 'B +', text: 'B +' },
+  { key: 'bt7', value: 'AB -', text: 'AB -' },
+  { key: 'bt8', value: 'AB +', text: 'AB +' },
 ];
 
 const gradesStudy = [
-  { key: 'g1', value: '7', text: 'Doctorado' },
-  { key: 'g2', value: '6', text: 'Maestria' },
-  { key: 'g3', value: '5', text: 'Licenciatura' },
-  { key: 'g4', value: '4', text: 'Bachillerato' },
-  { key: 'g5', value: '3', text: 'Secundaria' },
-  { key: 'g6', value: '2', text: 'Primaria' },
-  { key: 'g7', value: '1', text: 'Preescolar' },
+  { key: 'g1', value: 'Doctorado', text: 'Doctorado' },
+  { key: 'g2', value: 'Maestria', text: 'Maestria' },
+  { key: 'g3', value: 'Licenciatura', text: 'Licenciatura' },
+  { key: 'g4', value: 'Bachillerato', text: 'Bachillerato' },
+  { key: 'g5', value: 'Secundaria', text: 'Secundaria' },
+  { key: 'g6', value: 'Primaria', text: 'Primaria' },
+  { key: 'g7', value: 'Preescolar', text: 'Preescolar' },
 ];
 
-const religion = [
+const religionArray = [
   { key: 'r1', value: '1', text: 'Catolicismo' },
   { key: 'r2', value: '2', text: 'Evangélico' },
   { key: 'r3', value: '3', text: 'Cristianismo' },
@@ -27,14 +27,14 @@ const religion = [
 ];
 
 const maritalStatus = [
-  { key: '1', value: '1', text: 'Soltero' },
-  { key: '2', value: '2', text: 'Casado' },
+  { key: '1', value: 'Soltero', text: 'Soltero' },
+  { key: '2', value: 'Casado', text: 'Casado' },
 ];
 
 const ifNot = [
-  { key: '1', value: '1', text: 'Sí' },
-  { key: '2', value: '2', text: 'No' },
-  { key: '3', value: '3', text: 'Todavía no lo sé' },
+  { key: '1', value: 'Sí', text: 'Sí' },
+  { key: '2', value: 'No', text: 'No' },
+  { key: '3', value: 'Todavía no lo sé', text: 'Todavía no lo sé' },
 ];
 
-export { bloodType, gradesStudy, religion, maritalStatus, ifNot };
+export { bloodType, gradesStudy, religionArray, maritalStatus, ifNot };

@@ -1,6 +1,7 @@
 import Swal from 'sweetalert2';
 import { CONECTION } from '../../conection';
 import { types } from '../types';
+
 export const createUser = (pInfo) => {
   return async (dispatch) => {
     try {
@@ -72,8 +73,9 @@ export const verifyCode = (pInfo) => {
   };
 };
 
-export const updateInfoBasic = (pInfo) => {
+export const updateInfoBasic = (pInfo, history) => {
   return async (dispatch) => {
+    dispatch({ type: types.loading });
     try {
       if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
         const { id } = JSON.parse(localStorage.getItem('user'));
@@ -88,8 +90,17 @@ export const updateInfoBasic = (pInfo) => {
         });
         const response = await request.json();
 
-        console.log(response);
+        if (response.message) {
+          Swal.fire({
+            title: 'Usuario Actualizado',
+            icon: 'success',
+          });
+          dispatch({ type: types.saveAndContinue })
+          history.push('/dashboard/enfermedades-comunes');
+
+        }
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 };
+
