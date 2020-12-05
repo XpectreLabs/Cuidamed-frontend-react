@@ -11,80 +11,91 @@ import {
     CarpUrinario,
 } from '../../images/icons/icons';
 
+import {
+    arrayCirculatorio,
+    arrayDigestivo,
+    arrayPiel,
+    arrayEndocrino,
+    arrayMuscular,
+    arrayRespiratorio,
+    arrayReproductor,
+    arrayNervioso,
+    arrayUrinario,
+    arrayOseo,
+} from '../DragAndDrop/data';
+
 const carpetaSistemas = [
     {
-        svgFirst: <CarpOseo />,
-        idFirst: "oseo",
-        nameFirst: "Sistema óseo",
-        svgSecond: <CarpMuscular />,
-        idSecond: "muscular",
-        nameSecond: "Sistema muscular",
-        svgThird: <CarpDigestivo />,
-        idThird: "digestivo",
-        nameThird: "Sistema digestivo",
-        svgFourth: <CarpSanguineo />,
-        idFourth: "sanguineo",
-        nameFourth: "Sistema circulatorio",
+        svg: <CarpOseo />,
+        name: "Sistema óseo",
+        humanSystem: 'óseo',
+        arrayData: arrayOseo,
+        color: '#2b19a0',
+    },
+    {
+        svg: <CarpMuscular />,
+        name: "Sistema muscular",
+        humanSystem: 'muscular',
+        arrayData: arrayMuscular,
+        color: '#772d11',
+    },
+    {
+        svg: <CarpDigestivo />,
+        name: "Sistema digestivo",
+        humanSystem: 'digestivo',
+        arrayData: arrayDigestivo,
+        color: '#19a054'
+    },
+    {
+        svg: <CarpSanguineo />,
+        name: "Sistema circulatorio",
+        humanSystem: 'circulatorio',
+        arrayData: arrayCirculatorio,
+        color: '#a01919'
+    },
+    {
+        svg: <CarpUrinario />,
+        name: "Sistema urinario",
+        humanSystem: 'urinario',
+        arrayData: arrayUrinario,
+        color: '#86a019'
+    },
+    {
+        svg: <CarpNervioso />,
+        name: "Sistema nervioso",
+        humanSystem: 'nervioso',
+        arrayData: arrayNervioso,
+        color: '#32812c'
+    },
+    {
+        svg: <CarpSexual />,
+        name: "Sistema reproductivo",
+        humanSystem: 'reproductivo',
+        arrayData: arrayReproductor,
+        color: '#ff1695'
+    },
+    {
+        svg: <CarpEndocrino />,
+        name: "Sistema endocrino",
+        humanSystem: 'endocrino',
+        arrayData: arrayEndocrino,
+        color: '#a07319'
+    },
+    {
+        svg: <CarpRespiratorio />,
+        name: "Sistema respiratorio",
+        humanSystem: 'respiratorio',
+        arrayData: arrayRespiratorio,
+        color: '#2c6d81'
+    },
+    {
+        svg: <CarpPiel />,
+        name: "Piel",
+        humanSystem: 'piel',
+        arrayData: arrayPiel,
+        color: '#81452c'
+    },
 
-    },
-    // {
-    //     svg: <CarpMuscular />,
-    //     id: "muscular",
-    //     name: "Sistema muscular",
-    // },
-    // {
-    //     svg: <CarpDigestivo />,
-    //     id: "digestivo",
-    //     name: "Sistema digestivo",
-    // },
-    // {
-    //     svg: <CarpSanguineo />,
-    //     id: "sanguineo",
-    //     name: "Sistema circulatorio",
-    // },
-    {
-        svgFirst: <CarpUrinario />,
-        idFirst: "urinario",
-        nameFirst: "Sistema urinario",
-        svgSecond: <CarpNervioso />,
-        idSecond: "nervioso",
-        nameSecond: "Sistema nervioso",
-        svgThird: <CarpSexual />,
-        idThird: "sexual",
-        nameThird: "Sistema reproductivo",
-        svgFourth: <CarpEndocrino />,
-        idFourth: "endocrino",
-        nameFourth: "Sistema endocrino",
-    },
-    // {
-    //     svg: <CarpNervioso />,
-    //     id: "nervioso",
-    //     name: "Sistema nervioso",
-    // },
-    // {
-    //     svg: <CarpSexual />,
-    //     id: "sexual",
-    //     name: "Sistema reproductivo",
-    // },
-    // {
-    //     svg: <CarpEndocrino />,
-    //     id: "endocrino",
-    //     name: "Sistema endocrino",
-    // },
-    {
-        svgFirst: <CarpRespiratorio />,
-        idFirst: "respiratorio",
-        nameFirst: "Sistema respiratorio",
-        svgSecond: <CarpPiel />,
-        idSecond: "piel",
-        nameSecond: "Piel",
-    },
-    // {
-    //     svg: <CarpPiel />,
-    //     id: "piel",
-    //     name: "Piel",
-    // },
-   
 ]
 
 
