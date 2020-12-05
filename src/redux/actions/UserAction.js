@@ -99,6 +99,37 @@ export const updateInfoBasic = (pInfo, history) => {
           history.push('/dashboard/enfermedades-comunes');
         }
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 };
+
+export const saveIllnessSystem = (pInfo, history) => {
+  return async (dispatch) => {
+    dispatch({ type: types.loading });
+    try {
+      if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+        const { id } = JSON.parse(localStorage.getItem('user'));
+        const request = await fetch(`${CONECTION}api/relations`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('refreshToken'),
+          },
+          body: JSON.stringify(pInfo),
+
+        });
+        const response = await request.json();
+
+        if (response.message) {
+          Swal.fire({
+            title: 'Se agrego al historial',
+            icon: 'success',
+          });
+          history.push('/dashboard/sistemas');
+        }
+      }
+    } catch (e) { }
+  };
+};
+

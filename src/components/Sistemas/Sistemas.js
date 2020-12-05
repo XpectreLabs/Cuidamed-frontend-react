@@ -57,6 +57,7 @@ export default function Sistemas() {
                     state: {
                       humanSystem: carpeta.human_system_Id.name.trim(),
                       carpetaId: carpeta.id,
+                      systemId: carpeta.human_system_Id.id,
                       color: carpeta.color,
                     },
                   }}>

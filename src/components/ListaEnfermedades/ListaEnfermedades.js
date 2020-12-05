@@ -10,27 +10,29 @@ import { DndProvider } from 'react-dnd';
 import Item from '../DragAndDrop/Item';
 import DropWrapper from '../DragAndDrop/DropWrapper';
 import Col from '../DragAndDrop/Col';
-// import { statuses } from '../DragAndDrop/data';
-// import { Redirect } from 'react-router-dom';
+
 import ModalComponent from '../ModalComponent';
 
 import { useHistory } from 'react-router-dom';
 import { CONECTION } from '../../conection';
 import { VERIFICAR, VERIFICADO } from './types';
+import { useDispatch } from 'react-redux';
 
+import { saveIllnessSystem } from '../../redux/actions/UserAction';
 //
 
 const ListaEnfermedades = React.memo(() => {
 
   const history = useHistory();
   const { name } = JSON.parse(localStorage.getItem('user'));
-  const { humanSystem, color, carpetaId } = history.location.state;
+  const { humanSystem, color, carpetaId, systemId } = history.location.state;
 
   //DRAG AND DROP
   const [items, setItems] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch(`${CONECTION}api/IllnessBySystem/${carpetaId}`, {
+    fetch(`${CONECTION}api/IllnessBySystem/${systemId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -40,8 +42,13 @@ const ListaEnfermedades = React.memo(() => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.success) {
-          setItems(data.data);
+        if (data.data) {
+          console.log(data.data);
+          const newData = data.data.map((d) => {
+            d.isShow = true;
+            return d;
+          })
+          setItems(newData);
         }
       })
   }, [])
@@ -54,15 +61,58 @@ const ListaEnfermedades = React.memo(() => {
   useEffect(() => {
     setDragItem((state) => {
       const itemsFound = items.filter((st) => st.status === VERIFICADO);
+      itemsFound.concat(state);
       return [...itemsFound];
     });
   }, [items]);
 
   useEffect(() => {
+    fetch(`${CONECTION}api/relation`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'x-auth-token': localStorage.getItem('refreshToken'),
+      },
+      body: JSON.stringify({ systemId })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.data) {
+          console.log(data.data);
+          data.data.map((d) => {
+            console.log(d.illnessId.name);
+            setItems((prevState) => prevState.map((i) => {
+              if (i.name === d.illnessId.name) {
+                i.status = VERIFICADO;
+              }
+              return i;
+            }))
+            // console.log(itemsData);
+            // return [...itemsData];
+            // d.illnessId.status = VERIFICADO;
+            // return d.illnessId;
+          });
+          // console.log(newData);
+          // setItems((prevState) => prevState
+          //   .concat(...newData))
+        }
+      })
+  }, [])
+
+  const saveAndContinue = (e) => {
+    const obj = {
+      illness: JSON.stringify(dragItem),
+      carpetaId
+    }
+    dispatch(saveIllnessSystem(obj, history));
+  }
+
+  useEffect(() => {
     if (dragItem.length > 0) {
-      setBtnAddExp(<Button>Ingresar a expediente</Button>);
+      setBtnAddExp('Ingresar a expediente');
     } else {
-      setBtnAddExp(<Button>No tengo ninguna de estas enfermedades</Button>);
+      setBtnAddExp('No tengo ninguna de estas enfermedades');
     }
   }, [dragItem]);
 
@@ -93,16 +143,18 @@ const ListaEnfermedades = React.memo(() => {
     const search = e.currentTarget.value
     if (search.length >= 3) {
       const newItemsTrue = items
-        .filter((item) => item.content.toUpperCase()
+        .filter((item) => item.name.toUpperCase()
           .includes(search.toUpperCase()))
         .map((itemx, index) => {
           itemx.isShow = true;
           return itemx;
         });
 
+      console.log(newItemsTrue);
+
       setItems((prevState) => {
         const newItems = prevState
-          .filter((data) => !data.content.toUpperCase().includes(search.toUpperCase()))
+          .filter((data) => !data.name.toUpperCase().includes(search.toUpperCase()))
           .map((itemd) => {
             itemd.isShow = false;
             return itemd;
@@ -115,7 +167,7 @@ const ListaEnfermedades = React.memo(() => {
     } else {
       setItems((prevState) => {
         const newItems = prevState.map((itemdx, index) => {
-          if (itemdx.id < 7) {
+          if (index < 7) {
             itemdx.isShow = true;
           } else {
             itemdx.isShow = false;
@@ -178,7 +230,7 @@ const ListaEnfermedades = React.memo(() => {
                     <DropWrapper onDrop={onDrop} status={VERIFICAR}>
                       <Col>
                         {items
-                          .filter((i, index) => (i.status === VERIFICAR))
+                          .filter((i, index) => (i.status === VERIFICAR && i.isShow))
                           .map((i, idx) => (
                             <Item
                               key={i.id}
@@ -232,7 +284,9 @@ const ListaEnfermedades = React.memo(() => {
                   </div>
                 </DndProvider>
               </Grid.Row>
-              <Grid.Row className="no-disease">{btnAddExp}</Grid.Row>
+              <Grid.Row className="no-disease">
+                <Button onClick={saveAndContinue}>{btnAddExp}</Button>
+              </Grid.Row>
             </Grid.Row>
           </Grid.Column>
         </Grid.Row>
