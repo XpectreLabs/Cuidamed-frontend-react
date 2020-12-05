@@ -69,8 +69,9 @@ export default function Slider() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectSex, setSelectSex] = useState(<IconMen />);
 
+  const [totalVacunas, setTotalVacunas] = useState([]);
   const { id } = JSON.parse(localStorage.getItem('user'));
-
+  const [vacunaText, setVacunaText] = useState('');
   const [formValues, setFormValues] = useState({
     sex: '',
     birthDate: '',
@@ -87,10 +88,8 @@ export default function Slider() {
     organDonor: '',
     vacunado: '',
     is_vaccinated: '',
+    vaccine: '',
   });
-  useEffect(() => {
-    console.log('Hola que tal ', formValues);
-  }, [formValues]);
   useEffect(() => {
     fetch(`${CONECTION}api/getUser/${id}`, {
       method: 'GET',
@@ -107,10 +106,10 @@ export default function Slider() {
           birth_place,
           career,
           civil_status,
-          email,
           height,
           is_vaccinated,
           ocupation,
+          vaccine_number,
           organ_donor,
           place,
           religion,
@@ -118,8 +117,8 @@ export default function Slider() {
           social_number,
           type_blood,
           weight,
+          vaccine,
         } = data.users[0];
-        console.log(birth_place);
         setFormValues({
           ...formValues,
           sex,
@@ -135,8 +134,11 @@ export default function Slider() {
           religion,
           stateMarital: civil_status,
           organDonor: organ_donor,
-          vacunado: is_vaccinated,
+          is_vaccinated,
+          vaccine_number,
+          vacunado: is_vaccinated === 'YES' ? true : false,
         });
+        setTotalVacunas(vaccine);
       });
   }, []);
   const {
@@ -154,6 +156,8 @@ export default function Slider() {
     stateMarital,
     organDonor,
     vacunado,
+    vaccine_number,
+    is_vaccinated,
   } = formValues;
 
   const infoBasicDescriptionIcons = [
@@ -219,7 +223,7 @@ export default function Slider() {
     },
     {
       iconFirst: <IconVacuna />,
-      dataFirst: vacunado,
+      dataFirst: vacunaText,
       labelFirst: 'Vacunas los últimos 6 meses',
       slideFirst: 5,
       iconSecond: selectSex,
@@ -242,7 +246,6 @@ export default function Slider() {
         document.getElementById('iconWomen').checked = true;
       }
     }
-    console.log(formValues);
     switch (activeIndex) {
       case 0:
         setTitleInfoBasic(false);
@@ -285,15 +288,16 @@ export default function Slider() {
         break;
       case 6:
         // setTitleInfoBasic(true);
-        console.log(vacunado);
+        console.log('toatl vacunas: ', totalVacunas);
         if (vacunado === false) {
-          setFormValues({ ...formValues, vacunado: 'N' });
+          console.log('llega aqui');
+          setVacunaText('N');
         } else if (vacunado === true) {
           let vacunasString = 'Sí, ';
           totalVacunas.map((vacuna) => {
-            vacunasString += ' ' + vacuna;
+            vacunasString += ' ' + vacuna.name;
           });
-          setFormValues({ ...formValues, vacunado: vacunasString });
+          setVacunaText(vacunasString);
         }
         break;
       default:
@@ -313,56 +317,35 @@ export default function Slider() {
     dispatch(updateInfoBasic(formValues, history));
   };
 
-  const [vacunasNumber, setvacunasNumber] = useState();
-  const vacunasQuantity = [];
-  const [vacunasInput, setVacunasInput] = useState();
-  const [totalVacunas, setTotalVacunas] = useState([]);
-
   const handleInputsVacunas = (e) => {
     if (e > 0 && e < 4) {
+      let vacunasArray = [];
       for (let index = 0; index < e; index++) {
-        vacunasQuantity.push(
-          <Grid.Row className="vacunas__title-description">
-            <CustomInput
-              placeholder="Nombre"
-              type="text"
-              setValue={(e) => {}}
-              onblur={(e) =>
-                setTotalVacunas((totalVacunas) => [...totalVacunas, e])
-              }
-            />
-          </Grid.Row>
-        );
+        let obj = { order: index + 1, name: '' };
+        if (totalVacunas[index]) obj = { ...totalVacunas[index] };
+        vacunasArray = [...vacunasArray, obj];
       }
-      setVacunasInput(vacunasQuantity);
+      setTotalVacunas(vacunasArray);
     } else {
-      setVacunasInput([]);
-      vacunasQuantity.length = 0;
+      setTotalVacunas([]);
     }
   };
-
   const isVacunado = (bool) => {
     if (bool) {
       setFormValues({ ...formValues, vacunado: true, is_vaccinated: 'YES' });
-      setvacunasNumber(
-        <>
-          <Grid.Row className="vacunas__title-description">
-            <CustomInput
-              placeholder="¿Cuantas fueron?"
-              type="number"
-              setValue={(e) => handleInputsVacunas(e)}
-            />
-          </Grid.Row>
-        </>
-      );
     } else {
-      setFormValues({ ...formValues, vacunado: false, is_vaccinated: 'NO' });
-      setvacunasNumber('');
-      setVacunasInput([]);
-      vacunasQuantity.length = 0;
+      setFormValues({
+        ...formValues,
+        vacunado: false,
+        is_vaccinated: 'NO',
+        vaccine_number: 0,
+      });
+      setTotalVacunas([]);
     }
   };
-
+  useEffect(() => {
+    setFormValues({ ...formValues, vaccine: JSON.stringify(totalVacunas) });
+  }, [totalVacunas]);
   const slide = (s) => {
     var mySwiper = document.querySelector('.swiper-container').swiper;
     mySwiper.slideTo(s);
@@ -384,11 +367,8 @@ export default function Slider() {
           Información Básica
         </h1>
       </Grid.Row>
-      {/* <Grid.Row className="title">
-            </Grid.Row > */}
 
       <Grid.Row>
-        {/* <h1 className={`title ${titleInfoBasic ? 'hidden-title' : ''}`}>Información Básica</h1> */}
         <Swiper
           spaceBetween={55}
           slidesPerView={1}
@@ -656,6 +636,7 @@ export default function Slider() {
                         name="vacuna"
                         readOnly=""
                         tabIndex="0"
+                        checked={is_vaccinated === 'YES' ? true : false}
                         onClick={() => isVacunado(true)}
                       />
                       <label htmlFor="vacunaYes">Sí</label>
@@ -666,14 +647,53 @@ export default function Slider() {
                         type="radio"
                         name="vacuna"
                         readOnly=""
+                        checked={is_vaccinated === 'NO' ? true : false}
                         tabIndex="0"
                         onClick={() => isVacunado(false)}
                       />
                       <label htmlFor="vacunaNo">No</label>
                     </div>
                   </Grid.Row>
-                  {vacunasNumber}
-                  {vacunasInput}
+                  {vacunado && (
+                    <>
+                      <Grid.Row className="vacunas__title-description">
+                        <CustomInput
+                          placeholder="¿Cuantas fueron?"
+                          type="number"
+                          setValue={(e) => {
+                            setFormValues({ ...formValues, vaccine_number: e });
+                            handleInputsVacunas(e);
+                          }}
+                          value={vaccine_number}
+                        />
+                      </Grid.Row>
+                    </>
+                  )}
+                  {totalVacunas.map(({ order, name }, index) => (
+                    <Grid.Row
+                      className="vacunas__title-description"
+                      key={index}>
+                      <CustomInput
+                        placeholder="Nombre"
+                        type="text"
+                        setValue={(e) => {
+                          setTotalVacunas((numbers) => {
+                            let updateValue = numbers.map((number) =>
+                              number.order === order
+                                ? { ...number, name: e }
+                                : number
+                            );
+                            return updateValue;
+                          });
+                        }}
+                        value={name}
+                        onblur={(e) => {
+                          let obj = { order: index + 1, name: e };
+                          console.log(obj);
+                        }}
+                      />
+                    </Grid.Row>
+                  ))}
                 </Grid.Column>
               </Grid>
             </div>

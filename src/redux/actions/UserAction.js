@@ -95,12 +95,10 @@ export const updateInfoBasic = (pInfo, history) => {
             title: 'Usuario Actualizado',
             icon: 'success',
           });
-          dispatch({ type: types.saveAndContinue })
+          dispatch({ type: types.saveAndContinue });
           history.push('/dashboard/enfermedades-comunes');
-
         }
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 };
-
