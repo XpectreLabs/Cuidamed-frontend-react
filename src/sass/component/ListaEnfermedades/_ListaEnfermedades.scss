@@ -155,7 +155,7 @@
             }
     
             .folder {
-                height: 58vh;
+                height: 64vh;
                 margin-right: 3.5em;
                 border: 3px solid green;
                 border-radius: 2em;
@@ -211,6 +211,7 @@
 
         & > .col {
             text-align: center;
+            overflow: hidden;
             &>.item {
                 display: inline-block;
 

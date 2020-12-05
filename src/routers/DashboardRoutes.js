@@ -6,6 +6,7 @@ import Enfermedades from '../pages/enfermedades-comunes';
 import Sistemas from '../pages/sistemas';
 import ListaEnfermedades from '../pages/lista-enfermedades';
 import InfoBasic from '../pages/info-basic';
+import Antecedentes from '../pages/antecedentes';
 
 export const DashboardRoutes = () => {
   const history = useHistory();
@@ -28,6 +29,11 @@ export const DashboardRoutes = () => {
           exact
           component={ListaEnfermedades}
           path="/dashboard/lista-enfermedades"
+        />
+        <Route
+          exact
+          component={Antecedentes}
+          path="/dashboard/antecedentes"
         />
         <Route exact component={InfoBasic} path="/dashboard/info-basic" />
         <Redirect to="/dashboard/info-basic" />
