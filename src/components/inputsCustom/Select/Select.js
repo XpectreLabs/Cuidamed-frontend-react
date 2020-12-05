@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Select } from 'semantic-ui-react';
 
 export const SelectCustom = React.memo(
@@ -19,6 +19,10 @@ export const SelectCustom = React.memo(
     const handleOpen = async (event) => {
       setAddClass(true);
     };
+
+    useEffect(() => {
+      setAddClass(true);
+    }, [value])
 
     return (
       <div className="input-container">

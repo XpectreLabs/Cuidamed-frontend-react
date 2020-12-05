@@ -21,6 +21,7 @@ const DateInput = ({
   );
   useEffect(() => {
     if (value) setFecha(moment(value).toDate());
+    document.getElementById(id).style.opacity = 1;
   }, [value]);
   const handleInputChange = (event) => {
     console.log(event);

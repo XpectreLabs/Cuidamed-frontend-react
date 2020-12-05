@@ -34,6 +34,16 @@
                 width: 22%;
                 text-align: center;
 
+                .is_complete {
+                    background-color: $dark-red;
+                    border-color: $dark-red;
+                }
+
+                .no_complete {
+                    background-color: $dark-red !important;
+                    border-color: $dark-red !important;
+                }
+
                 .button {
                 font-size: 0.8em;
                 margin-top: -2em;
@@ -47,9 +57,9 @@
     
                 &:first-child {
                     margin-right: 1em;
-                    background-color: $dark-red;
-                    border-color: $dark-red;
                     color: white;
+                    // background-color: $dark-red;
+                    // border-color: $dark-red;
                 }
                 }
     

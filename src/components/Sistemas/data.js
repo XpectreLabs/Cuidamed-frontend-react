@@ -22,12 +22,12 @@ import {
     arrayNervioso,
     arrayUrinario,
     arrayOseo,
-  } from '../DragAndDrop/data';
+} from '../DragAndDrop/data';
 
 const carpetaSistemas = [
     {
         svg: <CarpOseo />,
-        name: "Sistema Óseo",
+        name: "Sistema óseo",
         humanSystem: 'óseo',
         arrayData: arrayOseo,
         color: '#2b19a0',
@@ -54,7 +54,7 @@ const carpetaSistemas = [
         color: '#a01919'
     },
     {
-        svg: <CarpUrinario/>,
+        svg: <CarpUrinario />,
         name: "Sistema urinario",
         humanSystem: 'urinario',
         arrayData: arrayUrinario,
@@ -95,7 +95,7 @@ const carpetaSistemas = [
         arrayData: arrayPiel,
         color: '#81452c'
     },
-   
+
 ]
 
 

@@ -14,22 +14,46 @@ import Col from '../DragAndDrop/Col';
 // import { Redirect } from 'react-router-dom';
 import ModalComponent from '../ModalComponent';
 
+import { useHistory } from 'react-router-dom';
+import { CONECTION } from '../../conection';
+import { VERIFICAR, VERIFICADO } from './types';
+
 //
 
 const ListaEnfermedades = React.memo(() => {
 
+  const history = useHistory();
   const { name } = JSON.parse(localStorage.getItem('user'));
-  const { humanSystem, arrayData, color } = window.history.state.state;
+  const { humanSystem, color, carpetaId } = history.location.state;
 
   //DRAG AND DROP
-  const [items, setItems] = useState(arrayData);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    fetch(`${CONECTION}api/IllnessBySystem/${carpetaId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'x-auth-token': localStorage.getItem('refreshToken'),
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          setItems(data.data);
+        }
+      })
+  }, [])
+
+
   // console.log(arrayData);
   const [dragItem, setDragItem] = useState([]);
   const [btnAddExp, setBtnAddExp] = useState(null);
 
   useEffect(() => {
     setDragItem((state) => {
-      const itemsFound = items.filter((st) => st.status === 'misEnfermedades');
+      const itemsFound = items.filter((st) => st.status === VERIFICADO);
       return [...itemsFound];
     });
   }, [items]);
@@ -88,12 +112,6 @@ const ListaEnfermedades = React.memo(() => {
         return [...newItems];
       })
 
-      // const newItemsSearch = items.filter((data) => data.content.toUpperCase().includes(search.toUpperCase()));
-      // if (newItemsSearch.length > 0 && newItemsSearch.length < 5) {
-      //   setItems(newItemsSearch);
-      // } else {
-
-      // }
     } else {
       setItems((prevState) => {
         const newItems = prevState.map((itemdx, index) => {
@@ -135,7 +153,7 @@ const ListaEnfermedades = React.memo(() => {
       <Grid centered className="lista-enfermedades">
         <Grid.Row>
           {arrayIconHumanSys
-            .filter((icon) => icon.name === humanSystem)
+            .filter((icon) => icon.system === humanSystem)
             .map((icon, index) => (
               <h1 key={index} className="title-list">
                 <span className="title-list-icon">{icon.component}</span>{' '}
@@ -157,10 +175,10 @@ const ListaEnfermedades = React.memo(() => {
               <DndProvider backend={HTML5Backend}>
                 <div className={'row'}>
                   <div className={'col-wrapper'}>
-                    <DropWrapper onDrop={onDrop} status={'enfermedades'}>
+                    <DropWrapper onDrop={onDrop} status={VERIFICAR}>
                       <Col>
                         {items
-                          .filter((i, index) => (i.status === 'enfermedades' && i.isShow))
+                          .filter((i, index) => (i.status === VERIFICAR))
                           .map((i, idx) => (
                             <Item
                               key={i.id}
@@ -195,10 +213,10 @@ const ListaEnfermedades = React.memo(() => {
                 <DndProvider backend={HTML5Backend}>
                   <div className={'row'}>
                     <div className={'col-wrapper'}>
-                      <DropWrapper onDrop={onDrop} status={'misEnfermedades'}>
+                      <DropWrapper onDrop={onDrop} status={VERIFICADO}>
                         <Col>
                           {dragItem
-                            .filter((i) => i.status === 'misEnfermedades')
+                            .filter((i) => i.status === VERIFICADO)
                             .map((i, idx) => (
                               <Item
                                 key={i.id}
