@@ -40,6 +40,8 @@ import "swiper/components/scrollbar/scrollbar.scss";
 import { CustomInput } from '../inputsCustom/CustomInput';
 import  Date from '../inputsCustom/Date'
 
+import Question from '../Question';
+
 // import "./Slider.scss"
 // install Swiper components
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -60,6 +62,7 @@ export default function SliderHistorialMedico() {
   const [vacunasInput, setVacunasInput] = useState();
   const [totalVacunas, setTotalVacunas] = useState([]);
 
+  const [hasRecord, setHasRecord] = useState(false);
   const [isShow, setIsShow] = useState({
     
   });
@@ -171,8 +174,7 @@ export default function SliderHistorialMedico() {
                 <h1 className="title">Historial Médico</h1>
                 <h3 className="subtitle-record">{record.subtitle}</h3>
                 <Grid centered className="records">
-                {/* className={ `${isShow ? '' : 'small-svg'}`} */}
-                  <Grid.Row >{record.icon}</Grid.Row>
+                  <Grid.Row className={ `${hasRecord ? 'small-svg' : ''}`}>{record.icon}</Grid.Row>
                   <Grid.Row>
                     <h3 className="question">{record.question}</h3>
                   </Grid.Row>
@@ -184,7 +186,7 @@ export default function SliderHistorialMedico() {
                         name="vacuna"
                         readOnly=""
                         tabIndex="0"
-                        onClick={() => isVacunado(true, record)}
+                        onClick={() => setHasRecord(true)}
                       >Si</Button>
                     </Grid.Column>
                     <Grid.Column width={3}>
@@ -194,7 +196,7 @@ export default function SliderHistorialMedico() {
                         name="vacuna"
                         readOnly=""
                         tabIndex="0"
-                        onClick={() => isVacunado(false, record)}
+                        onClick={() => setHasRecord(false)}
                       >No</Button>
                     </Grid.Column>
                   </Grid.Row>
@@ -210,6 +212,7 @@ export default function SliderHistorialMedico() {
                       <Button>No</Button>
                     </Grid.Column>
                   </Grid.Row> */}
+                  <Question placeholderAnswer={record.question} placeholderDate = {record.placeholderDate} placeholderNumber={record.placeholderNumber} hasRecord = {hasRecord}  />
                 </Grid>
               </Container>
             </SwiperSlide>
