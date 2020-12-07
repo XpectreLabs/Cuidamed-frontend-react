@@ -59,7 +59,15 @@ input {
     margin-bottom: 50px;
   }
 }
-
+.mg-left-15px {
+  margin-left: 15px;
+}
+.mg-rg-15px {
+  margin-right: 15px;
+}
+.mg-top-10 {
+  margin-top: 15px;
+}
 .background_container {
   position: fixed;
   padding: 0;
@@ -78,7 +86,7 @@ input {
   background-color: transparent;
   margin-top: 3em;
   margin-bottom: 1.5em;
-  font-family: "Comfortaa";
+  font-family: 'Comfortaa';
   font-size: 4.5em;
   font-weight: lighter;
   color: #ffffff;
@@ -86,8 +94,7 @@ input {
   padding: 0;
 }
 
-
-//DRAG AND DROP 
+//DRAG AND DROP
 // .row {
 //   display: flex;
 //   flex-direction: row;

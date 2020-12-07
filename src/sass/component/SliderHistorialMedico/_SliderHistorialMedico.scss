@@ -1,78 +1,58 @@
 .slider.historial {
+  height: 100vh;
+  max-height: 100vh;
 
-    
+  // > .row:last-child {
+  //     height: 98%;
+  // }
 
-    height: 100vh;
-    max-height: 100vh;
+  .container {
+    height: 93vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 
-    // > .row:last-child {
-    //     height: 98%;
-    // }
-    
-
-    .container {
-        height: 93vh;
-        overflow-y: auto;
-        overflow-x: hidden;
-
-        >.subtitle-record {
-            font-size: 1.8em;
-            margin: 0;
-            // margin-bottom: 1em;
-        }
-
-        >.records {
-
-            height: 80%;
-
-            .small-svg {
-                svg {
-                    width: 10em;
-                }
-            }
-            .question{
-                color: $secondary;
-                font-size: 1.5em;
-            }
-            
-            .answers {
-            
-                margin: 0 auto;
-                // margin-bottom: 9em;
-        
-        
-                .column {
-                    
-                    text-align: center;
-            
-                    
-            
-                    > button {
-                        width: 3em;
-                        
-                        
-                        &.selected {
-
-                        }
-                      
-                    }
-                }
-            }
-    
-            >.record {
-                >.quantity {
-                    width: 60%;
-                    margin-bottom: 2em;
-                }
-            }
-
-            &:last-child {
-                margin-bottom: 3em;
-            }
-        }
-
+    > .subtitle-record {
+      font-size: 1.8em;
+      margin: 0;
+      // margin-bottom: 1em;
     }
 
-   
-}   
+    > .records {
+      height: 80%;
 
+      .small-svg {
+        svg {
+          width: 10em;
+        }
+      }
+      .question {
+        color: $secondary;
+        font-size: 1.5em;
+      }
+
+      .answers {
+        margin: 0 auto;
+        // margin-bottom: 9em;
+
+        .column {
+          text-align: center;
+
+          > button {
+            width: 3em;
+
+            &.selected {
+            }
+          }
+        }
+      }
+      .quantity {
+        width: 60%;
+        margin-bottom: 2em;
+      }
+
+      &:last-child {
+        margin-bottom: 3em;
+      }
+    }
+  }
+}
