@@ -21,7 +21,7 @@ const DateInput = ({
   );
   useEffect(() => {
     if (value) setFecha(moment(value).toDate());
-    document.getElementById(id).style.opacity = 1;
+    document.getElementById(id).style.opacity = 0;
   }, [value]);
   const handleInputChange = (event) => {
     console.log(event);
@@ -45,6 +45,7 @@ const DateInput = ({
         showMonthDropdown
         showYearDropdown
         dropdownMode="select"
+        maxDate={new Date()}
         fixedHeight
         placeholderText={placeholder}></DatePicker>
       <label id={id} className="date" placeholder={placeholder}></label>

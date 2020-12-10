@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Container, Icon, Button, Input } from 'semantic-ui-react';
 
-// import {
-//   Abuelo,
-//   Abuela,
-//   Alergias,
-//   Bisturi,
-//   Embarazada,
-//   Fractura,
-//   Hombre,
-//   Madre,
-//   Mujer,
-//   Padre,
-//   Protesis,
-//   Silla,
-//   UnidadSangre,
-//   Virus,
-// } from "../../images/icons/icons";
+import {
+  Abuelo,
+  Abuela,
+  Alergias,
+  Bisturi,
+  Embarazada,
+  Fractura,
+  Hombre,
+  Madre,
+  Mujer,
+  Padre,
+  Protesis,
+  Silla,
+  UnidadSangre,
+  Virus,
+} from "../../images/icons/icons";
 
-import { records } from './data';
+import { records, relativeRecords } from './data';
 
 // import Swiper core and required components
 import SwiperCore, {
@@ -42,6 +42,7 @@ import Date from '../inputsCustom/Date';
 
 import Question from '../Question';
 import SliderAntecedentesComponent from './SliderAntecedentesComponent';
+import SliderFamiliaresComponent from './SliderFamiliaresComponent';
 
 // import "./Slider.scss"
 // install Swiper components
@@ -86,6 +87,60 @@ export default function SliderHistorialMedico() {
               <SliderAntecedentesComponent {...record} />
             </SwiperSlide>
           ))}
+          {relativeRecords.map((relativeRecord, index) => (
+            <SwiperSlide data-hash="slide1" key={index}>
+              <SliderFamiliaresComponent {...relativeRecord} />
+            </SwiperSlide>
+          ))}
+          {/* <SwiperSlide>
+            <Container>
+            <h1 className="title">Historial Médico</h1>
+            <h3 className="subtitle-record">Antecedentes familiares</h3>
+            <Grid centered className="records">
+            <Grid.Row>
+              <h3 className="question">Enfermedades de los abuelos paternos</h3>
+            </Grid.Row>
+            <Grid.Row className="relatives">
+              <Grid.Column width={6}>
+                <Abuela />
+                <Grid.Row className="relatives__answers">
+                  <Grid.Column >
+                    <Button className="button__main">Con cuenta Cuidamed</Button>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row className="relatives__answers">
+                  <Grid.Column >
+                    <Button className="button__main">Sin cuenta cuidamed</Button>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row className="relatives__answers">
+                  <Grid.Column >
+                    <Button className="button__secondary">No tengo información</Button>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid.Column>
+              <Grid.Column width={6}>
+                <Abuelo />
+                <Grid.Row className="relatives__answers">
+                  <Grid.Column >
+                    <Button className="button__main">Con cuenta Cuidamed</Button>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row className="relatives__answers">
+                  <Grid.Column >
+                    <Button className="button__main">Sin cuenta cuidamed</Button>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row className="relatives__answers">
+                  <Grid.Column >
+                    <Button className="button__secondary">No tengo información</Button>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid.Column>
+            </Grid.Row>
+            </Grid>
+            </Container>
+          </SwiperSlide> */}
         </Swiper>
       </Grid.Row>
     </Grid>
