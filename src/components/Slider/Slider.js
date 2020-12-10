@@ -139,6 +139,24 @@ export default function Slider() {
           vacunado: is_vaccinated === 'YES' ? true : false,
         });
         setTotalVacunas(vaccine);
+        if (birth_date &&
+          birth_place &&
+          career &&
+          civil_status &&
+          height &&
+          is_vaccinated &&
+          ocupation &&
+          vaccine_number &&
+          organ_donor &&
+          place &&
+          religion &&
+          sex &&
+          social_number &&
+          type_blood &&
+          weight &&
+          vaccine) {
+          slide(6);
+        }
       });
   }, []);
   const {
