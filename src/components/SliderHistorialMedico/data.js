@@ -7,6 +7,10 @@ import {
   UnidadSangre,
   Virus,
   IconDonador,
+  Abuelo,
+  Abuela,
+  Madre,
+  Padre,
 } from '../../images/icons/icons';
 
 const records = [
@@ -74,11 +78,37 @@ const records = [
     placeholderAnswer: 'Tipo de característica',
     placeholderDate: 'Año de implementacion',
   },
-  // {
-  //     icon: <IconDonador />,
-  //     subtitle: 'Transplante de órganos',
-  //     question: '¿Alguna ves has tenido transplantes?'
-  // },
+  {
+      id: 7,
+      icon: <IconDonador />,
+      subtitle: 'Transplante de órganos',
+      question: '¿Alguna ves has tenido transplantes?',
+      placeholderNumber: 'Número de transplantes',
+      placeholderAnswer: 'Tipo de transplante',
+      placeholderDate: 'Fecha de transplante',
+  },
 ];
 
-export { records };
+const relativeRecords = [
+  {
+    id: 1,
+    iconFirst: <Madre />,
+    iconSecond: <Padre />,
+    subtitle: 'Enfermedades de los padres',
+  },
+  {
+    id: 1,
+    iconFirst: <Abuela />,
+    iconSecond: <Abuelo />,
+    subtitle: 'Enfermedades de los abuelos paternos',
+  },
+  {
+    id: 1,
+    iconFirst: <Abuela />,
+    iconSecond: <Abuelo />,
+    subtitle: 'Enfermedades de los abuelos maternos',
+  },
+  
+];
+
+export { records, relativeRecords };
