@@ -369,15 +369,6 @@ export default function Slider() {
     mySwiper.slideTo(s);
   };
 
-  // const [activeSlide, setActiveSlide] = useState(0);
-
-  // const handleEditarInfo = (e) => {
-  //     e.preventDefault();
-  //     var mySwiper = document.querySelector('.swiper-container').swiper
-  //     // mySwiper.slideTo(0);
-  //     console.log(e);
-  // }
-
   return (
     <Grid centered className="slider">
       <Grid.Row>
