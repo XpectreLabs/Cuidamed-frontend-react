@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Container } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
@@ -14,8 +14,20 @@ export default function EnfermedadesComunes() {
         ...listCommonDiseases,
         value,
       ]);
+    } else {
+      setListCommonDiseases((listCommonDiseases) => {
+        const newItems = listCommonDiseases.filter((disease) => disease !== value);
+        return [...newItems];
+      })
     }
   };
+
+  useEffect(() => {
+    console.log(listCommonDiseases);
+    if (listCommonDiseases) {
+      localStorage.setItem('commonDiseases', JSON.stringify(listCommonDiseases));
+    }
+  }, [listCommonDiseases])
 
   return (
     <div>
@@ -39,7 +51,7 @@ export default function EnfermedadesComunes() {
                     <input
                       type="checkbox"
                       id={disease.id}
-                      value={disease.id}
+                      value={disease.name}
                       onChange={handleCheckedInput}></input>
                     <label htmlFor={disease.id} className="ui button">
                       {disease.name}
@@ -49,7 +61,6 @@ export default function EnfermedadesComunes() {
               </div>
             </Grid.Column>
             <Grid.Column width={1}>
-              {/* to={icon.link} */}
               <Link to={'/dashboard/sistemas'}>
                 <div
                   className="swiper-button-next"

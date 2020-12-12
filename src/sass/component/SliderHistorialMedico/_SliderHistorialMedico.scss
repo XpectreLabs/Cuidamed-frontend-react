@@ -11,14 +11,23 @@
     overflow-y: auto;
     overflow-x: hidden;
 
+    >.title {
+      margin-bottom: 0;
+    }
+
     > .subtitle-record {
       font-size: 1.8em;
       margin: 0;
+      margin-bottom: 0.5em;
       // margin-bottom: 1em;
     }
 
     > .records {
       height: 80%;
+
+      // .records:first-child {
+      //   margin-top: 1em;
+      // }
 
       .small-svg {
         svg {
@@ -28,6 +37,52 @@
       .question {
         color: $secondary;
         font-size: 1.5em;
+      }
+
+      .relatives {
+
+        >.column {
+          text-align: center !important;
+          svg {
+            width: 16em;
+          }
+        }
+        &__answers {
+          margin-top: 0;
+          margin-bottom: 1em;
+          .button {
+            border-radius: 0.5em;
+            &__main {
+              color: $main;
+              border-color: $main;
+              
+            }
+
+            &__secondary {
+              background-color: $secondary;
+              color: $white;
+              font-size: 1.5em;
+
+              &:hover {
+                color: $font-dark;
+              }
+            }
+          }
+          
+          & > .column {
+            
+            .disease {
+              width: 80% !important;
+              display: inline-block;
+            }
+
+            .icon {
+              display: inline-block;
+              color: $main;
+            }
+          }
+        }
+        
       }
 
       .answers {

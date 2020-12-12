@@ -1,0 +1,36 @@
+.gynecology {
+    >.grid {
+
+    
+        >.row {
+            &.subtitle {
+                margin-bottom: 0;
+            }
+
+            .question {
+                font-size: 1.5em;
+                color: $secondary;
+            }
+
+            & svg {
+                width: 15em;
+            }
+
+            &.small-icon {
+
+                & svg {
+                    width: 10em;
+                }
+            }
+        }
+
+        >.answers.menopause {
+            >.column {
+                >.button {
+                    width: 3em;
+                }
+            }
+        }
+
+    }
+}

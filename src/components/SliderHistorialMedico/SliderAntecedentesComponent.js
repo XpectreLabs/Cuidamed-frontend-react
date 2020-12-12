@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { SwiperSlide } from 'swiper/react';
 import { Grid, Container, Button } from 'semantic-ui-react';
 import { CustomInput } from '../inputsCustom/CustomInput';
+import Date from '../inputsCustom/Date'
 const SliderAntecedentesComponent = ({
   subtitle,
   icon,
@@ -86,8 +87,7 @@ const SliderAntecedentesComponent = ({
         )}
         {totalElements.map(({ name, order, year }, i) => (
           <Grid.Row className="vacunas__title-description" key={i}>
-            <Grid.Column>
-              <div class="">
+            <Grid.Column width={5}>
                 <CustomInput
                   placeholder={placeholderAnswer}
                   type="text"
@@ -101,11 +101,11 @@ const SliderAntecedentesComponent = ({
                   }}
                   value={name}
                 />
-              </div>
-              <div class="mg-top-10">
-                <CustomInput
+            </Grid.Column>
+            <Grid.Column width={5}>
+                <Date
                   placeholder={placeholderDate}
-                  type="number"
+                  id={'date_column'+i}
                   setValue={(e) => {
                     setTotalElements((numbers) => {
                       let updateValue = numbers.map((number) =>
@@ -114,9 +114,8 @@ const SliderAntecedentesComponent = ({
                       return updateValue;
                     });
                   }}
-                  value={year}
+                  // value={year}
                 />
-              </div>
             </Grid.Column>
           </Grid.Row>
         ))}
