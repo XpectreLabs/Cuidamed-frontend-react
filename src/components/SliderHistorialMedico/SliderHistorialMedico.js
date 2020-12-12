@@ -51,7 +51,6 @@ export default function SliderHistorialMedico() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const [formValues, setFormValues] = useState({
-    vacunado: '',
   });
 
   const [isShow, setIsShow] = useState({});
@@ -68,6 +67,9 @@ export default function SliderHistorialMedico() {
     console.log('active index' + activeIndex);
   }, [activeIndex]);
 
+  useEffect(() => {
+    console.log(formValues)
+  }, [formValues])
   return (
     <Grid centered className="slider historial">
       <Grid.Row>
@@ -83,7 +85,9 @@ export default function SliderHistorialMedico() {
           simulateTouch={false}>
           {records.map((record, index) => (
             <SwiperSlide data-hash="slide1" key={index}>
-              <SliderAntecedentesComponent {...record} />
+              <SliderAntecedentesComponent {...record} getValue={(e) => {
+                setFormValues({...formValues,...e});
+                }}  />
             </SwiperSlide>
           ))}
         </Swiper>

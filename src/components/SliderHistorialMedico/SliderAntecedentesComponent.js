@@ -9,13 +9,20 @@ const SliderAntecedentesComponent = ({
   placeholderNumber,
   placeholderAnswer,
   placeholderDate,
+  objectKey,
+  getValue = () => {}
 }) => {
-  useEffect(() => {
-    console.log('hola mundo');
-  }, []);
-
   const [hasRecord, setHasRecord] = useState(false);
   const [totalElements, setTotalElements] = useState([]);
+  
+  useEffect(() => {
+    if(totalElements.length > 0){
+      let obj = {};
+      obj[objectKey] = totalElements;
+      getValue(obj)
+    }
+  },[totalElements])
+    
   const handleCounter = (e) => {
     let array = [];
     if (e > 0 && e <= 3) {

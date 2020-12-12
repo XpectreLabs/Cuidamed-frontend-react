@@ -88,14 +88,7 @@ const ListaEnfermedades = React.memo(() => {
               }
               return i;
             }))
-            // console.log(itemsData);
-            // return [...itemsData];
-            // d.illnessId.status = VERIFICADO;
-            // return d.illnessId;
           });
-          // console.log(newData);
-          // setItems((prevState) => prevState
-          //   .concat(...newData))
         }
       })
   }, [])
@@ -103,7 +96,8 @@ const ListaEnfermedades = React.memo(() => {
   const saveAndContinue = (e) => {
     const obj = {
       illness: JSON.stringify(dragItem),
-      carpetaId
+      carpetaId,
+      systemId
     }
     dispatch(saveIllnessSystem(obj, history));
   }
