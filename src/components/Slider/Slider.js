@@ -340,6 +340,7 @@ export default function Slider() {
       let vacunasArray = [];
       for (let index = 0; index < e; index++) {
         let obj = { order: index + 1, name: '' };
+        console.log(obj);
         if (totalVacunas[index]) obj = { ...totalVacunas[index] };
         vacunasArray = [...vacunasArray, obj];
       }

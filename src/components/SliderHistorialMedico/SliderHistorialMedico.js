@@ -49,25 +49,41 @@ import SliderFamiliaresComponent from './SliderFamiliaresComponent';
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 export default function SliderHistorialMedico() {
+
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const [formValues, setFormValues] = useState({
-    vacunado: '',
-  });
+  const [formValues, setFormValues] = useState([
+    { name: {} },
+  ]);
+  const [isValidIndex, setIsValidIndex] = useState(false);
 
-  const [isShow, setIsShow] = useState({});
 
   useEffect(() => {
+    console.log(formValues);
     switch (activeIndex) {
       case 0:
-        setIsShow(false);
+        // if (formValues.otros != '' && formValues.otros != undefined) {
+        //   setIsValidIndex(true);
+        // } else setIsValidIndex(false);
         break;
       case 1:
-        setIsShow(true);
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+      case 4:
+        break;
+      case 5:
+        break;
+      case 6:
+        break;
+      default:
         break;
     }
-    console.log('active index' + activeIndex);
-  }, [activeIndex]);
+  }, [activeIndex, formValues]);
+
+
 
   return (
     <Grid centered className="slider historial">
@@ -76,6 +92,7 @@ export default function SliderHistorialMedico() {
         <Swiper
           spaceBetween={55}
           slidesPerView={1}
+          allowSlideNext={isValidIndex}
           navigation
           pagination={{ clickable: false }}
           // scrollbar={{ draggable: true }}
@@ -84,7 +101,18 @@ export default function SliderHistorialMedico() {
           simulateTouch={false}>
           {records.map((record, index) => (
             <SwiperSlide data-hash="slide1" key={index}>
-              <SliderAntecedentesComponent {...record} />
+              <SliderAntecedentesComponent
+                {...record}
+                setValue={(e) => {
+                  setFormValues((values) => {
+                    const updateValue = values.map((value, indexd) => {
+                      return index === indexd ? { ...value, e } : value
+                    }
+                    );
+                    console.log(updateValue);
+                    return updateValue;
+                  })
+                }} />
             </SwiperSlide>
           ))}
           {relativeRecords.map((relativeRecord, index) => (

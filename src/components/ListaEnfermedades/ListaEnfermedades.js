@@ -113,7 +113,8 @@ const ListaEnfermedades = React.memo(() => {
   const saveAndContinue = (e) => {
     const obj = {
       illness: JSON.stringify(dragItem),
-      carpetaId
+      carpetaId,
+      systemId
     }
     dispatch(saveIllnessSystem(obj, history));
   }

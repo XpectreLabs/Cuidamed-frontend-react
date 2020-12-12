@@ -10,6 +10,8 @@ const SliderAntecedentesComponent = ({
   placeholderNumber,
   placeholderAnswer,
   placeholderDate,
+  setValue = (e) => { return false }
+
 }) => {
   useEffect(() => {
     console.log('hola mundo');
@@ -17,6 +19,25 @@ const SliderAntecedentesComponent = ({
 
   const [hasRecord, setHasRecord] = useState(false);
   const [totalElements, setTotalElements] = useState([]);
+  // const [dataComplete, setDataComplete] = useState(false);
+
+  useEffect(() => {
+    //console.log(totalElements);
+    if (hasRecord) {
+      const newData = totalElements.filter((elements) => !elements.name || !elements.year);
+
+      if (newData.length === 0) {
+        console.log(totalElements);
+        setValue(totalElements);
+      }
+    }
+
+  }, [totalElements])
+
+  // useEffect(() => {
+  //   console.log(dataComplete);
+  // }, [dataComplete])
+
   const handleCounter = (e) => {
     let array = [];
     if (e > 0 && e <= 3) {
@@ -81,34 +102,34 @@ const SliderAntecedentesComponent = ({
         {totalElements.map(({ name, order, year }, i) => (
           <Grid.Row className="vacunas__title-description" key={i}>
             <Grid.Column width={5}>
-                <CustomInput
-                  placeholder={placeholderAnswer}
-                  type="text"
-                  setValue={(e) => {
-                    setTotalElements((numbers) => {
-                      let updateValue = numbers.map((number) =>
-                        number.order === order ? { ...number, name: e } : number
-                      );
-                      return updateValue;
-                    });
-                  }}
-                  value={name}
-                />
+              <CustomInput
+                placeholder={placeholderAnswer}
+                type="text"
+                setValue={(e) => {
+                  setTotalElements((numbers) => {
+                    let updateValue = numbers.map((number) =>
+                      number.order === order ? { ...number, name: e } : number
+                    );
+                    return updateValue;
+                  });
+                }}
+                value={name}
+              />
             </Grid.Column>
             <Grid.Column width={5}>
-                <Date
-                  placeholder={placeholderDate}
-                  id={'date_column'+i}
-                  setValue={(e) => {
-                    setTotalElements((numbers) => {
-                      let updateValue = numbers.map((number) =>
-                        number.order === order ? { ...number, year: e } : number
-                      );
-                      return updateValue;
-                    });
-                  }}
-                  // value={year}
-                />
+              <Date
+                placeholder={placeholderDate}
+                id={'date_column' + i}
+                setValue={(e) => {
+                  setTotalElements((numbers) => {
+                    let updateValue = numbers.map((number) =>
+                      number.order === order ? { ...number, year: e } : number
+                    );
+                    return updateValue;
+                  });
+                }}
+              // value={year}
+              />
             </Grid.Column>
           </Grid.Row>
         ))}

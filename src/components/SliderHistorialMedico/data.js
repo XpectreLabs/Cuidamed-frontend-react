@@ -52,7 +52,7 @@ const records = [
     placeholderDate: 'Año aproximado',
   },
   {
-    id: 4,
+    id: 5,
     icon: <Alergias />,
     subtitle: 'Alergias',
     question: '¿Tienes alergias?',
@@ -61,7 +61,7 @@ const records = [
     placeholderDate: 'Año de diagnostico',
   },
   {
-    id: 5,
+    id: 6,
     icon: <Silla />,
     subtitle: 'Discapacidades',
     question: '¿Tienes discapacidades?',
@@ -70,7 +70,7 @@ const records = [
     placeholderDate: 'Año de diagnostico',
   },
   {
-    id: 6,
+    id: 7,
     icon: <Protesis />,
     subtitle: 'Otras características',
     question: '¿Tienes implantes, protesis, marcapasos, etc?',
@@ -79,13 +79,13 @@ const records = [
     placeholderDate: 'Año de implementacion',
   },
   {
-      id: 7,
-      icon: <IconDonador />,
-      subtitle: 'Transplante de órganos',
-      question: '¿Alguna ves has tenido transplantes?',
-      placeholderNumber: 'Número de transplantes',
-      placeholderAnswer: 'Tipo de transplante',
-      placeholderDate: 'Fecha de transplante',
+    id: 8,
+    icon: <IconDonador />,
+    subtitle: 'Transplante de órganos',
+    question: '¿Alguna ves has tenido transplantes?',
+    placeholderNumber: 'Número de transplantes',
+    placeholderAnswer: 'Tipo de transplante',
+    placeholderDate: 'Fecha de transplante',
   },
 ];
 
@@ -96,19 +96,19 @@ const relativeRecords = [
     iconSecond: <Padre />,
     subtitle: 'Enfermedades de los padres',
   },
-  {
-    id: 1,
-    iconFirst: <Abuela />,
-    iconSecond: <Abuelo />,
-    subtitle: 'Enfermedades de los abuelos paternos',
-  },
-  {
-    id: 1,
-    iconFirst: <Abuela />,
-    iconSecond: <Abuelo />,
-    subtitle: 'Enfermedades de los abuelos maternos',
-  },
-  
+  // {
+  //   id: 2,
+  //   iconFirst: <Abuela />,
+  //   iconSecond: <Abuelo />,
+  //   subtitle: 'Enfermedades de los abuelos paternos',
+  // },
+  // {
+  //   id: 1,
+  //   iconFirst: <Abuela />,
+  //   iconSecond: <Abuelo />,
+  //   subtitle: 'Enfermedades de los abuelos maternos',
+  // },
+
 ];
 
 export { records, relativeRecords };
