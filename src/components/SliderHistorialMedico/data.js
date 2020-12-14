@@ -53,30 +53,30 @@ const records = [
     placeholderNumber: 'Número de fracturas',
     placeholderAnswer: 'Fractura',
     placeholderDate: 'Año aproximado',
-    objectKey:"sangre"
+    objectKey: "sangre"
   },
   {
-    id: 4,
+    id: 5,
     icon: <Alergias />,
     subtitle: 'Alergias',
     question: '¿Tienes alergias?',
     placeholderNumber: 'Número de alergias',
     placeholderAnswer: 'Tipos de alergias',
     placeholderDate: 'Año de diagnostico',
-    objectKey:"elergias"
+    objectKey: "Alergias"
   },
   {
-    id: 5,
+    id: 6,
     icon: <Silla />,
     subtitle: 'Discapacidades',
     question: '¿Tienes discapacidades?',
     placeholderNumber: 'Número de discapacidades',
     placeholderAnswer: 'Discapacidad',
     placeholderDate: 'Año de diagnostico',
-    objectKey: "discapacidades"
+    objectKey: "Discapacidad"
   },
   {
-    id: 6,
+    id: 7,
     icon: <Protesis />,
     subtitle: 'Otras características',
     question: '¿Tienes implantes, protesis, marcapasos, etc?',
@@ -86,13 +86,14 @@ const records = [
     objectKey: "other"
   },
   {
-      id: 7,
-      icon: <IconDonador />,
-      subtitle: 'Transplante de órganos',
-      question: '¿Alguna ves has tenido transplantes?',
-      placeholderNumber: 'Número de transplantes',
-      placeholderAnswer: 'Tipo de transplante',
-      placeholderDate: 'Fecha de transplante',
+    id: 8,
+    icon: <IconDonador />,
+    subtitle: 'Transplante de órganos',
+    question: '¿Alguna ves has tenido transplantes?',
+    placeholderNumber: 'Número de transplantes',
+    placeholderAnswer: 'Tipo de transplante',
+    placeholderDate: 'Fecha de transplante',
+    objectKey: "Transplante"
   },
 ];
 
@@ -103,19 +104,19 @@ const relativeRecords = [
     iconSecond: <Padre />,
     subtitle: 'Enfermedades de los padres',
   },
-  {
-    id: 1,
-    iconFirst: <Abuela />,
-    iconSecond: <Abuelo />,
-    subtitle: 'Enfermedades de los abuelos paternos',
-  },
-  {
-    id: 1,
-    iconFirst: <Abuela />,
-    iconSecond: <Abuelo />,
-    subtitle: 'Enfermedades de los abuelos maternos',
-  },
-  
+  // {
+  //   id: 2,
+  //   iconFirst: <Abuela />,
+  //   iconSecond: <Abuelo />,
+  //   subtitle: 'Enfermedades de los abuelos paternos',
+  // },
+  // {
+  //   id: 1,
+  //   iconFirst: <Abuela />,
+  //   iconSecond: <Abuelo />,
+  //   subtitle: 'Enfermedades de los abuelos maternos',
+  // },
+
 ];
 
 export { records, relativeRecords };

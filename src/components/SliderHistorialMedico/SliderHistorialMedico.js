@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Container, Icon, Button, Input } from 'semantic-ui-react';
+import { Grid, Button } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
 
 import {
   Abuelo,
@@ -44,33 +45,85 @@ import Question from '../Question';
 import SliderAntecedentesComponent from './SliderAntecedentesComponent';
 import SliderFamiliaresComponent from './SliderFamiliaresComponent';
 
+import { updateHistoryMedical } from '../../redux/actions/UserAction';
+import { useDispatch } from 'react-redux';
+
 // import "./Slider.scss"
 // install Swiper components
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
+
+
 export default function SliderHistorialMedico() {
+
+  const [isValidIndex, setIsValidIndex] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const [formValues, setFormValues] = useState({
-  });
+  const [formValues, setFormValues] = useState({});
 
-  const [isShow, setIsShow] = useState({});
+  const dispatch = useDispatch();
+
+  const history = useHistory();
+  const saveAndContinue = (e) => {
+    e.preventDefault();
+    let objFracture = {};
+    objFracture['objFracture'] = formValues;
+    dispatch(updateHistoryMedical(objFracture, history));
+  };
+
 
   useEffect(() => {
+    console.log(formValues);
     switch (activeIndex) {
       case 0:
-        setIsShow(false);
+        if (formValues.covid) {
+          setIsValidIndex(true);
+        } else setIsValidIndex(false);
         break;
       case 1:
-        setIsShow(true);
+        if (formValues.cirujias) {
+          setIsValidIndex(true);
+        } else setIsValidIndex(false);
+        break;
+      case 2:
+        if (formValues.fracturas) {
+          setIsValidIndex(true);
+        } else setIsValidIndex(false);
+        break;
+      case 3:
+        if (formValues.sangre) {
+          setIsValidIndex(true);
+        } else setIsValidIndex(false);
+        break;
+      case 4:
+        if (formValues.Alergias) {
+          setIsValidIndex(true);
+        } else setIsValidIndex(false);
+        break;
+      case 5:
+        if (formValues.Discapacidad) {
+          setIsValidIndex(true);
+        } else setIsValidIndex(false);
+        break;
+      case 6:
+        if (formValues.other) {
+          setIsValidIndex(true);
+        } else setIsValidIndex(false);
+        break;
+      case 7:
+        if (formValues.Transplante) {
+          setIsValidIndex(true);
+        } else setIsValidIndex(false);
+        break;
+      default:
         break;
     }
-    console.log('active index' + activeIndex);
-  }, [activeIndex]);
+  }, [activeIndex, formValues]);
 
   useEffect(() => {
     console.log(formValues)
   }, [formValues])
+
   return (
     <Grid centered className="slider historial">
       <Grid.Row>
@@ -78,6 +131,7 @@ export default function SliderHistorialMedico() {
         <Swiper
           spaceBetween={55}
           slidesPerView={1}
+          allowSlideNext={isValidIndex}
           navigation
           pagination={{ clickable: false }}
           // scrollbar={{ draggable: true }}
@@ -87,8 +141,8 @@ export default function SliderHistorialMedico() {
           {records.map((record, index) => (
             <SwiperSlide data-hash="slide1" key={index}>
               <SliderAntecedentesComponent {...record} getValue={(e) => {
-                setFormValues({...formValues,...e});
-                }}  />
+                setFormValues({ ...formValues, ...e });
+              }} />
             </SwiperSlide>
           ))}
           {relativeRecords.map((relativeRecord, index) => (
@@ -96,55 +150,25 @@ export default function SliderHistorialMedico() {
               <SliderFamiliaresComponent {...relativeRecord} />
             </SwiperSlide>
           ))}
-          {/* <SwiperSlide>
-            <Container>
-            <h1 className="title">Historial Médico</h1>
-            <h3 className="subtitle-record">Antecedentes familiares</h3>
-            <Grid centered className="records">
-            <Grid.Row>
-              <h3 className="question">Enfermedades de los abuelos paternos</h3>
-            </Grid.Row>
-            <Grid.Row className="relatives">
-              <Grid.Column width={6}>
-                <Abuela />
-                <Grid.Row className="relatives__answers">
-                  <Grid.Column >
-                    <Button className="button__main">Con cuenta Cuidamed</Button>
-                  </Grid.Column>
-                </Grid.Row>
-                <Grid.Row className="relatives__answers">
-                  <Grid.Column >
-                    <Button className="button__main">Sin cuenta cuidamed</Button>
-                  </Grid.Column>
-                </Grid.Row>
-                <Grid.Row className="relatives__answers">
-                  <Grid.Column >
-                    <Button className="button__secondary">No tengo información</Button>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid.Column>
-              <Grid.Column width={6}>
-                <Abuelo />
-                <Grid.Row className="relatives__answers">
-                  <Grid.Column >
-                    <Button className="button__main">Con cuenta Cuidamed</Button>
-                  </Grid.Column>
-                </Grid.Row>
-                <Grid.Row className="relatives__answers">
-                  <Grid.Column >
-                    <Button className="button__main">Sin cuenta cuidamed</Button>
-                  </Grid.Column>
-                </Grid.Row>
-                <Grid.Row className="relatives__answers">
-                  <Grid.Column >
-                    <Button className="button__secondary">No tengo información</Button>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid.Column>
-            </Grid.Row>
-            </Grid>
-            </Container>
-          </SwiperSlide> */}
+          <SwiperSlide style={{ position: 'relative' }} data-hash="slide10">
+            <div className="info-basic">
+              <Grid centered columns={16}>
+                <Grid.Column computer={14} tablet={12} mobile={16}>
+                  {/* <h1
+                    className={`title ${titleInfoBasic ? '' : 'hidden-title'}`}>
+                    Información Básica
+                  </h1> */}
+                  <Grid.Row>
+                    <Button
+                      className="button-info-basic"
+                      onClick={saveAndContinue}>
+                      Guardar y Continuar
+                    </Button>
+                  </Grid.Row>
+                </Grid.Column>
+              </Grid>
+            </div>
+          </SwiperSlide>
         </Swiper>
       </Grid.Row>
     </Grid>
