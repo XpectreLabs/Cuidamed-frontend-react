@@ -45,6 +45,16 @@ const ListaEnfermedades = React.memo(() => {
         if (data.data) {
           console.log(data.data);
           const newData = data.data.map((d) => {
+            const commonDiseases = JSON.parse(localStorage.getItem('commonDiseases'));
+            if (commonDiseases) {
+              commonDiseases.map((disease) => {
+                if (disease.trim() === d.name.trim()) {
+                  d.status = VERIFICADO;
+                }
+                return disease;
+              });
+            }
+            //console.log(commonDiseases);
             d.isShow = true;
             return d;
           })
@@ -88,14 +98,7 @@ const ListaEnfermedades = React.memo(() => {
               }
               return i;
             }))
-            // console.log(itemsData);
-            // return [...itemsData];
-            // d.illnessId.status = VERIFICADO;
-            // return d.illnessId;
           });
-          // console.log(newData);
-          // setItems((prevState) => prevState
-          //   .concat(...newData))
         }
       })
   }, [])
@@ -103,7 +106,8 @@ const ListaEnfermedades = React.memo(() => {
   const saveAndContinue = (e) => {
     const obj = {
       illness: JSON.stringify(dragItem),
-      carpetaId
+      carpetaId,
+      systemId
     }
     dispatch(saveIllnessSystem(obj, history));
   }
@@ -185,8 +189,8 @@ const ListaEnfermedades = React.memo(() => {
     setOpen(false);
     const item = {
       id: items.length + Math.floor((Math.random() * 100) + 1),
-      status: "misEnfermedades",
-      content: addDiseaNotExist,
+      status: VERIFICADO,
+      name: addDiseaNotExist,
       isShow: false,
     }
     setItems((prevState) => {
