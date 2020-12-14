@@ -51,6 +51,13 @@ import { ReactComponent as Protesis } from "./Protesis.svg";
 import { ReactComponent as Silla } from "./Silla.svg";
 import { ReactComponent as UnidadSangre } from "./UnidadSangre.svg";
 import { ReactComponent as Virus } from "./Virus.svg";
+import { ReactComponent as CarpCancer } from "./CarpCancer.svg";
+import { ReactComponent as Menopausia } from "./menopausia.svg";
+import { ReactComponent as Menstruacion } from "./menstruacion.svg";
+import { ReactComponent as Medico } from "./medico.svg";
+import { ReactComponent as SeguroMedico } from "./seguroMedico.svg";
+import { ReactComponent as Contacto } from "./contacto.svg";
+import { ReactComponent as Pastillas } from "./pastillas.svg";
 
 
 export {
@@ -104,5 +111,12 @@ export {
   Protesis,
   Silla,
   UnidadSangre,
-  Virus
+  Virus,
+  CarpCancer,
+  Menopausia,
+  Menstruacion,
+  Medico,
+  SeguroMedico,
+  Contacto,
+  Pastillas
 }

@@ -116,7 +116,6 @@ const relativeRecords = [
   //   iconSecond: <Abuelo />,
   //   subtitle: 'Enfermedades de los abuelos maternos',
   // },
-
 ];
 
 export { records, relativeRecords };

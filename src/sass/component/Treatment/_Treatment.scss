@@ -1,0 +1,19 @@
+.medical-contact {
+    >.grid {
+
+
+        .column {
+            .input-container {
+                > .react-datepicker-wrapper {
+                    input {
+                       border-radius: 0.5em !important;
+                   }
+
+                }
+            }
+
+        }
+        
+    }
+
+}
