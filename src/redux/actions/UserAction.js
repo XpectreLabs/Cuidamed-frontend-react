@@ -133,3 +133,33 @@ export const saveIllnessSystem = (pInfo, history) => {
   };
 };
 
+
+export const updateHistoryMedical = (pInfo, history) => {
+  return async (dispatch) => {
+    dispatch({ type: types.loading });
+    try {
+      if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+        const { id } = JSON.parse(localStorage.getItem('user'));
+        const request = await fetch(`${CONECTION}api/objFracture`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('refreshToken'),
+          },
+          body: JSON.stringify(pInfo),
+        });
+        const response = await request.json();
+        console.log(response);
+        if (response.message) {
+          Swal.fire({
+            title: 'Usuario Actualizado',
+            icon: 'success',
+          });
+          //dispatch({ type: types.saveAndContinue });
+          //history.push('/dashboard/enfermedades-comunes');
+        }
+      }
+    } catch (e) { }
+  };
+};

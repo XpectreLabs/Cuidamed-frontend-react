@@ -13,6 +13,9 @@ import SwiperCore, {
 } from "swiper";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useHistory } from 'react-router-dom';
+import { updateHistoryMedical } from '../../redux/actions/UserAction';
+import { useDispatch } from 'react-redux';
 
 // Import Swiper styles
 import "swiper/swiper.scss";
@@ -30,99 +33,157 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 export default function SliderGinecologia() {
 
-    const [isPregnant, setIsPregnant] = useState(false);
-    const [menopause, setMenopause] = useState(false);
-    const [menstruationAge, setMenstruationAge] = useState(false);
-    const period = [
-        { key: 'regular', value: 'Regular', text: 'Regular' },
-        { key: 'iregular', value: 'Iregular', text: 'Iregular' },
-      ];
+  const [isValidIndex, setIsValidIndex] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-    const handleCounter = (e) => {
-        
-        if (e > 0) {
-            setMenstruationAge(true);
-        } else setMenstruationAge(false);
-    };
+  const [formValues, setFormValues] = useState({});
+  const [isPregnant, setIsPregnant] = useState(false);
+  const [menopause, setMenopause] = useState(false);
+  const [menstruationAge, setMenstruationAge] = useState(false);
+  const period = [
+    { key: 'regular', value: 'Regular', text: 'Regular' },
+    { key: 'iregular', value: 'Iregular', text: 'Iregular' },
+  ];
 
+  const handleCounter = (e) => {
 
+    if (e > 0) {
+      setMenstruationAge(true);
+    } else setMenstruationAge(false);
+  };
 
-    function Pregnant(props) {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const saveAndContinue = (e) => {
+    e.preventDefault();
+    dispatch(updateHistoryMedical(formValues, history));
+  };
+
+  useEffect(() => {
+    console.log(formValues);
+    switch (activeIndex) {
+      case 0:
+        if (formValues) {
+          setIsValidIndex(true);
+        } else setIsValidIndex(false);
+        break;
+      case 1:
+        if (formValues) {
+          setIsValidIndex(true);
+        } else setIsValidIndex(false);
+        break;
+      case 2:
+        if (formValues) {
+          setIsValidIndex(true);
+        } else setIsValidIndex(false);
+        break;
+      case 3:
+        if (formValues) {
+          setIsValidIndex(true);
+        } else setIsValidIndex(false);
+        break;
+      case 4:
+        if (formValues) {
+          setIsValidIndex(true);
+        } else setIsValidIndex(false);
+        break;
+      case 5:
+        if (formValues) {
+          setIsValidIndex(true);
+        } else setIsValidIndex(false);
+        break;
+      case 6:
+        if (formValues) {
+          setIsValidIndex(true);
+        } else setIsValidIndex(false);
+        break;
+      case 7:
+        if (formValues.Transplante) {
+          setIsValidIndex(true);
+        } else setIsValidIndex(false);
+        break;
+      default:
+        break;
+    }
+  }, [activeIndex, formValues]);
+
+  function Pregnant(props) {
     let isPregnant = props.ispregnant;
     if (isPregnant) {
-        return (
+      return (
         <>
-            <Grid.Row>
+          <Grid.Row>
             <Grid.Column width={5}>
-                <CustomInput placeholder="Número de embarazos" type="number" defaultValue="1" />
+              <CustomInput placeholder="Número de embarazos" type="number" defaultValue="1" />
             </Grid.Column>
             <Grid.Column width={5}>
-                <CustomInput placeholder="Número de partos" type="number" defaultValue="0"/>
+              <CustomInput placeholder="Número de partos" type="number" defaultValue="0" />
             </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
+          </Grid.Row>
+          <Grid.Row>
             <Grid.Column width={5}>
-                <CustomInput placeholder="Número de cesareas" type="number" defaultValue="0"/>
+              <CustomInput placeholder="Número de cesareas" type="number" defaultValue="0" />
             </Grid.Column>
             <Grid.Column width={5}>
-                <CustomInput placeholder="Número de abortos" type="number" defaultValue="0"/>
+              <CustomInput placeholder="Número de abortos" type="number" defaultValue="0" />
             </Grid.Column>
-            </Grid.Row>
+          </Grid.Row>
         </>
-        );
+      );
     }
 
     return null;
+  }
+
+  function Menopause(props) {
+    let menopause = props.menopause;
+    if (menopause) {
+      return (
+        <Grid.Row>
+          <Grid.Column width={5}>
+            <Date placeholder="Fecha de inicio" id="menopause" />
+          </Grid.Column>
+        </Grid.Row>
+      );
     }
 
-    function Menopause(props) {
-        let menopause = props.menopause;
-        if (menopause) {
-            return (
-                <Grid.Row>
-                    <Grid.Column width={5}>
-                        <Date placeholder="Fecha de inicio" id="menopause" />
-                    </Grid.Column>
-                </Grid.Row>
-            );
-        }
-    
-        return null;
-    }
+    return null;
+  }
 
-    function Menstruation(props) {
-        let menstruation = props.menstruation;
-        if (menstruation) {
-            return (
-                <Grid.Row>
-                    <Grid.Column width={6}>
-                        <SelectCustom 
-                        placeholder="Tipo de periodo"
-                        dataOptions={period}
-                        />
-                    </Grid.Column>
-                </Grid.Row>
-            );
-        } else {
-            return(
-            <Grid.Row className="answers">
-                  <Grid.Column width={4}>
-                    <Button id="vacunaNo" type="radio">
-                      Ya no la tengo
+  function Menstruation(props) {
+    let menstruation = props.menstruation;
+    if (menstruation) {
+      return (
+        <Grid.Row>
+          <Grid.Column width={6}>
+            <SelectCustom
+              placeholder="Tipo de periodo"
+              dataOptions={period}
+            />
+          </Grid.Column>
+        </Grid.Row>
+      );
+    } else {
+      return (
+        <Grid.Row className="answers">
+          <Grid.Column width={4}>
+            <Button id="vacunaNo" type="radio">
+              Ya no la tengo
                     </Button>
-                  </Grid.Column>
-                  <Grid.Column width={4}>
-                    <Button id="vacunaNo" type="radio" name="vacuna">
-                      No la tengo
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <Button id="vacunaNo" type="radio" name="vacuna">
+              No la tengo
                     </Button>
-                  </Grid.Column>
-            </Grid.Row>
-            );
-        }
-
-    
-        return null;
+          </Grid.Column>
+        </Grid.Row>
+      );
     }
+
+
+    return null;
+  }
 
 
   return (
@@ -164,7 +225,7 @@ export default function SliderGinecologia() {
                     />
                   </Grid.Column>
                 </Grid.Row>
-                <Menstruation menstruation={menstruationAge}/>
+                <Menstruation menstruation={menstruationAge} />
                 {/* <Grid.Row className="answers">
                   <Grid.Column width={4}>
                     <Button id="vacunaNo" type="radio">
@@ -238,6 +299,25 @@ export default function SliderGinecologia() {
                 <Pregnant ispregnant={isPregnant} />
               </Grid>
             </Container>
+          </SwiperSlide>
+          <SwiperSlide style={{ position: 'relative' }} data-hash="slide10">
+            <div className="info-basic">
+              <Grid centered columns={16}>
+                <Grid.Column computer={14} tablet={12} mobile={16}>
+                  {/* <h1
+                    className={`title ${titleInfoBasic ? '' : 'hidden-title'}`}>
+                    Información Básica
+                  </h1> */}
+                  <Grid.Row>
+                    <Button
+                      className="button-info-basic"
+                      onClick={saveAndContinue}>
+                      Guardar y Continuar
+                    </Button>
+                  </Grid.Row>
+                </Grid.Column>
+              </Grid>
+            </div>
           </SwiperSlide>
         </Swiper>
       </Grid.Row>

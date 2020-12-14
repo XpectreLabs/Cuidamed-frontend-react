@@ -10,16 +10,11 @@ const SliderAntecedentesComponent = ({
   placeholderNumber,
   placeholderAnswer,
   placeholderDate,
-  setValue = (e) => { return false }
-
+  objectKey,
+  getValue = () => { }
 }) => {
-  useEffect(() => {
-    console.log('hola mundo');
-  }, []);
-
   const [hasRecord, setHasRecord] = useState(false);
   const [totalElements, setTotalElements] = useState([]);
-  // const [dataComplete, setDataComplete] = useState(false);
 
   useEffect(() => {
     //console.log(totalElements);
@@ -27,16 +22,20 @@ const SliderAntecedentesComponent = ({
       const newData = totalElements.filter((elements) => !elements.name || !elements.year);
 
       if (newData.length === 0) {
-        console.log(totalElements);
-        setValue(totalElements);
+        let obj = {};
+        obj[objectKey] = totalElements;
+        getValue(obj);
       }
     }
 
   }, [totalElements])
 
-  // useEffect(() => {
-  //   console.log(dataComplete);
-  // }, [dataComplete])
+  const handleNoSelected = () => {
+    let obj = {};
+    obj[objectKey] = 'NO';
+    getValue(obj);
+  }
+
 
   const handleCounter = (e) => {
     let array = [];
@@ -80,6 +79,7 @@ const SliderAntecedentesComponent = ({
               tabIndex="0"
               onClick={() => {
                 setHasRecord(false);
+                handleNoSelected();
                 setTotalElements([]);
               }}>
               No

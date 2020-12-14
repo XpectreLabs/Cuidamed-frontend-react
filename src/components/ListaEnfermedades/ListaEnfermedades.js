@@ -98,14 +98,7 @@ const ListaEnfermedades = React.memo(() => {
               }
               return i;
             }))
-            // console.log(itemsData);
-            // return [...itemsData];
-            // d.illnessId.status = VERIFICADO;
-            // return d.illnessId;
           });
-          // console.log(newData);
-          // setItems((prevState) => prevState
-          //   .concat(...newData))
         }
       })
   }, [])

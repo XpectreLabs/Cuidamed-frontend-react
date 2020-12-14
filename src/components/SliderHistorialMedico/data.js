@@ -22,6 +22,7 @@ const records = [
     placeholderNumber: 'Veces contagiado',
     placeholderAnswer: 'Medicamentos tomados',
     placeholderDate: 'Año de contagio',
+    objectKey: "covid"
   },
   {
     id: 2,
@@ -32,6 +33,7 @@ const records = [
     placeholderNumber: 'Número de cirugías',
     placeholderAnswer: 'Cirugías',
     placeholderDate: 'Año aproximado',
+    objectKey: "cirujias"
   },
   {
     id: 3,
@@ -41,6 +43,7 @@ const records = [
     placeholderNumber: 'Número de fracturas',
     placeholderAnswer: 'Fractura',
     placeholderDate: 'Año aproximado',
+    objectKey: "fracturas"
   },
   {
     id: 4,
@@ -50,6 +53,7 @@ const records = [
     placeholderNumber: 'Número de fracturas',
     placeholderAnswer: 'Fractura',
     placeholderDate: 'Año aproximado',
+    objectKey: "sangre"
   },
   {
     id: 5,
@@ -59,6 +63,7 @@ const records = [
     placeholderNumber: 'Número de alergias',
     placeholderAnswer: 'Tipos de alergias',
     placeholderDate: 'Año de diagnostico',
+    objectKey: "Alergias"
   },
   {
     id: 6,
@@ -68,6 +73,7 @@ const records = [
     placeholderNumber: 'Número de discapacidades',
     placeholderAnswer: 'Discapacidad',
     placeholderDate: 'Año de diagnostico',
+    objectKey: "Discapacidad"
   },
   {
     id: 7,
@@ -77,6 +83,7 @@ const records = [
     placeholderNumber: 'Caracteristicas',
     placeholderAnswer: 'Tipo de característica',
     placeholderDate: 'Año de implementacion',
+    objectKey: "other"
   },
   {
     id: 8,
@@ -86,6 +93,7 @@ const records = [
     placeholderNumber: 'Número de transplantes',
     placeholderAnswer: 'Tipo de transplante',
     placeholderDate: 'Fecha de transplante',
+    objectKey: "Transplante"
   },
 ];
 
