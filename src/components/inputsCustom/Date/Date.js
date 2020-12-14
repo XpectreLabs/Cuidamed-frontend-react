@@ -14,26 +14,24 @@ const DateInput = ({
   setValue = (e) => {
     // console.log(e)
   },
-  value,
+  value
 }) => {
-  const [fecha, setFecha] = useState(
-    value ? moment(value, 'DD-MM-YYYY') : null
-  );
+  const [fecha, setFecha] = useState(null);
+  console.log("Value: ",value)
   useEffect(() => {
     if (value) setFecha(moment(value).toDate());
+    else if(value === null) setFecha(null);
     document.getElementById(id).style.opacity = 0;
   }, [value]);
+
   const handleInputChange = (event) => {
-    console.log(event);
     setValue(event);
     setFecha(event);
     document.getElementById(id).style.opacity = 1;
-    console.log(event);
     if (event == null) {
       document.getElementById(id).style.opacity = 0;
     }
   };
-  console.log(value);
   return (
     <div className="input-container">
       <DatePicker

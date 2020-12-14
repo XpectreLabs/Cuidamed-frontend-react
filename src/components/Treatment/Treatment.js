@@ -4,6 +4,7 @@ import { Container, Grid, Button } from "semantic-ui-react";
 import { Pastillas } from "../../images/icons/icons";
 import { CustomInput } from "../inputsCustom/CustomInput";
 import Date from "../inputsCustom/Date/Date";
+import TreatmentChild from "./TreatmentChild";
 
 export default function Treatment() {
   const [treatment, setTreatment] = useState([]);
@@ -25,15 +26,15 @@ export default function Treatment() {
       starts: formValues.starts,
       ends: formValues.ends,
     };
-    array = [...array, obj];
-    setTreatment(array);
+    //array = [...array, obj];
+    setTreatment([...treatment,obj]);
     setFormValues({
       ...formValues,
       medicine: "",
       dose: "",
       frequency: "",
-      starts: "",
-      ends: "",
+      starts: null,
+      ends: null,
     });
   };
 
@@ -100,57 +101,10 @@ export default function Treatment() {
             </Button>
           </Grid.Column>
         </Grid.Row>
-        {treatment.map(({ medicine, dose, frequency, starts, ends }, i) => (
-          <>
-            <Grid.Row columns={3}>
-              <Grid.Column width={5} className="disabled">
-                <CustomInput
-                  placeholder="Medicamento/Suplemento"
-                  type="text"
-                  value={medicine}
-                  disabled
-                />
-              </Grid.Column>
-              <Grid.Column width={5} className="disabled">
-                <CustomInput
-                  placeholder="Dosis"
-                  type="text"
-                  value={dose}
-                  disabled
-                />
-              </Grid.Column>
-              <Grid.Column width={5} className="disabled">
-                <CustomInput
-                  placeholder="Frecuencia"
-                  type="text"
-                  value={frequency}
-                  disabled
-                />
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row columns={2} centered>
-              <Grid.Column width={5} className="disabled">
-                <CustomInput
-                  placeholder="Fecha de inicio"
-                  type="text"
-                  value={starts}
-                  disabled
-                />
-              </Grid.Column>
-              <Grid.Column width={5} className="disabled">
-                <CustomInput
-                  placeholder="Fecha de término"
-                  type="text"
-                  value={ends}
-                  disabled
-                />
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-              <Grid.Column width={6} className="line"></Grid.Column>
-            </Grid.Row>
-          </>
-        ))}
+        {treatment.map((item, i) => {
+          return (
+          <TreatmentChild key={i} {...item} />
+        )})}
       </Grid>
     </Container>
   );
