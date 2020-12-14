@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Container, Icon, Button, Input } from "semantic-ui-react";
 
-import { Abuelo, Embarazada } from "../../images/icons/icons";
+import { Menstruacion, Embarazada, Menopausia } from "../../images/icons/icons";
 
 // import Swiper core and required components
 import SwiperCore, {
@@ -148,7 +148,7 @@ export default function SliderGinecologia() {
                   <h2>Ginecología</h2>
                 </Grid.Row>
                 <Grid.Row className={`${menstruationAge ? 'small-icon' : ''}`}>
-                  <Abuelo />
+                  <Menstruacion />
                 </Grid.Row>
                 <Grid.Row>
                   <h3 className="question">
@@ -191,7 +191,7 @@ export default function SliderGinecologia() {
                 </Grid.Row>
 
                 <Grid.Row className={`${menopause ? 'small-icon' : ''}`}>
-                  <Abuelo />
+                  <Menopausia />
                 </Grid.Row>
                 <Grid.Row>
                   <h3 className="question">¿Tienes la menopausia?</h3>

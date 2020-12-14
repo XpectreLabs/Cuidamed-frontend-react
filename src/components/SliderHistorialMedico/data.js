@@ -96,18 +96,18 @@ const relativeRecords = [
     iconSecond: <Padre />,
     subtitle: 'Enfermedades de los padres',
   },
-  {
-    id: 1,
-    iconFirst: <Abuela />,
-    iconSecond: <Abuelo />,
-    subtitle: 'Enfermedades de los abuelos paternos',
-  },
-  {
-    id: 1,
-    iconFirst: <Abuela />,
-    iconSecond: <Abuelo />,
-    subtitle: 'Enfermedades de los abuelos maternos',
-  },
+  // {
+  //   id: 1,
+  //   iconFirst: <Abuela />,
+  //   iconSecond: <Abuelo />,
+  //   subtitle: 'Enfermedades de los abuelos paternos',
+  // },
+  // {
+  //   id: 1,
+  //   iconFirst: <Abuela />,
+  //   iconSecond: <Abuelo />,
+  //   subtitle: 'Enfermedades de los abuelos maternos',
+  // },
   
 ];
 

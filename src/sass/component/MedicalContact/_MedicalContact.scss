@@ -1,0 +1,45 @@
+.medical-contact {
+    &:first-child {
+        margin-top: 2em;
+    }
+
+    >.grid {
+
+
+        .column {
+            .input-container {
+                > input {
+                    border-radius: 0.5em !important;
+                }
+            }
+
+            .disabled {
+
+                input {
+                    border: none;
+
+                }
+
+                label::before {
+                    font-size: 1em;
+                }
+            }
+
+           
+
+        }
+
+        .line {
+            border-bottom: 2px solid $secondary;
+        }
+        
+        &>.icon {
+            padding: 0;
+            margin-bottom: 1em;
+            >svg {
+                width: 10em;
+            }
+        }
+    }
+
+}

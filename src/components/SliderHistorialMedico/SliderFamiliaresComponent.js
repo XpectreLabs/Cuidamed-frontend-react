@@ -17,17 +17,16 @@ const SliderAntecedentesComponent = ({
   const [informationWoman, setInformationWoman] = useState(false);
   const [informationMan, setInformationMan] = useState(false);
 
-  const ButtonExampleCircular = () => <Button circular icon='settings' />
-
   function Questions(props) {
     let ind = props.ind
     let account = props.account;
     let noaccount = props.noaccount;
     let information = props.information;
-    let prueba = props.prueba;
+    // let prueba = props.prueba;
 
     if (account) {
       return (
+        <>
         <Grid.Row className="relatives__answers">
             <Grid.Column>
             <CustomInput
@@ -36,11 +35,26 @@ const SliderAntecedentesComponent = ({
             />
             </Grid.Column>
         </Grid.Row>
+        <Grid.Row>
+          <Icon link name='close' color='red' size='big' onClick={() => { 
+              if(ind === 0) {
+                  setHasAccountWoman(false); 
+                  setNoAccountWoman(false); 
+                  setInformationWoman(false);
+              } else if (ind === 1) {
+                  setHasAccountMan(false); 
+                  setNoAccountMan(false); 
+                  setInformationMan(false);
+              }
+              }}/>
+        </Grid.Row>
+        </>
         
       );
     }
     else if(noaccount) {
         return (
+          <>
             <Grid.Row className="relatives__answers">
                 <Grid.Column>
                     <div className="disease">
@@ -51,19 +65,46 @@ const SliderAntecedentesComponent = ({
                     </div>
                     <Icon  name='info circle' size='big' alt="Mensaje de cuidamed"/>
                 </Grid.Column>
-                {/* <Grid.Column>
-                <CustomInput
-                    placeholder="Enfermedad"
-                    type="text"
-                />
-                </Grid.Column>
-                <Grid.Column>
-                <CustomInput
-                    placeholder="Enfermedad"
-                    type="text"
-                />
-                </Grid.Column> */}
+              </Grid.Row>
+              <Grid.Row>
+                <Icon link name='close' color='red' size='big' onClick={() => { 
+                    if(ind === 0) {
+                        setHasAccountWoman(false); 
+                        setNoAccountWoman(false); 
+                        setInformationWoman(false);
+                    } else if (ind === 1) {
+                        setHasAccountMan(false); 
+                        setNoAccountMan(false); 
+                        setInformationMan(false);
+                    }
+                    }}/>
+              </Grid.Row>
+            </>
+
+        );
+    }
+    else if(information) {
+        return (
+          <>
+            <Grid.Row className="relatives__answers">
+              <Button className="button__secondary">
+                      No tengo información
+              </Button>
             </Grid.Row>
+            <Grid.Row>
+              <Icon link name='close' color='red' size='big' onClick={() => { 
+                  if(ind === 0) {
+                      setHasAccountWoman(false); 
+                      setNoAccountWoman(false); 
+                      setInformationWoman(false);
+                  } else if (ind === 1) {
+                      setHasAccountMan(false); 
+                      setNoAccountMan(false); 
+                      setInformationMan(false);
+                  }
+                  }}/>
+            </Grid.Row>
+            </>
 
         );
     }
@@ -106,7 +147,17 @@ const SliderAntecedentesComponent = ({
                         setInformationMan(true);
                     }
             }}>
-                <Button className="button__secondary">
+                <Button className="button__secondary" onClick={() => { 
+                 if(ind === 0) {
+                        setHasAccountWoman(false); 
+                        setNoAccountWoman(false); 
+                        setInformationWoman(true);
+                    } else if (ind === 1) {
+                        setHasAccountMan(false); 
+                        setNoAccountMan(false); 
+                        setInformationMan(true);
+                    }
+            }}>
                     No tengo información
                 </Button>
             </Grid.Row>
@@ -128,33 +179,10 @@ const SliderAntecedentesComponent = ({
           <Grid.Column width={6}>
             {iconFirst}
             <Questions account={hasAcconutWoman} noaccount={noAccountWoman} information={informationWoman} ind={0}/>
-            
-            {/* <Grid.Row className="relatives__answers">
-                <Button className="button__main">Con cuenta Cuidamed</Button>
-            </Grid.Row>
-            <Grid.Row className="relatives__answers">
-                <Button className="button__main">Sin cuenta cuidamed</Button>
-            </Grid.Row>
-            <Grid.Row className="relatives__answers">
-                <Button className="button__secondary">
-                  No tengo información
-                </Button>
-            </Grid.Row> */}
           </Grid.Column>
           <Grid.Column width={6}>
             {iconSecond}
             <Questions account={hasAcconutMan} noaccount={noAccountMan} information={informationMan} ind={1} />
-            {/* <Grid.Row className="relatives__answers">
-                <Button className="button__main">Con cuenta Cuidamed</Button>
-            </Grid.Row>
-            <Grid.Row className="relatives__answers">
-                <Button className="button__main">Sin cuenta cuidamed</Button>
-            </Grid.Row>
-            <Grid.Row className="relatives__answers">
-                <Button className="button__secondary">
-                  No tengo información
-                </Button>
-            </Grid.Row> */}
           </Grid.Column>
         </Grid.Row>
       </Grid>

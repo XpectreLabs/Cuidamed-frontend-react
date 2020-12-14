@@ -7,7 +7,11 @@ import Sistemas from '../pages/sistemas';
 import ListaEnfermedades from '../pages/lista-enfermedades';
 import InfoBasic from '../pages/info-basic';
 import Antecedentes from '../pages/antecedentes';
-import Ginecologia from '../pages/ginecologia'
+import Ginecologia from '../pages/ginecologia';
+import MedicalContact from '../pages/contacto-medico';
+import MedicalInsurance from '../pages/seguro-medico';
+import Contact from '../pages/contacto';
+import Treatment from '../pages/tratamiento';
 
 export const DashboardRoutes = () => {
   const history = useHistory();
@@ -40,6 +44,26 @@ export const DashboardRoutes = () => {
           exact
           component={Ginecologia}
           path="/dashboard/ginecologia"
+        />
+        <Route
+          exact
+          component={MedicalContact}
+          path="/dashboard/contacto-medico"
+        />
+        <Route
+          exact
+          component={MedicalInsurance}
+          path="/dashboard/seguro-medico"
+        />
+        <Route
+          exact
+          component={Contact}
+          path="/dashboard/contacto"
+        />
+        <Route
+          exact
+          component={Treatment}
+          path="/dashboard/tratamiento"
         />
         <Route exact component={InfoBasic} path="/dashboard/info-basic" />
         <Redirect to="/dashboard/info-basic" />
