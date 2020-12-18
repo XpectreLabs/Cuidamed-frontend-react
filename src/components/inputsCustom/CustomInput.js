@@ -26,6 +26,7 @@ export const CustomInput = React.memo(
           value={value}
           onChange={(e) => {
             setValue(e.currentTarget.value);
+
           }}
           onBlur={(e) => {
             onblur(e.currentTarget.value);

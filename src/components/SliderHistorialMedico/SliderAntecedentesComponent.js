@@ -11,10 +11,26 @@ const SliderAntecedentesComponent = ({
   placeholderAnswer,
   placeholderDate,
   objectKey,
-  getValue = () => { }
+  typeInput = 'text',
+  getValue = () => { },
+  objResponse = {}
 }) => {
   const [hasRecord, setHasRecord] = useState(false);
   const [totalElements, setTotalElements] = useState([]);
+  const [numberInput, setNumberInput] = useState();
+
+  useEffect(() => {
+    //objResponse
+    const responseData = objResponse[objectKey];
+    if (responseData) {
+      if (responseData.length > 0) {
+        setHasRecord(true);
+        setNumberInput(responseData.length);
+        setTotalElements(responseData);
+      }
+    }
+  }, [objResponse])
+
 
   useEffect(() => {
     //console.log(totalElements);
@@ -38,6 +54,7 @@ const SliderAntecedentesComponent = ({
 
 
   const handleCounter = (e) => {
+    setNumberInput(e);
     let array = [];
     if (e > 0 && e <= 3) {
       for (let i = 0; i < e; i++) {
@@ -94,6 +111,7 @@ const SliderAntecedentesComponent = ({
                   placeholder={placeholderNumber}
                   type="number"
                   setValue={(e) => handleCounter(e)}
+                  value={numberInput}
                 />
               </div>
             </Grid.Row>
@@ -104,7 +122,7 @@ const SliderAntecedentesComponent = ({
             <Grid.Column width={5}>
               <CustomInput
                 placeholder={placeholderAnswer}
-                type="text"
+                type={typeInput}
                 setValue={(e) => {
                   setTotalElements((numbers) => {
                     let updateValue = numbers.map((number) =>
@@ -128,7 +146,7 @@ const SliderAntecedentesComponent = ({
                     return updateValue;
                   });
                 }}
-              // value={year}
+                value={year}
               />
             </Grid.Column>
           </Grid.Row>
