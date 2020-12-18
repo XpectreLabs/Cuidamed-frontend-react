@@ -25,144 +25,153 @@ const SliderAntecedentesComponent = ({
     // let prueba = props.prueba;
 
     if (account) {
+      console.log('con cuenta');
       return (
         <>
-        <Grid.Row className="relatives__answers">
+          <Grid.Row className="relatives__answers">
             <Grid.Column>
-            <CustomInput
+              <CustomInput
                 placeholder="ID"
                 type="number"
-            />
+                onblur={e => {
+                  console.log(e);
+                }}
+              />
             </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Icon link name='close' color='red' size='big' onClick={() => { 
-              if(ind === 0) {
-                  setHasAccountWoman(false); 
-                  setNoAccountWoman(false); 
-                  setInformationWoman(false);
+          </Grid.Row>
+          <Grid.Row>
+            <Icon link name='close' color='red' size='big' onClick={() => {
+              if (ind === 0) {
+                setHasAccountWoman(false);
+                setNoAccountWoman(false);
+                setInformationWoman(false);
               } else if (ind === 1) {
-                  setHasAccountMan(false); 
-                  setNoAccountMan(false); 
-                  setInformationMan(false);
+                setHasAccountMan(false);
+                setNoAccountMan(false);
+                setInformationMan(false);
               }
-              }}/>
-        </Grid.Row>
+            }} />
+          </Grid.Row>
         </>
-        
+
       );
     }
-    else if(noaccount) {
-        return (
-          <>
-            <Grid.Row className="relatives__answers">
-                <Grid.Column>
-                    <div className="disease">
-                        <CustomInput
-                            placeholder="Enfermedad"
-                            type="text"
-                        />
-                    </div>
-                    <Icon  name='info circle' size='big' alt="Mensaje de cuidamed"/>
-                </Grid.Column>
-              </Grid.Row>
-              <Grid.Row>
-                <Icon link name='close' color='red' size='big' onClick={() => { 
-                    if(ind === 0) {
-                        setHasAccountWoman(false); 
-                        setNoAccountWoman(false); 
-                        setInformationWoman(false);
-                    } else if (ind === 1) {
-                        setHasAccountMan(false); 
-                        setNoAccountMan(false); 
-                        setInformationMan(false);
-                    }
-                    }}/>
-              </Grid.Row>
-            </>
+    else if (noaccount) {
+      console.log('sin cuenta');
+      return (
+        <>
+          <Grid.Row className="relatives__answers">
+            <Grid.Column>
+              <div className="disease">
+                <CustomInput
+                  placeholder="Enfermedad"
+                  type="text"
+                  onblur={e => {
+                    console.log(e);
+                  }}
+                />
+              </div>
+              <Icon name='info circle' size='big' alt="Mensaje de cuidamed" />
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Icon link name='close' color='red' size='big' onClick={() => {
+              if (ind === 0) {
+                setHasAccountWoman(false);
+                setNoAccountWoman(false);
+                setInformationWoman(false);
+              } else if (ind === 1) {
+                setHasAccountMan(false);
+                setNoAccountMan(false);
+                setInformationMan(false);
+              }
+            }} />
+          </Grid.Row>
+        </>
 
-        );
+      );
     }
-    else if(information) {
-        return (
-          <>
-            <Grid.Row className="relatives__answers">
-              <Button className="button__secondary">
-                      No tengo información
+    else if (information) {
+      console.log('no tengo la info');
+      return (
+        <>
+          <Grid.Row className="relatives__answers">
+            <Button className="button__secondary">
+              No tengo información
               </Button>
-            </Grid.Row>
-            <Grid.Row>
-              <Icon link name='close' color='red' size='big' onClick={() => { 
-                  if(ind === 0) {
-                      setHasAccountWoman(false); 
-                      setNoAccountWoman(false); 
-                      setInformationWoman(false);
-                  } else if (ind === 1) {
-                      setHasAccountMan(false); 
-                      setNoAccountMan(false); 
-                      setInformationMan(false);
-                  }
-                  }}/>
-            </Grid.Row>
-            </>
+          </Grid.Row>
+          <Grid.Row>
+            <Icon link name='close' color='red' size='big' onClick={() => {
+              if (ind === 0) {
+                setHasAccountWoman(false);
+                setNoAccountWoman(false);
+                setInformationWoman(false);
+              } else if (ind === 1) {
+                setHasAccountMan(false);
+                setNoAccountMan(false);
+                setInformationMan(false);
+              }
+            }} />
+          </Grid.Row>
+        </>
 
-        );
+      );
     }
-        return(
-            <>
-            <Grid.Row className="relatives__answers">
-                <Button className="button__main" onClick={() => { 
-                    if(ind === 0) {
-                        setHasAccountWoman(true); 
-                        setNoAccountWoman(false); 
-                        setInformationWoman(false);
-                    } else if (ind === 1) {
-                        setHasAccountMan(true); 
-                        setNoAccountMan(false); 
-                        setInformationMan(false);
-                    }
-                    }}>Con cuenta Cuidamed</Button>
-            </Grid.Row>
-            <Grid.Row className="relatives__answers" onClick={() => { 
-                 if(ind === 0) {
-                        setHasAccountWoman(false); 
-                        setNoAccountWoman(true); 
-                        setInformationWoman(false);
-                    } else if (ind === 1) {
-                        setHasAccountMan(false); 
-                        setNoAccountMan(true); 
-                        setInformationMan(false);
-                    }
-            }}>
-                <Button className="button__main">Sin cuenta cuidamed</Button>
-            </Grid.Row>
-            <Grid.Row className="relatives__answers" onClick={() => {
-                 if(ind === 0) {
-                        setHasAccountWoman(false); 
-                        setNoAccountWoman(false); 
-                        setInformationWoman(true);
-                    } else if (ind === 1) {
-                        setHasAccountMan(false); 
-                        setNoAccountMan(false); 
-                        setInformationMan(true);
-                    }
-            }}>
-                <Button className="button__secondary" onClick={() => { 
-                 if(ind === 0) {
-                        setHasAccountWoman(false); 
-                        setNoAccountWoman(false); 
-                        setInformationWoman(true);
-                    } else if (ind === 1) {
-                        setHasAccountMan(false); 
-                        setNoAccountMan(false); 
-                        setInformationMan(true);
-                    }
-            }}>
-                    No tengo información
+    return (
+      <>
+        <Grid.Row className="relatives__answers">
+          <Button className="button__main" onClick={() => {
+            if (ind === 0) {
+              setHasAccountWoman(true);
+              setNoAccountWoman(false);
+              setInformationWoman(false);
+            } else if (ind === 1) {
+              setHasAccountMan(true);
+              setNoAccountMan(false);
+              setInformationMan(false);
+            }
+          }}>Con cuenta Cuidamed</Button>
+        </Grid.Row>
+        <Grid.Row className="relatives__answers" onClick={() => {
+          if (ind === 0) {
+            setHasAccountWoman(false);
+            setNoAccountWoman(true);
+            setInformationWoman(false);
+          } else if (ind === 1) {
+            setHasAccountMan(false);
+            setNoAccountMan(true);
+            setInformationMan(false);
+          }
+        }}>
+          <Button className="button__main">Sin cuenta cuidamed</Button>
+        </Grid.Row>
+        <Grid.Row className="relatives__answers" onClick={() => {
+          if (ind === 0) {
+            setHasAccountWoman(false);
+            setNoAccountWoman(false);
+            setInformationWoman(true);
+          } else if (ind === 1) {
+            setHasAccountMan(false);
+            setNoAccountMan(false);
+            setInformationMan(true);
+          }
+        }}>
+          <Button className="button__secondary" onClick={() => {
+            if (ind === 0) {
+              setHasAccountWoman(false);
+              setNoAccountWoman(false);
+              setInformationWoman(true);
+            } else if (ind === 1) {
+              setHasAccountMan(false);
+              setNoAccountMan(false);
+              setInformationMan(true);
+            }
+          }}>
+            No tengo información
                 </Button>
-            </Grid.Row>
-            </>
-        );
+        </Grid.Row>
+      </>
+    );
   }
 
 
@@ -178,7 +187,7 @@ const SliderAntecedentesComponent = ({
         <Grid.Row className="relatives">
           <Grid.Column width={6}>
             {iconFirst}
-            <Questions account={hasAcconutWoman} noaccount={noAccountWoman} information={informationWoman} ind={0}/>
+            <Questions account={hasAcconutWoman} noaccount={noAccountWoman} information={informationWoman} ind={0} />
           </Grid.Column>
           <Grid.Column width={6}>
             {iconSecond}
