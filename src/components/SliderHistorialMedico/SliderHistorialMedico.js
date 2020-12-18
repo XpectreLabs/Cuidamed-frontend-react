@@ -28,10 +28,10 @@ import SwiperCore, {
   Pagination,
   Scrollbar,
   A11y,
-  HashNavigation,
 } from 'swiper';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { CONECTION } from '../../conection';
 
 // Import Swiper styles
 import 'swiper/swiper.scss';
@@ -39,10 +39,6 @@ import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
 
-import { CustomInput } from '../inputsCustom/CustomInput';
-import Date from '../inputsCustom/Date';
-
-import Question from '../Question';
 import SliderAntecedentesComponent from './SliderAntecedentesComponent';
 import SliderFamiliaresComponent from './SliderFamiliaresComponent';
 
@@ -72,6 +68,36 @@ export default function SliderHistorialMedico() {
     dispatch(updateHistoryMedical(objFracture, history));
   };
 
+  const [responseDataHistorial, setResponseDataHistorial] = useState();
+  useEffect(() => {
+    fetch(`${CONECTION}api/get-all-historial`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'x-auth-token': localStorage.getItem('refreshToken'),
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data) {
+          setResponseDataHistorial(data);
+          setFormValues({
+            ...formValues,
+            covid: data.covid,
+            transplantes: data.transplantes,
+            cirujias: data.cirujias,
+            alergias: data.alergias,
+            discapacidad: data.discapacidad,
+            transplantes: data.transplantes,
+            other: data.other,
+            sangre: data.sangre,
+            fracturas: data.fracturas,
+          });
+        }
+      });
+  }, []);
 
   useEffect(() => {
     console.log(formValues);
@@ -97,12 +123,12 @@ export default function SliderHistorialMedico() {
         } else setIsValidIndex(false);
         break;
       case 4:
-        if (formValues.Alergias) {
+        if (formValues.alergias) {
           setIsValidIndex(true);
         } else setIsValidIndex(false);
         break;
       case 5:
-        if (formValues.Discapacidad) {
+        if (formValues.discapacidad) {
           setIsValidIndex(true);
         } else setIsValidIndex(false);
         break;
@@ -112,7 +138,7 @@ export default function SliderHistorialMedico() {
         } else setIsValidIndex(false);
         break;
       case 7:
-        if (formValues.Transplante) {
+        if (formValues.transplantes) {
           setIsValidIndex(true);
         } else setIsValidIndex(false);
         break;
@@ -143,7 +169,10 @@ export default function SliderHistorialMedico() {
             <SwiperSlide data-hash="slide1" key={index}>
               <SliderAntecedentesComponent {...record} getValue={(e) => {
                 setFormValues({ ...formValues, ...e });
-              }} />
+
+              }}
+                objResponse={responseDataHistorial}
+              />
             </SwiperSlide>
           ))}
           {relativeRecords.map((relativeRecord, index) => (

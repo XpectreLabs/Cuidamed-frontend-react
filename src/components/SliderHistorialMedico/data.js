@@ -50,8 +50,9 @@ const records = [
     icon: <UnidadSangre />,
     subtitle: 'Transfusiones',
     question: '¿Alguna ves has tenido transfuciones de sangre?',
-    placeholderNumber: 'Número de fracturas',
-    placeholderAnswer: 'Fractura',
+    placeholderNumber: 'Número de transfusiones',
+    placeholderAnswer: 'Unidades en (ml)',
+    typeInput: 'number',
     placeholderDate: 'Año aproximado',
     objectKey: "sangre"
   },
@@ -63,7 +64,7 @@ const records = [
     placeholderNumber: 'Número de alergias',
     placeholderAnswer: 'Tipos de alergias',
     placeholderDate: 'Año de diagnostico',
-    objectKey: "Alergias"
+    objectKey: "alergias"
   },
   {
     id: 6,
@@ -73,14 +74,14 @@ const records = [
     placeholderNumber: 'Número de discapacidades',
     placeholderAnswer: 'Discapacidad',
     placeholderDate: 'Año de diagnostico',
-    objectKey: "Discapacidad"
+    objectKey: "discapacidad"
   },
   {
     id: 7,
     icon: <Protesis />,
     subtitle: 'Otras características',
     question: '¿Tienes implantes, protesis, marcapasos, etc?',
-    placeholderNumber: 'Caracteristicas',
+    placeholderNumber: 'Numero de implantes, protesis, marcapasos',
     placeholderAnswer: 'Tipo de característica',
     placeholderDate: 'Año de implementacion',
     objectKey: "other"
@@ -93,7 +94,7 @@ const records = [
     placeholderNumber: 'Número de transplantes',
     placeholderAnswer: 'Tipo de transplante',
     placeholderDate: 'Fecha de transplante',
-    objectKey: "Transplante"
+    objectKey: "transplantes"
   },
 ];
 

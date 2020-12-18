@@ -144,32 +144,73 @@ const ListaEnfermedades = React.memo(() => {
   const [open, setOpen] = useState(false);
 
   const handleSearch = async (e) => {
+
     const search = e.currentTarget.value
     if (search.length >= 3) {
-      const newItemsTrue = items
-        .filter((item) => item.name.toUpperCase()
-          .includes(search.toUpperCase()))
-        .map((itemx, index) => {
-          itemx.isShow = true;
-          return itemx;
-        });
-
-      console.log(newItemsTrue);
-
-      setItems((prevState) => {
-        const newItems = prevState
-          .filter((data) => !data.name.toUpperCase().includes(search.toUpperCase()))
-          .map((itemd) => {
-            itemd.isShow = false;
-            return itemd;
-          })
-          .concat(...newItemsTrue);
-
-        return [...newItems];
+      fetch(`${CONECTION}api/filter`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          'x-auth-token': localStorage.getItem('refreshToken'),
+        },
+        body: JSON.stringify({
+          name: search,
+          limit: 5,
+          human_systems_Id: systemId
+        })
       })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.data) {
+            console.log(data.data);
+            let newDatas = [];
+            items.map((item) => {
+              newDatas = data.data.filter((d) => d.id !== item.id);
+
+            })
+            console.log(newDatas);
+            // const newData = data.data.filter((d, index) => {
+            //   //d.isShow = true;
+            //   const itemsss = items.map((item) => {
+            //     if (item.id === d.id) {
+            //       console.log(item);
+            //       return true;
+            //     }
+            //   })
+            //   console.log(itemsss);
+            //   //d.isShow = true;
+            //   //return d;
+            // });
+            // console.log(newData);
+            // setItems((prevState) => {
+            //   const newItems = prevState
+            //     .filter((data) => !data.name.toUpperCase().includes(search.toUpperCase()))
+            //     .map((itemd) => {
+            //       itemd.isShow = false;
+            //       return itemd;
+            //     })
+            //     .concat(...newData);
+
+            //   return [...newItems];
+            // })
+          }
+        })
+      // const newItemsTrue = items
+      //   .filter((item) => item.name.toUpperCase()
+      //     .includes(search.toUpperCase()))
+      //   .map((itemx, index) => {
+      //     itemx.isShow = true;
+      //     return itemx;
+      //   });
+
+      // console.log(newItemsTrue);
+
+
 
     } else {
       setItems((prevState) => {
+        console.log(prevState);
         const newItems = prevState.map((itemdx, index) => {
           if (index < 7) {
             itemdx.isShow = true;

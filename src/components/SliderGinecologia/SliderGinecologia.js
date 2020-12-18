@@ -99,7 +99,7 @@ export default function SliderGinecologia() {
         } else setIsValidIndex(false);
         break;
       case 7:
-        if (formValues.Transplante) {
+        if (formValues) {
           setIsValidIndex(true);
         } else setIsValidIndex(false);
         break;
