@@ -111,7 +111,7 @@ export default function MedicalInsurance() {
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-              <Grid.Column width={6} className="line"></Grid.Column>
+              <Grid.Column width={15} className="line"></Grid.Column>
             </Grid.Row>
           </>
         ))}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Button } from 'semantic-ui-react';
+import { Container, Grid, Button, Icon } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
 
 import {
@@ -17,6 +17,7 @@ import {
   Silla,
   UnidadSangre,
   Virus,
+  IconDonador
 } from "../../images/icons/icons";
 
 import { records, relativeRecords } from './data';
@@ -151,13 +152,392 @@ export default function SliderHistorialMedico() {
             </SwiperSlide>
           ))}
           <SwiperSlide style={{ position: 'relative' }} data-hash="slide10">
-            <div className="info-basic">
+          <Container>
+            <h1 className="title">Historial Médico</h1>
+            <h3 className="subtitle-record"></h3>
+            <Grid centered className="resume">
+              <Grid.Row>
+                <Grid.Column width={3} className="icon">
+                  <Virus />
+                </Grid.Column>
+                <Grid.Column width={4} verticalAlign="middle">
+                  <Grid.Row>
+                    <h3 className="subtitle">Covid 19</h3>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={6}>
+                    <Grid.Row className="question">Medicamentos tomados</Grid.Row>
+                      <Grid.Row className="answer">Paracetamol</Grid.Row>
+                      <Grid.Row className="answer">Paracetamol</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column width={4} verticalAlign="middle" className="right">
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={3}>
+                    <Grid.Row className="question">Fecha de contagio</Grid.Row>
+                      <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                      <Grid.Row className="answer">12 de octubre del 2020</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <label>
+                    <Icon
+                    name="pencil alternate"
+                    size="small"
+                    />
+                    Editar
+                  </label>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                  <Grid.Column width={13} className="line"></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={3} className="icon">
+                  <Bisturi />
+                </Grid.Column>
+                <Grid.Column width={4} verticalAlign="middle">
+                  <Grid.Row>
+                    <h3 className="subtitle">Cirugías</h3>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={6}>
+                    <Grid.Row className="question">Tipo de cirugía</Grid.Row>
+                      <Grid.Row className="answer">Paracetamol</Grid.Row>
+                      <Grid.Row className="answer">Paracetamol</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column width={4} verticalAlign="middle" className="right">
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={3}>
+                    <Grid.Row className="question">Fecha de cirugía</Grid.Row>
+                      <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                      <Grid.Row className="answer">12 de octubre del 2020</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <label>
+                    <Icon
+                    name="pencil alternate"
+                    size="small"
+                    />
+                    Editar
+                  </label>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                  <Grid.Column width={13} className="line"></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={3} className="icon">
+                  <Fractura />
+                </Grid.Column>
+                <Grid.Column width={4} verticalAlign="middle">
+                  <Grid.Row>
+                    <h3 className="subtitle">Fracturas</h3>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={6}>
+                    <Grid.Row className="question">Tipo de fractura</Grid.Row>
+                      <Grid.Row className="answer">Paracetamol</Grid.Row>
+                      <Grid.Row className="answer">Paracetamol</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column width={4} verticalAlign="middle" className="right">
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={3}>
+                    <Grid.Row className="question">Fecha de fractura</Grid.Row>
+                      <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                      <Grid.Row className="answer">12 de octubre del 2020</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <label>
+                    <Icon
+                    name="pencil alternate"
+                    size="small"
+                    />
+                    Editar
+                  </label>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                  <Grid.Column width={13} className="line"></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={3} className="icon">
+                  <UnidadSangre />
+                </Grid.Column>
+                <Grid.Column width={4} verticalAlign="middle">
+                  <Grid.Row>
+                    <h3 className="subtitle">Transfusiones</h3>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={6}>
+                    <Grid.Row className="question">Cantidad de unidades</Grid.Row>
+                      <Grid.Row className="answer">Paracetamol</Grid.Row>
+                      <Grid.Row className="answer">Paracetamol</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column width={4} verticalAlign="middle" className="right">
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={3}>
+                    <Grid.Row className="question">Fecha de tranfusión</Grid.Row>
+                      <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                      <Grid.Row className="answer">12 de octubre del 2020</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <label>
+                    <Icon
+                    name="pencil alternate"
+                    size="small"
+                    />
+                    Editar
+                  </label>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                  <Grid.Column width={13} className="line"></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={3} className="icon">
+                  <Alergias />
+                </Grid.Column>
+                <Grid.Column width={4} verticalAlign="middle">
+                  <Grid.Row>
+                    <h3 className="subtitle">Alergias</h3>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={6}>
+                    <Grid.Row className="question">Tipo de alergia</Grid.Row>
+                      <Grid.Row className="answer">Paracetamol</Grid.Row>
+                      <Grid.Row className="answer">Paracetamol</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column width={4} verticalAlign="middle" className="right">
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={3}>
+                    <Grid.Row className="question">Fecha de diagnóstico</Grid.Row>
+                      <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                      <Grid.Row className="answer">12 de octubre del 2020</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <label>
+                    <Icon
+                    name="pencil alternate"
+                    size="small"
+                    />
+                    Editar
+                  </label>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                  <Grid.Column width={13} className="line"></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={3} className="icon">
+                  <Silla />
+                </Grid.Column>
+                <Grid.Column width={4} verticalAlign="middle">
+                  <Grid.Row>
+                    <h3 className="subtitle">Discapacidades</h3>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={6}>
+                    <Grid.Row className="question">Tipo de discapacidad</Grid.Row>
+                      <Grid.Row className="answer">Paracetamol</Grid.Row>
+                      <Grid.Row className="answer">Paracetamol</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column width={4} verticalAlign="middle" className="right">
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={3}>
+                    <Grid.Row className="question">Fecha de diagnóstico</Grid.Row>
+                      <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                      <Grid.Row className="answer">12 de octubre del 2020</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <label>
+                    <Icon
+                    name="pencil alternate"
+                    size="small"
+                    />
+                    Editar
+                  </label>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                  <Grid.Column width={13} className="line"></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={3} className="icon">
+                  <Protesis />
+                </Grid.Column>
+                <Grid.Column width={4} verticalAlign="middle">
+                  <Grid.Row>
+                    <h3 className="subtitle">Características</h3>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={6}>
+                    <Grid.Row className="question">Tipo de característica</Grid.Row>
+                      <Grid.Row className="answer">Paracetamol</Grid.Row>
+                      <Grid.Row className="answer">Paracetamol</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column width={4} verticalAlign="middle" className="right">
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={3}>
+                    <Grid.Row className="question">Fecha de diagnóstico</Grid.Row>
+                      <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                      <Grid.Row className="answer">12 de octubre del 2020</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <label>
+                    <Icon
+                    name="pencil alternate"
+                    size="small"
+                    />
+                    Editar
+                  </label>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                  <Grid.Column width={13} className="line"></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={3} className="icon">
+                  <IconDonador />
+                </Grid.Column>
+                <Grid.Column width={4} verticalAlign="middle">
+                  <Grid.Row>
+                    <h3 className="subtitle">Transplantes</h3>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={6}>
+                    <Grid.Row className="question">Tipo de transplante</Grid.Row>
+                      <Grid.Row className="answer">Paracetamol</Grid.Row>
+                      <Grid.Row className="answer">Paracetamol</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column width={4} verticalAlign="middle" className="right">
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={3}>
+                    <Grid.Row className="question">Fecha de transplante</Grid.Row>
+                      <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                      <Grid.Row className="answer">12 de octubre del 2020</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <label>
+                    <Icon
+                    name="pencil alternate"
+                    size="small"
+                    />
+                    Editar
+                  </label>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                  <Grid.Column width={13} className="line"></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={3} className="icon">
+                  <Madre />
+                </Grid.Column>
+                <Grid.Column width={3} verticalAlign="middle">
+                  <Grid.Row>
+                    <h3 className="subtitle">Madre</h3>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={6}>
+                    <Grid.Row className="question">Enfermedad de madre</Grid.Row>
+                      <Grid.Row className="answer">Artritis</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column width={3} className="icon">
+                  <Padre />
+                </Grid.Column>
+                <Grid.Column width={2} verticalAlign="middle">
+                  <Grid.Row>
+                    <h3 className="subtitle">Padre</h3>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={6}>
+                    <Grid.Row className="question">Enfermedad de padre</Grid.Row>
+                      <Grid.Row className="answer">Artritis</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <label>
+                    <Icon
+                    name="pencil alternate"
+                    size="small"
+                    />
+                    Editar
+                  </label>
+                </Grid.Column>
+
+                {/* <Grid.Column width={4} verticalAlign="middle" className="right">
+                  <Grid.Row>
+                    <Grid.Column verticalAlign="middle" width={3}>
+                    <Grid.Row className="question">Fecha de transplante</Grid.Row>
+                      <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                      <Grid.Row className="answer">12 de octubre del 2020</Grid.Row>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <label>
+                    <Icon
+                    name="pencil alternate"
+                    size="small"
+                    />
+                    Editar
+                  </label>
+                </Grid.Column> */}
+              </Grid.Row>
+              <Grid.Row>
+                  <Grid.Column width={13} className="line"></Grid.Column>
+              </Grid.Row>
+
+              <Grid.Row>
+                <Grid.Column width={14}>
+                  <Button
+                    className="button-info-basic"
+                    onClick={saveAndContinue}>
+                    Guardar y Continuar
+                  </Button>
+
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+
+          </Container>
+            {/* <div className="info-basic">
               <Grid centered columns={16}>
                 <Grid.Column computer={14} tablet={12} mobile={16}>
-                  {/* <h1
-                    className={`title ${titleInfoBasic ? '' : 'hidden-title'}`}>
-                    Información Básica
-                  </h1> */}
                   <Grid.Row>
                     <Button
                       className="button-info-basic"
@@ -167,7 +547,7 @@ export default function SliderHistorialMedico() {
                   </Grid.Row>
                 </Grid.Column>
               </Grid>
-            </div>
+            </div> */}
           </SwiperSlide>
         </Swiper>
       </Grid.Row>
