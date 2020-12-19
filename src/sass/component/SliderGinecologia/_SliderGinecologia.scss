@@ -34,3 +34,57 @@
 
     }
 }
+
+.resume {
+        >.row {
+            &:first-child {
+                margin-top: 1em;
+            }
+            >.column {
+                margin-right: 1em;
+                &.icon {
+                    svg {
+                        width: 10em;
+                    }
+                }
+
+                >.question {
+                    font-size: 1.1em;
+                    text-align: left;
+                    margin-bottom: 1em;
+                }
+
+                >.answer {
+                    font-size: 1.5em;
+                    text-align: left;
+                    margin-bottom: 1em;
+                }
+
+                &.edit {
+                    // position: absolute;
+                    // right: 150px;
+                    // margin-left: -100px;
+                    > label {
+                        text-align: left;
+                        font-size: 1em;
+                        background-color: $background-grey-light;
+                        padding: 0.5em;
+                        border-radius: 0.3em;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            // &:last-child {
+            //     margin-bottom: 5em;
+            // }
+            
+
+            // &.save {
+            //     margin-bottom: 10em;
+            // }
+
+       
+    
+    }
+}

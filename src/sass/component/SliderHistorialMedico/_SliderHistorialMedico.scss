@@ -111,3 +111,44 @@
     }
   }
 }
+
+.resume {
+
+  .row {
+
+
+
+    &>.column {
+      
+      margin-top: 1em;
+      .row > .subtitle {
+        text-align: left;
+        font-size: 1.5em;
+      }
+  
+      .question {
+        color: $font-grey;  
+        font-size: 1.1em;
+        text-align: left;
+        margin-bottom: 1em;
+      }
+  
+      .answer {
+        font-size: 1.2em;
+        text-align: left;
+        margin-bottom: 1em;
+      }
+
+      &.right {
+        margin-top: 2em;
+      }
+    } 
+      
+      .line {
+          border-bottom: 2px solid $secondary;
+      }
+
+  } 
+  
+  
+}

@@ -226,6 +226,11 @@ export default function SliderGinecologia() {
     return null;
   }
 
+  const slide = (s) => {
+    var mySwiper = document.querySelector('.swiper-container').swiper;
+    mySwiper.slideTo(s);
+  };
+
 
   return (
     <Grid centered className="slider historial">
@@ -355,23 +360,99 @@ export default function SliderGinecologia() {
             </Container>
           </SwiperSlide>
           <SwiperSlide style={{ position: 'relative' }} data-hash="slide10">
-            <div className="info-basic">
-              <Grid centered columns={16}>
-                <Grid.Column computer={14} tablet={12} mobile={16}>
-                  {/* <h1
-                    className={`title ${titleInfoBasic ? '' : 'hidden-title'}`}>
-                    Información Básica
-                  </h1> */}
-                  <Grid.Row>
+            {/* <div className="resume"> */}
+            <Container>
+              <Grid centered columns={16} className="resume">
+                <Grid.Row>
+                  <h1 className="title">Historial Médico</h1>
+                </Grid.Row>
+                <Grid.Row className="subtitle">
+                  <h2>Ginecología</h2>
+                </Grid.Row>
+                <Grid.Row>
+                  <Grid.Column width={3} className="icon">
+                    <Menstruacion />
+                  </Grid.Column>
+                  <Grid.Column verticalAlign="middle" width={4}>
+                    <Grid.Row className="question">Edad de la primera menstruación</Grid.Row>
+                    <Grid.Row className="answer">{menstruationAge}15 años</Grid.Row>
+                  </Grid.Column>
+                  <Grid.Column verticalAlign="middle" width={3}>
+                    <Grid.Row className="question">Tipo de periodo</Grid.Row>
+                    <Grid.Row className="answer">Regular</Grid.Row>
+                  </Grid.Column>
+                  <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                    <label onClick={() => slide(0)}>
+                      <Icon
+                      name="pencil alternate"
+                      size="small"
+                      />
+                      Editar
+                    </label>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                  <Grid.Column width={3} className="icon">
+                    <Menopausia />
+                  </Grid.Column>
+                  <Grid.Column verticalAlign="middle"  width={4}>
+                    <Grid.Row className="question">Menopausia</Grid.Row>
+                    <Grid.Row className="answer">{menopause ? 'Si' : 'No'}</Grid.Row>
+                  </Grid.Column>
+                  <Grid.Column verticalAlign="middle" width={3}>
+                    <Grid.Row className="question">Fecha de inicio</Grid.Row>
+                    <Grid.Row className="answer">2004</Grid.Row>
+                  </Grid.Column>
+                  <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                    <label onClick={() => slide(1)}>
+                      <Icon
+                      name="pencil alternate"
+                      size="small"
+                      />
+                      Editar
+                    </label>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                  <Grid.Column width={3} className="icon">
+                    <Embarazada />
+                  </Grid.Column>
+                  <Grid.Column verticalAlign="middle" width={4}>
+                    <Grid.Row className="question">Num. de embarazos</Grid.Row>
+                    <Grid.Row className="answer">2</Grid.Row>
+                    <Grid.Row className="question">Num. de embarazos</Grid.Row>
+                    <Grid.Row className="answer">2</Grid.Row>
+                  </Grid.Column>
+                  <Grid.Column verticalAlign="middle" width={3}>
+                    <Grid.Row className="question">Num. partos</Grid.Row>
+                    <Grid.Row className="answer">0</Grid.Row>
+                    <Grid.Row className="question" >Num. partos</Grid.Row>
+                    <Grid.Row className="answer">0</Grid.Row>
+                  </Grid.Column>
+                  <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                    <label onClick={() => slide(2)}>
+                      <Icon
+                      name="pencil alternate"
+                      size="small"
+                      />
+                      Editar
+                    </label>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row className="save">
+                  <Grid.Column width={13}>
                     <Button
                       className="button-info-basic"
                       onClick={saveAndContinue}>
                       Guardar y Continuar
                     </Button>
-                  </Grid.Row>
-                </Grid.Column>
+
+                  </Grid.Column>
+                </Grid.Row>
               </Grid>
-            </div>
+
+            </Container>
+            {/* </div> */}
           </SwiperSlide>
         </Swiper>
       </Grid.Row>
