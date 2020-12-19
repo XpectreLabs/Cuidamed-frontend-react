@@ -14,7 +14,7 @@ import SwiperCore, {
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useHistory } from 'react-router-dom';
-import { updateHistoryMedical } from '../../redux/actions/UserAction';
+import { updateGinecologia } from '../../redux/actions/UserAction';
 import { useDispatch } from 'react-redux';
 
 // Import Swiper styles
@@ -41,15 +41,22 @@ export default function SliderGinecologia() {
   const [menopause, setMenopause] = useState(false);
   const [menstruationAge, setMenstruationAge] = useState(false);
   const period = [
-    { key: 'regular', value: 'Regular', text: 'Regular' },
-    { key: 'iregular', value: 'Iregular', text: 'Iregular' },
+    { key: 're1', value: 'REGULAR', text: 'REGULAR' },
+    { key: 'ire2', value: 'IRREGULAR', text: 'IRREGULAR' },
   ];
 
   const handleCounter = (e) => {
-
+    console.log(e);
     if (e > 0) {
+      console.log('entramos aquí chavo');
+      setFormValues({ ...formValues, age_mestruation: e, has_menstruation: '' });
+      // setFormValues({ ...formValues, has_menstruation: null })
       setMenstruationAge(true);
-    } else setMenstruationAge(false);
+    } else {
+      setMenstruationAge(false);
+      setFormValues({ ...formValues, age_mestruation: null });
+    }
+
   };
 
   const dispatch = useDispatch();
@@ -57,7 +64,7 @@ export default function SliderGinecologia() {
 
   const saveAndContinue = (e) => {
     e.preventDefault();
-    dispatch(updateHistoryMedical(formValues, history));
+    dispatch(updateGinecologia(formValues, history));
   };
 
   useEffect(() => {
@@ -115,18 +122,37 @@ export default function SliderGinecologia() {
         <>
           <Grid.Row>
             <Grid.Column width={5}>
-              <CustomInput placeholder="Número de embarazos" type="number" defaultValue="1" />
+              <CustomInput
+                placeholder="Número de embarazos"
+                type="number"
+                defaultValue="1"
+                setValue={(e) => setFormValues({ ...formValues, embarazos: e })}
+              />
             </Grid.Column>
             <Grid.Column width={5}>
-              <CustomInput placeholder="Número de partos" type="number" defaultValue="0" />
+              <CustomInput
+                placeholder="Número de partos"
+                type="number"
+                defaultValue="0"
+                setValue={(e) => setFormValues({ ...formValues, partos: e })} />
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
             <Grid.Column width={5}>
-              <CustomInput placeholder="Número de cesareas" type="number" defaultValue="0" />
+              <CustomInput
+                placeholder="Número de cesareas"
+                type="number"
+                defaultValue="0"
+                setValue={(e) => setFormValues({ ...formValues, cesarea: e })}
+              />
             </Grid.Column>
             <Grid.Column width={5}>
-              <CustomInput placeholder="Número de abortos" type="number" defaultValue="0" />
+              <CustomInput
+                placeholder="Número de abortos"
+                type="number"
+                defaultValue="0"
+                setValue={(e) => setFormValues({ ...formValues, abortos: e })}
+              />
             </Grid.Column>
           </Grid.Row>
         </>
@@ -142,7 +168,11 @@ export default function SliderGinecologia() {
       return (
         <Grid.Row>
           <Grid.Column width={5}>
-            <Date placeholder="Fecha de inicio" id="menopause" />
+            <Date placeholder="Fecha de inicio" id="menopause"
+              setValue={e => {
+                setFormValues({ ...formValues, year_menopause: e });
+              }}
+            />
           </Grid.Column>
         </Grid.Row>
       );
@@ -160,6 +190,9 @@ export default function SliderGinecologia() {
             <SelectCustom
               placeholder="Tipo de periodo"
               dataOptions={period}
+              setValue={e => {
+                setFormValues({ ...formValues, kind_mestruation: e });
+              }}
             />
           </Grid.Column>
         </Grid.Row>
@@ -168,12 +201,20 @@ export default function SliderGinecologia() {
       return (
         <Grid.Row className="answers">
           <Grid.Column width={4}>
-            <Button id="vacunaNo" type="radio">
+            <Button id="vacunaNo" type="radio"
+              onClick={() => {
+                setFormValues({ ...formValues, has_menstruation: 'NOT_HAD' })
+              }}
+            >
               Ya no la tengo
-                    </Button>
+            </Button>
           </Grid.Column>
           <Grid.Column width={4}>
-            <Button id="vacunaNo" type="radio" name="vacuna">
+            <Button id="vacunaNo" type="radio" name="vacuna"
+              onClick={() => {
+                setFormValues({ ...formValues, has_menstruation: 'NOT_HAVE' })
+              }}
+            >
               No la tengo
                     </Button>
           </Grid.Column>
@@ -222,6 +263,7 @@ export default function SliderGinecologia() {
                       placeholder="Edad de primera menstruación"
                       type="number"
                       setValue={(e) => handleCounter(e)}
+
                     />
                   </Grid.Column>
                 </Grid.Row>
@@ -259,10 +301,16 @@ export default function SliderGinecologia() {
                 </Grid.Row>
                 <Grid.Row className="answers menopause">
                   <Grid.Column width={3}>
-                    <Button type="radio" onClick={() => setMenopause(true)}>Si</Button>
+                    <Button type="radio" onClick={() => {
+                      setMenopause(true);
+                      setFormValues({ ...formValues, menopause: 'YES' });
+                    }}>Si</Button>
                   </Grid.Column>
                   <Grid.Column width={3}>
-                    <Button type="radio" name="vacuna" onClick={() => setMenopause(false)}>
+                    <Button type="radio" name="vacuna" onClick={() => {
+                      setMenopause(false);
+                      setFormValues({ ...formValues, menopause: 'NO' });
+                    }}>
                       No
                     </Button>
                   </Grid.Column>
@@ -288,10 +336,16 @@ export default function SliderGinecologia() {
                 </Grid.Row>
                 <Grid.Row className="answers menopause">
                   <Grid.Column width={3}>
-                    <Button type="radio" onClick={() => setIsPregnant(true)}>Si</Button>
+                    <Button type="radio" onClick={() => {
+                      setIsPregnant(true);
+                      setFormValues({ ...formValues, isPregnancy: 'YES' })
+                    }}>Si</Button>
                   </Grid.Column>
                   <Grid.Column width={3}>
-                    <Button type="radio" name="vacuna" onClick={() => setIsPregnant(false)}>
+                    <Button type="radio" name="vacuna" onClick={() => {
+                      setIsPregnant(false)
+                      setFormValues({ ...formValues, isPregnancy: 'NO' })
+                    }}>
                       No
                     </Button>
                   </Grid.Column>
