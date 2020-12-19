@@ -27,14 +27,14 @@ const religionArray = [
 ];
 
 const maritalStatus = [
-  { key: '1', value: 'Soltero', text: 'Soltero' },
-  { key: '2', value: 'Casado', text: 'Casado' },
+  { key: 's1', value: 'Soltero', text: 'Soltero' },
+  { key: 's2', value: 'Casado', text: 'Casado' },
 ];
 
 const ifNot = [
-  { key: '1', value: 'Sí', text: 'Sí' },
-  { key: '2', value: 'No', text: 'No' },
-  { key: '3', value: 'Todavía no lo sé', text: 'Todavía no lo sé' },
+  { key: 'si1', value: 'Sí', text: 'Sí' },
+  { key: 'no2', value: 'No', text: 'No' },
+  { key: 'to3', value: 'Todavía no lo sé', text: 'Todavía no lo sé' },
 ];
 
 export { bloodType, gradesStudy, religionArray, maritalStatus, ifNot };
