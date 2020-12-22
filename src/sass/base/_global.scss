@@ -161,3 +161,9 @@ input {
 .highlight-region {
   background-color: $main;
 }
+
+.btn-click {
+  background-color: aqua ;
+}
+
+.btn-click:focus{background-color:red !important}

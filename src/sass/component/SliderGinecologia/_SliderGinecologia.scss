@@ -7,6 +7,18 @@
                 margin-bottom: 0;
             }
 
+            &.answers{
+                .column{
+                    >label{ 
+                        padding-top: 1rem;
+                    }
+                    >input[type='radio']:checked + label {
+                        background-color: $secondary;
+                        color: $white;
+                      }
+                }
+            }
+
             .question {
                 font-size: 1.5em;
                 color: $secondary;
@@ -26,10 +38,16 @@
 
         >.answers.menopause {
             >.column {
+
                 >.button {
                     width: 3em;
                 }
             }
+        }
+
+        .isChecked{
+            background-color: $secondary !important;
+            color: $white !important;
         }
 
     }
