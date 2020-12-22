@@ -1,17 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Grid, Button } from "semantic-ui-react";
 import { SeguroMedico } from "../../images/icons/icons";
 import { CustomInput } from "../inputsCustom/CustomInput";
 import { SelectCustom } from "../inputsCustom/Select/Select";
 import { insuranceList } from "./data";
 
+import { useHistory } from 'react-router-dom';
+import { createAseguradora } from '../../redux/actions/UserAction';
+import { useDispatch } from 'react-redux';
+import { CONECTION } from '../../conection';
+
 export default function MedicalInsurance() {
+
+  useEffect(() => {
+    fetch(`${CONECTION}api/seguros`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'x-auth-token': localStorage.getItem('refreshToken'),
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.data) {
+          data.data.map((item) => {
+            console.log(item);
+            let array = insurance;
+            let obj = {
+              insuranceCarrier: item.aseguradora,
+              policy: item.poliza,
+              phone: item.phone,
+            };
+            array = [...array, obj];
+            setInsurance(array);
+          });
+
+
+        }
+      });
+  }, [])
+
   const [insurance, setInsurance] = useState([]);
   const [formValues, setFormValues] = useState({
     insuranceCarrier: "",
     policy: "",
     phone: "",
   });
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const { insuranceCarrier, policy, phone } = formValues;
 
   const handleInsurance = () => {
@@ -23,6 +63,15 @@ export default function MedicalInsurance() {
     };
     array = [...array, obj];
     setInsurance(array);
+
+    const sendFormValues = {
+      aseguradora: formValues.insuranceCarrier,
+      phone: formValues.phone,
+      poliza: formValues.policy
+    }
+
+    dispatch(createAseguradora(sendFormValues, history));
+
     setFormValues({
       ...formValues,
       insuranceCarrier: "",
@@ -30,6 +79,10 @@ export default function MedicalInsurance() {
       phone: "",
     });
   };
+
+  useEffect(() => {
+    console.log(formValues);
+  }, [formValues])
 
   return (
     <Container className="medical-contact">

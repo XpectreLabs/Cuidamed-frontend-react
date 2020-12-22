@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import { Container, Grid, Button } from "semantic-ui-react";
 
 import { Pastillas } from "../../images/icons/icons";
@@ -6,7 +7,44 @@ import { CustomInput } from "../inputsCustom/CustomInput";
 import Date from "../inputsCustom/Date/Date";
 import TreatmentChild from "./TreatmentChild";
 
+import { useHistory } from 'react-router-dom';
+import { createTratamiento } from '../../redux/actions/UserAction';
+import { useDispatch } from 'react-redux';
+import { CONECTION } from '../../conection';
+
 export default function Treatment() {
+
+  useEffect(() => {
+    fetch(`${CONECTION}api/tratamientos`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'x-auth-token': localStorage.getItem('refreshToken'),
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.data) {
+          data.data.map((item) => {
+            console.log(item);
+            let array = treatment;
+            let obj = {
+              medicine: item.medicamento,
+              dose: item.dosis,
+              frequency: item.frecuencia,
+              starts: item.fecha_inicio,
+              ends: item.fecha_fin,
+            };
+            //array = [...array, obj];
+            setTreatment([...treatment, obj]);
+          });
+
+
+        }
+      });
+  }, [])
   const [treatment, setTreatment] = useState([]);
   const [formValues, setFormValues] = useState({
     medicine: "",
@@ -16,6 +54,9 @@ export default function Treatment() {
     ends: "",
   });
   const { medicine, dose, frequency, starts, ends } = formValues;
+
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleTreatment = () => {
     let array = treatment;
@@ -27,7 +68,16 @@ export default function Treatment() {
       ends: formValues.ends,
     };
     //array = [...array, obj];
-    setTreatment([...treatment,obj]);
+    setTreatment([...treatment, obj]);
+
+    const sendFormValues = {
+      medicamento: formValues.medicine,
+      dosis: formValues.dose,
+      frecuencia: formValues.frequency,
+      fecha_inicio: formValues.starts,
+      fecha_fin: formValues.ends,
+    }
+    dispatch(createTratamiento(sendFormValues, history));
     setFormValues({
       ...formValues,
       medicine: "",
@@ -37,6 +87,10 @@ export default function Treatment() {
       ends: null,
     });
   };
+
+  useEffect(() => {
+    console.log(formValues);
+  }, [formValues])
 
   return (
     <Container className="medical-contact">
@@ -103,8 +157,9 @@ export default function Treatment() {
         </Grid.Row>
         {treatment.map((item, i) => {
           return (
-          <TreatmentChild key={i} {...item} />
-        )})}
+            <TreatmentChild key={i} {...item} />
+          )
+        })}
       </Grid>
     </Container>
   );

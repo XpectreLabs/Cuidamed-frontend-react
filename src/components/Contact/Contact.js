@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Grid, Button } from "semantic-ui-react";
 
 import { Contacto } from "../../images/icons/icons";
@@ -6,7 +6,44 @@ import { CustomInput } from "../inputsCustom/CustomInput";
 import { SelectCustom } from "../inputsCustom/Select/Select";
 import { relatives } from "./data";
 
+import { useHistory } from 'react-router-dom';
+import { createContactoUrgente } from '../../redux/actions/UserAction';
+import { useDispatch } from 'react-redux';
+import { CONECTION } from '../../conection';
+
 export default function Contact() {
+
+  useEffect(() => {
+    fetch(`${CONECTION}api/emergency`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'x-auth-token': localStorage.getItem('refreshToken'),
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.data) {
+          data.data.map((item) => {
+            console.log(item);
+            let array = contacts;
+            let obj = {
+              fullName: item.name,
+              email: item.email,
+              phone: item.phone,
+              relative: item.kin,
+            };
+            array = [...array, obj];
+            setContacts(array);
+          });
+
+
+        }
+      });
+  }, [])
+
   const [contacts, setContacts] = useState([]);
   const [formValues, setFormValues] = useState({
     fullName: "",
@@ -14,6 +51,12 @@ export default function Contact() {
     phone: "",
     relative: "",
   });
+
+
+
+
+  const dispatch = useDispatch();
+  const history = useHistory();
   const { fullName, email, phone, relative } = formValues;
 
   const handleContact = () => {
@@ -26,6 +69,15 @@ export default function Contact() {
     };
     array = [...array, obj];
     setContacts(array);
+
+    const sendFormValues = {
+      name: formValues.fullName,
+      phone: formValues.phone,
+      email: formValues.email,
+      kin: formValues.relative
+    }
+
+    dispatch(createContactoUrgente(sendFormValues, history));
     setFormValues({
       ...formValues,
       fullName: "",
@@ -34,6 +86,10 @@ export default function Contact() {
       relative: "",
     });
   };
+
+  useEffect(() => {
+    console.log(formValues);
+  }, [formValues])
 
   return (
     <Container className="medical-contact">

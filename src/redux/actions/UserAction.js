@@ -163,3 +163,157 @@ export const updateHistoryMedical = (pInfo, history) => {
     } catch (e) { }
   };
 };
+
+
+export const updateGinecologia = (pInfo, history) => {
+  return async (dispatch) => {
+    dispatch({ type: types.loading });
+    try {
+      if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+        const { id } = JSON.parse(localStorage.getItem('user'));
+        const request = await fetch(`${CONECTION}api/ginecologia`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('refreshToken'),
+          },
+          body: JSON.stringify(pInfo),
+        });
+        const response = await request.json();
+        console.log(response);
+        if (response.message) {
+          Swal.fire({
+            title: 'Datos Actualizados',
+            icon: 'success',
+          });
+          //dispatch({ type: types.saveAndContinue });
+          //history.push('/dashboard/enfermedades-comunes');
+        }
+      }
+    } catch (e) { }
+  };
+};
+
+
+export const createTratamiento = (pInfo, history) => {
+  return async (dispatch) => {
+    dispatch({ type: types.loading });
+    try {
+      if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+        const { id } = JSON.parse(localStorage.getItem('user'));
+        const request = await fetch(`${CONECTION}api/tratamiento`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('refreshToken'),
+          },
+          body: JSON.stringify(pInfo),
+        });
+        const response = await request.json();
+        console.log(response);
+        if (response.message) {
+          Swal.fire({
+            title: 'Tratamiento creado',
+            icon: 'success',
+          });
+          //dispatch({ type: types.saveAndContinue });
+          //history.push('/dashboard/enfermedades-comunes');
+        }
+      }
+    } catch (e) { }
+  };
+};
+
+
+export const createContactoUrgente = (pInfo, history) => {
+  return async (dispatch) => {
+    dispatch({ type: types.loading });
+    try {
+      if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+        const { id } = JSON.parse(localStorage.getItem('user'));
+        const request = await fetch(`${CONECTION}api/emergency`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('refreshToken'),
+          },
+          body: JSON.stringify(pInfo),
+        });
+        const response = await request.json();
+        console.log(response);
+        if (response.message) {
+          Swal.fire({
+            title: 'Contacto creado',
+            icon: 'success',
+          });
+          //dispatch({ type: types.saveAndContinue });
+          //history.push('/dashboard/enfermedades-comunes');
+        }
+      }
+    } catch (e) { }
+  };
+};
+
+export const createContactoMedico = (pInfo, history) => {
+  return async (dispatch) => {
+    dispatch({ type: types.loading });
+    try {
+      if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+        const { id } = JSON.parse(localStorage.getItem('user'));
+        const request = await fetch(`${CONECTION}api/medic`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('refreshToken'),
+          },
+          body: JSON.stringify(pInfo),
+        });
+        const response = await request.json();
+        console.log(response);
+        if (response.message) {
+          Swal.fire({
+            title: 'Contacto medico creado',
+            icon: 'success',
+          });
+          //dispatch({ type: types.saveAndContinue });
+          //history.push('/dashboard/enfermedades-comunes');
+        }
+      }
+    } catch (e) { }
+  };
+};
+
+
+export const createAseguradora = (pInfo, history) => {
+  return async (dispatch) => {
+    dispatch({ type: types.loading });
+    try {
+      if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+        const { id } = JSON.parse(localStorage.getItem('user'));
+        const request = await fetch(`${CONECTION}api/seguro`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('refreshToken'),
+          },
+          body: JSON.stringify(pInfo),
+        });
+        const response = await request.json();
+        console.log(response);
+        if (response.message) {
+          Swal.fire({
+            title: 'Aseguradora creada!',
+            icon: 'success',
+          });
+          //dispatch({ type: types.saveAndContinue });
+          //history.push('/dashboard/enfermedades-comunes');
+        }
+      }
+    } catch (e) { }
+  };
+};
