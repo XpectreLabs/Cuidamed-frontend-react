@@ -12,6 +12,9 @@ import MedicalContact from '../pages/contacto-medico';
 import MedicalInsurance from '../pages/seguro-medico';
 import Contact from '../pages/contacto';
 import Treatment from '../pages/tratamiento';
+import Landing from '../pages/landing';
+import Band from '../pages/pulsera';
+import Plate from '../pages/placa';
 
 export const DashboardRoutes = () => {
   const history = useHistory();
@@ -64,6 +67,21 @@ export const DashboardRoutes = () => {
           exact
           component={Treatment}
           path="/dashboard/tratamiento"
+        />
+        <Route
+          exact
+          component={Landing}
+          path="/dashboard/landing"
+        />
+        <Route
+          exact
+          component={Band}
+          path="/dashboard/pulsera"
+        />
+        <Route
+          exact
+          component={Plate}
+          path="/dashboard/personalizar-placa"
         />
         <Route exact component={InfoBasic} path="/dashboard/info-basic" />
         <Redirect to="/dashboard/info-basic" />

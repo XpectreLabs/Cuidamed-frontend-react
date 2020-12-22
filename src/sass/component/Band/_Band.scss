@@ -1,0 +1,96 @@
+.band {
+    >.row {
+
+        .logo {
+            margin-left: 1em;
+        }
+
+        .thumbnail {
+            
+            >.square {
+                width: 5em;
+                height: 5em;
+                border: 1px solid black;
+
+                margin: 0 auto;
+                margin-bottom: 1em;
+                cursor: pointer;
+
+                >img {
+                    width: 4.5em;
+                }
+            }
+        }
+
+        .column {
+            text-align: center;
+            .price {
+                margin-top: 1em;
+                .column {
+                    display: inline-block;
+
+                    span {
+                        font-size: 1.5em;
+                    }
+
+                    .button {
+                        margin-left: 1em;
+                        display: inline-block;
+                        font-size: 1.5em;
+                        width: 10em;
+                        background-color: $main;
+                        border-color: $main;
+                        color: $white;
+                    }
+                }
+            }
+
+            >.included {
+                margin-top: 4em;
+                text-align: center;
+                p {
+                    font-size: 1.5em;
+                    color: #000000;
+                }
+            }
+
+            .colors {
+                margin-top: 3em;
+                div:last-child {
+                    display: flex;
+                    justify-content: center;
+                }
+
+                span {
+                    font-size: 1em;
+                }
+               
+                
+                .circle {
+                    width: 1.5em;
+                    height: 1.5em;
+                    border-radius: 50%;
+                    margin-top: 1em;
+                    
+                    cursor: pointer;
+                    
+                    &:last-child {
+                        margin-left: 1em;
+                    }
+
+                    &.blue {
+                        background-color: $main;
+                    }
+
+                    &.green {
+                        background-color: $secondary;
+                    }
+                }
+
+
+            }
+
+            
+        }
+    }
+}
