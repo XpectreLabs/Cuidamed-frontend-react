@@ -26,9 +26,8 @@ export default function Contact() {
       .then((data) => {
         console.log(data);
         if (data.data) {
+          let array = contacts;
           data.data.map((item) => {
-            console.log(item);
-            let array = contacts;
             let obj = {
               fullName: item.name,
               email: item.email,
@@ -36,9 +35,9 @@ export default function Contact() {
               relative: item.kin,
             };
             array = [...array, obj];
-            setContacts(array);
-          });
 
+          });
+          setContacts(array);
 
         }
       });

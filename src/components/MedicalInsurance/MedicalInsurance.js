@@ -25,18 +25,16 @@ export default function MedicalInsurance() {
       .then((data) => {
         console.log(data);
         if (data.data) {
+          let array = [];
           data.data.map((item) => {
-            console.log(item);
-            let array = insurance;
             let obj = {
               insuranceCarrier: item.aseguradora,
               policy: item.poliza,
               phone: item.phone,
             };
             array = [...array, obj];
-            setInsurance(array);
           });
-
+          setInsurance(array);
 
         }
       });
