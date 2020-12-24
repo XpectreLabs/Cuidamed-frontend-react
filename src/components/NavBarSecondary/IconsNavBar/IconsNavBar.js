@@ -18,6 +18,7 @@ const dataIcons = [
     link: '/dashboard/enfermedades-comunes',
     link2: '/dashboard/sistemas',
     link3: '/dashboard/lista-enfermedades',
+    link4: '/dashboard/antecedentes'
   },
   {
     icon: <IconIndTratamiento></IconIndTratamiento>,
@@ -41,25 +42,30 @@ export default function IconsNavBar() {
   return (
     <>
       {map(dataIcons, (icon, index) => {
-        if (
-          window.location.pathname === icon.link ||
-          window.location.pathname === icon.link2 ||
-          window.location.pathname === icon.link3
-        ) {
+        if (icon.link === 'ginecologia') {
+
+        } else {
+          if (
+            window.location.pathname === icon.link ||
+            window.location.pathname === icon.link2 ||
+            window.location.pathname === icon.link3 ||
+            window.location.pathname === icon.link4
+          ) {
+            return (
+              <Link
+                key={index}
+                to={icon.link}
+                className="icon-container icon-selected">
+                {icon.icon}
+              </Link>
+            );
+          }
           return (
-            <Link
-              key={index}
-              to={icon.link}
-              className="icon-container icon-selected">
+            <Link key={index} to={icon.link} className="icon-container">
               {icon.icon}
             </Link>
           );
         }
-        return (
-          <Link key={index} to={icon.link} className="icon-container">
-            {icon.icon}
-          </Link>
-        );
       })}
     </>
   );
