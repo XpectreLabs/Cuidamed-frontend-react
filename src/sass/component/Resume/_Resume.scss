@@ -1,0 +1,109 @@
+.resume {
+    >.profile {
+
+        >.center.aligned.four.wide.computer.eight.wide.mobile.eight.wide.tablet.column.figcaption {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            width: auto !important;
+        }
+        img {
+            border-radius: 50%;
+            width: 10em;
+        }
+
+        .flag {
+
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 2;
+            img {
+                width: 3em;
+            }
+        }
+    }
+
+    >.information {
+        padding: 0 !important;
+
+        &.font-gray > p {
+            color: $font-grey;
+        }
+        p {
+            color: $font-dark;
+            font-size: 1.3em;
+        }
+
+        .icon {
+            color: $secondary;
+        }
+
+        svg {
+            width: 1em;
+            stroke-width: 5px;
+        }
+    }
+
+    >.diseases {
+            .title {
+                padding: 0.5em;
+                font-size: 1.5em;
+                background-color: $secondary;
+                border-top-left-radius: 1em;
+                border-top-right-radius: 1em;
+                color: $white;
+                .column {
+                    margin-top: 0;
+
+                    svg {
+                        height: 1.5em;
+                    }
+    
+                    span {
+                        margin-left: 0.5em;
+                        &.sm-text {
+                            font-size: 0.7em;
+                        }
+                    }
+                }
+            }
+
+            .box {
+                border: 1px solid $secondary;
+                border-bottom-left-radius: 1em;
+                border-bottom-right-radius: 1em;
+
+                h3 {
+                    font-size: 2em;
+                    text-align: center;
+                    padding: 1em;
+                }
+
+                .button {
+                    width: 40%;
+                    font-size: 1.5em;
+                    margin-bottom: 1em;
+                    background-color: $main;
+                    border-color: $main;
+                    border-radius: 0.5em;
+                    color: $white;
+                }
+
+                svg {
+                    width: 5em;
+                }
+
+                .other-information {
+                    display: flex;
+
+                    >.column {
+                        margin: 0.5em;
+                        font-size: 1.5em;
+                    }
+                }
+            }
+    }
+
+
+}
