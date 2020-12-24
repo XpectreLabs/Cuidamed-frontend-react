@@ -40,6 +40,7 @@ import { ReactComponent as Carpeta } from "./Carpeta.svg";
 import { ReactComponent as Abuelo } from "./Abuelo.svg";
 import { ReactComponent as Abuela } from "./Abuela.svg";
 import { ReactComponent as Alergias } from "./Alergias.svg";
+import { ReactComponent as AlergiasWhite } from "./AlergiasWhite.svg";
 import { ReactComponent as Bisturi } from "./Bisturi.svg";
 import { ReactComponent as Embarazada } from "./Embarazada.svg";
 import { ReactComponent as Fractura } from "./Fractura.svg";
@@ -58,6 +59,9 @@ import { ReactComponent as Medico } from "./medico.svg";
 import { ReactComponent as SeguroMedico } from "./seguroMedico.svg";
 import { ReactComponent as Contacto } from "./contacto.svg";
 import { ReactComponent as Pastillas } from "./pastillas.svg";
+import { ReactComponent as IconDiseases } from "./IndMedHistorial.svg";
+import { ReactComponent as IconContact } from "./IndContacto.svg";
+
 
 
 export {
@@ -101,6 +105,7 @@ export {
   Abuelo,
   Abuela,
   Alergias,
+  AlergiasWhite,
   Bisturi,
   Embarazada,
   Fractura,
@@ -118,5 +123,7 @@ export {
   Medico,
   SeguroMedico,
   Contacto,
-  Pastillas
+  Pastillas,
+  IconDiseases,
+  IconContact
 }

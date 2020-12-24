@@ -1,0 +1,46 @@
+.landing {
+
+    .row {
+
+        >.band {
+            img {
+                width: 100%;
+            }
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3em;
+        }
+
+        .button {
+            margin-top: 0.5em;
+            transition: all 300ms;
+
+            // &:hover {
+            //     background-color: rgba(0, 0, 0, 0.2);
+            // }
+        }
+
+        .button.btn-main {
+            background-color: $main;
+            border-color: $main;
+            color: $white;
+
+            &:hover {
+                background-color: $white;
+                border-color: $main;
+                color: $main;
+            }
+        }
+
+        .btn-secondary {
+            background-color: $secondary;
+            color: $white;
+
+            &:hover {
+                color: $font-dark;
+            }
+        }
+    }
+}
