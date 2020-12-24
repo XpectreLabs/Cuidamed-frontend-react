@@ -27,9 +27,9 @@ export default function Treatment() {
       .then((data) => {
         console.log(data);
         if (data.data) {
+          let array = [];
           data.data.map((item) => {
             console.log(item);
-            let array = treatment;
             let obj = {
               medicine: item.medicamento,
               dose: item.dosis,
@@ -37,14 +37,16 @@ export default function Treatment() {
               starts: item.fecha_inicio,
               ends: item.fecha_fin,
             };
-            //array = [...array, obj];
-            setTreatment([...treatment, obj]);
+            array = [...array, obj];
+
           });
+          setTreatment(array);
 
 
         }
       });
   }, [])
+
   const [treatment, setTreatment] = useState([]);
   const [formValues, setFormValues] = useState({
     medicine: "",
@@ -53,6 +55,10 @@ export default function Treatment() {
     starts: "",
     ends: "",
   });
+
+  useEffect(() => {
+    console.log(treatment);
+  }, [treatment])
   const { medicine, dose, frequency, starts, ends } = formValues;
 
   const dispatch = useDispatch();

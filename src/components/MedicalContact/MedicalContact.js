@@ -24,9 +24,9 @@ export default function MedicalContact() {
       .then((data) => {
         console.log(data);
         if (data.data) {
+          let array = [];
           data.data.map((item) => {
-            console.log(item);
-            let array = contacts;
+            //console.log(item);
             let obj = {
               fullName: item.name,
               email: item.city,
@@ -34,9 +34,9 @@ export default function MedicalContact() {
               specialty: item.specialty,
             };
             array = [...array, obj];
-            setContacts(array);
-          });
 
+          });
+          setContacts(array);
 
         }
       });

@@ -7,6 +7,7 @@ import { ReactComponent as IconIndTratamiento } from '../../../images/icons/IndT
 import { ReactComponent as IconIndContacto } from '../../../images/icons/IndContacto.svg';
 import { ReactComponent as IconIndContactoMedico } from '../../../images/icons/IndContactoMedico.svg';
 import { ReactComponent as IconIndSeguroMedico } from '../../../images/icons/IndSeguroMedico.svg';
+import { ReactComponent as IconIndGinecologia } from '../../../images/icons/IndGinecologia.svg';
 
 const dataIcons = [
   {
@@ -19,6 +20,10 @@ const dataIcons = [
     link2: '/dashboard/sistemas',
     link3: '/dashboard/lista-enfermedades',
     link4: '/dashboard/antecedentes'
+  },
+  {
+    icon: <IconIndGinecologia></IconIndGinecologia>,
+    link: '/dashboard/ginecologia',
   },
   {
     icon: <IconIndTratamiento></IconIndTratamiento>,
@@ -39,33 +44,36 @@ const dataIcons = [
 ];
 
 export default function IconsNavBar() {
+  const { sex } = JSON.parse(localStorage.getItem('user'));
+  console.log(sex)
   return (
     <>
       {map(dataIcons, (icon, index) => {
-        if (icon.link === 'ginecologia') {
+        // if( icon.link === '/dashboard/ginecologia'){
+        //   if(sex !== 'F'){
 
-        } else {
-          if (
-            window.location.pathname === icon.link ||
-            window.location.pathname === icon.link2 ||
-            window.location.pathname === icon.link3 ||
-            window.location.pathname === icon.link4
-          ) {
-            return (
-              <Link
-                key={index}
-                to={icon.link}
-                className="icon-container icon-selected">
-                {icon.icon}
-              </Link>
-            );
-          }
+        //   }
+        // }
+        if (
+          window.location.pathname === icon.link ||
+          window.location.pathname === icon.link2 ||
+          window.location.pathname === icon.link3 ||
+          window.location.pathname === icon.link4
+        ) {
           return (
-            <Link key={index} to={icon.link} className="icon-container">
+            <Link
+              key={index}
+              to={icon.link}
+              className="icon-container icon-selected">
               {icon.icon}
             </Link>
           );
         }
+        return (
+          <Link key={index} to={icon.link} className="icon-container">
+            {icon.icon}
+          </Link>
+        );
       })}
     </>
   );
