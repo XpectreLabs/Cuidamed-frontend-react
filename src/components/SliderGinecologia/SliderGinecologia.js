@@ -458,11 +458,11 @@ export default function SliderGinecologia() {
                   </Grid.Column>
                   <Grid.Column verticalAlign="middle" width={4}>
                     <Grid.Row className="question">Edad de la primera menstruación</Grid.Row>
-                    <Grid.Row className="answer">{menstruationAge}15 años</Grid.Row>
+                    <Grid.Row className="answer">{menstruationAge > 0 ? menstruationAge : 'N/A'}</Grid.Row>
                   </Grid.Column>
                   <Grid.Column verticalAlign="middle" width={3}>
                     <Grid.Row className="question">Tipo de periodo</Grid.Row>
-                    <Grid.Row className="answer">Regular</Grid.Row>
+                    <Grid.Row className="answer">{formValues.kind_mestruation ? formValues.kind_mestruation : 'N/A'}</Grid.Row>
                   </Grid.Column>
                   <Grid.Column className="edit" verticalAlign="middle" width={2}>
                     <label onClick={() => slide(0)}>
@@ -480,11 +480,11 @@ export default function SliderGinecologia() {
                   </Grid.Column>
                   <Grid.Column verticalAlign="middle" width={4}>
                     <Grid.Row className="question">Menopausia</Grid.Row>
-                    <Grid.Row className="answer">{menopause ? 'Si' : 'No'}</Grid.Row>
+                    <Grid.Row className="answer">{menopause ? 'SI' : 'NO'}</Grid.Row>
                   </Grid.Column>
                   <Grid.Column verticalAlign="middle" width={3}>
                     <Grid.Row className="question">Fecha de inicio</Grid.Row>
-                    <Grid.Row className="answer">2004</Grid.Row>
+                    <Grid.Row className="answer">{formValues.year_menopause ? formValues.year_menopause : 'N/A'}</Grid.Row>
                   </Grid.Column>
                   <Grid.Column className="edit" verticalAlign="middle" width={2}>
                     <label onClick={() => slide(1)}>
@@ -502,15 +502,15 @@ export default function SliderGinecologia() {
                   </Grid.Column>
                   <Grid.Column verticalAlign="middle" width={4}>
                     <Grid.Row className="question">Num. de embarazos</Grid.Row>
-                    <Grid.Row className="answer">2</Grid.Row>
-                    <Grid.Row className="question">Num. de embarazos</Grid.Row>
-                    <Grid.Row className="answer">2</Grid.Row>
+                    <Grid.Row className="answer">{formValues.embarazos ? formValues.embarazos : 0}</Grid.Row>
+                    <Grid.Row className="question">Num. de cesareas</Grid.Row>
+                    <Grid.Row className="answer">{formValues.cesarea ? formValues.cesarea : 0}</Grid.Row>
                   </Grid.Column>
                   <Grid.Column verticalAlign="middle" width={3}>
                     <Grid.Row className="question">Num. partos</Grid.Row>
-                    <Grid.Row className="answer">0</Grid.Row>
-                    <Grid.Row className="question" >Num. partos</Grid.Row>
-                    <Grid.Row className="answer">0</Grid.Row>
+                    <Grid.Row className="answer">{formValues.partos ? formValues.partos : 0}</Grid.Row>
+                    <Grid.Row className="question" >Num. abortos</Grid.Row>
+                    <Grid.Row className="answer">{formValues.abortos ? formValues.abortos : 0}</Grid.Row>
                   </Grid.Column>
                   <Grid.Column className="edit" verticalAlign="middle" width={2}>
                     <label onClick={() => slide(2)}>

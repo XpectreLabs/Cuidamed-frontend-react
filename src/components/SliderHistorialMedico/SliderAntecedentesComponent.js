@@ -15,7 +15,7 @@ const SliderAntecedentesComponent = ({
   getValue = () => { },
   objResponse = {}
 }) => {
-  const [hasRecord, setHasRecord] = useState(false);
+  const [hasRecord, setHasRecord] = useState();
   const [totalElements, setTotalElements] = useState([]);
   const [numberInput, setNumberInput] = useState();
 
@@ -27,6 +27,8 @@ const SliderAntecedentesComponent = ({
         setHasRecord(true);
         setNumberInput(responseData.length);
         setTotalElements(responseData);
+      } else {
+        setHasRecord(false);
       }
     }
   }, [objResponse])
@@ -48,7 +50,7 @@ const SliderAntecedentesComponent = ({
 
   const handleNoSelected = () => {
     let obj = {};
-    obj[objectKey] = 'NO';
+    obj[objectKey] = [{ name: 'N/A', year: '' }];
     getValue(obj);
   }
 
@@ -78,6 +80,7 @@ const SliderAntecedentesComponent = ({
         <Grid.Row className="answers">
           <Grid.Column width={3}>
             <Button
+              className={hasRecord ? 'isChecked' : ''}
               id="vacunaNo"
               type="radio"
               name="vacuna"
@@ -89,6 +92,7 @@ const SliderAntecedentesComponent = ({
           </Grid.Column>
           <Grid.Column width={3}>
             <Button
+              className={hasRecord === false ? 'isChecked' : ''}
               id="vacunaNo"
               type="radio"
               name="vacuna"

@@ -167,3 +167,8 @@ input {
 }
 
 .btn-click:focus{background-color:red !important}
+
+.isChecked{
+  background-color: $secondary !important;
+  color: $white !important;
+}
