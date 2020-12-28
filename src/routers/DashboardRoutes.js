@@ -15,8 +15,6 @@ import Treatment from '../pages/tratamiento';
 import Landing from '../pages/landing';
 import Band from '../pages/pulsera';
 import Plate from '../pages/placa';
-import Emergency from '../pages/emergencia';
-import Resume from '../pages/resumen';
 
 export const DashboardRoutes = () => {
   const history = useHistory();
@@ -84,16 +82,6 @@ export const DashboardRoutes = () => {
           exact
           component={Plate}
           path="/dashboard/personalizar-placa"
-        />
-        <Route
-          exact
-          component={Emergency}
-          path="/dashboard/emergencia"
-        />
-        <Route
-          exact
-          component={Resume}
-          path="/dashboard/resumen"
         />
         <Route exact component={InfoBasic} path="/dashboard/info-basic" />
         <Redirect to="/dashboard/info-basic" />

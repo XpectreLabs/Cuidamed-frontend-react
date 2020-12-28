@@ -9,12 +9,14 @@ import { ReactComponent as IconGotaSangre } from "./gotaSangre.svg"
 import { ReactComponent as IconOcupacion } from "./ocupacion.svg"
 import { ReactComponent as IconGradoEstudio } from "./gradoEstudio.svg"
 import { ReactComponent as IconDonador } from "./donador.svg"
+import { ReactComponent as IconDonadorWhite } from "./donadorWhite.svg"
 import { ReactComponent as IconEstadoCivil } from "./estadoCivil.svg"
 import { ReactComponent as IconReligion } from "./religion.svg"
 import { ReactComponent as IconSeguro } from "./seguro.svg"
 import { ReactComponent as Pulsera } from "./pulsera.svg"
 
 import { ReactComponent as IconVacuna } from "./vacunas.svg"
+import { ReactComponent as IconVacunaWhite } from "./vacunasWhite.svg"
 import { ReactComponent as CarpDigestivo } from "./CarpDigestivo.svg"
 import { ReactComponent as CarpEndocrino } from "./CarpEndocrino.svg"
 import { ReactComponent as CarpMuscular } from "./CarpMuscular.svg"
@@ -42,21 +44,29 @@ import { ReactComponent as Abuela } from "./Abuela.svg";
 import { ReactComponent as Alergias } from "./Alergias.svg";
 import { ReactComponent as AlergiasWhite } from "./AlergiasWhite.svg";
 import { ReactComponent as Bisturi } from "./Bisturi.svg";
+import { ReactComponent as BisturiWhite } from "./BisturiWhite.svg";
 import { ReactComponent as Embarazada } from "./Embarazada.svg";
 import { ReactComponent as Fractura } from "./Fractura.svg";
+import { ReactComponent as FracturaWhite } from "./FracturaWhite.svg";
 import { ReactComponent as Hombre } from "./Hombre.svg";
 import { ReactComponent as Madre } from "./Madre.svg";
 import { ReactComponent as Mujer } from "./Mujer.svg";
+import { ReactComponent as MujerWhite } from "./MujerWhite.svg";
 import { ReactComponent as Padre } from "./Padre.svg";
 import { ReactComponent as Protesis } from "./Protesis.svg";
+import { ReactComponent as ProtesisWhite } from "./ProtesisWhite.svg";
 import { ReactComponent as Silla } from "./Silla.svg";
+import { ReactComponent as SillaWhite } from "./SillaWhite.svg";
 import { ReactComponent as UnidadSangre } from "./UnidadSangre.svg";
+import { ReactComponent as UnidadSangreWhite } from "./UnidadSangreWhite.svg";
 import { ReactComponent as Virus } from "./Virus.svg";
 import { ReactComponent as CarpCancer } from "./CarpCancer.svg";
 import { ReactComponent as Menopausia } from "./menopausia.svg";
 import { ReactComponent as Menstruacion } from "./menstruacion.svg";
 import { ReactComponent as Medico } from "./medico.svg";
+import { ReactComponent as MedicoWhite } from "./medicoWhite.svg";
 import { ReactComponent as SeguroMedico } from "./seguroMedico.svg";
+import { ReactComponent as SeguroMedicoWhite } from "./seguroMedicoWhite.svg";
 import { ReactComponent as Contacto } from "./contacto.svg";
 import { ReactComponent as Pastillas } from "./pastillas.svg";
 import { ReactComponent as IconDiseases } from "./IndMedHistorial.svg";
@@ -76,10 +86,12 @@ export {
   IconOcupacion,
   IconGradoEstudio,
   IconDonador,
+  IconDonadorWhite,
   IconEstadoCivil,
   IconReligion,
   IconSeguro,
   IconVacuna,
+  IconVacunaWhite,
   Pulsera,
   CarpDigestivo,
   CarpEndocrino,
@@ -107,21 +119,29 @@ export {
   Alergias,
   AlergiasWhite,
   Bisturi,
+  BisturiWhite,
   Embarazada,
   Fractura,
+  FracturaWhite,
   Hombre,
   Madre,
   Mujer,
+  MujerWhite,
   Padre,
   Protesis,
+  ProtesisWhite,
   Silla,
+  SillaWhite,
   UnidadSangre,
+  UnidadSangreWhite,
   Virus,
   CarpCancer,
   Menopausia,
   Menstruacion,
   Medico,
+  MedicoWhite,
   SeguroMedico,
+  SeguroMedicoWhite,
   Contacto,
   Pastillas,
   IconDiseases,

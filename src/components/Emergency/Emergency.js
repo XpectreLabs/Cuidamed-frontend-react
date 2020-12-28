@@ -3,6 +3,7 @@ import { Grid, Button } from "semantic-ui-react";
 import Logo from "../../images/CuidaMEDLogo.png";
 import { Medico } from "../../images/icons/icons";
 import { CustomInput } from "../inputsCustom/CustomInput";
+import { Link } from 'react-router-dom';
 
 export default function Emergency() {
   const [isMedic, setIsMedic] = useState(null);
@@ -22,7 +23,9 @@ export default function Emergency() {
           </Grid.Row>
           <Grid.Row className="next">
             <Grid.Column mobile={14} computer={6} tablet={10}>
-              <Button>Seguir</Button>
+              <Link to={'/resumen'}>
+                <Button>Seguir</Button>
+              </Link>
             </Grid.Column>
           </Grid.Row>
         </>
@@ -40,7 +43,9 @@ export default function Emergency() {
           </Grid.Row>
           <Grid.Row className="next">
             <Grid.Column mobile={14} computer={6} tablet={10}>
+            <Link to={'/resumen'}>
               <Button>Seguir</Button>
+            </Link>
             </Grid.Column>
           </Grid.Row>
         </>
