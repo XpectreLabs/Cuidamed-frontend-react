@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Grid, Icon, Button, Label } from "semantic-ui-react";
 import Logo from "../../images/CuidaMEDLogo.png";
 import Profile from "../../images/profile.jpg";
@@ -22,8 +22,37 @@ import {
   SeguroMedicoWhite,
 } from "../../images/icons/icons";
 import FlagMexico from "../../images/Flag-Mexico.png";
+import { useHistory } from 'react-router-dom';
 
 export default function Resume() {
+
+  const history = useHistory();
+  const { typePerson } = history.location.state;
+  const { name, birth_date, sex, place, type_blood, ocupation, weight, height } = JSON.parse(localStorage.getItem('emergency'));
+  const [isMedic, setIsMedic] = useState(false);
+
+  useEffect(() => {
+    if (typePerson === 'medico') {
+      setIsMedic(true);
+    }
+  }, [typePerson])
+
+
+
+
+  function calcularEdad(fecha) {
+    var hoy = new Date();
+    var cumpleanos = new Date(fecha);
+    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+    var m = hoy.getMonth() - cumpleanos.getMonth();
+
+    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+      edad--;
+    }
+
+    return edad;
+  }
+
   return (
     <Container>
       <Grid className="resume" centered>
@@ -47,39 +76,42 @@ export default function Resume() {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row className="information">
-          <p>Fabiola Castellanos Hernández</p>
+          <p>{name}</p>
         </Grid.Row>
         <Grid.Row className="information">
           <p>
-            21 años <Icon fitted name="woman" />
+            {calcularEdad(birth_date)} años <Icon fitted name={sex === 'F' ? 'woman' : 'men'} />
           </p>
         </Grid.Row>
         <Grid.Row className="information font-gray">
           <p>
-            <IconMapa /> Villahermosa, Tabasco.
+            <IconMapa /> {place}
           </p>
         </Grid.Row>
         <Grid.Row className="information font-gray">
-          <p>Tipo de sangre A+</p>
+          <p>Tipo de sangre {type_blood}</p>
         </Grid.Row>
-        <Grid.Row className="covid">
-          <Grid.Column>
-          <Grid.Row>
-            <h3>Covid 19:</h3>
-          </Grid.Row>
-          <Grid.Row>
-            <Grid.Row>
-            <p>Ha tenido, 2 veces
+        {isMedic && (
+          <Grid.Row className="covid">
+            <Grid.Column>
+              <Grid.Row>
+                <h3>Covid 19:</h3>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Row>
+                  <p>Ha tenido, 2 veces
               <span>02/09/2020</span>
-              <span>12/10/2020</span>
-            </p>
-            <p><u>Tratamiento</u></p>
-            </Grid.Row>
-          
+                    <span>12/10/2020</span>
+                  </p>
+                  <p><u>Tratamiento</u></p>
+                </Grid.Row>
+
+              </Grid.Row>
+
+            </Grid.Column>
           </Grid.Row>
-          
-          </Grid.Column>
-        </Grid.Row>
+
+        )}
         <Grid.Row className="diseases">
           <Grid.Column mobile={15}>
             <Grid.Row className="title" verticalAlign="middle">
@@ -130,7 +162,7 @@ export default function Resume() {
             <Grid.Row className="box">
               <Grid.Column>
                 <h3>
-                  Mario <br/><a href="tel:+521234567890">+52 123 4567 890</a>
+                  Mario <br /><a href="tel:+521234567890">+52 123 4567 890</a>
                 </h3>
               </Grid.Column>
               <Grid.Column mobile={8}>
@@ -139,192 +171,196 @@ export default function Resume() {
             </Grid.Row>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row className="diseases">
-          <Grid.Column mobile={15}>
-            <Grid.Row className="title" verticalAlign="middle">
-              <Grid.Column verticalAlign="middle">
-                <IconDonadorWhite />
-                <span>Donador de órganos</span>
+        {isMedic && (
+          <>
+            <Grid.Row className="diseases">
+              <Grid.Column mobile={15}>
+                <Grid.Row className="title" verticalAlign="middle">
+                  <Grid.Column verticalAlign="middle">
+                    <IconDonadorWhite />
+                    <span>Donador de órganos</span>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row className="box">
+                  <Grid.Column mobile={4}>
+                    <h3>Si</h3>
+                  </Grid.Column>
+                </Grid.Row>
               </Grid.Column>
             </Grid.Row>
-            <Grid.Row className="box">
-              <Grid.Column mobile={4}>
-                <h3>Si</h3>
+            <Grid.Row className="diseases">
+              <Grid.Column mobile={15}>
+                <Grid.Row className="title" verticalAlign="middle">
+                  <Grid.Column verticalAlign="middle">
+                    <IconVacunaWhite />
+                    <span>Vacunas</span>
+                  </Grid.Column>
+                  <Label floating>2</Label>
+                </Grid.Row>
+                <Grid.Row className="box">
+                  <Grid.Column mobile={4}>
+                    <h3>Influenza</h3>
+                  </Grid.Column>
+                  <Grid.Column mobile={8}>
+                    <Button>Ver más</Button>
+                  </Grid.Column>
+                </Grid.Row>
               </Grid.Column>
             </Grid.Row>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row className="diseases">
-          <Grid.Column mobile={15}>
-            <Grid.Row className="title" verticalAlign="middle">
-              <Grid.Column verticalAlign="middle">
-                <IconVacunaWhite />
-                <span>Vacunas</span>
-              </Grid.Column>
-              <Label floating>2</Label>
-            </Grid.Row>
-            <Grid.Row className="box">
-              <Grid.Column mobile={4}>
-                <h3>Influenza</h3>
-              </Grid.Column>
-              <Grid.Column mobile={8}>
-                <Button>Ver más</Button>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row className="diseases">
-          <Grid.Column mobile={15}>
-            <Grid.Row className="title" verticalAlign="middle">
-              <Grid.Column verticalAlign="middle">
-                <BisturiWhite />
-                <span>Cirugías</span>
-              </Grid.Column>
-              <Label floating>2</Label>
-            </Grid.Row>
-            <Grid.Row className="box">
-              <Grid.Column mobile={4}>
-                <h3>Húmero brazo izquierdo</h3>
-              </Grid.Column>
-              <Grid.Column mobile={8}>
-                <Button>Ver más</Button>
+            <Grid.Row className="diseases">
+              <Grid.Column mobile={15}>
+                <Grid.Row className="title" verticalAlign="middle">
+                  <Grid.Column verticalAlign="middle">
+                    <BisturiWhite />
+                    <span>Cirugías</span>
+                  </Grid.Column>
+                  <Label floating>2</Label>
+                </Grid.Row>
+                <Grid.Row className="box">
+                  <Grid.Column mobile={4}>
+                    <h3>Húmero brazo izquierdo</h3>
+                  </Grid.Column>
+                  <Grid.Column mobile={8}>
+                    <Button>Ver más</Button>
+                  </Grid.Column>
+                </Grid.Row>
               </Grid.Column>
             </Grid.Row>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row className="diseases">
-          <Grid.Column mobile={15}>
-            <Grid.Row className="title" verticalAlign="middle">
-              <Grid.Column verticalAlign="middle">
-                <FracturaWhite />
-                <span>Fracturas</span>
-              </Grid.Column>
-              <Label floating>2</Label>
-            </Grid.Row>
-            <Grid.Row className="box">
-              <Grid.Column mobile={4}>
-                <h3>Cúbito</h3>
-              </Grid.Column>
-              <Grid.Column mobile={8}>
-                <Button>Ver más</Button>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row className="diseases">
-          <Grid.Column mobile={15}>
-            <Grid.Row className="title" verticalAlign="middle">
-              <Grid.Column verticalAlign="middle">
-                <UnidadSangreWhite />
-                <span>Transfusiones</span>
-              </Grid.Column>
-              <Label floating>2</Label>
-            </Grid.Row>
-            <Grid.Row className="box">
-              <Grid.Column mobile={4}>
-                <h3>Si, 2 veces</h3>
-              </Grid.Column>
-              <Grid.Column mobile={8}>
-                <Button>Ver más</Button>
+            <Grid.Row className="diseases">
+              <Grid.Column mobile={15}>
+                <Grid.Row className="title" verticalAlign="middle">
+                  <Grid.Column verticalAlign="middle">
+                    <FracturaWhite />
+                    <span>Fracturas</span>
+                  </Grid.Column>
+                  <Label floating>2</Label>
+                </Grid.Row>
+                <Grid.Row className="box">
+                  <Grid.Column mobile={4}>
+                    <h3>Cúbito</h3>
+                  </Grid.Column>
+                  <Grid.Column mobile={8}>
+                    <Button>Ver más</Button>
+                  </Grid.Column>
+                </Grid.Row>
               </Grid.Column>
             </Grid.Row>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row className="diseases">
-          <Grid.Column mobile={15}>
-            <Grid.Row className="title" verticalAlign="middle">
-              <Grid.Column verticalAlign="middle">
-                <SillaWhite />
-                <span>Discapacidad</span>
-              </Grid.Column>
-              <Label floating>2</Label>
-            </Grid.Row>
-            <Grid.Row className="box">
-              <Grid.Column mobile={4}>
-                <h3>Visual</h3>
-              </Grid.Column>
-              <Grid.Column mobile={8}>
-                <Button>Ver más</Button>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row className="diseases">
-          <Grid.Column mobile={15}>
-            <Grid.Row className="title" verticalAlign="middle">
-              <Grid.Column verticalAlign="middle">
-                <ProtesisWhite />
-                <span>Dispositivos</span>
-              </Grid.Column>
-              <Label floating>2</Label>
-            </Grid.Row>
-            <Grid.Row className="box">
-              <Grid.Column mobile={4}>
-                <h3>Clavo en el brazo izquierdo</h3>
-              </Grid.Column>
-              <Grid.Column mobile={8}>
-                <Button>Ver más</Button>
+            <Grid.Row className="diseases">
+              <Grid.Column mobile={15}>
+                <Grid.Row className="title" verticalAlign="middle">
+                  <Grid.Column verticalAlign="middle">
+                    <UnidadSangreWhite />
+                    <span>Transfusiones</span>
+                  </Grid.Column>
+                  <Label floating>2</Label>
+                </Grid.Row>
+                <Grid.Row className="box">
+                  <Grid.Column mobile={4}>
+                    <h3>Si, 2 veces</h3>
+                  </Grid.Column>
+                  <Grid.Column mobile={8}>
+                    <Button>Ver más</Button>
+                  </Grid.Column>
+                </Grid.Row>
               </Grid.Column>
             </Grid.Row>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row className="diseases">
-          <Grid.Column mobile={15}>
-            <Grid.Row className="title" verticalAlign="middle">
-              <Grid.Column verticalAlign="middle">
-                <MujerWhite />
-                <span>Ginecología</span>
-              </Grid.Column>
-              <Label floating>2</Label>
-            </Grid.Row>
-            <Grid.Row className="box">
-              <Grid.Column mobile={4}>
-                {/* <h3>Polen</h3> */}
-              </Grid.Column>
-              <Grid.Column mobile={8}>
-                <Button>Ver más</Button>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row className="diseases">
-          <Grid.Column mobile={15}>
-            <Grid.Row className="title" verticalAlign="middle">
-              <Grid.Column verticalAlign="middle">
-                <MedicoWhite />
-                <span>Contactos médicos</span>
-              </Grid.Column>
-              <Label floating>2</Label>
-            </Grid.Row>
-            <Grid.Row className="box">
-              <Grid.Column mobile={4}>
-                {/* <h3>Polen</h3> */}
-              </Grid.Column>
-              <Grid.Column mobile={8}>
-                <Button>Ver más</Button>
+            <Grid.Row className="diseases">
+              <Grid.Column mobile={15}>
+                <Grid.Row className="title" verticalAlign="middle">
+                  <Grid.Column verticalAlign="middle">
+                    <SillaWhite />
+                    <span>Discapacidad</span>
+                  </Grid.Column>
+                  <Label floating>2</Label>
+                </Grid.Row>
+                <Grid.Row className="box">
+                  <Grid.Column mobile={4}>
+                    <h3>Visual</h3>
+                  </Grid.Column>
+                  <Grid.Column mobile={8}>
+                    <Button>Ver más</Button>
+                  </Grid.Column>
+                </Grid.Row>
               </Grid.Column>
             </Grid.Row>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row className="diseases">
-          <Grid.Column mobile={15}>
-            <Grid.Row className="title" verticalAlign="middle">
-              <Grid.Column verticalAlign="middle">
-                <SeguroMedicoWhite />
-                <span>Seguros</span>
+            <Grid.Row className="diseases">
+              <Grid.Column mobile={15}>
+                <Grid.Row className="title" verticalAlign="middle">
+                  <Grid.Column verticalAlign="middle">
+                    <ProtesisWhite />
+                    <span>Dispositivos</span>
+                  </Grid.Column>
+                  <Label floating>2</Label>
+                </Grid.Row>
+                <Grid.Row className="box">
+                  <Grid.Column mobile={4}>
+                    <h3>Clavo en el brazo izquierdo</h3>
+                  </Grid.Column>
+                  <Grid.Column mobile={8}>
+                    <Button>Ver más</Button>
+                  </Grid.Column>
+                </Grid.Row>
               </Grid.Column>
-              <Label floating>2</Label>
             </Grid.Row>
-            <Grid.Row className="box">
-              <Grid.Column mobile={4}>
-                {/* <h3>Polen</h3> */}
-              </Grid.Column>
-              <Grid.Column mobile={8}>
-                <Button>Ver más</Button>
+            <Grid.Row className="diseases">
+              <Grid.Column mobile={15}>
+                <Grid.Row className="title" verticalAlign="middle">
+                  <Grid.Column verticalAlign="middle">
+                    <MujerWhite />
+                    <span>Ginecología</span>
+                  </Grid.Column>
+                  <Label floating>2</Label>
+                </Grid.Row>
+                <Grid.Row className="box">
+                  <Grid.Column mobile={4}>
+                    {/* <h3>Polen</h3> */}
+                  </Grid.Column>
+                  <Grid.Column mobile={8}>
+                    <Button>Ver más</Button>
+                  </Grid.Column>
+                </Grid.Row>
               </Grid.Column>
             </Grid.Row>
-          </Grid.Column>
-        </Grid.Row>
+            <Grid.Row className="diseases">
+              <Grid.Column mobile={15}>
+                <Grid.Row className="title" verticalAlign="middle">
+                  <Grid.Column verticalAlign="middle">
+                    <MedicoWhite />
+                    <span>Contactos médicos</span>
+                  </Grid.Column>
+                  <Label floating>2</Label>
+                </Grid.Row>
+                <Grid.Row className="box">
+                  <Grid.Column mobile={4}>
+                    {/* <h3>Polen</h3> */}
+                  </Grid.Column>
+                  <Grid.Column mobile={8}>
+                    <Button>Ver más</Button>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row className="diseases">
+              <Grid.Column mobile={15}>
+                <Grid.Row className="title" verticalAlign="middle">
+                  <Grid.Column verticalAlign="middle">
+                    <SeguroMedicoWhite />
+                    <span>Seguros</span>
+                  </Grid.Column>
+                  <Label floating>2</Label>
+                </Grid.Row>
+                <Grid.Row className="box">
+                  <Grid.Column mobile={4}>
+                    {/* <h3>Polen</h3> */}
+                  </Grid.Column>
+                  <Grid.Column mobile={8}>
+                    <Button>Ver más</Button>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid.Column>
+            </Grid.Row>
+          </>
+        )}
         <Grid.Row className="diseases">
           <Grid.Column mobile={15}>
             <Grid.Row className="title" verticalAlign="middle">
@@ -339,7 +375,7 @@ export default function Resume() {
                 </Grid.Column>
                 <Grid.Column mobile={10}>
                   <h5>Estatura</h5>
-                  <p>1.68m / 66in</p>
+                  <p>{height}</p>
                 </Grid.Column>
               </div>
               <div className="other-information">
@@ -348,7 +384,7 @@ export default function Resume() {
                 </Grid.Column>
                 <Grid.Column mobile={10}>
                   <h5>Peso</h5>
-                  <p>72kg / 158lb</p>
+                  <p>{weight}</p>
                 </Grid.Column>
               </div>
               <div className="other-information">
@@ -357,25 +393,11 @@ export default function Resume() {
                 </Grid.Column>
                 <Grid.Column mobile={10}>
                   <h5>Ocupación</h5>
-                  <p>Luchadora peso medio</p>
+                  <p>{ocupation}</p>
                 </Grid.Column>
               </div>
             </Grid.Row>
           </Grid.Column>
-          {/* <Grid.Column mobile={4}>
-            <IconAltura />
-          </Grid.Column> */}
-          {/* <Grid.Column mobile={4}>
-            <Grid.Row>
-            asdasdasd
-            </Grid.Row>
-            <Grid.Row>
-            asdasdasd
-            </Grid.Row>
-            <Grid.Row>
-            asdasdasd
-            </Grid.Row>
-          </Grid.Column> */}
         </Grid.Row>
       </Grid>
     </Container>
