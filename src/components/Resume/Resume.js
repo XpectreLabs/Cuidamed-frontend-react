@@ -23,13 +23,39 @@ import {
 } from "../../images/icons/icons";
 import FlagMexico from "../../images/Flag-Mexico.png";
 import { useHistory } from 'react-router-dom';
+import { CONECTION } from '../../conection';
+
+import Card from './Card';
+import CardPhone from './CardPhone';
+
+//moment
+import Moment from 'react-moment';
+import 'moment/locale/es';
 
 export default function Resume() {
 
   const history = useHistory();
   const { typePerson } = history.location.state;
-  const { name, birth_date, sex, place, type_blood, ocupation, weight, height } = JSON.parse(localStorage.getItem('emergency'));
+  const { name, birth_date, sex, place, type_blood, ocupation, weight, height, id } = JSON.parse(localStorage.getItem('emergency'));
   const [isMedic, setIsMedic] = useState(false);
+  const [isShow, setIsShow] = useState(false);
+
+  const [formValues, setFormValues] = useState({
+    covid: [],
+    diseases: [],
+    allergies: [],
+    emergencyContact: [],
+    organDonor: '',
+    vacunas: [],
+    cirujias: [],
+    transfunciones: [],
+    discapacidad: [],
+    medicalContact: [],
+    seguros: [],
+    ginecologia: [],
+    fracturas: [],
+    others: [],
+  });
 
   useEffect(() => {
     if (typePerson === 'medico') {
@@ -37,8 +63,54 @@ export default function Resume() {
     }
   }, [typePerson])
 
+  useEffect(() => {
+    fetch(`${CONECTION}api/historial/folder`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // Authorization: `Bearer ${localStorage.getItem('token')}`,
+        // 'x-auth-token': localStorage.getItem('refreshToken'),
+      },
+      body: JSON.stringify({ id })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.data) {
+          const values = data.data;
+          console.log(data.data);
+          const newDesases = values[13].map((item, index) => {
+            return item.illnessId;
+          });
+          const newSeguros = values[3].map((item, index) => {
+            item.name = item.aseguradora
+            return item;
+          });
+          const newOrganDonor = data.data[6][0].haveYouTransferredBlood;
+          setFormValues({
+            ...formValues,
+            covid: values[11],
+            diseases: newDesases,
+            allergies: values[10],
+            emergencyContact: values[4],
+            organDonor: newOrganDonor === 'YES' ? true : false,
+            vacunas: values[1],
+            cirujias: values[8],
+            transfunciones: values[12],
+            discapacidad: values[9],
+            medicalContact: values[5],
+            seguros: newSeguros,
+            ginecologia: values[2][0],
+            fracturas: values[14],
+            others: values[15]
 
+          });
+        }
+      })
+  }, [])
 
+  useEffect(() => {
+    console.log(formValues.ginecologia);
+  }, [formValues])
 
   function calcularEdad(fecha) {
     var hoy = new Date();
@@ -97,80 +169,48 @@ export default function Resume() {
               <Grid.Row>
                 <h3>Covid 19:</h3>
               </Grid.Row>
-              <Grid.Row>
+              {formValues.covid.length > 0 && (
                 <Grid.Row>
-                  <p>Ha tenido, 2 veces
-              <span>02/09/2020</span>
-                    <span>12/10/2020</span>
-                  </p>
-                  <p><u>Tratamiento</u></p>
+                  <Grid.Row>
+                    <p>Ha tenido, {formValues.covid.length} {formValues.covid.length === 1 ? 'vez' : 'veces'}
+                      {formValues.covid.map((item, index) =>
+                        <span key={index} ><Moment date={item.year} locale="es" format="LL" /></span>
+                      )}
+                      {/* <span>02/09/2020</span>
+                    <span>12/10/2020</span> */}
+                    </p>
+                    <p><u>Tratamiento</u></p>
+                  </Grid.Row>
+
                 </Grid.Row>
-
-              </Grid.Row>
-
+              )}
+              {formValues.covid.length === 0 && (
+                <Grid.Row>
+                  <Grid.Row>
+                    <p>No ha tenido Covid</p>
+                  </Grid.Row>
+                </Grid.Row>
+              )}
             </Grid.Column>
           </Grid.Row>
 
         )}
-        <Grid.Row className="diseases">
-          <Grid.Column mobile={15}>
-            <Grid.Row className="title" verticalAlign="middle">
-              <Grid.Column verticalAlign="middle">
-                <IconDiseases />
-                <span>Enfermedades</span>
-              </Grid.Column>
-              <Label floating>2</Label>
-            </Grid.Row>
-            <Grid.Row className="box">
-              <Grid.Column>
-                <h3>Diabetes</h3>
-              </Grid.Column>
-              <Grid.Column>
-                <Button>Ver más</Button>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row className="diseases">
-          <Grid.Column mobile={15}>
-            <Grid.Row className="title" verticalAlign="middle">
-              <Grid.Column verticalAlign="middle">
-                <AlergiasWhite />
-                <span>Alergias</span>
-              </Grid.Column>
-              <Label floating>2</Label>
-            </Grid.Row>
-            <Grid.Row className="box">
-              <Grid.Column mobile={4}>
-                <h3>Polen</h3>
-              </Grid.Column>
-              <Grid.Column mobile={8}>
-                <Button>Ver más</Button>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row className="diseases">
-          <Grid.Column mobile={15}>
-            <Grid.Row className="title" verticalAlign="middle">
-              <Grid.Column verticalAlign="middle">
-                <IconContact />
-                <span className="sm-text">Contactos de emergencia</span>
-              </Grid.Column>
-              <Label floating>2</Label>
-            </Grid.Row>
-            <Grid.Row className="box">
-              <Grid.Column>
-                <h3>
-                  Mario <br /><a href="tel:+521234567890">+52 123 4567 890</a>
-                </h3>
-              </Grid.Column>
-              <Grid.Column mobile={8}>
-                <Button>Ver más</Button>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid.Column>
-        </Grid.Row>
+        <Card
+          icon={<IconDiseases />}
+          title={'Enfermedades'}
+          arrayData={formValues.diseases}
+
+        />
+        <Card
+          icon={<AlergiasWhite />}
+          title={'Alergias'}
+          arrayData={formValues.allergies}
+        />
+        <CardPhone
+          icon={<IconContact />}
+          title={'Contactos de emergencia'}
+          arrayData={formValues.emergencyContact}
+        />
         {isMedic && (
           <>
             <Grid.Row className="diseases">
@@ -183,68 +223,26 @@ export default function Resume() {
                 </Grid.Row>
                 <Grid.Row className="box">
                   <Grid.Column mobile={4}>
-                    <h3>Si</h3>
+                    <h3>{formValues.organDonor ? 'SÍ' : 'NO'}</h3>
                   </Grid.Column>
                 </Grid.Row>
               </Grid.Column>
             </Grid.Row>
-            <Grid.Row className="diseases">
-              <Grid.Column mobile={15}>
-                <Grid.Row className="title" verticalAlign="middle">
-                  <Grid.Column verticalAlign="middle">
-                    <IconVacunaWhite />
-                    <span>Vacunas</span>
-                  </Grid.Column>
-                  <Label floating>2</Label>
-                </Grid.Row>
-                <Grid.Row className="box">
-                  <Grid.Column mobile={4}>
-                    <h3>Influenza</h3>
-                  </Grid.Column>
-                  <Grid.Column mobile={8}>
-                    <Button>Ver más</Button>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row className="diseases">
-              <Grid.Column mobile={15}>
-                <Grid.Row className="title" verticalAlign="middle">
-                  <Grid.Column verticalAlign="middle">
-                    <BisturiWhite />
-                    <span>Cirugías</span>
-                  </Grid.Column>
-                  <Label floating>2</Label>
-                </Grid.Row>
-                <Grid.Row className="box">
-                  <Grid.Column mobile={4}>
-                    <h3>Húmero brazo izquierdo</h3>
-                  </Grid.Column>
-                  <Grid.Column mobile={8}>
-                    <Button>Ver más</Button>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row className="diseases">
-              <Grid.Column mobile={15}>
-                <Grid.Row className="title" verticalAlign="middle">
-                  <Grid.Column verticalAlign="middle">
-                    <FracturaWhite />
-                    <span>Fracturas</span>
-                  </Grid.Column>
-                  <Label floating>2</Label>
-                </Grid.Row>
-                <Grid.Row className="box">
-                  <Grid.Column mobile={4}>
-                    <h3>Cúbito</h3>
-                  </Grid.Column>
-                  <Grid.Column mobile={8}>
-                    <Button>Ver más</Button>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid.Column>
-            </Grid.Row>
+            <Card
+              icon={<IconVacunaWhite />}
+              title={'Vacunas'}
+              arrayData={formValues.vacunas}
+            />
+            <Card
+              icon={<BisturiWhite />}
+              title={'Cirugías'}
+              arrayData={formValues.cirujias}
+            />
+            <Card
+              icon={<FracturaWhite />}
+              title={'Fracturas'}
+              arrayData={formValues.fracturas}
+            />
             <Grid.Row className="diseases">
               <Grid.Column mobile={15}>
                 <Grid.Row className="title" verticalAlign="middle">
@@ -252,113 +250,84 @@ export default function Resume() {
                     <UnidadSangreWhite />
                     <span>Transfusiones</span>
                   </Grid.Column>
-                  <Label floating>2</Label>
+                  {/* <Label floating>2</Label> */}
                 </Grid.Row>
                 <Grid.Row className="box">
                   <Grid.Column mobile={4}>
-                    <h3>Si, 2 veces</h3>
+                    {formValues.transfunciones.length > 0 && (
+                      <h3>Sí, { formValues.transfunciones.length} {formValues.transfunciones.length === 1 ? 'vez' : 'veces'} </h3>
+                    )}
+                    {formValues.transfunciones.length === 0 && (
+                      <h3>No</h3>
+                    )}
                   </Grid.Column>
                   <Grid.Column mobile={8}>
-                    <Button>Ver más</Button>
+                    {/* <Button>Ver más</Button> */}
                   </Grid.Column>
                 </Grid.Row>
               </Grid.Column>
             </Grid.Row>
-            <Grid.Row className="diseases">
-              <Grid.Column mobile={15}>
-                <Grid.Row className="title" verticalAlign="middle">
-                  <Grid.Column verticalAlign="middle">
-                    <SillaWhite />
-                    <span>Discapacidad</span>
-                  </Grid.Column>
-                  <Label floating>2</Label>
-                </Grid.Row>
-                <Grid.Row className="box">
-                  <Grid.Column mobile={4}>
-                    <h3>Visual</h3>
-                  </Grid.Column>
-                  <Grid.Column mobile={8}>
-                    <Button>Ver más</Button>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row className="diseases">
-              <Grid.Column mobile={15}>
-                <Grid.Row className="title" verticalAlign="middle">
-                  <Grid.Column verticalAlign="middle">
-                    <ProtesisWhite />
-                    <span>Dispositivos</span>
-                  </Grid.Column>
-                  <Label floating>2</Label>
-                </Grid.Row>
-                <Grid.Row className="box">
-                  <Grid.Column mobile={4}>
-                    <h3>Clavo en el brazo izquierdo</h3>
-                  </Grid.Column>
-                  <Grid.Column mobile={8}>
-                    <Button>Ver más</Button>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row className="diseases">
-              <Grid.Column mobile={15}>
-                <Grid.Row className="title" verticalAlign="middle">
-                  <Grid.Column verticalAlign="middle">
-                    <MujerWhite />
-                    <span>Ginecología</span>
-                  </Grid.Column>
-                  <Label floating>2</Label>
-                </Grid.Row>
-                <Grid.Row className="box">
-                  <Grid.Column mobile={4}>
-                    {/* <h3>Polen</h3> */}
-                  </Grid.Column>
-                  <Grid.Column mobile={8}>
-                    <Button>Ver más</Button>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row className="diseases">
-              <Grid.Column mobile={15}>
-                <Grid.Row className="title" verticalAlign="middle">
-                  <Grid.Column verticalAlign="middle">
-                    <MedicoWhite />
-                    <span>Contactos médicos</span>
-                  </Grid.Column>
-                  <Label floating>2</Label>
-                </Grid.Row>
-                <Grid.Row className="box">
-                  <Grid.Column mobile={4}>
-                    {/* <h3>Polen</h3> */}
-                  </Grid.Column>
-                  <Grid.Column mobile={8}>
-                    <Button>Ver más</Button>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row className="diseases">
-              <Grid.Column mobile={15}>
-                <Grid.Row className="title" verticalAlign="middle">
-                  <Grid.Column verticalAlign="middle">
-                    <SeguroMedicoWhite />
-                    <span>Seguros</span>
-                  </Grid.Column>
-                  <Label floating>2</Label>
-                </Grid.Row>
-                <Grid.Row className="box">
-                  <Grid.Column mobile={4}>
-                    {/* <h3>Polen</h3> */}
-                  </Grid.Column>
-                  <Grid.Column mobile={8}>
-                    <Button>Ver más</Button>
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid.Column>
-            </Grid.Row>
+            <Card
+              icon={<SillaWhite />}
+              title={'Discapacidad'}
+              arrayData={formValues.discapacidad}
+            />
+            <Card
+              icon={<ProtesisWhite />}
+              title={'Dispositivos'}
+              arrayData={formValues.others}
+
+            />
+            {sex === 'F' && (
+              <Grid.Row className="diseases">
+                <Grid.Column mobile={15}>
+                  <Grid.Row className="title" verticalAlign="middle">
+                    <Grid.Column verticalAlign="middle">
+                      <MujerWhite />
+                      <span>Ginecología</span>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row className="box">
+                    <Grid.Column mobile={4}>
+                      {!isShow && (
+                        <h3>Menstruación: {formValues.ginecologia.has_menstruation === 'NOT_HAD' ? 'Ya no la tiene' : 'La tiene'}</h3>
+                      )}
+                      {isShow && (
+                        <>
+                          <h3>Menstruación: {formValues.ginecologia.has_menstruation === 'NOT_HAD' ? 'Ya no la tiene' : 'La tiene'}</h3>
+                          <h3>embarazos: {formValues.ginecologia.embarazos}</h3>
+                          <h3>partos: {formValues.ginecologia.partos}</h3>
+                          <h3>abortos: {formValues.ginecologia.abortos}</h3>
+                        </>
+                      )}
+
+                    </Grid.Column>
+                    <Grid.Column mobile={8}>
+                      {!isShow && (
+                        <Button
+                          onClick={() => setIsShow(true)}
+                        >Ver más</Button>
+                      )}
+                      {isShow && (
+                        <Button
+                          onClick={() => setIsShow(false)}
+                        >Ver menos</Button>
+                      )}
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+              </Grid.Row>
+            )}
+            <CardPhone
+              icon={<MedicoWhite />}
+              title={'Contactos médicos'}
+              arrayData={formValues.medicalContact}
+            />
+            <CardPhone
+              icon={<SeguroMedicoWhite />}
+              title={'Seguros'}
+              arrayData={formValues.seguros}
+            />
           </>
         )}
         <Grid.Row className="diseases">
