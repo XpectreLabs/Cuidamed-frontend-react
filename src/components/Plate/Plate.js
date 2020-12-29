@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import { loadStripe } from "@stripe/stripe-js";
 import { Grid, Input, Button } from 'semantic-ui-react';
 import Logo from '../../images/CuidaMEDLogo.png';
 import Placa from '../../images/placa.jpg';
@@ -6,7 +7,47 @@ import { CustomInput } from '../inputsCustom/CustomInput';
 import { SelectCustom } from '../inputsCustom/Select/Select';
 import bloodType from './data';
 
+const stripePromise = loadStripe("keyStripe");
+
+
 export default function Plate() {
+    const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    // Check to see if this is a redirect back from Checkout
+    const query = new URLSearchParams(window.location.search);
+
+    if (query.get("success")) {
+      setMessage("Orden Aceptada! Recibiras un email de confirmacion.");
+    }
+
+    if (query.get("canceled")) {
+      setMessage(
+        "Order canceleda,Intente de nuevo."
+      );
+    }
+  }, []);
+
+  const handleClick = async (event) => {
+    const stripe = await stripePromise;
+
+    const response = await fetch("http://localhost:1337/api/pagoBand", {
+      method: "POST",
+    });
+
+    const session = await response.json();
+
+    // When the customer clicks on the button, redirect them to Checkout.
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result.error) {
+      // If `redirectToCheckout` fails due to a browser or network
+      // error, display the localized error message to your customer
+      // using `result.error.message`.
+    }
+  };
 
     const [formValues, setFormValues] = useState({
         name: "",
@@ -98,9 +139,11 @@ export default function Plate() {
                     <span className={disease.length > 25 ? 'warning' : ''}>{disease.length}/25</span>
                 </Grid.Row>
                 <Grid.Row>
-                    <Button className="btn-main">Proceder al pago</Button>
+                    <Button className="btn-main" id="checkout-button" role="link" onClick={handleClick}>Proceder al pago</Button>
+                    
                 </Grid.Row>
             </Grid.Column>
         </Grid>
     )
 }
+
