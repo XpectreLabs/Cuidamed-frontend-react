@@ -7,8 +7,7 @@ import { CustomInput } from '../inputsCustom/CustomInput';
 import { SelectCustom } from '../inputsCustom/Select/Select';
 import bloodType from './data';
 
-const stripePromise = loadStripe("keyStripe");
-
+const stripePromise = loadStripe('KEY STRIPE');
 
 export default function Plate() {
     const [message, setMessage] = useState("");
@@ -29,13 +28,14 @@ export default function Plate() {
   }, []);
 
   const handleClick = async (event) => {
+    // Get Stripe.js instance
     const stripe = await stripePromise;
 
-    const response = await fetch("http://localhost:1337/api/pagoBand", {
-      method: "POST",
-    });
+    // Call your backend to create the Checkout Session
+    const response = await fetch('http://localhost:1337/api/create-checkout-session', { method: 'POST' });
 
     const session = await response.json();
+    console.log(session);
 
     // When the customer clicks on the button, redirect them to Checkout.
     const result = await stripe.redirectToCheckout({
@@ -49,6 +49,7 @@ export default function Plate() {
     }
   };
 
+  
     const [formValues, setFormValues] = useState({
         name: "",
         emergencyContact: "",
@@ -58,6 +59,7 @@ export default function Plate() {
       const { name, emergencyContact, typeBlood, disease } = formValues;
 
     return (
+        
         <Grid className="plate">
             <Grid.Column width={9} verticalAlign="middle">
                 <Grid.Row className="bg-plate">
@@ -144,6 +146,8 @@ export default function Plate() {
                 </Grid.Row>
             </Grid.Column>
         </Grid>
+        
     )
+    
 }
 
