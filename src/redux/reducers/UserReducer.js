@@ -1,11 +1,12 @@
-import { types } from '../types';
+import { types } from "../types";
 
 const initialState = {
   loading: false,
-  createdUser: localStorage.getItem('email') ? true : false,
-  emailRegistered: localStorage.getItem('email')
-    ? localStorage.getItem('email')
+  createdUser: localStorage.getItem("email") ? true : false,
+  emailRegistered: localStorage.getItem("email")
+    ? localStorage.getItem("email")
     : null,
+  imgProfile: null,
 };
 export const UserReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -31,6 +32,8 @@ export const UserReducer = (state = initialState, action) => {
       return { ...state, loading: false };
     case types.saveAndContinue:
       return { ...state, loading: false };
+    case types.uploadImgUser:
+      return { ...state, imgProfile: action.payload };
     default:
       return state;
   }
