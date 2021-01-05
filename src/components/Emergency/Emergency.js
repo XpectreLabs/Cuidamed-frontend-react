@@ -8,8 +8,7 @@ import { Link } from 'react-router-dom';
 export default function Emergency() {
   const [isMedic, setIsMedic] = useState(null);
 
-  function Medic(props) {
-    let isMedic = props.ismedic;
+  function Medic() {
     if (isMedic) {
       return (
         <>
@@ -23,8 +22,15 @@ export default function Emergency() {
           </Grid.Row>
           <Grid.Row className="next">
             <Grid.Column mobile={14} computer={6} tablet={10}>
-              <Link to={'/resumen'}>
-                <Button>Seguir</Button>
+              <Link
+                to={{
+                  pathname: '/resumen',
+                  state: {
+                    typePerson: 'medico',
+                  },
+                }}
+              >
+                <Button >Seguir</Button>
               </Link>
             </Grid.Column>
           </Grid.Row>
@@ -43,9 +49,15 @@ export default function Emergency() {
           </Grid.Row>
           <Grid.Row className="next">
             <Grid.Column mobile={14} computer={6} tablet={10}>
-            <Link to={'/resumen'}>
-              <Button>Seguir</Button>
-            </Link>
+              <Link
+                to={{
+                  pathname: '/resumen',
+                  state: {
+                    typePerson: 'civil',
+                  },
+                }}>
+                <Button >Seguir</Button>
+              </Link>
             </Grid.Column>
           </Grid.Row>
         </>
@@ -73,13 +85,20 @@ export default function Emergency() {
       </Grid.Row>
       <Grid.Row className="answers">
         <Grid.Column mobile={5} computer="2" tablet="6">
-          <Button onClick={() => setIsMedic(true)}>Si</Button>
+          <Button
+            className={isMedic ? 'isChecked' : ''}
+            onClick={() => setIsMedic(true)}
+          >Si</Button>
         </Grid.Column>
         <Grid.Column mobile={5} computer="2" tablet="6">
-          <Button onClick={() => setIsMedic(false)}>No</Button>
+          <Button
+            className={isMedic === false ? 'isChecked' : ''}
+            onClick={() => setIsMedic(false)}
+          >No</Button>
         </Grid.Column>
       </Grid.Row>
-      <Medic ismedic={isMedic} />
+      {Medic()}
+      {/* <Medic ismedic={isMedic} /> */}
     </Grid>
   );
 }
