@@ -1,66 +1,129 @@
+// .login {
+//   > .container {
+//     .row {
+//       padding: 1em;
+//     }
+
+//     #labelEmail,
+//     #labelPassword {
+//       background-color: transparent;
+//       padding-top: 6px;
+//       padding-left: 4px;
+//       padding-right: 4px;
+//     }
+
+//     #email,
+//     #password {
+//       width: 16em;
+//     }
+
+//     .button {
+//       display: block;
+//       background-color: #ffffff;
+//       margin: 0 auto;
+//       padding: 0;
+//       width: 100%;
+//       height: 2.1em;
+//       border-radius: 2em;
+//       color: $secondary;
+//       border: 2px solid $secondary;
+//       font-family: "Comfortaa";
+//       font-size: 2em;
+//       font-weight: 400;
+
+//       &:hover {
+//         background-color: $secondary;
+//         color: #ffffff;
+//         border: 2px solid #ffffff;
+//       }
+//     }
+
+//     .emergency {
+//       margin-top: 2.5em;
+//       color: #ffffff;
+//       background-color: $red;
+//       border: 2px solid $red;
+
+//       &:hover {
+//         background-color: $red;
+//         color: #ffffff;
+//         border: 2px solid #ffffff;
+//       }
+//     }
+//   }
+// }
+
+// @media (max-width: $breakpoint-up-xls) {
+//   .form-container {
+//     width: 30%;
+//   }
+// }
+
+// @media (max-width: $breakpoint-up-xl) {
+//   .form-container {
+//     width: 35%;
+//   }
+// }
+
+
 .login {
-  > .container {
-    .row {
-      padding: 1em;
+  
+  >.row {
+
+    &.header {
+      padding-bottom: 0;
     }
 
-    #labelEmail,
-    #labelPassword {
-      background-color: transparent;
-      padding-top: 6px;
-      padding-left: 4px;
-      padding-right: 4px;
+    >.title {
+      margin: 0.5em;
+      font-size: 3em;
+      color: $white;
     }
+    >.column {
 
-    #email,
-    #password {
-      width: 16em;
-    }
+      >form {
+        >.input-container {
+          margin-bottom: 3em;
+        }
 
-    .button {
-      display: block;
-      background-color: #ffffff;
-      margin: 0 auto;
-      padding: 0;
-      width: 100%;
-      height: 2.1em;
-      border-radius: 2em;
-      color: $secondary;
-      border: 2px solid $secondary;
-      font-family: "Comfortaa";
-      font-size: 2em;
-      font-weight: 400;
-
-      &:hover {
-        background-color: $secondary;
-        color: #ffffff;
-        border: 2px solid #ffffff;
       }
-    }
 
-    .emergency {
-      margin-top: 2.5em;
-      color: #ffffff;
-      background-color: $red;
-      border: 2px solid $red;
-
-      &:hover {
+      .emergency-mobile {
         background-color: $red;
-        color: #ffffff;
-        border: 2px solid #ffffff;
+        border-color: $red;
+        color: $white;
+        margin-top: 0.5m;
+        // margin-bottom: 1em;
       }
+
+    }
+
+    >.register {
+      p {
+        text-align: center;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        font-size: 1.5em;
+        color: $white;
+        span {
+          color: $secondary;
+
+        }
+      }
+
     }
   }
 }
 
-@media (max-width: $breakpoint-up-xls) {
-  .form-container {
-    width: 30%;
-  }
-}
 
-@media (max-width: $breakpoint-up-xl) {
-  .form-container {
-    width: 35%;
+@media (max-width: $breakpoint-up-sm) {
+  .login {
+  
+    >.row {
+  
+      >.title {
+        font-size: 2em;
+      }
+    }
   }
 }

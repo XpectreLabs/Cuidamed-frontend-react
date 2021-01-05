@@ -1,0 +1,39 @@
+.register {
+    >.row {
+
+        &.header {
+          padding-bottom: 0;
+        }
+    
+        >.title {
+          margin: 0.5em;
+          font-size: 3em;
+          color: $white;
+        }
+        >.column {
+    
+          >form {
+            >.input-container {
+              margin-bottom: 3em;
+            }
+    
+          }
+    
+    
+        }
+    
+       
+      }
+}
+
+@media (max-width: $breakpoint-up-sm) {
+    .register {
+    
+      >.row {
+    
+        >.title {
+          font-size: 2em;
+        }
+      }
+    }
+  }
