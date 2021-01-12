@@ -1,6 +1,6 @@
 import React from 'react';
-import { Header } from '../components/Header';
-import { Label, Button } from 'semantic-ui-react';
+import { HeaderLogin } from '../components/Header';
+import { Label, Button, Grid } from 'semantic-ui-react';
 import { CustomInput } from '../components/inputsCustom/CustomInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -19,14 +19,15 @@ const VerifyCode = () => {
     return <Redirect to="/login" />;
   }
   return (
-    <div className="verify-code">
-      <Header hideElements={true} />
+    <Grid className="verify-code" centered>
+      <HeaderLogin hideElements={true} />
       <div className="background_container"></div>
-      <div className="container">
-        <Label className="title">
-          Ingrese el codigo de verificación del correo
-        </Label>
-        <form className="form-container" onSubmit={handleSubmit(onSubmit)}>
+      <Grid.Row>
+        <h1 className="title">Ingrese el codigo de verificación del correo</h1>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column computer={6} tablet={10} mobile={14}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <CustomInput
             type="number"
             areYouInLogin={true}
@@ -49,17 +50,22 @@ const VerifyCode = () => {
           />
           <Button type="submit">Seguir</Button>
         </form>
-        <div className="verify-code__container">
-          <p className="verify-code__container-paragraph">
-            Si no le llego el correo, presione <br /> el siguiente boton para
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column computer={6} tablet={10} mobile={14} className="information">
+        <p>
+            Si no le llego el correo, presione el siguiente boton para
             reenviar
-          </p>
-          <div className="verify-code__container-button">
+        </p>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column computer={6} tablet={10} mobile={14}>
             <Button type="button">Reenviar</Button>
-          </div>
-        </div>
-      </div>
-    </div>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
   );
 };
 export default VerifyCode;

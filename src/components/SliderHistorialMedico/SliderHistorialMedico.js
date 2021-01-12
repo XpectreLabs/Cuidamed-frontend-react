@@ -51,7 +51,12 @@ import { useDispatch } from 'react-redux';
 // install Swiper components
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
+const slide = (s) => {
+  var mySwiper = document.querySelector('.swiper-container').swiper;
+  mySwiper.slideTo(s);
+};
 
+// onClick={() => slide(value.slideFirst)}
 
 export default function SliderHistorialMedico() {
 
@@ -220,7 +225,7 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(0)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -267,7 +272,7 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(1)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -314,7 +319,7 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(2)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -359,7 +364,7 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(3)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -406,7 +411,7 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(4)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -453,7 +458,7 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(5)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -500,7 +505,7 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(6)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -547,7 +552,7 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(7)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -589,7 +594,7 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(8)}>
                     <label>
                       <Icon
                         name="pencil alternate"

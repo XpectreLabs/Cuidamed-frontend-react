@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { Label, Button } from 'semantic-ui-react';
-import { Header } from '../components/Header';
+import { Label, Button, Grid } from 'semantic-ui-react';
+import { HeaderLogin } from '../components/Header';
 import { CustomInput } from '../components/inputsCustom/CustomInput';
 import SpinnerComponent from '../components/spinner';
 import { createUser } from '../redux/actions/UserAction';
@@ -29,13 +29,15 @@ const Register = () => {
   }
   console.log(errors);
   return (
-    <div className="register ">
+    <Grid className="register" centered>
       {state.loading && <SpinnerComponent />}
-      <Header hideElements={true} />
-      <div className="background_container"></div>
-      <div className="container animate__animated animate__bounceInLeft">
-        <Label className="title">Crear Perfil</Label>
-        <form className="form-container" onSubmit={handleSubmit(onSubmit)}>
+      <HeaderLogin hideElements={true} />
+      <Grid.Row>
+        <h1 className="title">Crear perfil</h1>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column computer={6} tablet={10} mobile={14}>
+          <form onSubmit={handleSubmit(onSubmit)}>
           <CustomInput
             type="text"
             setRef={register({ required: true })}
@@ -92,7 +94,7 @@ const Register = () => {
             setValue={(e) => {
               setPassword(e);
             }}
-            placeholder="Password"
+            placeholder="Contraseña"
             setRef={register({ required: true })}
             errorComponent={
               errors.password &&
@@ -127,8 +129,13 @@ const Register = () => {
           />
           <Button type="submit">Seguir</Button>
         </form>
-      </div>
-    </div>
+        </Grid.Column>
+      </Grid.Row>
+      <div className="background_container"></div>
+      {/* <div className="container animate__animated animate__bounceInLeft">
+        <Label className="title">Crear Perfil</Label>
+      </div> */}
+    </Grid>
   );
 };
 export default Register;

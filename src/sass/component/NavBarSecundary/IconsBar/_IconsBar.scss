@@ -2,7 +2,7 @@
   background-color: #fff;
   border-top-left-radius: 2em;
   border-bottom-left-radius: 2em;
-   >svg path {
+   >svg path, >svg line {
      stroke:$main ;
    }
 }
@@ -17,6 +17,7 @@
   > svg {
     margin: 0.5em 0px;
     margin-left: 5px;
+    width: 4em;
   }
 
   &:hover {

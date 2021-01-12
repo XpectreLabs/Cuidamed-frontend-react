@@ -9,6 +9,7 @@ import {
     CarpSanguineo,
     CarpSexual,
     CarpUrinario,
+    CarpCancer,
 } from '../../images/icons/icons';
 
 import {
@@ -94,6 +95,13 @@ const carpetaSistemas = [
         humanSystem: 'piel',
         arrayData: arrayPiel,
         color: '#81452c'
+    },
+    {
+        svg: <CarpCancer />,
+        name: "Cancer",
+        humanSystem: 'cancer',
+        // arrayData: arrayPiel,
+        color: '#d30194'
     },
 
 ]

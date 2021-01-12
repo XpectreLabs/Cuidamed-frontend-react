@@ -1,16 +1,65 @@
+// .verify-code {
+//   &__container {
+//     padding-top: 153px;
+//     margin: 0 auto;
+//   }
+//   &__container-paragraph {
+//     color: white;
+//     text-align: center;
+//     font-size: 30px;
+//     margin-bottom: 70px;
+//   }
+//   &__container-button {
+//     margin: 0 auto;
+//     width: 350px;
+//   }
+// }
+
 .verify-code {
-  &__container {
-    padding-top: 153px;
-    margin: 0 auto;
+  >.row {
+
+    &.header {
+      padding-bottom: 0;
+    }
+
+    >.title {
+      margin: 0.5em;
+      font-size: 3em;
+      color: $white;
+    }
+    >.column {
+
+      >form {
+        >.input-container {
+          margin-bottom: 3em;
+        }
+
+      }
+
+
+    }
+
+    >.information {
+      p {
+        text-align: center;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        font-size: 1.5em;
+        color: $white;
+      }
+
+    }
   }
-  &__container-paragraph {
-    color: white;
-    text-align: center;
-    font-size: 30px;
-    margin-bottom: 70px;
-  }
-  &__container-button {
-    margin: 0 auto;
-    width: 350px;
+}
+
+@media (max-width: $breakpoint-up-sm) {
+  .verify-code {
+  
+    >.row {
+  
+      >.title {
+        font-size: 2em;
+      }
+    }
   }
 }
