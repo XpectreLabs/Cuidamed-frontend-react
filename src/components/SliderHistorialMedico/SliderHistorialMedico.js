@@ -52,7 +52,7 @@ import { useDispatch } from 'react-redux';
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 const slide = (s) => {
-  var mySwiper = document.querySelector('.swiper-container').swiper;
+  const mySwiper = document.querySelector('.swiper-container').swiper;
   mySwiper.slideTo(s);
 };
 
@@ -77,33 +77,33 @@ export default function SliderHistorialMedico() {
 
   const [responseDataHistorial, setResponseDataHistorial] = useState();
   useEffect(() => {
-    fetch(`${CONECTION}api/get-all-historial`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-        'x-auth-token': localStorage.getItem('refreshToken'),
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        if (data) {
-          setResponseDataHistorial(data);
-          setFormValues({
-            ...formValues,
-            covid: data.covid,
-            transplantes: data.transplantes,
-            cirujias: data.cirujias,
-            alergias: data.alergias,
-            discapacidad: data.discapacidad,
-            transplantes: data.transplantes,
-            other: data.other,
-            sangre: data.sangre,
-            fracturas: data.fracturas,
-          });
-        }
-      });
+    // fetch(`${CONECTION}api/get-all-historial`, {
+    //   method: 'GET',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Authorization: `Bearer ${localStorage.getItem('token')}`,
+    //     'x-auth-token': localStorage.getItem('refreshToken'),
+    //   },
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     if (data) {
+    //       setResponseDataHistorial(data);
+    //       setFormValues({
+    //         ...formValues,
+    //         covid: data.covid,
+    //         transplantes: data.transplantes,
+    //         cirujias: data.cirujias,
+    //         alergias: data.alergias,
+    //         discapacidad: data.discapacidad,
+    //         transplantes: data.transplantes,
+    //         other: data.other,
+    //         sangre: data.sangre,
+    //         fracturas: data.fracturas,
+    //       });
+    //     }
+    //   });
   }, []);
 
   useEffect(() => {
@@ -112,44 +112,84 @@ export default function SliderHistorialMedico() {
       case 0:
         if (formValues.covid) {
           setIsValidIndex(true);
-        } else setIsValidIndex(false);
+          removeArrowNext();
+          arrowNext();
+        } else {
+          setIsValidIndex(false)
+          removeArrowNext();
+        };
         break;
       case 1:
         if (formValues.cirujias) {
           setIsValidIndex(true);
-        } else setIsValidIndex(false);
+          removeArrowNext();
+          arrowNext();
+        } else {
+          setIsValidIndex(false)
+          removeArrowNext();
+        };
         break;
       case 2:
         if (formValues.fracturas) {
           setIsValidIndex(true);
-        } else setIsValidIndex(false);
+          removeArrowNext();
+          arrowNext();
+        } else {
+          setIsValidIndex(false)
+          removeArrowNext();
+        };
         break;
       case 3:
         if (formValues.sangre) {
           setIsValidIndex(true);
-        } else setIsValidIndex(false);
+          removeArrowNext();
+          arrowNext();
+        } else {
+          setIsValidIndex(false)
+          removeArrowNext();
+        };
         break;
       case 4:
         if (formValues.alergias) {
           setIsValidIndex(true);
-        } else setIsValidIndex(false);
+          removeArrowNext();
+          arrowNext();
+        } else {
+          setIsValidIndex(false)
+          removeArrowNext();
+        };
         break;
       case 5:
         if (formValues.discapacidad) {
           setIsValidIndex(true);
-        } else setIsValidIndex(false);
+          removeArrowNext();
+          arrowNext();
+        } else {
+          setIsValidIndex(false)
+          removeArrowNext();
+        };
         break;
       case 6:
         if (formValues.other) {
           setIsValidIndex(true);
-        } else setIsValidIndex(false);
+          removeArrowNext();
+          arrowNext();
+        } else {
+          setIsValidIndex(false)
+          removeArrowNext();
+        };
         break;
       case 7:
         if (formValues.transplantes) {
           setIsValidIndex(true);
-        } else setIsValidIndex(false);
+          removeArrowNext();
+          arrowNext();
+        } else {
+          setIsValidIndex(false)
+          removeArrowNext();
+        };
         break;
-      default:
+      default: removeArrowNext();
         break;
     }
   }, [activeIndex, formValues]);
@@ -157,6 +197,32 @@ export default function SliderHistorialMedico() {
   useEffect(() => {
     console.log(formValues)
   }, [formValues])
+
+  const arrowNext = () => {
+    const arrow = document.querySelector('.swiper-button-next');
+    arrow.style.color = '#00a199';
+    const button = document.createElement('button');
+    button.textContent = 'Siguiente';
+    button.classList.add('ui', 'button');
+    const div = document.createElement('div');
+    div.appendChild(button);
+    div.classList.add('arrow');
+    arrow.appendChild(div);
+  }
+
+  const removeArrowNext = () => {
+    const arrow = document.querySelector('.swiper-button-next');
+
+    if(arrow) {
+      arrow.style.color = '#ffffff';
+      while (arrow.firstChild) {
+  
+          arrow.removeChild(arrow.firstChild);
+      }
+      
+    }
+
+  }
 
   return (
     <Grid centered className="slider historial">

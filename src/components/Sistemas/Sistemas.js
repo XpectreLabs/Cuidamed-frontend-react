@@ -65,7 +65,7 @@ export default function Sistemas() {
                 </Link>
                 <Grid.Row>
                   <Button
-                    class={'ui button'}
+                    className={'ui button'}
                     style={{
                       backgroundColor: carpeta.is_completed ? '#19A06F' : ' #a01919'
                     }}>

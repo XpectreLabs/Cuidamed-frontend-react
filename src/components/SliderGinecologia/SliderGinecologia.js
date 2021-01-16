@@ -34,38 +34,38 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 export default function SliderGinecologia() {
 
   useEffect(() => {
-    fetch(`${CONECTION}api/ginecologia`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-        'x-auth-token': localStorage.getItem('refreshToken'),
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        if (data.data) {
-          const { has_menstruation, menopause, embarazos } = data.data[0];
-          let meno = "";
-          if (menopause === 'NO') {
-            meno = false;
-          } else if (menopause === 'YES') {
-            meno = true;
-          }
-          if (embarazos === 0) {
-            setIsPregnant(false);
-          } else if (embarazos > 0) {
-            setIsPregnant(true);
-          }
-          setMenopause(meno);
-          setFormValues({
-            ...formValues,
-            has_menstruation,
-            menopause: menopause
-          });
-        }
-      });
+    // fetch(`${CONECTION}api/ginecologia`, {
+    //   method: 'GET',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Authorization: `Bearer ${localStorage.getItem('token')}`,
+    //     'x-auth-token': localStorage.getItem('refreshToken'),
+    //   },
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     if (data.data) {
+    //       const { has_menstruation, menopause, embarazos } = data.data[0];
+    //       let meno = "";
+    //       if (menopause === 'NO') {
+    //         meno = false;
+    //       } else if (menopause === 'YES') {
+    //         meno = true;
+    //       }
+    //       if (embarazos === 0) {
+    //         setIsPregnant(false);
+    //       } else if (embarazos > 0) {
+    //         setIsPregnant(true);
+    //       }
+    //       setMenopause(meno);
+    //       setFormValues({
+    //         ...formValues,
+    //         has_menstruation,
+    //         menopause: menopause
+    //       });
+    //     }
+    //   });
   }, [])
 
   const [isValidIndex, setIsValidIndex] = useState(false);
@@ -115,42 +115,82 @@ export default function SliderGinecologia() {
       case 0:
         if (formValues) {
           setIsValidIndex(true);
-        } else setIsValidIndex(false);
+          removeArrowNext();
+          arrowNext();
+        } else {
+          setIsValidIndex(false)
+          removeArrowNext();
+        };
         break;
       case 1:
         if (formValues) {
           setIsValidIndex(true);
-        } else setIsValidIndex(false);
+          removeArrowNext();
+          arrowNext();
+        } else {
+          setIsValidIndex(false)
+          removeArrowNext();
+        };
         break;
       case 2:
         if (formValues) {
           setIsValidIndex(true);
-        } else setIsValidIndex(false);
+          removeArrowNext();
+          arrowNext();
+        } else {
+          setIsValidIndex(false)
+          removeArrowNext();
+        };
         break;
       case 3:
         if (formValues) {
           setIsValidIndex(true);
-        } else setIsValidIndex(false);
+          removeArrowNext();
+          arrowNext();
+        } else {
+          setIsValidIndex(false)
+          removeArrowNext();
+        };
         break;
       case 4:
         if (formValues) {
           setIsValidIndex(true);
-        } else setIsValidIndex(false);
+          removeArrowNext();
+          arrowNext();
+        } else {
+          setIsValidIndex(false)
+          removeArrowNext();
+        };
         break;
       case 5:
         if (formValues) {
           setIsValidIndex(true);
-        } else setIsValidIndex(false);
+          removeArrowNext();
+          arrowNext();
+        } else {
+          setIsValidIndex(false)
+          removeArrowNext();
+        };
         break;
       case 6:
         if (formValues) {
           setIsValidIndex(true);
-        } else setIsValidIndex(false);
+          removeArrowNext();
+          arrowNext();
+        } else {
+          setIsValidIndex(false)
+          removeArrowNext();
+        };
         break;
       case 7:
         if (formValues) {
           setIsValidIndex(true);
-        } else setIsValidIndex(false);
+          removeArrowNext();
+          arrowNext();
+        } else {
+          setIsValidIndex(false)
+          removeArrowNext();
+        };
         break;
       default:
         break;
@@ -245,7 +285,7 @@ export default function SliderGinecologia() {
     } else {
       return (
         <Grid.Row className="answers">
-          <Grid.Column width={4}>
+          <Grid.Column width={5}>
             <input
               id="notHad"
               type="radio"
@@ -264,7 +304,7 @@ export default function SliderGinecologia() {
               Ya no la tengo
             </label>
           </Grid.Column>
-          <Grid.Column width={4}>
+          <Grid.Column width={5}>
             <input
               id="notHave"
               type="radio"
@@ -292,9 +332,35 @@ export default function SliderGinecologia() {
   }
 
   const slide = (s) => {
-    var mySwiper = document.querySelector('.swiper-container').swiper;
+    const mySwiper = document.querySelector('.swiper-container').swiper;
     mySwiper.slideTo(s);
   };
+
+  const arrowNext = () => {
+    const arrow = document.querySelector('.swiper-button-next');
+    arrow.style.color = '#00a199';
+    const button = document.createElement('button');
+    button.textContent = 'Siguiente';
+    button.classList.add('ui', 'button');
+    const div = document.createElement('div');
+    div.appendChild(button);
+    div.classList.add('arrow');
+    arrow.appendChild(div);
+  }
+
+  const removeArrowNext = () => {
+    const arrow = document.querySelector('.swiper-button-next');
+
+    if(arrow) {
+      arrow.style.color = '#ffffff';
+      while (arrow.firstChild) {
+  
+          arrow.removeChild(arrow.firstChild);
+      }
+      
+    }
+
+  }
 
 
   return (
@@ -328,7 +394,7 @@ export default function SliderGinecologia() {
                   </h3>
                 </Grid.Row>
                 <Grid.Row>
-                  <Grid.Column width={6}>
+                  <Grid.Column width={10}>
                     <CustomInput
                       placeholder="Edad de primera menstruación"
                       type="number"

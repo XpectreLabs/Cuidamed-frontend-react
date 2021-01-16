@@ -28,6 +28,7 @@ import {
   bloodType,
   gradesStudy,
   religionArray,
+  hospitals,
   maritalStatus,
   ifNot,
 } from './data';
@@ -90,75 +91,75 @@ export default function Slider() {
     is_vaccinated: '',
     vaccine: '',
   });
-  useEffect(() => {
-    fetch(`${CONECTION}api/getUser/${id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-        'x-auth-token': localStorage.getItem('refreshToken'),
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        const {
-          birth_date,
-          birth_place,
-          career,
-          civil_status,
-          height,
-          is_vaccinated,
-          ocupation,
-          vaccine_number,
-          organ_donor,
-          place,
-          religion,
-          sex,
-          social_number,
-          type_blood,
-          weight,
-          vaccine,
-        } = data.users[0];
-        setFormValues({
-          ...formValues,
-          sex,
-          weight,
-          height,
-          birth_place,
-          birthDate: birth_date,
-          place,
-          type_blood,
-          career,
-          social_number,
-          ocupation,
-          religion,
-          stateMarital: civil_status,
-          organDonor: organ_donor,
-          is_vaccinated,
-          vaccine_number,
-          vacunado: is_vaccinated === 'YES' ? true : false,
-        });
-        setTotalVacunas(vaccine);
-        if (birth_date &&
-          birth_place &&
-          career &&
-          civil_status &&
-          height &&
-          is_vaccinated &&
-          ocupation &&
-          vaccine_number &&
-          organ_donor &&
-          place &&
-          religion &&
-          sex &&
-          social_number &&
-          type_blood &&
-          weight &&
-          vaccine) {
-          slide(6);
-        }
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(`${CONECTION}api/getUser/${id}`, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: `Bearer ${localStorage.getItem('token')}`,
+  //       'x-auth-token': localStorage.getItem('refreshToken'),
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       const {
+  //         birth_date,
+  //         birth_place,
+  //         career,
+  //         civil_status,
+  //         height,
+  //         is_vaccinated,
+  //         ocupation,
+  //         vaccine_number,
+  //         organ_donor,
+  //         place,
+  //         religion,
+  //         sex,
+  //         social_number,
+  //         type_blood,
+  //         weight,
+  //         vaccine,
+  //       } = data.users[0];
+  //       setFormValues({
+  //         ...formValues,
+  //         sex,
+  //         weight,
+  //         height,
+  //         birth_place,
+  //         birthDate: birth_date,
+  //         place,
+  //         type_blood,
+  //         career,
+  //         social_number,
+  //         ocupation,
+  //         religion,
+  //         stateMarital: civil_status,
+  //         organDonor: organ_donor,
+  //         is_vaccinated,
+  //         vaccine_number,
+  //         vacunado: is_vaccinated === 'YES' ? true : false,
+  //       });
+  //       setTotalVacunas(vaccine);
+  //       if (birth_date &&
+  //         birth_place &&
+  //         career &&
+  //         civil_status &&
+  //         height &&
+  //         is_vaccinated &&
+  //         ocupation &&
+  //         vaccine_number &&
+  //         organ_donor &&
+  //         place &&
+  //         religion &&
+  //         sex &&
+  //         social_number &&
+  //         type_blood &&
+  //         weight &&
+  //         vaccine) {
+  //         slide(6);
+  //       }
+  //     });
+  // }, []);
   const {
     sex,
     birthDate,
@@ -254,8 +255,10 @@ export default function Slider() {
     // IconVacuna,
   ];
 
+  const [flagNext, setFlagNext] = useState(true);
+
   useEffect(() => {
-    console.log(formValues);
+    // console.log(formValues);
     let flag = true;
     if (sex) {
       if (sex === 'M') {
@@ -264,59 +267,111 @@ export default function Slider() {
         document.getElementById('iconWomen').checked = true;
       }
     }
+    // setFlagNext(false);
     switch (activeIndex) {
       case 0:
         setTitleInfoBasic(false);
         if (sex != '' && sex != undefined) {
           setIsValidIndex(true);
+          removeArrowNext();
+          arrowNext();
+          // if(flagNext) slide(1);
           if (sex === 'F') {
             setSelectSex(<IconWomen />);
           }
-        } else setIsValidIndex(false);
+        } else {
+          setIsValidIndex(false);
+          removeArrowNext();
+        }
         break;
       case 1:
         setTitleInfoBasic(false);
-        if (birthDate !== '' && birth_place !== '' && place !== '')
+        if (birthDate !== null && birth_place !== '' && place !== '') {
           setIsValidIndex(true);
-        else setIsValidIndex(false);
+          removeArrowNext();
+          arrowNext();
+          // if(flagNext) slide(2);
+        }
+        else {
+          setIsValidIndex(false);
+          removeArrowNext();
+        }
         break;
       case 2:
         setTitleInfoBasic(false);
         if (height !== '' && weight !== '' && type_blood !== '')
-          setIsValidIndex(true);
-        else setIsValidIndex(false);
+          {
+            setIsValidIndex(true);
+            removeArrowNext();
+            arrowNext();
+            // if(flagNext) slide(3);
+          }
+        else {
+          setIsValidIndex(false);
+          removeArrowNext();
+        }
         break;
       case 3:
         setTitleInfoBasic(false);
         if (career !== '' && social_number !== '' && ocupation !== '')
-          setIsValidIndex(true);
-        else setIsValidIndex(false);
+          {
+            setIsValidIndex(true);
+            removeArrowNext();
+            arrowNext();
+            // if(flagNext) slide(4);
+          }
+        else {
+          setIsValidIndex(false);
+          removeArrowNext();
+        }
         break;
       case 4:
         setTitleInfoBasic(false);
         if (religion !== '' && stateMarital !== '' && organDonor !== '')
-          setIsValidIndex(true);
-        else setIsValidIndex(false);
+          {
+            setIsValidIndex(true);
+            removeArrowNext();
+            arrowNext();
+            // if(flagNext) slide(5);
+          }
+        else {
+          setIsValidIndex(false);
+          removeArrowNext();
+        }
         break;
       case 5:
         setTitleInfoBasic(true);
         if (vacunado !== '') {
-          setIsValidIndex(true);
-        } else setIsValidIndex(false);
+          {
+            setIsValidIndex(true);
+            removeArrowNext();
+            arrowNext();
+            // if(flagNext) slide(6);
+          }
+        } else {
+          setIsValidIndex(false);
+          removeArrowNext();
+        }
         break;
       case 6:
         // setTitleInfoBasic(true);
+        removeArrowNext();
         console.log('toatl vacunas: ', totalVacunas);
         if (vacunado === false) {
           console.log('llega aqui');
           setVacunaText('N');
+          // if(flagNext) slide(7);
         } else if (vacunado === true) {
           let vacunasString = 'Sí, ';
           totalVacunas.map((vacuna) => {
             vacunasString += ' ' + vacuna.name;
           });
           setVacunaText(vacunasString);
+          // if(flagNext) slide(1);
         }
+        break;
+      case 7:
+        removeArrowNext();
         break;
       default:
         setTitleInfoBasic(false);
@@ -325,7 +380,13 @@ export default function Slider() {
     return () => {
       flag = false;
     };
-  }, [activeIndex, formValues]);
+  }, [activeIndex, formValues, flagNext]);
+
+  
+
+  // useEffect(() =>{
+  //   console.log('Entro aquí cuando: ' + flagNext);
+  // },[flagNext])
 
   const [titleInfoBasic, setTitleInfoBasic] = useState(false);
 
@@ -365,10 +426,51 @@ export default function Slider() {
   useEffect(() => {
     setFormValues({ ...formValues, vaccine: JSON.stringify(totalVacunas) });
   }, [totalVacunas]);
+
   const slide = (s) => {
-    var mySwiper = document.querySelector('.swiper-container').swiper;
-    mySwiper.slideTo(s);
+    const mySwiper = document.querySelector('.swiper-container').swiper;
+    setTimeout(
+      () => {
+        mySwiper.slideTo(s);
+      },  
+      500
+    );
+    // setFlagNext(true);
   };
+
+  const arrowNext = () => {
+    const arrow = document.querySelector('.swiper-button-next');
+    arrow.style.color = '#00a199';
+    const button = document.createElement('button');
+    button.textContent = 'Siguiente';
+    button.classList.add('ui', 'button');
+    const div = document.createElement('div');
+    div.appendChild(button);
+    div.classList.add('arrow');
+    arrow.appendChild(div);
+  }
+
+  const removeArrowNext = () => {
+    const arrow = document.querySelector('.swiper-button-next');
+
+    if(arrow) {
+      arrow.style.color = '#ffffff';
+      while (arrow.firstChild) {
+  
+          arrow.removeChild(arrow.firstChild);
+      }
+      
+    }
+
+  }
+
+  useEffect(() => {
+    // console.log('Banderaaaa', flagNext)
+  }, [flagNext]);
+
+  
+
+
 
   return (
     <Grid centered className="slider">
@@ -384,15 +486,31 @@ export default function Slider() {
           slidesPerView={1}
           navigation
           allowSlideNext={isValidIndex}
-          // allowSlidePrev={isValidIndex}
           pagination={{ clickable: false }}
           // scrollbar={{ draggable: true }}
           onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={(e) => setActiveIndex(e.activeIndex)}
+          onSlideChange={(e) => {
+            console.log(e.activeIndex);
+            setActiveIndex(e.activeIndex)
+            if(e.activeIndex > activeIndex) {
+              setFlagNext(true);
+              
+            } else {
+                setFlagNext(false);
+              }
+
+              console.log(activeIndex);
+              }
+
+            }
           className="slider-content"
           simulateTouch={false}>
           <SwiperSlide data-hash="slide1">
-            <Container verticalAlign="middle">
+          {({isActive}) => (
+            <div>Current slide is {isActive ? 'active' : 'not active'}</div>
+          )}
+
+            <Container>
               <Grid verticalAlign="middle" name="sex">
                 <Grid.Row className="inputs-sex" verticalAlign="middle">
                   <Grid.Column floated="left" width={6}>
@@ -467,6 +585,7 @@ export default function Slider() {
                       }
                       valuePlace={birth_place}
                     />
+                    {/* { console.log('birth_place: ',birth_place)} */}
                   </div>
                 </Grid.Column>
                 <Grid.Column width={4}>
@@ -555,11 +674,13 @@ export default function Slider() {
                 <Grid.Column width={4}>
                   <div>
                     <IconSeguro />
-                    <CustomInput
-                      placeholder="Seguro médico"
-                      setValue={(e) =>
-                        setFormValues({ ...formValues, social_number: e })
-                      }
+                    <SelectCustom
+                      placeholder="Institución médica"
+                      dataOptions={hospitals}
+                      setValue={(e) => {
+                        console.log('hola');
+                        setFormValues({ ...formValues, social_number: e });
+                      }}
                       value={social_number}
                     />
                   </div>
@@ -751,16 +872,31 @@ export default function Slider() {
                       </div>
                     </Grid.Row>
                   ))}
-                  <Grid.Row>
+                  {/* <Grid.Row>
                     <Button
                       className="button-info-basic"
                       onClick={saveAndContinue}>
                       Guardar y Continuar
                     </Button>
-                  </Grid.Row>
+                  </Grid.Row> */}
                 </Grid.Column>
+                <Grid.Row className="button-info-basic">
+                  <Button
+                    onClick={saveAndContinue}>
+                    Guardar y Continuar
+                  </Button>
+              </Grid.Row>
               </Grid>
             </div>
+            {/* <Grid className="button-info-basic">
+              <Grid.Row>
+                <Button
+                  
+                  onClick={saveAndContinue}>
+                  Guardar y Continuar
+                </Button>
+              </Grid.Row>
+            </Grid> */}
           </SwiperSlide>
         </Swiper>
       </Grid.Row>

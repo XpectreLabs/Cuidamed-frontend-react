@@ -44,6 +44,7 @@
 
     .container {
       height: inherit;
+      width: 70%;
     }
 
     .slider-two {
@@ -85,7 +86,7 @@
         }
       }
       svg {
-        width: 20em;
+        width: 18em;
         margin-bottom: 1em;
         text-align: center;
         transition: all 500ms;
@@ -96,6 +97,21 @@
         font-size: 1.5em;
         margin-top: 1.5em;
       }
+    }
+
+    .arrow {
+      width: auto;
+
+      > .ui.button {
+        font-size: 1.5em;
+        padding: 10px;
+      }
+    }
+
+    .swiper-button-next {
+      right: 5em;
+      transition: all 300ms;
+      // color:white;
     }
   }
 
@@ -204,10 +220,28 @@
       }
     }
 
-    .row {
-      > .button-info-basic {
-        margin-bottom: 3em;
+    .grid > .column {
+      // background-color: yellow;
+
+      .row {
+        &:last-child {
+          margin-bottom: 5em !important;
+  
+        }
       }
     }
+
+    // > .button-info-basic {
+    //   position: absolute;
+    //   bottom: 0;
+    // }
+    // .row {
+      .button-info-basic {
+        position: fixed;
+        bottom: 0;
+        width: 80% !important;
+        // z-index: 1000000000;
+      }
+    // }
   }
 }
