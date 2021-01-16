@@ -51,7 +51,7 @@ const records = [
     subtitle: 'Transfusiones',
     question: '¿Alguna ves has tenido transfuciones de sangre?',
     placeholderNumber: 'Número de transfusiones',
-    placeholderAnswer: 'Unidades en (ml)',
+    placeholderAnswer: 'Unidades de sangre',
     typeInput: 'number',
     placeholderDate: 'Año aproximado',
     objectKey: "sangre"
@@ -62,7 +62,7 @@ const records = [
     subtitle: 'Alergias',
     question: '¿Tienes alergias?',
     placeholderNumber: 'Número de alergias',
-    placeholderAnswer: 'Tipos de alergias',
+    placeholderAnswer: 'Nombre de alergias',
     placeholderDate: 'Año de diagnostico',
     objectKey: "alergias"
   },
@@ -72,7 +72,7 @@ const records = [
     subtitle: 'Discapacidades',
     question: '¿Tienes discapacidades?',
     placeholderNumber: 'Número de discapacidades',
-    placeholderAnswer: 'Discapacidad',
+    placeholderAnswer: 'Nombre de discapacidad',
     placeholderDate: 'Año de diagnostico',
     objectKey: "discapacidad"
   },

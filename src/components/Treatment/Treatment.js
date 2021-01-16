@@ -121,7 +121,8 @@ export default function Treatment() {
           </Grid.Column>
           <Grid.Column width={5}>
             <CustomInput
-              placeholder="Dosis"
+              labelPlaceholder="Dosis"
+              placeholder="Dosis. Ej. 10 ml"
               type="text"
               setValue={(e) => setFormValues({ ...formValues, dose: e })}
               value={dose}
@@ -129,7 +130,8 @@ export default function Treatment() {
           </Grid.Column>
           <Grid.Column width={5}>
             <CustomInput
-              placeholder="Frecuencia"
+              labelPlaceholder="Frecuencia"
+              placeholder="Frecuencia. Ej. C/24hrs"
               type="text"
               setValue={(e) => setFormValues({ ...formValues, frequency: e })}
               value={frequency}

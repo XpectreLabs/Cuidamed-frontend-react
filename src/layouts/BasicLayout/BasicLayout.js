@@ -46,7 +46,7 @@ const BasicLayout = React.memo((props) => {
     <Container fluid className="basic-layout">
       <Grid>
         <Grid.Column mobile={16} tablet={2} computer={1}>
-          <label for="file_upload" className="btn-img">
+          <label htmlFor="file_upload" className="btn-img">
             <img
               src={
                 state.user.imgProfile !== null
@@ -69,7 +69,7 @@ const BasicLayout = React.memo((props) => {
               dispatch(logout());
             }}
           >
-            <i class="fas fa-sign-out-alt"></i>
+            <i className="fas fa-sign-out-alt"></i>
           </button>
         </Grid.Column>
         <Grid.Column mobile={16} tablet={14} computer={15}>

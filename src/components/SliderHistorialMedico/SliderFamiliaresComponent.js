@@ -185,13 +185,65 @@ const SliderAntecedentesComponent = ({
           <h3 className="question">{subtitle}</h3>
         </Grid.Row>
         <Grid.Row className="relatives">
-          <Grid.Column width={6}>
+          <Grid.Column width={8}>
             {iconFirst}
-            <Questions account={hasAcconutWoman} noaccount={noAccountWoman} information={informationWoman} ind={0} />
+            <Grid.Row className="relatives__answers">
+            <Grid.Column>
+              <div className="disease">
+                <CustomInput
+                  placeholder="Enfermedad"
+                  type="text"
+                  onblur={e => {
+                    console.log(e);
+                  }}
+                />
+              </div>
+            </Grid.Column>
+          </Grid.Row>
+            <Grid.Row className="relatives__answers">
+            <Grid.Column>
+              <div className="disease">
+                <CustomInput
+                  placeholder="Enfermedad"
+                  type="text"
+                  onblur={e => {
+                    console.log(e);
+                  }}
+                />
+              </div>
+            </Grid.Column>
+          </Grid.Row>
+            {/* <Questions account={hasAcconutWoman} noaccount={noAccountWoman} information={informationWoman} ind={0} /> */}
           </Grid.Column>
-          <Grid.Column width={6}>
+          <Grid.Column width={8}>
             {iconSecond}
-            <Questions account={hasAcconutMan} noaccount={noAccountMan} information={informationMan} ind={1} />
+            <Grid.Row className="relatives__answers">
+              <Grid.Column>
+                <div className="disease">
+                  <CustomInput
+                    placeholder="Enfermedad"
+                    type="text"
+                    onblur={e => {
+                      console.log(e);
+                    }}
+                  />
+                </div>
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row className="relatives__answers">
+              <Grid.Column>
+                <div className="disease">
+                  <CustomInput
+                    placeholder="Enfermedad"
+                    type="text"
+                    onblur={e => {
+                      console.log(e);
+                    }}
+                  />
+                </div>
+              </Grid.Column>
+            </Grid.Row>
+            {/* <Questions account={hasAcconutMan} noaccount={noAccountMan} information={informationMan} ind={1} /> */}
           </Grid.Column>
         </Grid.Row>
       </Grid>

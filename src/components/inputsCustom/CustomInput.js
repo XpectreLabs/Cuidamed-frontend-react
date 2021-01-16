@@ -3,6 +3,7 @@ import React from 'react';
 export const CustomInput = React.memo(
   ({
     placeholder = 'Input Example',
+    labelPlaceholder = placeholder,
     type = 'text',
     value,
     areYouInLogin = false,
@@ -35,7 +36,7 @@ export const CustomInput = React.memo(
           required={required}
           {...functionPlaces}
         />
-        <label placeholder={placeholder}></label>
+        <label placeholder={labelPlaceholder}></label>
         {errorComponent}
       </div>
     );

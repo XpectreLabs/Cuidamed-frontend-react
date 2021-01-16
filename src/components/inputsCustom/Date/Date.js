@@ -14,7 +14,8 @@ const DateInput = ({
   setValue = (e) => {
     // console.log(e)
   },
-  value
+  value,
+  year = false,
 }) => {
   const [fecha, setFecha] = useState(null);
   console.log("Value: ",value)
@@ -32,24 +33,44 @@ const DateInput = ({
       document.getElementById(id).style.opacity = 0;
     }
   };
-  return (
-    <div className="input-container">
-      <DatePicker
-        selected={fecha}
-        onChange={handleInputChange}
-        locale="es"
-        className="pickers"
-        dateFormat="dd 'de' MMMM 'de' yyyy"
-        showMonthDropdown
-        showYearDropdown
-        dropdownMode="select"
-        maxDate={new Date()}
-        fixedHeight
-        placeholderText={placeholder}></DatePicker>
-      <label id={id} className="date" placeholder={placeholder}></label>
-      {/* <label className="date" placeholder={placeholder}></label> */}
-    </div>
-  );
+
+  if(!year) {
+    return (
+      <div className="input-container">
+        <DatePicker
+          selected={fecha}
+          onChange={handleInputChange}
+          locale="es"
+          className="pickers"
+          dateFormat="dd 'de' MMMM 'de' yyyy"
+          showMonthDropdown
+          showYearDropdown
+          dropdownMode="select"
+          // maxDate={new Date()}
+          fixedHeight
+          placeholderText={placeholder}></DatePicker>
+        <label id={id} className="date" placeholder={placeholder}></label>
+        {/* <label className="date" placeholder={placeholder}></label> */}
+      </div>
+    );
+  } else {
+    return (
+      <div className="input-container">
+        <DatePicker
+          selected={fecha}
+          onChange={handleInputChange}
+          className="pickers"
+          // maxDate={new Date()}
+          fixedHeight
+          placeholderText={placeholder}
+          showYearPicker
+          dateFormat="yyyy"
+          ></DatePicker>
+        <label id={id} className="date" placeholder={placeholder}></label>
+        {/* <label className="date" placeholder={placeholder}></label> */}
+      </div>
+    );
+  }
 };
 
 export default DateInput;
