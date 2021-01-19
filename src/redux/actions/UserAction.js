@@ -99,7 +99,7 @@ export const updateInfoBasic = (pInfo, history) => {
           history.push("/dashboard/enfermedades-comunes");
         }
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 };
 
@@ -128,7 +128,7 @@ export const saveIllnessSystem = (pInfo, history) => {
           history.push("/dashboard/sistemas");
         }
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 };
 
@@ -151,14 +151,16 @@ export const updateHistoryMedical = (pInfo, history) => {
         console.log(response);
         if (response.message) {
           Swal.fire({
-            title: "Usuario Actualizado",
+            title: "¡Antecedentes actualizados!",
             icon: "success",
           });
           //dispatch({ type: types.saveAndContinue });
-          //history.push('/dashboard/enfermedades-comunes');
+          const { sex } = JSON.parse(localStorage.getItem('user'));
+          if (sex === 'F') history.push('/dashboard/ginecologia');
+          else history.push('/dashboard/tratamiento');
         }
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 };
 
@@ -188,7 +190,7 @@ export const updateGinecologia = (pInfo, history) => {
           //history.push('/dashboard/enfermedades-comunes');
         }
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 };
 
@@ -218,7 +220,7 @@ export const createTratamiento = (pInfo, history) => {
           //history.push('/dashboard/enfermedades-comunes');
         }
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 };
 
@@ -248,7 +250,7 @@ export const createContactoUrgente = (pInfo, history) => {
           //history.push('/dashboard/enfermedades-comunes');
         }
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 };
 
@@ -278,7 +280,7 @@ export const createContactoMedico = (pInfo, history) => {
           //history.push('/dashboard/enfermedades-comunes');
         }
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 };
 
@@ -308,7 +310,7 @@ export const createAseguradora = (pInfo, history) => {
           //history.push('/dashboard/enfermedades-comunes');
         }
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 };
 
@@ -331,7 +333,7 @@ export const uploadImage = (img) => {
         localStorage.setItem("user", JSON.stringify(response.user[0]));
         dispatch(setImage(URL.createObjectURL(img)));
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 };
 export const setImage = (img) => ({
