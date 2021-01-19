@@ -50,7 +50,8 @@ const SliderAntecedentesComponent = ({
 
   const handleNoSelected = () => {
     let obj = {};
-    obj[objectKey] = [{ name: 'N/A', year: '' }];
+    obj[objectKey] = 'N/A';
+
     getValue(obj);
   }
 
@@ -123,7 +124,7 @@ const SliderAntecedentesComponent = ({
         )}
         {totalElements.map(({ name, order, year }, i) => (
           <Grid.Row className="vacunas__title-description" key={i}>
-            <Grid.Column width={objectKey !== 'alergias' ? 5: 10}>
+            <Grid.Column width={objectKey !== 'alergias' ? 5 : 10}>
               <CustomInput
                 placeholder={placeholderAnswer}
                 type={typeInput}
@@ -138,24 +139,24 @@ const SliderAntecedentesComponent = ({
                 value={name}
               />
             </Grid.Column>
-            {objectKey !== 'alergias' &&(
-            <Grid.Column width={5}>
-              <Date
-                placeholder={placeholderDate}
-                year={objectKey === 'sangre' || objectKey === 'alergias' || objectKey === 'discapacidad' || objectKey === 'other' || objectKey === 'transplantes' ? true: false}
-                id={'date_column' + i}
-                setValue={(e) => {
-                  setTotalElements((numbers) => {
-                    let updateValue = numbers.map((number) =>
-                      number.order === order ? { ...number, year: e } : number
-                    );
-                    return updateValue;
-                  });
-                }}
-                value={year}
-              />
+            {objectKey !== 'alergias' && (
+              <Grid.Column width={5}>
+                <Date
+                  placeholder={placeholderDate}
+                  year={objectKey === 'sangre' || objectKey === 'alergias' || objectKey === 'discapacidad' || objectKey === 'other' || objectKey === 'transplantes' ? true : false}
+                  id={'date_column' + i}
+                  setValue={(e) => {
+                    setTotalElements((numbers) => {
+                      let updateValue = numbers.map((number) =>
+                        number.order === order ? { ...number, year: e } : number
+                      );
+                      return updateValue;
+                    });
+                  }}
+                  value={year}
+                />
 
-            </Grid.Column>
+              </Grid.Column>
             )}
           </Grid.Row>
         ))}
