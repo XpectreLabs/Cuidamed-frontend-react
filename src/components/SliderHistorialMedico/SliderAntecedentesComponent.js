@@ -67,7 +67,7 @@ const SliderAntecedentesComponent = ({
     } else setTotalElements([]);
   };
   return (
-    <Container>
+    <div className='main-container'>
       <h1 className="title">Historial Médico</h1>
       <h3 className="subtitle-record">{subtitle}</h3>
       <Grid centered className="records">
@@ -110,6 +110,7 @@ const SliderAntecedentesComponent = ({
         {hasRecord && (
           <>
             <Grid.Row className="vacunas__record">
+            <Grid.Column width={12}>
               <div className="quantity">
                 <CustomInput
                   placeholder={placeholderNumber}
@@ -118,12 +119,13 @@ const SliderAntecedentesComponent = ({
                   value={numberInput}
                 />
               </div>
+            </Grid.Column>
             </Grid.Row>
           </>
         )}
         {totalElements.map(({ name, order, year }, i) => (
           <Grid.Row className="vacunas__title-description" key={i}>
-            <Grid.Column width={objectKey !== 'alergias' ? 5: 10}>
+            <Grid.Column width={objectKey !== 'alergias' ? 6: 12}>
               <CustomInput
                 placeholder={placeholderAnswer}
                 type={typeInput}
@@ -139,7 +141,7 @@ const SliderAntecedentesComponent = ({
               />
             </Grid.Column>
             {objectKey !== 'alergias' &&(
-            <Grid.Column width={5}>
+            <Grid.Column width={6}>
               <Date
                 placeholder={placeholderDate}
                 year={objectKey === 'sangre' || objectKey === 'alergias' || objectKey === 'discapacidad' || objectKey === 'other' || objectKey === 'transplantes' ? true: false}
@@ -160,7 +162,7 @@ const SliderAntecedentesComponent = ({
           </Grid.Row>
         ))}
       </Grid>
-    </Container>
+    </div>
   );
 };
 export default SliderAntecedentesComponent;

@@ -86,7 +86,7 @@
         }
       }
       svg {
-        width: 18em;
+        width: 17em;
         margin-bottom: 1em;
         text-align: center;
         transition: all 500ms;
@@ -103,8 +103,12 @@
       width: auto;
 
       > .ui.button {
-        font-size: 1.5em;
+        font-size: 1.7em;
         padding: 10px;
+        // padding-left: 1em;
+        // padding-right: 1em;
+        color: $white;
+        background-color: $secondary;
       }
     }
 
@@ -230,18 +234,62 @@
         }
       }
     }
-
-    // > .button-info-basic {
-    //   position: absolute;
-    //   bottom: 0;
-    // }
-    // .row {
-      .button-info-basic {
-        position: fixed;
-        bottom: 0;
-        width: 80% !important;
-        // z-index: 1000000000;
-      }
-    // }
   }
+
+  .ui.selection.dropdown {
+    min-width: auto;
+  }
+}
+
+.button-info-basic {
+  position: fixed;
+  bottom: 1em;
+  width: 80% !important;
+  // z-index: 1000000000;
+  z-index: 12;
+}
+
+
+@media (max-width: 1235px) {
+
+  .slider {
+    font-size: 0.8em;
+  }
+
+  .info-basic {
+    font-size: 1.2em;
+  }
+
+  .input-container {  
+    >label::before {
+      font-size: 1.1em !important;
+    }
+  }
+  
+}
+
+@media (max-width: 1024px) {
+
+  .slider .swiper-container .grid svg {
+    width: 15em;
+  }
+}
+
+@media (max-width: 991px) {
+  .slider .swiper-container .grid svg {
+    width: 12em;
+  }
+
+  .slider .swiper-container .swiper-button-next {
+    top: 95%;
+    right: 30%;
+  }
+  .slider .swiper-container .swiper-button-prev {
+    top: 93%;
+    right: 70%;
+  }
+  .slider .swiper-container .arrow > .ui.button {
+    font-size: 2em;
+  }
+
 }

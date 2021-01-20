@@ -253,20 +253,23 @@ export default function SliderHistorialMedico() {
             </SwiperSlide>
           ))}
           <SwiperSlide style={{ position: 'relative' }} data-hash="slide10">
-            <Container>
-              <h1 className="title">Historial Médico</h1>
-              <h3 className="subtitle-record"></h3>
+            {/* <Container> */}
+              
+              {/* <h3 className="subtitle-record"></h3> */}
               <Grid centered className="resume">
+                <Grid.Row>
+                  <h1 className="title">Historial Médico</h1>
+                </Grid.Row>
                 <Grid.Row>
                   <Grid.Column width={3} className="icon">
                     <Virus />
                   </Grid.Column>
-                  <Grid.Column width={4} verticalAlign="middle">
+                  <Grid.Column width={4}>
                     <Grid.Row>
                       <h3 className="subtitle">Covid 19</h3>
                     </Grid.Row>
                     <Grid.Row>
-                      <Grid.Column verticalAlign="middle" width={6}>
+                      <Grid.Column width={6}>
                         <Grid.Row className="question">Medicamentos tomados</Grid.Row>
                         {formValues.covid && (
                           formValues.covid.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
@@ -276,9 +279,9 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column width={4} verticalAlign="middle" className="right">
+                  <Grid.Column width={4} className="right">
                     <Grid.Row>
-                      <Grid.Column verticalAlign="middle" width={3}>
+                      <Grid.Column width={3}>
                         <Grid.Row className="question">Fecha de contagio</Grid.Row>
                         {formValues.covid && (
                           formValues.covid.map((co) =>
@@ -291,7 +294,7 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(0)}>
+                  <Grid.Column className="edit" width={2} onClick={() => slide(0)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -308,12 +311,12 @@ export default function SliderHistorialMedico() {
                   <Grid.Column width={3} className="icon">
                     <Bisturi />
                   </Grid.Column>
-                  <Grid.Column width={4} verticalAlign="middle">
+                  <Grid.Column width={4}>
                     <Grid.Row>
                       <h3 className="subtitle">Cirugías</h3>
                     </Grid.Row>
                     <Grid.Row>
-                      <Grid.Column verticalAlign="middle" width={6}>
+                      <Grid.Column width={6}>
                         <Grid.Row className="question">Tipo de cirugía</Grid.Row>
                         {formValues.cirujias && (
                           formValues.cirujias.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
@@ -323,9 +326,9 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column width={4} verticalAlign="middle" className="right">
+                  <Grid.Column width={4} className="right">
                     <Grid.Row>
-                      <Grid.Column verticalAlign="middle" width={3}>
+                      <Grid.Column width={3}>
                         <Grid.Row className="question">Fecha de cirugía</Grid.Row>
                         {formValues.cirujias && (
                           formValues.cirujias.map((co) =>
@@ -338,7 +341,7 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(1)}>
+                  <Grid.Column className="edit" width={2} onClick={() => slide(1)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -355,12 +358,12 @@ export default function SliderHistorialMedico() {
                   <Grid.Column width={3} className="icon">
                     <Fractura />
                   </Grid.Column>
-                  <Grid.Column width={4} verticalAlign="middle">
+                  <Grid.Column width={4}>
                     <Grid.Row>
                       <h3 className="subtitle">Fracturas</h3>
                     </Grid.Row>
                     <Grid.Row>
-                      <Grid.Column verticalAlign="middle" width={6}>
+                      <Grid.Column width={6}>
                         <Grid.Row className="question">Tipo de fractura</Grid.Row>
                         {formValues.fracturas && (
                           formValues.fracturas.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
@@ -370,9 +373,9 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column width={4} verticalAlign="middle" className="right">
+                  <Grid.Column width={4} className="right">
                     <Grid.Row>
-                      <Grid.Column verticalAlign="middle" width={3}>
+                      <Grid.Column width={3}>
                         <Grid.Row className="question">Fecha de fractura</Grid.Row>
                         {formValues.fracturas && (
                           formValues.fracturas.map((co) =>
@@ -385,7 +388,7 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(2)}>
+                  <Grid.Column className="edit" width={2} onClick={() => slide(2)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -402,12 +405,12 @@ export default function SliderHistorialMedico() {
                   <Grid.Column width={3} className="icon">
                     <UnidadSangre />
                   </Grid.Column>
-                  <Grid.Column width={4} verticalAlign="middle">
+                  <Grid.Column width={4}>
                     <Grid.Row>
                       <h3 className="subtitle">Transfusiones</h3>
                     </Grid.Row>
                     <Grid.Row>
-                      <Grid.Column verticalAlign="middle" width={6}>
+                      <Grid.Column width={6}>
                         <Grid.Row className="question">Cantidad de unidades</Grid.Row>
                         {formValues.sangre && (
                           formValues.sangre.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
@@ -417,9 +420,9 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column width={4} verticalAlign="middle" className="right">
+                  <Grid.Column width={4} className="right">
                     <Grid.Row>
-                      <Grid.Column verticalAlign="middle" width={3}>
+                      <Grid.Column width={3}>
                         <Grid.Row className="question">Fecha de tranfusión</Grid.Row>
                         {formValues.sangre && (
                           formValues.sangre.map((co) =>
@@ -430,7 +433,7 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(3)}>
+                  <Grid.Column className="edit" width={2} onClick={() => slide(3)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -447,12 +450,12 @@ export default function SliderHistorialMedico() {
                   <Grid.Column width={3} className="icon">
                     <Alergias />
                   </Grid.Column>
-                  <Grid.Column width={4} verticalAlign="middle">
+                  <Grid.Column width={4}>
                     <Grid.Row>
                       <h3 className="subtitle">Alergias</h3>
                     </Grid.Row>
                     <Grid.Row>
-                      <Grid.Column verticalAlign="middle" width={6}>
+                      <Grid.Column width={6}>
                         <Grid.Row className="question">Tipo de alergia</Grid.Row>
                         {formValues.alergias && (
                           formValues.alergias.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
@@ -462,9 +465,9 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column width={4} verticalAlign="middle" className="right">
+                  <Grid.Column width={4} className="right">
                     <Grid.Row>
-                      <Grid.Column verticalAlign="middle" width={3}>
+                      <Grid.Column width={3}>
                         <Grid.Row className="question">Fecha de diagnóstico</Grid.Row>
                         {formValues.alergias && (
                           formValues.alergias.map((co) =>
@@ -477,7 +480,7 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(4)}>
+                  <Grid.Column className="edit" width={2} onClick={() => slide(4)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -494,12 +497,12 @@ export default function SliderHistorialMedico() {
                   <Grid.Column width={3} className="icon">
                     <Silla />
                   </Grid.Column>
-                  <Grid.Column width={4} verticalAlign="middle">
+                  <Grid.Column width={4}>
                     <Grid.Row>
                       <h3 className="subtitle">Discapacidades</h3>
                     </Grid.Row>
                     <Grid.Row>
-                      <Grid.Column verticalAlign="middle" width={6}>
+                      <Grid.Column width={6}>
                         <Grid.Row className="question">Tipo de discapacidad</Grid.Row>
                         {formValues.discapacidad && (
                           formValues.discapacidad.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
@@ -509,9 +512,9 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column width={4} verticalAlign="middle" className="right">
+                  <Grid.Column width={4} className="right">
                     <Grid.Row>
-                      <Grid.Column verticalAlign="middle" width={3}>
+                      <Grid.Column width={3}>
                         <Grid.Row className="question">Fecha de diagnóstico</Grid.Row>
                         {formValues.discapacidad && (
                           formValues.discapacidad.map((co) =>
@@ -524,7 +527,7 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(5)}>
+                  <Grid.Column className="edit" width={2} onClick={() => slide(5)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -541,12 +544,12 @@ export default function SliderHistorialMedico() {
                   <Grid.Column width={3} className="icon">
                     <Protesis />
                   </Grid.Column>
-                  <Grid.Column width={4} verticalAlign="middle">
+                  <Grid.Column width={4}>
                     <Grid.Row>
                       <h3 className="subtitle">Características</h3>
                     </Grid.Row>
                     <Grid.Row>
-                      <Grid.Column verticalAlign="middle" width={6}>
+                      <Grid.Column width={6}>
                         <Grid.Row className="question">Tipo de característica</Grid.Row>
                         {formValues.other && (
                           formValues.other.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
@@ -556,9 +559,9 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column width={4} verticalAlign="middle" className="right">
+                  <Grid.Column width={4} className="right">
                     <Grid.Row>
-                      <Grid.Column verticalAlign="middle" width={3}>
+                      <Grid.Column width={3}>
                         <Grid.Row className="question">Fecha de diagnóstico</Grid.Row>
                         {formValues.other && (
                           formValues.other.map((co) =>
@@ -571,7 +574,7 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(6)}>
+                  <Grid.Column className="edit" width={2} onClick={() => slide(6)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -588,12 +591,12 @@ export default function SliderHistorialMedico() {
                   <Grid.Column width={3} className="icon">
                     <IconDonador />
                   </Grid.Column>
-                  <Grid.Column width={4} verticalAlign="middle">
+                  <Grid.Column width={4}>
                     <Grid.Row>
                       <h3 className="subtitle">Transplantes</h3>
                     </Grid.Row>
                     <Grid.Row>
-                      <Grid.Column verticalAlign="middle" width={6}>
+                      <Grid.Column width={6}>
                         <Grid.Row className="question">Tipo de transplante</Grid.Row>
                         {formValues.transplantes && (
                           formValues.transplantes.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
@@ -603,9 +606,9 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column width={4} verticalAlign="middle" className="right">
+                  <Grid.Column width={4} className="right">
                     <Grid.Row>
-                      <Grid.Column verticalAlign="middle" width={3}>
+                      <Grid.Column width={3}>
                         <Grid.Row className="question">Fecha de transplante</Grid.Row>
                         {formValues.transplantes && (
                           formValues.transplantes.map((co) =>
@@ -618,7 +621,7 @@ export default function SliderHistorialMedico() {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(7)}>
+                  <Grid.Column className="edit" width={2} onClick={() => slide(7)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -635,12 +638,12 @@ export default function SliderHistorialMedico() {
                   <Grid.Column width={3} className="icon">
                     <Madre />
                   </Grid.Column>
-                  <Grid.Column width={3} verticalAlign="middle">
+                  <Grid.Column width={3}>
                     <Grid.Row>
                       <h3 className="subtitle">Madre</h3>
                     </Grid.Row>
                     <Grid.Row>
-                      <Grid.Column verticalAlign="middle" width={6}>
+                      <Grid.Column width={6}>
                         <Grid.Row className="question">Enfermedad de madre</Grid.Row>
                         <Grid.Row className="answer">Artritis</Grid.Row>
                       </Grid.Column>
@@ -649,18 +652,18 @@ export default function SliderHistorialMedico() {
                   <Grid.Column width={3} className="icon">
                     <Padre />
                   </Grid.Column>
-                  <Grid.Column width={2} verticalAlign="middle">
+                  <Grid.Column width={2}>
                     <Grid.Row>
                       <h3 className="subtitle">Padre</h3>
                     </Grid.Row>
                     <Grid.Row>
-                      <Grid.Column verticalAlign="middle" width={6}>
+                      <Grid.Column width={6}>
                         <Grid.Row className="question">Enfermedad de padre</Grid.Row>
                         <Grid.Row className="answer">Artritis</Grid.Row>
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
-                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(8)}>
+                  <Grid.Column className="edit" width={2} onClick={() => slide(8)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -670,16 +673,16 @@ export default function SliderHistorialMedico() {
                   </label>
                   </Grid.Column>
 
-                  {/* <Grid.Column width={4} verticalAlign="middle" className="right">
+                  {/* <Grid.Column width={4} className="right">
                   <Grid.Row>
-                    <Grid.Column verticalAlign="middle" width={3}>
+                    <Grid.Column width={3}>
                     <Grid.Row className="question">Fecha de transplante</Grid.Row>
                       <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
                       <Grid.Row className="answer">12 de octubre del 2020</Grid.Row>
                     </Grid.Column>
                   </Grid.Row>
                 </Grid.Column>
-                <Grid.Column className="edit" verticalAlign="middle" width={2}>
+                <Grid.Column className="edit" width={2}>
                   <label>
                     <Icon
                     name="pencil alternate"
@@ -692,20 +695,9 @@ export default function SliderHistorialMedico() {
                 <Grid.Row>
                   <Grid.Column width={13} className="line"></Grid.Column>
                 </Grid.Row>
-
-                <Grid.Row>
-                  <Grid.Column width={14}>
-                    <Button
-                      className="button-info-basic"
-                      onClick={saveAndContinue}>
-                      Guardar y Continuar
-                  </Button>
-
-                  </Grid.Column>
-                </Grid.Row>
               </Grid>
 
-            </Container>
+            {/* </Container> */}
             {/* <div className="info-basic">
               <Grid centered columns={16}>
                 <Grid.Column computer={14} tablet={12} mobile={16}>
@@ -721,6 +713,19 @@ export default function SliderHistorialMedico() {
             </div> */}
           </SwiperSlide>
         </Swiper>
+        {activeIndex === 9 && (
+        <Grid.Row className="button-info-basic">
+          <Grid.Column width={11}>
+            <Button
+              
+              onClick={saveAndContinue}>
+              Guardar y Continuar
+          </Button>
+
+          </Grid.Column>
+        </Grid.Row>
+
+        )}
       </Grid.Row>
     </Grid>
   );

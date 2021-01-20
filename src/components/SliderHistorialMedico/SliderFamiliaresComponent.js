@@ -177,7 +177,8 @@ const SliderAntecedentesComponent = ({
 
 
   return (
-    <Container>
+    // <Container>
+    <div className='main-container'>
       <h1 className="title">Historial Médico</h1>
       <h3 className="subtitle-record">Antecedentes familiares</h3>
       <Grid centered className="records">
@@ -187,6 +188,7 @@ const SliderAntecedentesComponent = ({
         <Grid.Row className="relatives">
           <Grid.Column width={8}>
             {iconFirst}
+            <label>Mamá</label>
             <Grid.Row className="relatives__answers">
             <Grid.Column>
               <div className="disease">
@@ -217,6 +219,7 @@ const SliderAntecedentesComponent = ({
           </Grid.Column>
           <Grid.Column width={8}>
             {iconSecond}
+            <label>Papá</label>
             <Grid.Row className="relatives__answers">
               <Grid.Column>
                 <div className="disease">
@@ -247,7 +250,8 @@ const SliderAntecedentesComponent = ({
           </Grid.Column>
         </Grid.Row>
       </Grid>
-    </Container>
+    {/* </Container> */}
+    </div>
   );
 };
 export default SliderAntecedentesComponent;

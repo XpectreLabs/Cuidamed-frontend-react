@@ -560,7 +560,7 @@ export default function Slider() {
           <SwiperSlide data-hash="slide2">
             <div className="slider-two">
               <Grid centered columns={3} verticalAlign="middle">
-                <Grid.Column width={4}>
+                <Grid.Column computer={4} tablet={6}>
                   <div>
                     <IconFechaNacimiento />
                     <Date
@@ -575,7 +575,7 @@ export default function Slider() {
                     {/* <Text className="justify-content" labelPlaceholder="Fecha de nacimiento" name="fechaNacimiento" labelName="labelFechaNacimiento" /> */}
                   </div>
                 </Grid.Column>
-                <Grid.Column width={4}>
+                <Grid.Column computer={4} tablet={6}>
                   <div>
                     <IconMundo />
                     <PlacesComplete
@@ -588,7 +588,7 @@ export default function Slider() {
                     {/* { console.log('birth_place: ',birth_place)} */}
                   </div>
                 </Grid.Column>
-                <Grid.Column width={4}>
+                <Grid.Column computer={4} tablet={6}>
                   <div>
                     <IconMapa />
                     <PlacesComplete
@@ -606,7 +606,7 @@ export default function Slider() {
           <SwiperSlide data-hash="slide3">
             <div className="slider-two">
               <Grid centered columns={3} verticalAlign="middle">
-                <Grid.Column width={4}>
+                <Grid.Column computer={4} tablet={6}>
                   <div>
                     <IconAltura />
                     <CustomInput
@@ -620,7 +620,7 @@ export default function Slider() {
                     />
                   </div>
                 </Grid.Column>
-                <Grid.Column width={4}>
+                <Grid.Column computer={4} tablet={6}>
                   <div>
                     <IconPeso />
                     <CustomInput
@@ -635,7 +635,7 @@ export default function Slider() {
                     />
                   </div>
                 </Grid.Column>
-                <Grid.Column width={4}>
+                <Grid.Column computer={4} tablet={6}>
                   <div>
                     <IconGotaSangre />
 
@@ -656,7 +656,7 @@ export default function Slider() {
           <SwiperSlide>
             <div className="slider-two">
               <Grid centered columns={3} verticalAlign="middle">
-                <Grid.Column width={4}>
+                <Grid.Column computer={4} tablet={6}>
                   <div>
                     <IconGradoEstudio />
                     <SelectCustom
@@ -671,7 +671,7 @@ export default function Slider() {
                     />
                   </div>
                 </Grid.Column>
-                <Grid.Column width={4}>
+                <Grid.Column computer={4} tablet={6}>
                   <div>
                     <IconSeguro />
                     <SelectCustom
@@ -685,7 +685,7 @@ export default function Slider() {
                     />
                   </div>
                 </Grid.Column>
-                <Grid.Column width={4}>
+                <Grid.Column computer={4} tablet={6}>
                   <div>
                     <IconOcupacion />
                     <CustomInput
@@ -703,7 +703,7 @@ export default function Slider() {
           <SwiperSlide data-hash="slide4">
             <div className="slider-two">
               <Grid centered columns={3} verticalAlign="middle">
-                <Grid.Column width={4}>
+                <Grid.Column computer={4} tablet={6}>
                   <div>
                     <IconReligion />
                     <SelectCustom
@@ -716,7 +716,7 @@ export default function Slider() {
                     />
                   </div>
                 </Grid.Column>
-                <Grid.Column width={4}>
+                <Grid.Column computer={4} tablet={6}>
                   <div>
                     <IconEstadoCivil />
                     <SelectCustom
@@ -729,7 +729,7 @@ export default function Slider() {
                     />
                   </div>
                 </Grid.Column>
-                <Grid.Column width={4}>
+                <Grid.Column computer={4} tablet={6}>
                   <div>
                     <IconDonador />
                     <SelectCustom
@@ -880,12 +880,7 @@ export default function Slider() {
                     </Button>
                   </Grid.Row> */}
                 </Grid.Column>
-                <Grid.Row className="button-info-basic">
-                  <Button
-                    onClick={saveAndContinue}>
-                    Guardar y Continuar
-                  </Button>
-              </Grid.Row>
+               
               </Grid>
             </div>
             {/* <Grid className="button-info-basic">
@@ -899,6 +894,17 @@ export default function Slider() {
             </Grid> */}
           </SwiperSlide>
         </Swiper>
+        {activeIndex === 6 && (
+          <Grid.Row className="button-info-basic">
+          <Grid.Column width={14}>
+            <Button
+              onClick={saveAndContinue}>
+              Guardar y Continuar
+            </Button>
+
+          </Grid.Column>
+          </Grid.Row>
+        )}
       </Grid.Row>
     </Grid>
   );
