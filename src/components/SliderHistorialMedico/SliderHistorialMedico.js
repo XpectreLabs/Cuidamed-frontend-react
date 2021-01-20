@@ -64,6 +64,7 @@ export default function SliderHistorialMedico() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const [formValues, setFormValues] = useState({});
+  const [formValuesIllnessFamily, setFormValuesIllnessFamily] = useState({});
 
   const dispatch = useDispatch();
 
@@ -72,6 +73,34 @@ export default function SliderHistorialMedico() {
     e.preventDefault();
     let objFracture = {};
     objFracture['objFracture'] = formValues;
+    fetch(`${CONECTION}api/Prelation`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'x-auth-token': localStorage.getItem('refreshToken'),
+      },
+      body: JSON.stringify({
+        parentesco: {
+          madre: {
+            Renfermedades: {
+              enfermedad1: formValuesIllnessFamily.illnessFirstMon,
+              enfermedad2: formValuesIllnessFamily.illnessSecondMon
+            }
+          },
+          padre: {
+            Renfermedades: {
+              enfermedad1: formValuesIllnessFamily.illnessFirstDad,
+              enfermedad2: formValuesIllnessFamily.illnessSecondDad
+            }
+          }
+        }
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
     dispatch(updateHistoryMedical(objFracture, history));
   };
 
@@ -108,6 +137,7 @@ export default function SliderHistorialMedico() {
 
   useEffect(() => {
     console.log(formValues);
+    console.log(formValuesIllnessFamily);
     switch (activeIndex) {
       case 0:
         if (formValues.covid) {
@@ -189,14 +219,24 @@ export default function SliderHistorialMedico() {
           removeArrowNext();
         };
         break;
+      case 8:
+        if (formValuesIllnessFamily) {
+          setIsValidIndex(true);
+          removeArrowNext();
+          arrowNext();
+        } else {
+          setIsValidIndex(false)
+          removeArrowNext();
+        };
+        break;
       default: removeArrowNext();
         break;
     }
-  }, [activeIndex, formValues]);
+  }, [activeIndex, formValues, formValuesIllnessFamily]);
 
-  useEffect(() => {
-    console.log(formValues)
-  }, [formValues])
+  // useEffect(() => {
+  //   console.log(formValuesIllnessFamily);
+  // }, [formValuesIllnessFamily])
 
   const arrowNext = () => {
     const arrow = document.querySelector('.swiper-button-next');
@@ -213,13 +253,13 @@ export default function SliderHistorialMedico() {
   const removeArrowNext = () => {
     const arrow = document.querySelector('.swiper-button-next');
 
-    if(arrow) {
+    if (arrow) {
       arrow.style.color = '#ffffff';
       while (arrow.firstChild) {
-  
-          arrow.removeChild(arrow.firstChild);
+
+        arrow.removeChild(arrow.firstChild);
       }
-      
+
     }
 
   }
@@ -249,7 +289,10 @@ export default function SliderHistorialMedico() {
           ))}
           {relativeRecords.map((relativeRecord, index) => (
             <SwiperSlide data-hash="slide1" key={index}>
-              <SliderFamiliaresComponent {...relativeRecord} />
+              <SliderFamiliaresComponent
+                {...relativeRecord}
+                getValue={e => { setFormValuesIllnessFamily(e) }}
+              />
             </SwiperSlide>
           ))}
           <SwiperSlide style={{ position: 'relative' }} data-hash="slide10">
@@ -264,37 +307,54 @@ export default function SliderHistorialMedico() {
                   <Grid.Column width={3} className="icon">
                     <Virus />
                   </Grid.Column>
-                  <Grid.Column width={4}>
-                    <Grid.Row>
-                      <h3 className="subtitle">Covid 19</h3>
-                    </Grid.Row>
-                    <Grid.Row>
-                      <Grid.Column width={6}>
-                        <Grid.Row className="question">Medicamentos tomados</Grid.Row>
-                        {formValues.covid && (
-                          formValues.covid.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
-                        )}
-                        {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
-                        <Grid.Row className="answer">Paracetamol</Grid.Row> */}
+                  {formValues.covid && formValues.covid === 'N/A' && (
+                    <Grid.Column width={8} verticalAlign="middle">
+                      <Grid.Row>
+                        <h3 className="subtitle">Covid 19</h3>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <Grid.Column verticalAlign="middle" width={6}>
+                          <Grid.Row className="question">No tiene covid 19</Grid.Row>
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid.Column>
+                  )}
+                  {formValues.covid && formValues.covid !== 'N/A' && (
+                    <>
+                      <Grid.Column width={4} verticalAlign="middle">
+                        <Grid.Row>
+                          <h3 className="subtitle">Covid 19</h3>
+                        </Grid.Row>
+                        <Grid.Row>
+                          <Grid.Column verticalAlign="middle" width={6}>
+                            <Grid.Row className="question">Medicamentos tomados</Grid.Row>
+                            {formValues.covid && (
+                              formValues.covid.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
+                            )}
+                            {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
+                            <Grid.Row className="answer">Paracetamol</Grid.Row> */}
+                          </Grid.Column>
+                        </Grid.Row>
                       </Grid.Column>
-                    </Grid.Row>
-                  </Grid.Column>
-                  <Grid.Column width={4} className="right">
-                    <Grid.Row>
-                      <Grid.Column width={3}>
-                        <Grid.Row className="question">Fecha de contagio</Grid.Row>
-                        {formValues.covid && (
-                          formValues.covid.map((co) =>
-                            <Grid.Row className="answer">
-                              <Moment date={co.year} locale="es" format="LL" />
-                            </Grid.Row>)
-                        )}
-                        {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
-                        <Grid.Row className="answer">12 de octubre del 2020</Grid.Row> */}
+                      <Grid.Column width={4} verticalAlign="middle" className="right">
+                        <Grid.Row>
+                          <Grid.Column verticalAlign="middle" width={3}>
+                            <Grid.Row className="question">Fecha de contagio</Grid.Row>
+                            {formValues.covid && (
+                              formValues.covid.map((co) =>
+                                <Grid.Row className="answer">
+                                  <Moment date={co.year} locale="es" format="LL" />
+                                </Grid.Row>)
+                            )}
+                            {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                            <Grid.Row className="answer">12 de octubre del 2020</Grid.Row> */}
+                          </Grid.Column>
+                        </Grid.Row>
                       </Grid.Column>
-                    </Grid.Row>
-                  </Grid.Column>
-                  <Grid.Column className="edit" width={2} onClick={() => slide(0)}>
+
+                    </>
+                  )}
+                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(0)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -311,37 +371,55 @@ export default function SliderHistorialMedico() {
                   <Grid.Column width={3} className="icon">
                     <Bisturi />
                   </Grid.Column>
-                  <Grid.Column width={4}>
-                    <Grid.Row>
-                      <h3 className="subtitle">Cirugías</h3>
-                    </Grid.Row>
-                    <Grid.Row>
-                      <Grid.Column width={6}>
-                        <Grid.Row className="question">Tipo de cirugía</Grid.Row>
-                        {formValues.cirujias && (
-                          formValues.cirujias.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
-                        )}
-                        {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
+                  {formValues.cirujias === 'N/A' && (
+                    <Grid.Column width={8} verticalAlign="middle">
+                      <Grid.Row>
+                        <h3 className="subtitle">Cirugías</h3>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <Grid.Column verticalAlign="middle" width={6}>
+                          <Grid.Row className="question">No tiene cirugías</Grid.Row>
+
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid.Column>
+                  )}
+                  {formValues.cirujias !== 'N/A' && (
+                    <>
+                      <Grid.Column width={4} verticalAlign="middle">
+                        <Grid.Row>
+                          <h3 className="subtitle">Cirugías</h3>
+                        </Grid.Row>
+                        <Grid.Row>
+                          <Grid.Column verticalAlign="middle" width={6}>
+                            <Grid.Row className="question">Tipo de cirugía</Grid.Row>
+                            {formValues.cirujias && (
+                              formValues.cirujias.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
+                            )}
+                            {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
                         <Grid.Row className="answer">Paracetamol</Grid.Row> */}
+                          </Grid.Column>
+                        </Grid.Row>
                       </Grid.Column>
-                    </Grid.Row>
-                  </Grid.Column>
-                  <Grid.Column width={4} className="right">
-                    <Grid.Row>
-                      <Grid.Column width={3}>
-                        <Grid.Row className="question">Fecha de cirugía</Grid.Row>
-                        {formValues.cirujias && (
-                          formValues.cirujias.map((co) =>
-                            <Grid.Row className="answer">
-                              <Moment date={co.year} locale="es" format="LL" />
-                            </Grid.Row>)
-                        )}
-                        {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                      <Grid.Column width={4} verticalAlign="middle" className="right">
+                        <Grid.Row>
+                          <Grid.Column verticalAlign="middle" width={3}>
+                            <Grid.Row className="question">Fecha de cirugía</Grid.Row>
+                            {formValues.cirujias && (
+                              formValues.cirujias.map((co) =>
+                                <Grid.Row className="answer">
+                                  <Moment date={co.year} locale="es" format="LL" />
+                                </Grid.Row>)
+                            )}
+                            {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
                         <Grid.Row className="answer">12 de octubre del 2020</Grid.Row> */}
+                          </Grid.Column>
+                        </Grid.Row>
                       </Grid.Column>
-                    </Grid.Row>
-                  </Grid.Column>
-                  <Grid.Column className="edit" width={2} onClick={() => slide(1)}>
+
+                    </>
+                  )}
+                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(1)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -358,37 +436,55 @@ export default function SliderHistorialMedico() {
                   <Grid.Column width={3} className="icon">
                     <Fractura />
                   </Grid.Column>
-                  <Grid.Column width={4}>
-                    <Grid.Row>
-                      <h3 className="subtitle">Fracturas</h3>
-                    </Grid.Row>
-                    <Grid.Row>
-                      <Grid.Column width={6}>
-                        <Grid.Row className="question">Tipo de fractura</Grid.Row>
-                        {formValues.fracturas && (
-                          formValues.fracturas.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
-                        )}
-                        {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
+                  {formValues.fracturas === 'N/A' && (
+                    <Grid.Column width={8} verticalAlign="middle">
+                      <Grid.Row>
+                        <h3 className="subtitle">Fracturas</h3>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <Grid.Column verticalAlign="middle" width={6}>
+                          <Grid.Row className="question">No tiene fracturas</Grid.Row>
+
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid.Column>
+                  )}
+                  {formValues.fracturas !== 'N/A' && (
+                    <>
+                      <Grid.Column width={4} verticalAlign="middle">
+                        <Grid.Row>
+                          <h3 className="subtitle">Fracturas</h3>
+                        </Grid.Row>
+                        <Grid.Row>
+                          <Grid.Column verticalAlign="middle" width={6}>
+                            <Grid.Row className="question">Tipo de fractura</Grid.Row>
+                            {formValues.fracturas && (
+                              formValues.fracturas.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
+                            )}
+                            {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
                         <Grid.Row className="answer">Paracetamol</Grid.Row> */}
+                          </Grid.Column>
+                        </Grid.Row>
                       </Grid.Column>
-                    </Grid.Row>
-                  </Grid.Column>
-                  <Grid.Column width={4} className="right">
-                    <Grid.Row>
-                      <Grid.Column width={3}>
-                        <Grid.Row className="question">Fecha de fractura</Grid.Row>
-                        {formValues.fracturas && (
-                          formValues.fracturas.map((co) =>
-                            <Grid.Row className="answer">
-                              <Moment date={co.year} locale="es" format="LL" />
-                            </Grid.Row>)
-                        )}
-                        {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                      <Grid.Column width={4} verticalAlign="middle" className="right">
+                        <Grid.Row>
+                          <Grid.Column verticalAlign="middle" width={3}>
+                            <Grid.Row className="question">Fecha de fractura</Grid.Row>
+                            {formValues.fracturas && (
+                              formValues.fracturas.map((co) =>
+                                <Grid.Row className="answer">
+                                  <Moment date={co.year} locale="es" format="LL" />
+                                </Grid.Row>)
+                            )}
+                            {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
                         <Grid.Row className="answer">12 de octubre del 2020</Grid.Row> */}
+                          </Grid.Column>
+                        </Grid.Row>
                       </Grid.Column>
-                    </Grid.Row>
-                  </Grid.Column>
-                  <Grid.Column className="edit" width={2} onClick={() => slide(2)}>
+
+                    </>
+                  )}
+                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(2)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -405,35 +501,52 @@ export default function SliderHistorialMedico() {
                   <Grid.Column width={3} className="icon">
                     <UnidadSangre />
                   </Grid.Column>
-                  <Grid.Column width={4}>
-                    <Grid.Row>
-                      <h3 className="subtitle">Transfusiones</h3>
-                    </Grid.Row>
-                    <Grid.Row>
-                      <Grid.Column width={6}>
-                        <Grid.Row className="question">Cantidad de unidades</Grid.Row>
-                        {formValues.sangre && (
-                          formValues.sangre.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
-                        )}
-                        {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
+                  {formValues.sangre === 'N/A' && (
+                    <Grid.Column width={8} verticalAlign="middle">
+                      <Grid.Row>
+                        <h3 className="subtitle">Transfusiones</h3>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <Grid.Column verticalAlign="middle" width={6}>
+                          <Grid.Row className="question">No tiene transfunsiones</Grid.Row>
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid.Column>
+                  )}
+                  {formValues.sangre !== 'N/A' && (
+                    <>
+                      <Grid.Column width={4} verticalAlign="middle">
+                        <Grid.Row>
+                          <h3 className="subtitle">Transfusiones</h3>
+                        </Grid.Row>
+                        <Grid.Row>
+                          <Grid.Column verticalAlign="middle" width={6}>
+                            <Grid.Row className="question">Cantidad de unidades</Grid.Row>
+                            {formValues.sangre && (
+                              formValues.sangre.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
+                            )}
+                            {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
                         <Grid.Row className="answer">Paracetamol</Grid.Row> */}
+                          </Grid.Column>
+                        </Grid.Row>
                       </Grid.Column>
-                    </Grid.Row>
-                  </Grid.Column>
-                  <Grid.Column width={4} className="right">
-                    <Grid.Row>
-                      <Grid.Column width={3}>
-                        <Grid.Row className="question">Fecha de tranfusión</Grid.Row>
-                        {formValues.sangre && (
-                          formValues.sangre.map((co) =>
-                            <Grid.Row className="answer">
-                              <Moment date={co.year} locale="es" format="LL" />
-                            </Grid.Row>)
-                        )}
+                      <Grid.Column width={4} verticalAlign="middle" className="right">
+                        <Grid.Row>
+                          <Grid.Column verticalAlign="middle" width={3}>
+                            <Grid.Row className="question">Fecha de tranfusión</Grid.Row>
+                            {formValues.sangre && (
+                              formValues.sangre.map((co) =>
+                                <Grid.Row className="answer">
+                                  <Moment date={co.year} locale="es" format="LL" />
+                                </Grid.Row>)
+                            )}
+                          </Grid.Column>
+                        </Grid.Row>
                       </Grid.Column>
-                    </Grid.Row>
-                  </Grid.Column>
-                  <Grid.Column className="edit" width={2} onClick={() => slide(3)}>
+
+                    </>
+                  )}
+                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(3)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -450,37 +563,54 @@ export default function SliderHistorialMedico() {
                   <Grid.Column width={3} className="icon">
                     <Alergias />
                   </Grid.Column>
-                  <Grid.Column width={4}>
-                    <Grid.Row>
-                      <h3 className="subtitle">Alergias</h3>
-                    </Grid.Row>
-                    <Grid.Row>
-                      <Grid.Column width={6}>
-                        <Grid.Row className="question">Tipo de alergia</Grid.Row>
-                        {formValues.alergias && (
-                          formValues.alergias.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
-                        )}
-                        {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
+                  {formValues.alergias === 'N/A' && (
+                    <Grid.Column width={8} verticalAlign="middle">
+                      <Grid.Row>
+                        <h3 className="subtitle">Alergias</h3>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <Grid.Column verticalAlign="middle" width={6}>
+                          <Grid.Row className="question">No tiene alergias</Grid.Row>
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid.Column>
+                  )}
+                  {formValues.alergias !== 'N/A' && (
+                    <>
+                      <Grid.Column width={4} verticalAlign="middle">
+                        <Grid.Row>
+                          <h3 className="subtitle">Alergias</h3>
+                        </Grid.Row>
+                        <Grid.Row>
+                          <Grid.Column verticalAlign="middle" width={6}>
+                            <Grid.Row className="question">Tipo de alergia</Grid.Row>
+                            {formValues.alergias && (
+                              formValues.alergias.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
+                            )}
+                            {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
                         <Grid.Row className="answer">Paracetamol</Grid.Row> */}
+                          </Grid.Column>
+                        </Grid.Row>
                       </Grid.Column>
-                    </Grid.Row>
-                  </Grid.Column>
-                  <Grid.Column width={4} className="right">
-                    <Grid.Row>
-                      <Grid.Column width={3}>
-                        <Grid.Row className="question">Fecha de diagnóstico</Grid.Row>
-                        {formValues.alergias && (
-                          formValues.alergias.map((co) =>
-                            <Grid.Row className="answer">
-                              <Moment date={co.year} locale="es" format="LL" />
-                            </Grid.Row>)
-                        )}
-                        {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                      <Grid.Column width={4} verticalAlign="middle" className="right">
+                        <Grid.Row>
+                          <Grid.Column verticalAlign="middle" width={3}>
+                            <Grid.Row className="question">Fecha de diagnóstico</Grid.Row>
+                            {formValues.alergias && (
+                              formValues.alergias.map((co) =>
+                                <Grid.Row className="answer">
+                                  <Moment date={co.year} locale="es" format="LL" />
+                                </Grid.Row>)
+                            )}
+                            {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
                         <Grid.Row className="answer">12 de octubre del 2020</Grid.Row> */}
+                          </Grid.Column>
+                        </Grid.Row>
                       </Grid.Column>
-                    </Grid.Row>
-                  </Grid.Column>
-                  <Grid.Column className="edit" width={2} onClick={() => slide(4)}>
+
+                    </>
+                  )}
+                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(4)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -497,37 +627,54 @@ export default function SliderHistorialMedico() {
                   <Grid.Column width={3} className="icon">
                     <Silla />
                   </Grid.Column>
-                  <Grid.Column width={4}>
-                    <Grid.Row>
-                      <h3 className="subtitle">Discapacidades</h3>
-                    </Grid.Row>
-                    <Grid.Row>
-                      <Grid.Column width={6}>
-                        <Grid.Row className="question">Tipo de discapacidad</Grid.Row>
-                        {formValues.discapacidad && (
-                          formValues.discapacidad.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
-                        )}
-                        {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
+                  {formValues.discapacidad === 'N/A' && (
+                    <Grid.Column width={8} verticalAlign="middle">
+                      <Grid.Row>
+                        <h3 className="subtitle">Discapacidades</h3>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <Grid.Column verticalAlign="middle" width={6}>
+                          <Grid.Row className="question">No tiene discapacidades</Grid.Row>
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid.Column>
+                  )}
+                  {formValues.discapacidad !== 'N/A' && (
+                    <>
+                      <Grid.Column width={4} verticalAlign="middle">
+                        <Grid.Row>
+                          <h3 className="subtitle">Discapacidades</h3>
+                        </Grid.Row>
+                        <Grid.Row>
+                          <Grid.Column verticalAlign="middle" width={6}>
+                            <Grid.Row className="question">Tipo de discapacidad</Grid.Row>
+                            {formValues.discapacidad && (
+                              formValues.discapacidad.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
+                            )}
+                            {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
                         <Grid.Row className="answer">Paracetamol</Grid.Row> */}
+                          </Grid.Column>
+                        </Grid.Row>
                       </Grid.Column>
-                    </Grid.Row>
-                  </Grid.Column>
-                  <Grid.Column width={4} className="right">
-                    <Grid.Row>
-                      <Grid.Column width={3}>
-                        <Grid.Row className="question">Fecha de diagnóstico</Grid.Row>
-                        {formValues.discapacidad && (
-                          formValues.discapacidad.map((co) =>
-                            <Grid.Row className="answer">
-                              <Moment date={co.year} locale="es" format="LL" />
-                            </Grid.Row>)
-                        )}
-                        {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                      <Grid.Column width={4} verticalAlign="middle" className="right">
+                        <Grid.Row>
+                          <Grid.Column verticalAlign="middle" width={3}>
+                            <Grid.Row className="question">Fecha de diagnóstico</Grid.Row>
+                            {formValues.discapacidad && (
+                              formValues.discapacidad.map((co) =>
+                                <Grid.Row className="answer">
+                                  <Moment date={co.year} locale="es" format="LL" />
+                                </Grid.Row>)
+                            )}
+                            {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
                         <Grid.Row className="answer">12 de octubre del 2020</Grid.Row> */}
+                          </Grid.Column>
+                        </Grid.Row>
                       </Grid.Column>
-                    </Grid.Row>
-                  </Grid.Column>
-                  <Grid.Column className="edit" width={2} onClick={() => slide(5)}>
+
+                    </>
+                  )}
+                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(5)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -544,37 +691,53 @@ export default function SliderHistorialMedico() {
                   <Grid.Column width={3} className="icon">
                     <Protesis />
                   </Grid.Column>
-                  <Grid.Column width={4}>
-                    <Grid.Row>
-                      <h3 className="subtitle">Características</h3>
-                    </Grid.Row>
-                    <Grid.Row>
-                      <Grid.Column width={6}>
-                        <Grid.Row className="question">Tipo de característica</Grid.Row>
-                        {formValues.other && (
-                          formValues.other.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
-                        )}
-                        {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
+                  {formValues.other === 'N/A' && (
+                    <Grid.Column width={8} verticalAlign="middle">
+                      <Grid.Row>
+                        <h3 className="subtitle">Características</h3>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <Grid.Column verticalAlign="middle" width={6}>
+                          <Grid.Row className="question">No tiene otras características</Grid.Row>
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid.Column>
+                  )}
+                  {formValues.other !== 'N/A' && (
+                    <>
+                      <Grid.Column width={4} verticalAlign="middle">
+                        <Grid.Row>
+                          <h3 className="subtitle">Características</h3>
+                        </Grid.Row>
+                        <Grid.Row>
+                          <Grid.Column verticalAlign="middle" width={6}>
+                            <Grid.Row className="question">Tipo de característica</Grid.Row>
+                            {formValues.other && (
+                              formValues.other.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
+                            )}
+                            {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
                         <Grid.Row className="answer">Paracetamol</Grid.Row> */}
+                          </Grid.Column>
+                        </Grid.Row>
                       </Grid.Column>
-                    </Grid.Row>
-                  </Grid.Column>
-                  <Grid.Column width={4} className="right">
-                    <Grid.Row>
-                      <Grid.Column width={3}>
-                        <Grid.Row className="question">Fecha de diagnóstico</Grid.Row>
-                        {formValues.other && (
-                          formValues.other.map((co) =>
-                            <Grid.Row className="answer">
-                              <Moment date={co.year} locale="es" format="LL" />
-                            </Grid.Row>)
-                        )}
-                        {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                      <Grid.Column width={4} verticalAlign="middle" className="right">
+                        <Grid.Row>
+                          <Grid.Column verticalAlign="middle" width={3}>
+                            <Grid.Row className="question">Fecha de diagnóstico</Grid.Row>
+                            {formValues.other && (
+                              formValues.other.map((co) =>
+                                <Grid.Row className="answer">
+                                  <Moment date={co.year} locale="es" format="LL" />
+                                </Grid.Row>)
+                            )}
+                            {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
                         <Grid.Row className="answer">12 de octubre del 2020</Grid.Row> */}
+                          </Grid.Column>
+                        </Grid.Row>
                       </Grid.Column>
-                    </Grid.Row>
-                  </Grid.Column>
-                  <Grid.Column className="edit" width={2} onClick={() => slide(6)}>
+                    </>
+                  )}
+                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(6)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -591,37 +754,54 @@ export default function SliderHistorialMedico() {
                   <Grid.Column width={3} className="icon">
                     <IconDonador />
                   </Grid.Column>
-                  <Grid.Column width={4}>
-                    <Grid.Row>
-                      <h3 className="subtitle">Transplantes</h3>
-                    </Grid.Row>
-                    <Grid.Row>
-                      <Grid.Column width={6}>
-                        <Grid.Row className="question">Tipo de transplante</Grid.Row>
-                        {formValues.transplantes && (
-                          formValues.transplantes.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
-                        )}
-                        {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
+                  {formValues.transplantes === 'N/A' && (
+                    <Grid.Column width={8} verticalAlign="middle">
+                      <Grid.Row>
+                        <h3 className="subtitle">Transplantes</h3>
+                      </Grid.Row>
+                      <Grid.Row>
+                        <Grid.Column verticalAlign="middle" width={6}>
+                          <Grid.Row className="question">No tiene transplantes</Grid.Row>
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid.Column>
+                  )}
+                  {formValues.transplantes !== 'N/A' && (
+                    <>
+                      <Grid.Column width={4} verticalAlign="middle">
+                        <Grid.Row>
+                          <h3 className="subtitle">Transplantes</h3>
+                        </Grid.Row>
+                        <Grid.Row>
+                          <Grid.Column verticalAlign="middle" width={6}>
+                            <Grid.Row className="question">Tipo de transplante</Grid.Row>
+                            {formValues.transplantes && (
+                              formValues.transplantes.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
+                            )}
+                            {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
                         <Grid.Row className="answer">Paracetamol</Grid.Row> */}
+                          </Grid.Column>
+                        </Grid.Row>
                       </Grid.Column>
-                    </Grid.Row>
-                  </Grid.Column>
-                  <Grid.Column width={4} className="right">
-                    <Grid.Row>
-                      <Grid.Column width={3}>
-                        <Grid.Row className="question">Fecha de transplante</Grid.Row>
-                        {formValues.transplantes && (
-                          formValues.transplantes.map((co) =>
-                            <Grid.Row className="answer">
-                              <Moment date={co.year} locale="es" format="LL" />
-                            </Grid.Row>)
-                        )}
-                        {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                      <Grid.Column width={4} verticalAlign="middle" className="right">
+                        <Grid.Row>
+                          <Grid.Column verticalAlign="middle" width={3}>
+                            <Grid.Row className="question">Fecha de transplante</Grid.Row>
+                            {formValues.transplantes && (
+                              formValues.transplantes.map((co) =>
+                                <Grid.Row className="answer">
+                                  <Moment date={co.year} locale="es" format="LL" />
+                                </Grid.Row>)
+                            )}
+                            {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
                         <Grid.Row className="answer">12 de octubre del 2020</Grid.Row> */}
+                          </Grid.Column>
+                        </Grid.Row>
                       </Grid.Column>
-                    </Grid.Row>
-                  </Grid.Column>
-                  <Grid.Column className="edit" width={2} onClick={() => slide(7)}>
+
+                    </>
+                  )}
+                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(7)}>
                     <label>
                       <Icon
                         name="pencil alternate"
@@ -645,7 +825,15 @@ export default function SliderHistorialMedico() {
                     <Grid.Row>
                       <Grid.Column width={6}>
                         <Grid.Row className="question">Enfermedad de madre</Grid.Row>
-                        <Grid.Row className="answer">Artritis</Grid.Row>
+                        {!formValuesIllnessFamily.illnessFirstMon && (
+                          <Grid.Row className="answer">No tiene enfermedades</Grid.Row>
+                        )}
+                        {formValuesIllnessFamily.illnessFirstMon && (
+                          <>
+                            <Grid.Row className="answer">{formValuesIllnessFamily.illnessFirstMon}</Grid.Row>
+                            <Grid.Row className="answer">{formValuesIllnessFamily.illnessSecondMon}</Grid.Row>
+                          </>
+                        )}
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
@@ -659,7 +847,15 @@ export default function SliderHistorialMedico() {
                     <Grid.Row>
                       <Grid.Column width={6}>
                         <Grid.Row className="question">Enfermedad de padre</Grid.Row>
-                        <Grid.Row className="answer">Artritis</Grid.Row>
+                        {!formValuesIllnessFamily.illnessFirstDad && (
+                          <Grid.Row className="answer">No tiene enfermedades</Grid.Row>
+                        )}
+                        {formValuesIllnessFamily.illnessFirstDad && (
+                          <>
+                            <Grid.Row className="answer">{formValuesIllnessFamily.illnessFirstDad}</Grid.Row>
+                            <Grid.Row className="answer">{formValuesIllnessFamily.illnessSecondDad}</Grid.Row>
+                          </>
+                        )}
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>

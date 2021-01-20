@@ -50,7 +50,8 @@ const SliderAntecedentesComponent = ({
 
   const handleNoSelected = () => {
     let obj = {};
-    obj[objectKey] = [{ name: 'N/A', year: '' }];
+    obj[objectKey] = 'N/A';
+
     getValue(obj);
   }
 
@@ -157,7 +158,7 @@ const SliderAntecedentesComponent = ({
                 value={year}
               />
 
-            </Grid.Column>
+              </Grid.Column>
             )}
           </Grid.Row>
         ))}
