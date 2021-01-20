@@ -19,6 +19,7 @@
     outline: none;
     border: 1px solid #707070;
   }
+  
 
   .react-datepicker-wrapper {
     width: 100%;
@@ -33,7 +34,7 @@
   }
   &.newDesign {
     & > label::before {
-      font-size: 20px;
+      font-size: 1em;
       color: $text-secondary;
       // background-color: transparent;
     }
@@ -133,7 +134,7 @@
     transition: all 0.3s ease;
     left: 15px;
     color: $text-secondary;
-    font-size: 20px;
+    font-size: 1.3em;
     background-color: white;
   }
 
@@ -147,4 +148,8 @@
   // .date {
   //   opacity: 0;
   // }
+}
+
+.places-complete {
+  font-size: 1.4em;
 }
