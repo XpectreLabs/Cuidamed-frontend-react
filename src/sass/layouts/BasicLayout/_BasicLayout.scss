@@ -79,3 +79,12 @@
   }
 
 }
+
+@media (max-width: 767px) {
+
+  .basic-layout .main-grid {
+    flex-direction: column-reverse;
+  }
+
+}
+

@@ -267,6 +267,7 @@ export default function Slider() {
         document.getElementById('iconWomen').checked = true;
       }
     }
+    // arrowPrev();
     // setFlagNext(false);
     switch (activeIndex) {
       case 0:
@@ -372,9 +373,11 @@ export default function Slider() {
         break;
       case 7:
         removeArrowNext();
+        removeArrowPrev();
         break;
       default:
-        setTitleInfoBasic(false);
+          setTitleInfoBasic(false);
+          removeArrowPrev();
         break;
     }
     return () => {
@@ -439,37 +442,63 @@ export default function Slider() {
   };
 
   const arrowNext = () => {
-    const arrow = document.querySelector('.swiper-button-next');
-    arrow.style.color = '#00a199';
-    const button = document.createElement('button');
-    button.textContent = 'Siguiente';
-    button.classList.add('ui', 'button');
-    const div = document.createElement('div');
-    div.appendChild(button);
-    div.classList.add('arrow');
-    arrow.appendChild(div);
+    const arrowNext = document.querySelector('.swiper-button-next');
+    arrowNext.style.color = '#00a199';
+    const buttonNext = document.createElement('button');
+    buttonNext.textContent = 'Siguiente';
+    buttonNext.classList.add('ui', 'button');
+    const divNext = document.createElement('div');
+    divNext.appendChild(buttonNext);
+    divNext.classList.add('arrow', 'right');
+    arrowNext.appendChild(divNext);
+  }
+
+  const arrowPrev = () => {
+    const arrowPrev = document.querySelector('.swiper-button-prev');
+    arrowPrev.style.color = '#00a199';
+    const buttonPrev = document.createElement('button');
+    buttonPrev.textContent = 'Atras';
+    buttonPrev.classList.add('ui', 'button');
+    const divPrev = document.createElement('div');
+    divPrev.appendChild(buttonPrev);
+    divPrev.classList.add('arrow', 'left');
+    arrowPrev.appendChild(divPrev);
   }
 
   const removeArrowNext = () => {
-    const arrow = document.querySelector('.swiper-button-next');
+    const arrowNext = document.querySelector('.swiper-button-next');
 
-    if(arrow) {
-      arrow.style.color = '#ffffff';
-      while (arrow.firstChild) {
+    if(arrowNext) {
+      arrowNext.style.color = '#ffffff';
+      while (arrowNext.firstChild) {
   
-          arrow.removeChild(arrow.firstChild);
+          arrowNext.removeChild(arrowNext.firstChild);
       }
       
     }
 
   }
 
+  const removeArrowPrev = () => {
+    const arrowPrev = document.querySelector('.swiper-button-prev');
+
+    if(arrowPrev) {
+      arrowPrev.style.color = '#ffffff';
+      while (arrowPrev.firstChild) {
+  
+          arrowPrev.removeChild(arrowPrev.firstChild);
+      }
+      
+    }
+  }
+
   useEffect(() => {
     // console.log('Banderaaaa', flagNext)
-  }, [flagNext]);
+    arrowPrev();
+  }, []);
 
   
-
+  
 
 
   return (
@@ -560,7 +589,7 @@ export default function Slider() {
           <SwiperSlide data-hash="slide2">
             <div className="slider-two">
               <Grid centered columns={3} verticalAlign="middle">
-                <Grid.Column computer={4} tablet={6}>
+                <Grid.Column computer={4} tablet={6} mobile={12}>
                   <div>
                     <IconFechaNacimiento />
                     <Date
@@ -575,7 +604,7 @@ export default function Slider() {
                     {/* <Text className="justify-content" labelPlaceholder="Fecha de nacimiento" name="fechaNacimiento" labelName="labelFechaNacimiento" /> */}
                   </div>
                 </Grid.Column>
-                <Grid.Column computer={4} tablet={6}>
+                <Grid.Column computer={4} tablet={6} mobile={12}>
                   <div>
                     <IconMundo />
                     <PlacesComplete
@@ -588,7 +617,7 @@ export default function Slider() {
                     {/* { console.log('birth_place: ',birth_place)} */}
                   </div>
                 </Grid.Column>
-                <Grid.Column computer={4} tablet={6}>
+                <Grid.Column computer={4} tablet={6} mobile={12}>
                   <div>
                     <IconMapa />
                     <PlacesComplete
@@ -606,7 +635,7 @@ export default function Slider() {
           <SwiperSlide data-hash="slide3">
             <div className="slider-two">
               <Grid centered columns={3} verticalAlign="middle">
-                <Grid.Column computer={4} tablet={6}>
+                <Grid.Column computer={4} tablet={6} mobile={16}>
                   <div>
                     <IconAltura />
                     <CustomInput

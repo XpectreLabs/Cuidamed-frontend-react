@@ -44,7 +44,7 @@ const BasicLayout = React.memo((props) => {
 
   return (
     <Container fluid className="basic-layout">
-      <Grid>
+      <Grid className='main-grid'>
         <Grid.Column mobile={16} tablet={2} computer={1}>
           <label htmlFor="file_upload" className="btn-img">
             <img
