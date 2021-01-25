@@ -84,7 +84,30 @@
 
   .basic-layout .main-grid {
     flex-direction: column-reverse;
+    
+    >div {
+      &:first-child {
+        height: 2vh;
+      }
+  
+      &:last-child {
+        height: 80vh;
+      }
+
+    }
   }
 
+  .basic-layout {
+
+    > .ui.grid {
+      min-height: auto;
+      > .column {
+  
+        &:first-of-type {
+          background-color: $white;
+        }
+      }
+    }
+  }
 }
 

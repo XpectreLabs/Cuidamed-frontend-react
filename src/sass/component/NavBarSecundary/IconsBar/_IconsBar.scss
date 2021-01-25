@@ -24,3 +24,14 @@
     cursor: pointer;
   }
 }
+
+@media (max-width: 767px) {
+
+  .icon-container {
+    
+    > svg {
+      height: 2.5em;
+    }
+  }
+}
+

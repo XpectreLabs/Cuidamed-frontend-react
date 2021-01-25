@@ -91,75 +91,75 @@ export default function Slider() {
     is_vaccinated: '',
     vaccine: '',
   });
-  // useEffect(() => {
-  //   fetch(`${CONECTION}api/getUser/${id}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: `Bearer ${localStorage.getItem('token')}`,
-  //       'x-auth-token': localStorage.getItem('refreshToken'),
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       const {
-  //         birth_date,
-  //         birth_place,
-  //         career,
-  //         civil_status,
-  //         height,
-  //         is_vaccinated,
-  //         ocupation,
-  //         vaccine_number,
-  //         organ_donor,
-  //         place,
-  //         religion,
-  //         sex,
-  //         social_number,
-  //         type_blood,
-  //         weight,
-  //         vaccine,
-  //       } = data.users[0];
-  //       setFormValues({
-  //         ...formValues,
-  //         sex,
-  //         weight,
-  //         height,
-  //         birth_place,
-  //         birthDate: birth_date,
-  //         place,
-  //         type_blood,
-  //         career,
-  //         social_number,
-  //         ocupation,
-  //         religion,
-  //         stateMarital: civil_status,
-  //         organDonor: organ_donor,
-  //         is_vaccinated,
-  //         vaccine_number,
-  //         vacunado: is_vaccinated === 'YES' ? true : false,
-  //       });
-  //       setTotalVacunas(vaccine);
-  //       if (birth_date &&
-  //         birth_place &&
-  //         career &&
-  //         civil_status &&
-  //         height &&
-  //         is_vaccinated &&
-  //         ocupation &&
-  //         vaccine_number &&
-  //         organ_donor &&
-  //         place &&
-  //         religion &&
-  //         sex &&
-  //         social_number &&
-  //         type_blood &&
-  //         weight &&
-  //         vaccine) {
-  //         slide(6);
-  //       }
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch(`${CONECTION}api/getUser/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'x-auth-token': localStorage.getItem('refreshToken'),
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const {
+          birth_date,
+          birth_place,
+          career,
+          civil_status,
+          height,
+          is_vaccinated,
+          ocupation,
+          vaccine_number,
+          organ_donor,
+          place,
+          religion,
+          sex,
+          social_number,
+          type_blood,
+          weight,
+          vaccine,
+        } = data.users[0];
+        setFormValues({
+          ...formValues,
+          sex,
+          weight,
+          height,
+          birth_place,
+          birthDate: birth_date,
+          place,
+          type_blood,
+          career,
+          social_number,
+          ocupation,
+          religion,
+          stateMarital: civil_status,
+          organDonor: organ_donor,
+          is_vaccinated,
+          vaccine_number,
+          vacunado: is_vaccinated === 'YES' ? true : false,
+        });
+        setTotalVacunas(vaccine);
+        if (birth_date &&
+          birth_place &&
+          career &&
+          civil_status &&
+          height &&
+          is_vaccinated &&
+          ocupation &&
+          vaccine_number &&
+          organ_donor &&
+          place &&
+          religion &&
+          sex &&
+          social_number &&
+          type_blood &&
+          weight &&
+          vaccine) {
+          slide(6);
+        }
+      });
+  }, []);
   const {
     sex,
     birthDate,
@@ -503,7 +503,7 @@ export default function Slider() {
 
   return (
     <Grid centered className="slider">
-      <Grid.Row>
+      <Grid.Row only='computer tablet'>
         <h1 className={`title ${titleInfoBasic ? 'hidden-title' : ''}`}>
           Información Básica
         </h1>
@@ -514,6 +514,7 @@ export default function Slider() {
           spaceBetween={55}
           slidesPerView={1}
           navigation
+          // direction='vertical'
           allowSlideNext={isValidIndex}
           pagination={{ clickable: false }}
           // scrollbar={{ draggable: true }}
@@ -541,6 +542,11 @@ export default function Slider() {
 
             <Container>
               <Grid verticalAlign="middle" name="sex">
+              <Grid.Row only='mobile' className='mobile-title'>
+                <h3 className='title'>
+                  Información Básica
+                </h3>
+              </Grid.Row>
                 <Grid.Row className="inputs-sex" verticalAlign="middle">
                   <Grid.Column floated="left" width={6}>
                     <input
@@ -589,6 +595,11 @@ export default function Slider() {
           <SwiperSlide data-hash="slide2">
             <div className="slider-two">
               <Grid centered columns={3} verticalAlign="middle">
+              <Grid.Row only='mobile' className='mobile-title'>
+                <h3 className='title'>
+                  Información Básica
+                </h3>
+              </Grid.Row>
                 <Grid.Column computer={4} tablet={6} mobile={12}>
                   <div>
                     <IconFechaNacimiento />
@@ -635,7 +646,12 @@ export default function Slider() {
           <SwiperSlide data-hash="slide3">
             <div className="slider-two">
               <Grid centered columns={3} verticalAlign="middle">
-                <Grid.Column computer={4} tablet={6} mobile={16}>
+              <Grid.Row only='mobile' className='mobile-title'>
+                <h3 className='title'>
+                  Información Básica
+                </h3>
+              </Grid.Row>
+                <Grid.Column computer={4} tablet={6} mobile={12}>
                   <div>
                     <IconAltura />
                     <CustomInput
@@ -649,7 +665,7 @@ export default function Slider() {
                     />
                   </div>
                 </Grid.Column>
-                <Grid.Column computer={4} tablet={6}>
+                <Grid.Column computer={4} tablet={6} mobile={12}>
                   <div>
                     <IconPeso />
                     <CustomInput
@@ -664,7 +680,7 @@ export default function Slider() {
                     />
                   </div>
                 </Grid.Column>
-                <Grid.Column computer={4} tablet={6}>
+                <Grid.Column computer={4} tablet={6} mobile={12}>
                   <div>
                     <IconGotaSangre />
 
@@ -685,7 +701,12 @@ export default function Slider() {
           <SwiperSlide>
             <div className="slider-two">
               <Grid centered columns={3} verticalAlign="middle">
-                <Grid.Column computer={4} tablet={6}>
+              <Grid.Row only='mobile' className='mobile-title'>
+                <h3 className='title'>
+                  Información Básica
+                </h3>
+              </Grid.Row>
+                <Grid.Column computer={4} tablet={6} mobile={12}>
                   <div>
                     <IconGradoEstudio />
                     <SelectCustom
@@ -700,7 +721,7 @@ export default function Slider() {
                     />
                   </div>
                 </Grid.Column>
-                <Grid.Column computer={4} tablet={6}>
+                <Grid.Column computer={4} tablet={6} mobile={12}>
                   <div>
                     <IconSeguro />
                     <SelectCustom
@@ -714,7 +735,7 @@ export default function Slider() {
                     />
                   </div>
                 </Grid.Column>
-                <Grid.Column computer={4} tablet={6}>
+                <Grid.Column computer={4} tablet={6} mobile={12}>
                   <div>
                     <IconOcupacion />
                     <CustomInput
@@ -732,7 +753,12 @@ export default function Slider() {
           <SwiperSlide data-hash="slide4">
             <div className="slider-two">
               <Grid centered columns={3} verticalAlign="middle">
-                <Grid.Column computer={4} tablet={6}>
+              <Grid.Row only='mobile' className='mobile-title'>
+                <h3 className='title'>
+                  Información Básica
+                </h3>
+              </Grid.Row>
+                <Grid.Column computer={4} tablet={6} mobile={12}>
                   <div>
                     <IconReligion />
                     <SelectCustom
@@ -745,7 +771,7 @@ export default function Slider() {
                     />
                   </div>
                 </Grid.Column>
-                <Grid.Column computer={4} tablet={6}>
+                <Grid.Column computer={4} tablet={6} mobile={12}>
                   <div>
                     <IconEstadoCivil />
                     <SelectCustom
@@ -758,7 +784,7 @@ export default function Slider() {
                     />
                   </div>
                 </Grid.Column>
-                <Grid.Column computer={4} tablet={6}>
+                <Grid.Column computer={4} tablet={6} mobile={12}>
                   <div>
                     <IconDonador />
                     <SelectCustom
@@ -777,7 +803,7 @@ export default function Slider() {
           <SwiperSlide data-hash="slide5">
             <div className="vacunas">
               <Grid centered columns={16}>
-                <Grid.Column computer={6} tablet={12} mobile={16}>
+                <Grid.Column computer={6} tablet={12} mobile={12}>
                   <h1
                     className={`title ${titleInfoBasic ? '' : 'hidden-title'}`}>
                     Información Básica
@@ -862,7 +888,7 @@ export default function Slider() {
             <div className="info-basic">
               <Grid centered columns={16}>
                 {/* <h1 className="title">Información Básica</h1> */}
-                <Grid.Column computer={14} tablet={12} mobile={16}>
+                <Grid.Column computer={14} tablet={12} mobile={14}>
                   <h1
                     className={`title ${titleInfoBasic ? '' : 'hidden-title'}`}>
                     Información Básica

@@ -4,6 +4,7 @@
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  outline: none;
 }
 @font-face {
   font-family: "Comfortaa";
@@ -45,12 +46,12 @@ p {
   z-index: 13;
 }
 .btn-img {
-  width: 100%;
+  width: auto;
   background-color: transparent;
   border: none;
   color: white;
   display: flex;
-  padding-top: 24px;
+  // padding-top: 24px;
   justify-content: center;
   outline: none;
   font-size: 30px;
@@ -60,7 +61,7 @@ p {
   display: none;
 }
 .btn-img > img {
-  width: 75%;
+  // width: 75%;
   border-radius: 100%;
   height: 70px;
 }
