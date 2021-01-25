@@ -314,12 +314,15 @@
     display: block;
   }
 
-  .grid {
-    .column {
-      &:last-child {
-        margin-bottom: 5em;
+  .slider-two {
+    .grid {
+      .column {
+        &:last-child {
+          margin-bottom: 5em;
+        }
       }
     }
+
   }
 
 }
@@ -333,10 +336,150 @@
 }
 
 @media (max-width: 767px) {
+ 
+  .slider {
+    font-size: 0.6em;
+
+
+    & .swiper-container {
+      height: 100% !important ;
+    }
+    height: 100%;
+
+    > .row:first-child {
+      height: 0 !important;
+      margin-top: 0 !important;
+      padding-top: 0;
+      padding-bottom: 0;
+      h1 {
+        margin-top: 3.5em;
+      }
+    }
+
+    > .row:last-child {
+      height: 100% !important;
+    }
+  }
+
+  
   
   .slider .swiper-container .grid svg {
-    width: 20em;
+    width: 5em;
   }
+
+  .slider .swiper-container .swiper-button-next {
+    top: 90%;
+    right: 45%;
+  }
+  .slider .swiper-container .swiper-button-prev {
+    top: 8%;
+    left: 8%;
+  }
+  .slider .swiper-container .arrow > .ui.button {
+    font-size: 2em;
+    width: 80vw;
+  }
+
+  .slider-two {
+    overflow-y: auto;
+    overflow-x: hidden;
+    // height: 90% ;
+
+    .grid {
+      .column {
+        &:first-child {
+          margin-top: 11em;
+        }
+  
+        &:last-child {
+          margin-bottom: 9em;
+        }
+      }
+    }
+  }
+
+  .inputs-sex {
+    height: 70%;
+    svg {
+      width: 10em !important;
+    }
+  }
+
+  .ui.grid>.row, .ui.grid>.column:not(.row) {
+    padding: 0;
+  }
+
+  .mobile-title {
+    text-align: center;
+    margin-top: 10em;
+     > h3 {
+       text-align: center;
+       margin: 0 auto;
+      font-size: 2.5em;
+     }
+  }
+
+  .button-info-basic {
+    bottom: 9em;
+    width: 80% !important;
+    // z-index: 1000000000;
+    z-index: 12;
+  }
+
+  .vacunas {
+    &__title {
+      margin-top: 0;
+    }
+    &__center {
+      svg {
+        width: 10em !important;
+      }
+    }
+    &__title-description {
+      &:first-child {
+        margin-top: 1em;
+      }
+      margin-top: 2em !important;
+
+      &:last-child {
+
+        margin-bottom: 10em !important;
+      }
+    }
+      .title {
+        margin-top: 4em !important;
+        margin-bottom: 0;
+        height: 0em;
+        font-size: 2.5em;
+      }
+  }
+
+  .info-basic {
+    .description {
+      flex-wrap: wrap;
+
+      & .description-container {
+        margin-left: 1em;
+        width: 100% !important;
+
+      }
+    }
+
+    .title {
+      margin-top: 3em;
+    }
+  }
+
+  .ui.dropdown .menu>.item {
+    font-size: 0.8em;
+   }
+
+  
+
+
+  // .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets {
+  //   bottom: 0 !important;
+  //  }
 
 }
 
