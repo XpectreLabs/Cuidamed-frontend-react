@@ -61,6 +61,7 @@ export default function IconsNavBar() {
 
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
+
   useEffect(() => {
     if (state.login.user.img !== "" && state.user.imgProfile === null) {
       console.log(state.login.user.img);
@@ -88,11 +89,20 @@ export default function IconsNavBar() {
     dispatch(uploadImage(e.target.files[0]));
   };
 
+  const [isPhoneScreen, SetIsPhoneScreen] = useState(true);
+
+  useEffect(() => {
+    if (window.screen.width < 541) {
+      console.log(window.screen.width);
+      SetIsPhoneScreen(false);
+    }
+  }, [])
+
   const { sex } = JSON.parse(localStorage.getItem('user'));
   console.log(sex)
   return (
     <>
-      <label htmlFor="file_upload" className="btn-img">
+      {isPhoneScreen && (<label htmlFor="file_upload" className="btn-img">
         <img
           src={
             state.user.imgProfile !== null
@@ -101,7 +111,7 @@ export default function IconsNavBar() {
           }
           alt="profile photo"
         />
-      </label>
+      </label>)}
       {map(dataIcons, (icon, index) => {
         // if( icon.link === '/dashboard/ginecologia'){
         //   if(sex !== 'F'){
@@ -129,14 +139,14 @@ export default function IconsNavBar() {
           </Link>
         );
       })}
-      <button
+      {isPhoneScreen && (<button
         className="btn-img"
         onClick={() => {
           dispatch(logout());
         }}
       >
         <i className="fas fa-sign-out-alt"></i>
-      </button>
+      </button>)}
     </>
   );
 }

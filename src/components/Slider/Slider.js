@@ -300,13 +300,12 @@ export default function Slider() {
         break;
       case 2:
         setTitleInfoBasic(false);
-        if (height !== '' && weight !== '' && type_blood !== '')
-          {
-            setIsValidIndex(true);
-            removeArrowNext();
-            arrowNext();
-            // if(flagNext) slide(3);
-          }
+        if (height !== '' && weight !== '' && type_blood !== '') {
+          setIsValidIndex(true);
+          removeArrowNext();
+          arrowNext();
+          // if(flagNext) slide(3);
+        }
         else {
           setIsValidIndex(false);
           removeArrowNext();
@@ -314,13 +313,12 @@ export default function Slider() {
         break;
       case 3:
         setTitleInfoBasic(false);
-        if (career !== '' && social_number !== '' && ocupation !== '')
-          {
-            setIsValidIndex(true);
-            removeArrowNext();
-            arrowNext();
-            // if(flagNext) slide(4);
-          }
+        if (career !== '' && social_number !== '' && ocupation !== '') {
+          setIsValidIndex(true);
+          removeArrowNext();
+          arrowNext();
+          // if(flagNext) slide(4);
+        }
         else {
           setIsValidIndex(false);
           removeArrowNext();
@@ -328,13 +326,12 @@ export default function Slider() {
         break;
       case 4:
         setTitleInfoBasic(false);
-        if (religion !== '' && stateMarital !== '' && organDonor !== '')
-          {
-            setIsValidIndex(true);
-            removeArrowNext();
-            arrowNext();
-            // if(flagNext) slide(5);
-          }
+        if (religion !== '' && stateMarital !== '' && organDonor !== '') {
+          setIsValidIndex(true);
+          removeArrowNext();
+          arrowNext();
+          // if(flagNext) slide(5);
+        }
         else {
           setIsValidIndex(false);
           removeArrowNext();
@@ -357,6 +354,7 @@ export default function Slider() {
       case 6:
         // setTitleInfoBasic(true);
         removeArrowNext();
+        removeArrowPrev();
         console.log('toatl vacunas: ', totalVacunas);
         if (vacunado === false) {
           console.log('llega aqui');
@@ -376,8 +374,8 @@ export default function Slider() {
         removeArrowPrev();
         break;
       default:
-          setTitleInfoBasic(false);
-          removeArrowPrev();
+        setTitleInfoBasic(false);
+        removeArrowPrev();
         break;
     }
     return () => {
@@ -385,7 +383,7 @@ export default function Slider() {
     };
   }, [activeIndex, formValues, flagNext]);
 
-  
+
 
   // useEffect(() =>{
   //   console.log('Entro aquí cuando: ' + flagNext);
@@ -435,7 +433,7 @@ export default function Slider() {
     setTimeout(
       () => {
         mySwiper.slideTo(s);
-      },  
+      },
       500
     );
     // setFlagNext(true);
@@ -468,13 +466,13 @@ export default function Slider() {
   const removeArrowNext = () => {
     const arrowNext = document.querySelector('.swiper-button-next');
 
-    if(arrowNext) {
+    if (arrowNext) {
       arrowNext.style.color = '#ffffff';
       while (arrowNext.firstChild) {
-  
-          arrowNext.removeChild(arrowNext.firstChild);
+
+        arrowNext.removeChild(arrowNext.firstChild);
       }
-      
+
     }
 
   }
@@ -482,13 +480,13 @@ export default function Slider() {
   const removeArrowPrev = () => {
     const arrowPrev = document.querySelector('.swiper-button-prev');
 
-    if(arrowPrev) {
+    if (arrowPrev) {
       arrowPrev.style.color = '#ffffff';
       while (arrowPrev.firstChild) {
-  
-          arrowPrev.removeChild(arrowPrev.firstChild);
+
+        arrowPrev.removeChild(arrowPrev.firstChild);
       }
-      
+
     }
   }
 
@@ -497,8 +495,8 @@ export default function Slider() {
     arrowPrev();
   }, []);
 
-  
-  
+
+
 
 
   return (
@@ -522,31 +520,31 @@ export default function Slider() {
           onSlideChange={(e) => {
             console.log(e.activeIndex);
             setActiveIndex(e.activeIndex)
-            if(e.activeIndex > activeIndex) {
+            if (e.activeIndex > activeIndex) {
               setFlagNext(true);
-              
+
             } else {
-                setFlagNext(false);
-              }
-
-              console.log(activeIndex);
-              }
-
+              setFlagNext(false);
             }
+
+            console.log(activeIndex);
+          }
+
+          }
           className="slider-content"
           simulateTouch={false}>
           <SwiperSlide data-hash="slide1">
-          {({isActive}) => (
-            <div>Current slide is {isActive ? 'active' : 'not active'}</div>
-          )}
+            {({ isActive }) => (
+              <div>Current slide is {isActive ? 'active' : 'not active'}</div>
+            )}
 
             <Container>
               <Grid verticalAlign="middle" name="sex">
-              <Grid.Row only='mobile' className='mobile-title'>
-                <h3 className='title'>
-                  Información Básica
+                <Grid.Row only='mobile' className='mobile-title'>
+                  <h3 className='title'>
+                    Información Básica
                 </h3>
-              </Grid.Row>
+                </Grid.Row>
                 <Grid.Row className="inputs-sex" verticalAlign="middle">
                   <Grid.Column floated="left" width={6}>
                     <input
@@ -595,11 +593,11 @@ export default function Slider() {
           <SwiperSlide data-hash="slide2">
             <div className="slider-two">
               <Grid centered columns={3} verticalAlign="middle">
-              <Grid.Row only='mobile' className='mobile-title'>
-                <h3 className='title'>
-                  Información Básica
+                <Grid.Row only='mobile' className='mobile-title'>
+                  <h3 className='title'>
+                    Información Básica
                 </h3>
-              </Grid.Row>
+                </Grid.Row>
                 <Grid.Column computer={4} tablet={6} mobile={12}>
                   <div>
                     <IconFechaNacimiento />
@@ -646,11 +644,11 @@ export default function Slider() {
           <SwiperSlide data-hash="slide3">
             <div className="slider-two">
               <Grid centered columns={3} verticalAlign="middle">
-              <Grid.Row only='mobile' className='mobile-title'>
-                <h3 className='title'>
-                  Información Básica
+                <Grid.Row only='mobile' className='mobile-title'>
+                  <h3 className='title'>
+                    Información Básica
                 </h3>
-              </Grid.Row>
+                </Grid.Row>
                 <Grid.Column computer={4} tablet={6} mobile={12}>
                   <div>
                     <IconAltura />
@@ -701,11 +699,11 @@ export default function Slider() {
           <SwiperSlide>
             <div className="slider-two">
               <Grid centered columns={3} verticalAlign="middle">
-              <Grid.Row only='mobile' className='mobile-title'>
-                <h3 className='title'>
-                  Información Básica
+                <Grid.Row only='mobile' className='mobile-title'>
+                  <h3 className='title'>
+                    Información Básica
                 </h3>
-              </Grid.Row>
+                </Grid.Row>
                 <Grid.Column computer={4} tablet={6} mobile={12}>
                   <div>
                     <IconGradoEstudio />
@@ -753,11 +751,11 @@ export default function Slider() {
           <SwiperSlide data-hash="slide4">
             <div className="slider-two">
               <Grid centered columns={3} verticalAlign="middle">
-              <Grid.Row only='mobile' className='mobile-title'>
-                <h3 className='title'>
-                  Información Básica
+                <Grid.Row only='mobile' className='mobile-title'>
+                  <h3 className='title'>
+                    Información Básica
                 </h3>
-              </Grid.Row>
+                </Grid.Row>
                 <Grid.Column computer={4} tablet={6} mobile={12}>
                   <div>
                     <IconReligion />
@@ -935,7 +933,7 @@ export default function Slider() {
                     </Button>
                   </Grid.Row> */}
                 </Grid.Column>
-               
+
               </Grid>
             </div>
             {/* <Grid className="button-info-basic">
@@ -951,13 +949,13 @@ export default function Slider() {
         </Swiper>
         {activeIndex === 6 && (
           <Grid.Row className="button-info-basic">
-          <Grid.Column width={14}>
-            <Button
-              onClick={saveAndContinue}>
-              Guardar y Continuar
+            <Grid.Column width={14}>
+              <Button
+                onClick={saveAndContinue}>
+                Guardar y Continuar
             </Button>
 
-          </Grid.Column>
+            </Grid.Column>
           </Grid.Row>
         )}
       </Grid.Row>
