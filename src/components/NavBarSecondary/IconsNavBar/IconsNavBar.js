@@ -63,31 +63,31 @@ export default function IconsNavBar() {
   const state = useSelector((state) => state);
 
   useEffect(() => {
-    if (state.login.user.img !== "" && state.user.imgProfile === null) {
-      console.log(state.login.user.img);
-      fetch(`${CONECTION}api/file/${state.login.user.img}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-        .then((response) => {
-          return response.blob();
-        })
-        .then((images) => {
-          let reader = new FileReader();
-          reader.readAsDataURL(images);
-          reader.onloadend = function () {
-            var base64data = reader.result;
-            console.log(base64data);
-            dispatch(setImage(base64data));
-          };
-        });
-    }
+    // if (state.login.user.img !== "" && state.user.imgProfile === null) {
+    //   console.log(state.login.user.img);
+    //   fetch(`${CONECTION}api/file/${state.login.user.img}`, {
+    //     headers: {
+    //       Authorization: `Bearer ${localStorage.getItem("token")}`,
+    //     },
+    //   })
+    //     .then((response) => {
+    //       return response.blob();
+    //     })
+    //     .then((images) => {
+    //       let reader = new FileReader();
+    //       reader.readAsDataURL(images);
+    //       reader.onloadend = function () {
+    //         var base64data = reader.result;
+    //         console.log(base64data);
+    //         dispatch(setImage(base64data));
+    //       };
+    //     });
+    // }
   }, []);
 
-  const handleImage = (e) => {
-    dispatch(uploadImage(e.target.files[0]));
-  };
+  // const handleImage = (e) => {
+  //   dispatch(uploadImage(e.target.files[0]));
+  // };
 
   const [isPhoneScreen, SetIsPhoneScreen] = useState(true);
 
@@ -98,8 +98,8 @@ export default function IconsNavBar() {
     }
   }, [])
 
-  const { sex } = JSON.parse(localStorage.getItem('user'));
-  console.log(sex)
+  // const { sex } = JSON.parse(localStorage.getItem('user'));
+  // console.log(sex)
   return (
     <>
       {isPhoneScreen && (<label htmlFor="file_upload" className="btn-img">

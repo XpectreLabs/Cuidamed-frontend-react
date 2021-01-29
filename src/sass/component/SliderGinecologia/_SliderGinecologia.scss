@@ -48,6 +48,17 @@
             }
         }
 
+        .title {
+            font-size: 2em;
+        }
+
+        .subtitle {
+            h2 {
+                font-size: 1.5em;
+
+            }
+        }
+
         
 
     }
@@ -108,5 +119,51 @@
 
        
     
+    }
+}
+
+
+@media (max-width: 991px) {
+    .gynecology {
+        font-size: 0.9em;
+        &.container {
+            height: 100vh !important;
+
+            >.grid {
+                height: 88%;
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .gynecology {
+        // font-size: 1.2em;
+        &.container {
+
+            >.grid {
+                height: 72%;
+
+                &:first-child {
+                    margin-top: 1em;
+                    height: 0.5em;
+                }
+
+                >.icon {
+                    align-items: baseline;
+                }
+
+                .title {
+                    font-size: 2.8em;
+                }
+        
+                .subtitle {
+                    h2 {
+                        font-size: 2.2em;
+        
+                    }
+                }
+            }
+        }
     }
 }

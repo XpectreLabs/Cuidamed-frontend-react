@@ -79,7 +79,7 @@ const SliderAntecedentesComponent = ({
           <h3 className="question">{question}</h3>
         </Grid.Row>
         <Grid.Row className="answers">
-          <Grid.Column width={3}>
+          <Grid.Column computer={3} tablet={5} mobile={5}>
             <Button
               className={hasRecord ? 'isChecked' : ''}
               id="vacunaNo"
@@ -91,7 +91,7 @@ const SliderAntecedentesComponent = ({
               Si
             </Button>
           </Grid.Column>
-          <Grid.Column width={3}>
+          <Grid.Column computer={3} tablet={5} mobile={5}>
             <Button
               className={hasRecord === false ? 'isChecked' : ''}
               id="vacunaNo"
@@ -126,7 +126,7 @@ const SliderAntecedentesComponent = ({
         )}
         {totalElements.map(({ name, order, year }, i) => (
           <Grid.Row className="vacunas__title-description" key={i}>
-            <Grid.Column width={objectKey !== 'alergias' ? 6: 12}>
+            <Grid.Column computer={objectKey !== 'alergias' ? 6: 12} tablet={objectKey !== 'alergias' ? 6: 12} mobile={12}>
               <CustomInput
                 placeholder={placeholderAnswer}
                 type={typeInput}
@@ -142,7 +142,7 @@ const SliderAntecedentesComponent = ({
               />
             </Grid.Column>
             {objectKey !== 'alergias' &&(
-            <Grid.Column width={6}>
+            <Grid.Column computer={6} tablet={6} mobile={12}>
               <Date
                 placeholder={placeholderDate}
                 year={objectKey === 'sangre' || objectKey === 'alergias' || objectKey === 'discapacidad' || objectKey === 'other' || objectKey === 'transplantes' ? true: false}

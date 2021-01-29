@@ -1,10 +1,19 @@
 .slider.historial {
-  height: 100vh;
-  max-height: 100vh;
+  // height: 100vh;
+  // max-height: 100vh;
 
   // > .row:last-child {
   //     height: 98%;
   // }
+
+  &>.row {
+    margin: 0;
+  }
+
+  .title {
+    margin-top: 1em;
+    margin-bottom: 0.5em
+  }
 
   .main-container {
     height: 93vh;
@@ -18,7 +27,8 @@
   }
 
     >.title {
-      margin-bottom: 0;
+      margin-top: 1em;
+      margin-bottom: 0.5em
     }
 
     > .subtitle-record {
@@ -43,6 +53,7 @@
       .question {
         color: $secondary;
         font-size: 1.5em;
+        // margin: 1em;
       }
 
       .relatives {
@@ -130,7 +141,7 @@
 
   .row {
     
-    &:nth-child(17) {
+    &:nth-child(19) {
       margin-bottom: 2em;
     }
 
@@ -174,6 +185,95 @@
   } 
   
   
+}
+
+@media (max-width: 991px) {
+  .slider .vacunas__title-description:last-of-type {
+    padding-bottom: 5em ;  
+  }
+
+  .input-container {  
+    >label::before {
+      font-size: 0.9em !important;
+    }
+  }
+
+  // .edit {
+  //   > label {
+  //       font-size: 1em !important;
+  //   }
+  // }
+}
+
+@media (max-width: 767px) {
+  .slider.historial {
+    height: 82vh;
+    max-height: none;
+
+    .main-container {
+      font-size: 1em;
+      height: 70vh;
+
+      >.title {
+        font-size: 2.5em;
+        margin-top: 3.5em;
+      }
+
+      > .records {
+        height: 70%;
+
+        .question {
+          font-size: 2em;
+          margin: 1em;
+        }
+
+        > .answers {
+          margin-bottom: 2em;
+        }
+        svg {
+          width: 15em;
+        }
+
+        .small-svg {
+          align-items: baseline;
+          margin-top: 1em;
+          height: 16%;
+          svg {
+            width: 8em;
+          }
+        }
+
+        .vacunas__title-description {
+          > div:first-child {
+            margin-bottom: 2em;
+          }
+        }
+      }
+    }
+
+    .resume {
+      font-size: 1.3em;
+
+      >.row > div{
+          margin-top: 1em;
+          margin-right: 0;
+      }
+
+      .icon {
+        svg {
+          width: 5em !important;
+
+        }
+      }
+    }
+
+    // .input-container {  
+    //   >label::before {
+    //     font-size: 1em !important;
+    //   }
+    // }
+  }
+
 }
 
 // @media (max-width: 1024px) {

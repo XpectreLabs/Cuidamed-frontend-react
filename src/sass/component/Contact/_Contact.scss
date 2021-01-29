@@ -12,7 +12,53 @@
             }
 
         }
+
         
     }
 
+}
+
+@media (max-width: 991px) {
+    .ui.selection.dropdown {
+        min-width: auto;
+    }
+}
+
+@media (max-width: 767px) {
+    .medical-contact {
+        >.grid {
+            >.icon {
+                margin-bottom: 1em;
+            }
+            > .row {
+                >.data-contact {
+                    margin: 0.5em;
+                }
+
+                > .column {
+    
+                    >.input-container {
+                        
+                        .ui.selection.dropdown {
+                            font-size: 1.2em;
+        
+                        }
+                        &> label::before {
+                            font-size: 0.8em !important;
+                        }
+                    }
+                }
+            }
+
+            > .btn-add {
+                margin: 1em;
+            }
+
+            > .data-name {
+                margin-top: 2em;
+            }
+
+            
+        }
+    }
 }

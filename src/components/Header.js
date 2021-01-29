@@ -6,7 +6,7 @@ export const HeaderLogin = ({ hideElements = false, openModal }) => {
   return (
     // <Header>
       <Grid.Row centered verticalAlign="middle" className='header'>
-        <Grid.Column computer={5} tablet={16} textAlign='center' only='computer tablet'>
+        <Grid.Column computer={5} textAlign='center' only='computer'>
           {!hideElements && (
               <p>
                 ¿No tienes cuenta?

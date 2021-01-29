@@ -103,7 +103,7 @@ export default function Contact() {
           <Contacto />
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column width={15}>
+          <Grid.Column width={15} tablet={15} mobile={12} className='data-contact'>
             <CustomInput
               placeholder="Nombre completo"
               type="text"
@@ -113,7 +113,7 @@ export default function Contact() {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row columns={3}>
-          <Grid.Column width={5}>
+          <Grid.Column computer={5} tablet={5} mobile={12} className='data-contact'>
             <CustomInput
               placeholder="E-mail"
               type="text"
@@ -121,7 +121,7 @@ export default function Contact() {
               value={email}
             />
           </Grid.Column>
-          <Grid.Column width={5}>
+          <Grid.Column computer={5} tablet={5} mobile={12} className='data-contact'>
             <CustomInput
               placeholder="Teléfono"
               type="text"
@@ -129,7 +129,7 @@ export default function Contact() {
               value={phone}
             />
           </Grid.Column>
-          <Grid.Column width={5}>
+          <Grid.Column computer={5} tablet={5} mobile={12} className='data-contact'>
             <SelectCustom
               placeholder="Parentesco"
               dataOptions={relatives}
@@ -138,16 +138,16 @@ export default function Contact() {
             />
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row>
-          <Grid.Column width={15}>
+        <Grid.Row className='btn-add'>
+          <Grid.Column computer={15} tablet={15} mobile={12}>
             <Button onClick={() => handleContact()}>Agregar contacto</Button>
           </Grid.Column>
         </Grid.Row>
 
         {contacts.map(({ fullName, email, phone, relative }, i) => (
           <>
-            <Grid.Row columns={1}>
-              <Grid.Column width={8} className="disabled">
+            <Grid.Row columns={1} className='data-name'>
+              <Grid.Column computer={8} tablet={8} mobile={12} className="disabled" >
                 <CustomInput
                   placeholder="Nombre completo"
                   type="text"
@@ -157,7 +157,7 @@ export default function Contact() {
               </Grid.Column>
             </Grid.Row>
             <Grid.Row columns={3}>
-              <Grid.Column width={5} className="disabled">
+              <Grid.Column computer={5} tablet={5} mobile={12} className="disabled" >
                 <CustomInput
                   placeholder="E-mail"
                   type="email"
@@ -165,7 +165,7 @@ export default function Contact() {
                   disabled
                 />
               </Grid.Column>
-              <Grid.Column width={5} className="disabled">
+              <Grid.Column computer={5} tablet={5} mobile={12} className="disabled">
                 <CustomInput
                   placeholder="Teléfono"
                   type="text"
@@ -173,7 +173,7 @@ export default function Contact() {
                   disabled
                 />
               </Grid.Column>
-              <Grid.Column width={5} className="disabled">
+              <Grid.Column computer={5} tablet={5} mobile={12} className="disabled">
                 <CustomInput
                   placeholder="Parentesco"
                   type="text"
@@ -183,7 +183,7 @@ export default function Contact() {
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-              <Grid.Column width={15} className="line"></Grid.Column>
+              <Grid.Column computer={15} tablet={15} mobile={12} className="line"></Grid.Column>
             </Grid.Row>
           </>
         ))}

@@ -110,8 +110,8 @@ export default function Treatment() {
         <Grid.Row className="icon">
           <Pastillas />
         </Grid.Row>
-        <Grid.Row columns={3}>
-          <Grid.Column width={5}>
+        <Grid.Row columns={3} className='treatment'>
+          <Grid.Column computer={5} tablet={4} mobile={12}>
             <CustomInput
               placeholder="Medicamento/Suplemento"
               type="text"
@@ -119,7 +119,7 @@ export default function Treatment() {
               value={medicine}
             />
           </Grid.Column>
-          <Grid.Column width={5}>
+          <Grid.Column computer={5} tablet={4} mobile={12}>
             <CustomInput
               labelPlaceholder="Dosis"
               placeholder="Dosis. Ej. 10 ml"
@@ -128,7 +128,7 @@ export default function Treatment() {
               value={dose}
             />
           </Grid.Column>
-          <Grid.Column width={5}>
+          <Grid.Column computer={5} tablet={4} mobile={12}>
             <CustomInput
               labelPlaceholder="Frecuencia"
               placeholder="Frecuencia. Ej. C/24hrs"
@@ -138,8 +138,8 @@ export default function Treatment() {
             />
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row columns={2} centered>
-          <Grid.Column width={5}>
+        <Grid.Row columns={2} centered className='dates'>
+          <Grid.Column computer={5} tablet={4} mobile={12}>
             <Date
               placeholder="Fecha de inicio"
               id="inicio"
@@ -147,7 +147,7 @@ export default function Treatment() {
               value={starts}
             />
           </Grid.Column>
-          <Grid.Column width={5}>
+          <Grid.Column computer={5} tablet={4} mobile={12}>
             <Date
               placeholder="Fecha de término"
               id="termino"
@@ -157,7 +157,7 @@ export default function Treatment() {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column width={15}>
+          <Grid.Column computer={15} tablet={13} mobile={12}>
             <Button onClick={() => handleTreatment()}>
               Agregar tratamiento
             </Button>
