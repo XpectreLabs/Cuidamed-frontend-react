@@ -18,15 +18,15 @@ const DateInput = ({
   year = false,
 }) => {
   const [fecha, setFecha] = useState(null);
-  console.log("Value: ",value)
+  console.log('Value: ', value);
   useEffect(() => {
     if (value) setFecha(moment(value).toDate());
-    else if(value === null) setFecha(null);
+    else if (value === null) setFecha(null);
     document.getElementById(id).style.opacity = 0;
   }, [value]);
 
   const handleInputChange = (event) => {
-    setValue(event);
+    setValue(year ? moment(event).format('YYYY') : event);
     setFecha(event);
     document.getElementById(id).style.opacity = 1;
     if (event == null) {
@@ -34,7 +34,7 @@ const DateInput = ({
     }
   };
 
-  if(!year) {
+  if (!year) {
     return (
       <div className="input-container">
         <DatePicker
@@ -64,8 +64,7 @@ const DateInput = ({
           fixedHeight
           placeholderText={placeholder}
           showYearPicker
-          dateFormat="yyyy"
-          ></DatePicker>
+          dateFormat="yyyy"></DatePicker>
         <label id={id} className="date" placeholder={placeholder}></label>
         {/* <label className="date" placeholder={placeholder}></label> */}
       </div>
