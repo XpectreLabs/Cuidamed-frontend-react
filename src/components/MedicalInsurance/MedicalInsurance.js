@@ -95,7 +95,7 @@ export default function MedicalInsurance() {
           <SeguroMedico />
         </Grid.Row>
         <Grid.Row columns={3}>
-          <Grid.Column width={5}>
+          <Grid.Column computer={5} tablet={5} mobile={12}>
             <SelectCustom
               placeholder="Aseguradora"
               dataOptions={insuranceList}
@@ -106,7 +106,7 @@ export default function MedicalInsurance() {
             />
             {/* <CustomInput placeholder="Aseguradora" type="text"/> */}
           </Grid.Column>
-          <Grid.Column width={5}>
+          <Grid.Column computer={5} tablet={5} mobile={12} className='data-contact'>
             <CustomInput
               placeholder="Póliza"
               type="text"
@@ -114,7 +114,7 @@ export default function MedicalInsurance() {
               value={policy}
             />
           </Grid.Column>
-          <Grid.Column width={5}>
+          <Grid.Column computer={5} tablet={5} mobile={12} className='data-contact'>
             <CustomInput
               placeholder="No. telefónico"
               type="text"
@@ -123,8 +123,8 @@ export default function MedicalInsurance() {
             />
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row>
-          <Grid.Column width={15}>
+        <Grid.Row className='btn-add'>
+          <Grid.Column computer={15} tablet={15} mobile={13} className='data-contact'>
             <Button onClick={() => handleInsurance()}>
               Agregar aseguradora
             </Button>
@@ -133,8 +133,8 @@ export default function MedicalInsurance() {
 
         {insurance.map(({ insuranceCarrier, policy, phone }, i) => (
           <>
-            <Grid.Row columns={1}>
-              <Grid.Column width={8} className="disabled">
+            <Grid.Row columns={1} className='data-name'>
+              <Grid.Column computer={8} tablet={8} mobile={12} className="disabled">
                 <CustomInput
                   placeholder="Aseguradora"
                   type="text"
@@ -144,7 +144,7 @@ export default function MedicalInsurance() {
               </Grid.Column>
             </Grid.Row>
             <Grid.Row columns={3}>
-              <Grid.Column width={5} className="disabled">
+              <Grid.Column computer={5} tablet={5} mobile={12} className="disabled">
                 <CustomInput
                   placeholder="Póliza"
                   type="text"
@@ -152,7 +152,7 @@ export default function MedicalInsurance() {
                   disabled
                 />
               </Grid.Column>
-              <Grid.Column width={5} className="disabled">
+              <Grid.Column computer={5} tablet={5} mobile={12} className="disabled">
                 <CustomInput
                   placeholder="No. telefónico"
                   type="text"
@@ -162,7 +162,7 @@ export default function MedicalInsurance() {
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-              <Grid.Column width={15} className="line"></Grid.Column>
+              <Grid.Column computer={15} tablet={15} mobile={12} className="line"></Grid.Column>
             </Grid.Row>
           </>
         ))}

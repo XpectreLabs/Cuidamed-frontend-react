@@ -254,7 +254,7 @@ export default function SliderHistorialMedico() {
     const arrow = document.querySelector('.swiper-button-next');
 
     if (arrow) {
-      arrow.style.color = '#ffffff';
+      arrow.style.color = 'transparent';
       while (arrow.firstChild) {
 
         arrow.removeChild(arrow.firstChild);
@@ -263,6 +263,37 @@ export default function SliderHistorialMedico() {
     }
 
   }
+
+  const arrowPrev = () => {
+    const arrowPrev = document.querySelector('.swiper-button-prev');
+    arrowPrev.style.color = '#00a199';
+    const buttonPrev = document.createElement('button');
+    buttonPrev.textContent = 'Atras';
+    buttonPrev.classList.add('ui', 'button');
+    const divPrev = document.createElement('div');
+    divPrev.appendChild(buttonPrev);
+    divPrev.classList.add('arrow', 'left');
+    arrowPrev.appendChild(divPrev);
+  }
+
+  const removeArrowPrev = () => {
+    const arrowPrev = document.querySelector('.swiper-button-prev');
+
+    if (arrowPrev) {
+      arrowPrev.style.color = 'transparent';
+      while (arrowPrev.firstChild) {
+
+        arrowPrev.removeChild(arrowPrev.firstChild);
+      }
+
+    }
+  }
+
+  useEffect(() => {
+    // console.log('Banderaaaa', flagNext)
+    arrowPrev();
+  }, []);
+
 
   return (
     <Grid centered className="slider historial">

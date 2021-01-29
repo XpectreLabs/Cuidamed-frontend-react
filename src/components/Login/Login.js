@@ -111,14 +111,14 @@ export default function Login() {
         </form>
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row only='tablet mobile'>
+      <Grid.Row className='button-emergency' only='tablet mobile'>
       <Grid.Column mobile={14} tablet={10}>
         <Button className="emergency-mobile" onClick={() => setOpen(true)}>
               Emergencia
             </Button>
       </Grid.Column>
       </Grid.Row>
-      <Grid.Row only='mobile'>
+      <Grid.Row only='tablet mobile'>
       <Grid.Column mobile={14} className="register">
         <p>
           ¿No tienes cuenta?

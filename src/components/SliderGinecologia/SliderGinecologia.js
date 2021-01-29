@@ -147,7 +147,8 @@ export default function SliderGinecologia() {
         if (formValues) {
           setIsValidIndex(true);
           removeArrowNext();
-          arrowNext();
+          // arrowNext();
+          // removeArrowPrev();
         } else {
           setIsValidIndex(false)
           removeArrowNext();
@@ -361,7 +362,7 @@ export default function SliderGinecologia() {
     const arrow = document.querySelector('.swiper-button-next');
 
     if(arrow) {
-      arrow.style.color = '#ffffff';
+      arrow.style.color = 'transparent';
       while (arrow.firstChild) {
   
           arrow.removeChild(arrow.firstChild);
@@ -369,6 +370,36 @@ export default function SliderGinecologia() {
       
     }
 
+  }
+
+  useEffect(() => {
+    // console.log('Banderaaaa', flagNext)
+    arrowPrev();
+  }, []);
+
+  const arrowPrev = () => {
+    const arrowPrev = document.querySelector('.swiper-button-prev');
+    arrowPrev.style.color = '#00a199';
+    const buttonPrev = document.createElement('button');
+    buttonPrev.textContent = 'Atras';
+    buttonPrev.classList.add('ui', 'button');
+    const divPrev = document.createElement('div');
+    divPrev.appendChild(buttonPrev);
+    divPrev.classList.add('arrow', 'left');
+    arrowPrev.appendChild(divPrev);
+  }
+
+  const removeArrowPrev = () => {
+    const arrowPrev = document.querySelector('.swiper-button-prev');
+
+    if (arrowPrev) {
+      arrowPrev.style.color = 'transparent';
+      while (arrowPrev.firstChild) {
+
+        arrowPrev.removeChild(arrowPrev.firstChild);
+      }
+
+    }
   }
 
 
@@ -381,7 +412,7 @@ export default function SliderGinecologia() {
           navigation
           pagination={{ clickable: false }}
           // scrollbar={{ draggable: true }}
-          //   onSlideChange={(e) => setActiveIndex(e.activeIndex)}
+            onSlideChange={(e) => setActiveIndex(e.activeIndex)}
           className="slider-content"
           simulateTouch={false}
         >
@@ -394,7 +425,7 @@ export default function SliderGinecologia() {
                 <Grid.Row className="subtitle">
                   <h2>Ginecología</h2>
                 </Grid.Row>
-                <Grid.Row className={`${menstruation ? 'small-icon' : ''}`}>
+                <Grid.Row className={`icon ${menstruation ? 'small-icon' : ''}`}>
                   <Menstruacion />
                 </Grid.Row>
                 <Grid.Row>
@@ -403,7 +434,7 @@ export default function SliderGinecologia() {
                   </h3>
                 </Grid.Row>
                 <Grid.Row>
-                  <Grid.Column width={5}>
+                  <Grid.Column computer={5} tablet={5} mobile={12}>
                   <Button
                     className={formValues.has_menstruation === 'NOT_HAVE' ? 'isChecked' : ''}
                     type="radio"
@@ -415,7 +446,7 @@ export default function SliderGinecologia() {
                       Aun no la tengo
                   </Button>
                   </Grid.Column>
-                  <Grid.Column width={5}>
+                  <Grid.Column computer={5} tablet={5} mobile={12}>
                   <Button
                     className={menstruation ? 'isChecked' : ''}
                     type="radio"
@@ -427,7 +458,7 @@ export default function SliderGinecologia() {
                       Actualmente la tengo
                   </Button>
                   </Grid.Column>
-                  <Grid.Column width={5}>
+                  <Grid.Column computer={5} tablet={5} mobile={12}>
                   <Button
                     className={menopause ? 'isChecked' : ''}
                     type="radio"

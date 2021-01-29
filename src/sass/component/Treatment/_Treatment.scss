@@ -13,7 +13,96 @@
             }
 
         }
-        
+        .title {
+            font-size: 2em;
+        }
+
+        .subtitle {
+            h2 {
+                font-size: 1.5em;
+
+            }
+        }
     }
 
+}
+
+@media (max-width: 1199px) {
+    .medical-contact {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 991px) {
+    .medical-contact {
+        font-size: 0.6em;
+
+        >.grid {
+
+            .treatment {
+                padding-bottom: 0 ;
+                &> div {
+                    margin: 1em !important;
+                } 
+            }
+            
+            
+            .dates {
+                padding-top: 0 ;
+
+                &> div {
+                    margin: 1em !important;
+                }
+            }
+            
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .medical-contact {
+        font-size: 0.75em;
+
+        >.grid {
+
+            .treatment, .dates {
+                > .column {
+                    margin: 0.5em !important;
+                }
+            }
+
+            .record-treatment {
+                margin-top: 2em;
+            }
+
+            .icon {
+                align-items: baseline;
+                margin-bottom: 0;
+
+                // >svg {
+                //     width: 6em;
+                // }
+            }
+
+            .input-container {
+                &  input {
+                    font-size: 1.2em;
+                }
+            }
+            
+            >.row {
+                &:last-child {
+                    margin-top: 1em;
+                }
+            }
+
+            .subtitle {
+                margin-bottom: 1em;
+            }
+
+            &:last-child {
+                padding-bottom: 10em;
+            }
+        }
+    }
 }
