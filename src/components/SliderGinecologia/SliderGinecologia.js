@@ -234,7 +234,6 @@ export default function SliderGinecologia() {
               <CustomInput
                 placeholder="Número de abortos"
                 type="number"
-                value="0"
                 setValue={(e) => setFormValues({ ...formValues, abortos: e })}
               />
             </Grid.Column>
@@ -509,6 +508,8 @@ export default function SliderGinecologia() {
               </Grid>
             </Container>
           </SwiperSlide>
+          {formValues.has_menstruation === 'I_HAD' && 
+          (
           <SwiperSlide>
             <Container className="gynecology">
               <Grid centered>
@@ -569,6 +570,7 @@ export default function SliderGinecologia() {
               </Grid>
             </Container>
           </SwiperSlide>
+          )}
           <SwiperSlide>
             <Container className="gynecology">
               <Grid centered>
@@ -629,7 +631,7 @@ export default function SliderGinecologia() {
                   </Grid.Column>
                   <Grid.Column verticalAlign="middle" width={4}>
                     <Grid.Row className="question">Edad de la primera menstruación</Grid.Row>
-                    <Grid.Row className="answer">{menstruationAge > 0 ? menstruationAge : 'N/A'}</Grid.Row>
+                    <Grid.Row className="answer">{formValues.age_mestruation > 0 ? formValues.age_mestruation : 'N/A'}</Grid.Row>
                   </Grid.Column>
                   <Grid.Column verticalAlign="middle" width={3}>
                     <Grid.Row className="question">Tipo de periodo</Grid.Row>
@@ -645,6 +647,7 @@ export default function SliderGinecologia() {
                     </label>
                   </Grid.Column>
                 </Grid.Row>
+                { formValues.has_menstruation === 'I_HAD' && (
                 <Grid.Row>
                   <Grid.Column width={3} className="icon">
                     <Menopausia />
@@ -667,6 +670,8 @@ export default function SliderGinecologia() {
                     </label>
                   </Grid.Column>
                 </Grid.Row>
+
+                )}
                 <Grid.Row>
                   <Grid.Column width={3} className="icon">
                     <Embarazada />
@@ -684,7 +689,7 @@ export default function SliderGinecologia() {
                     <Grid.Row className="answer">{formValues.abortos ? formValues.abortos : 0}</Grid.Row>
                   </Grid.Column>
                   <Grid.Column className="edit" verticalAlign="middle" width={2}>
-                    <label onClick={() => slide(2)}>
+                    <label onClick={() => { formValues.has_menstruation === 'I_HAD' ? slide(2) : slide(1)}}>
                       <Icon
                         name="pencil alternate"
                         size="small"
