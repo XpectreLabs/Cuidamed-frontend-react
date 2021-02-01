@@ -71,7 +71,7 @@ export default function Slider() {
   const [selectSex, setSelectSex] = useState(<IconMen />);
 
   const [totalVacunas, setTotalVacunas] = useState([]);
-  // const { id } = JSON.parse(localStorage.getItem('user'));
+  const { id } = JSON.parse(localStorage.getItem('user'));
   const [vacunaText, setVacunaText] = useState('');
   const [formValues, setFormValues] = useState({
     sex: '',
@@ -92,73 +92,73 @@ export default function Slider() {
     vaccine: '',
   });
   useEffect(() => {
-    // fetch(`${CONECTION}api/getUser/${id}`, {
-    //   method: 'GET',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     Authorization: `Bearer ${localStorage.getItem('token')}`,
-    //     'x-auth-token': localStorage.getItem('refreshToken'),
-    //   },
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     const {
-    //       birth_date,
-    //       birth_place,
-    //       career,
-    //       civil_status,
-    //       height,
-    //       is_vaccinated,
-    //       ocupation,
-    //       vaccine_number,
-    //       organ_donor,
-    //       place,
-    //       religion,
-    //       sex,
-    //       social_number,
-    //       type_blood,
-    //       weight,
-    //       vaccine,
-    //     } = data.users[0];
-    //     setFormValues({
-    //       ...formValues,
-    //       sex,
-    //       weight,
-    //       height,
-    //       birth_place,
-    //       birthDate: birth_date,
-    //       place,
-    //       type_blood,
-    //       career,
-    //       social_number,
-    //       ocupation,
-    //       religion,
-    //       stateMarital: civil_status,
-    //       organDonor: organ_donor,
-    //       is_vaccinated,
-    //       vaccine_number,
-    //       vacunado: is_vaccinated === 'YES' ? true : false,
-    //     });
-    //     setTotalVacunas(vaccine);
-    //     if (birth_date &&
-    //       birth_place &&
-    //       career &&
-    //       civil_status &&
-    //       height &&
-    //       is_vaccinated &&
-    //       ocupation &&
-    //       vaccine_number &&
-    //       organ_donor &&
-    //       place &&
-    //       religion &&
-    //       sex &&
-    //       social_number &&
-    //       type_blood &&
-    //       weight &&
-    //       vaccine) {
-    //       slide(6);
-    //     }
-    //   });
+    fetch(`${CONECTION}api/getUser/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'x-auth-token': localStorage.getItem('refreshToken'),
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const {
+          birth_date,
+          birth_place,
+          career,
+          civil_status,
+          height,
+          is_vaccinated,
+          ocupation,
+          vaccine_number,
+          organ_donor,
+          place,
+          religion,
+          sex,
+          social_number,
+          type_blood,
+          weight,
+          vaccine,
+        } = data.users[0];
+        setFormValues({
+          ...formValues,
+          sex,
+          weight,
+          height,
+          birth_place,
+          birthDate: birth_date,
+          place,
+          type_blood,
+          career,
+          social_number,
+          ocupation,
+          religion,
+          stateMarital: civil_status,
+          organDonor: organ_donor,
+          is_vaccinated,
+          vaccine_number,
+          vacunado: is_vaccinated === 'YES' ? true : false,
+        });
+        setTotalVacunas(vaccine);
+        if (birth_date &&
+          birth_place &&
+          career &&
+          civil_status &&
+          height &&
+          is_vaccinated &&
+          ocupation &&
+          vaccine_number &&
+          organ_donor &&
+          place &&
+          religion &&
+          sex &&
+          social_number &&
+          type_blood &&
+          weight &&
+          vaccine) {
+          slide(6);
+        }
+      });
   }, []);
   const {
     sex,
