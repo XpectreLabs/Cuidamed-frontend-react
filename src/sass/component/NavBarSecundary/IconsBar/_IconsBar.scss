@@ -33,5 +33,10 @@
       height: 2.5em;
     }
   }
+
+  .icon-selected {
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 2em;
+  }
 }
 

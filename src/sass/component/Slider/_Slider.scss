@@ -258,6 +258,10 @@
 }
 
 .button-info-basic {
+  & > .column > .button {
+    background-color: $secondary;
+    color: $white;
+  }
   position: fixed;
   bottom: 1em;
   width: 80% !important;

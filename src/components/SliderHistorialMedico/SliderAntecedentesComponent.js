@@ -111,7 +111,7 @@ const SliderAntecedentesComponent = ({
         {hasRecord && (
           <>
             <Grid.Row className="vacunas__record">
-            <Grid.Column width={12}>
+            <Grid.Column width={15}>
               <div className="quantity">
                 <CustomInput
                   placeholder={placeholderNumber}
@@ -126,7 +126,7 @@ const SliderAntecedentesComponent = ({
         )}
         {totalElements.map(({ name, order, year }, i) => (
           <Grid.Row className="vacunas__title-description" key={i}>
-            <Grid.Column computer={objectKey !== 'alergias' ? 6: 12} tablet={objectKey !== 'alergias' ? 6: 12} mobile={12}>
+            <Grid.Column computer={objectKey !== 'alergias' ? 6: 12} tablet={objectKey !== 'alergias' ? 6: 12} mobile={15}>
               <CustomInput
                 placeholder={placeholderAnswer}
                 type={typeInput}
@@ -142,7 +142,7 @@ const SliderAntecedentesComponent = ({
               />
             </Grid.Column>
             {objectKey !== 'alergias' &&(
-            <Grid.Column computer={6} tablet={6} mobile={12}>
+            <Grid.Column computer={6} tablet={6} mobile={15}>
               <Date
                 placeholder={placeholderDate}
                 year={objectKey === 'sangre' || objectKey === 'alergias' || objectKey === 'discapacidad' || objectKey === 'other' || objectKey === 'transplantes' ? true: false}

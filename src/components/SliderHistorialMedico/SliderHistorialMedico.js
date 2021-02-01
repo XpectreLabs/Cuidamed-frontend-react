@@ -246,7 +246,7 @@ export default function SliderHistorialMedico() {
     button.classList.add('ui', 'button');
     const div = document.createElement('div');
     div.appendChild(button);
-    div.classList.add('arrow');
+    div.classList.add('arrow', 'right');
     arrow.appendChild(div);
   }
 

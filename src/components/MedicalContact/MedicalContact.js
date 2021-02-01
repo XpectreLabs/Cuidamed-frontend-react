@@ -96,7 +96,7 @@ export default function MedicalContact() {
           <Medico />
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column width={15} tablet={15} mobile={12} className='data-contact'>
+          <Grid.Column width={15} tablet={15} mobile={15} className='data-contact'>
             <CustomInput
               placeholder="Nombre completo"
               type="text"
@@ -106,7 +106,7 @@ export default function MedicalContact() {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row columns={3}>
-          <Grid.Column computer={5} tablet={5} mobile={12} className='data-contact'>
+          <Grid.Column computer={5} tablet={5} mobile={15} className='data-contact'>
             <CustomInput
               placeholder="E-mail"
               type="email"
@@ -114,7 +114,7 @@ export default function MedicalContact() {
               value={email}
             />
           </Grid.Column>
-          <Grid.Column computer={5} tablet={5} mobile={12} className='data-contact'>
+          <Grid.Column computer={5} tablet={5} mobile={15} className='data-contact'>
             <CustomInput
               placeholder="Teléfono"
               type="text"
@@ -122,7 +122,7 @@ export default function MedicalContact() {
               value={phone}
             />
           </Grid.Column>
-          <Grid.Column computer={5} tablet={5} mobile={12} className='data-contact'>
+          <Grid.Column computer={5} tablet={5} mobile={15} className='data-contact'>
             <CustomInput
               placeholder="Especialidad"
               type="text"
@@ -132,7 +132,7 @@ export default function MedicalContact() {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row className='btn-add'>
-          <Grid.Column width={15} tablet={15} mobile={12}>
+          <Grid.Column width={15} tablet={15} mobile={15}>
             <Button onClick={() => handleContact()}>Agregar contacto</Button>
           </Grid.Column>
         </Grid.Row>
@@ -140,23 +140,23 @@ export default function MedicalContact() {
         {contacts.map(({ fullName, email, phone, specialty }, i) => (
           <>
             <Grid.Row columns={1} className='data-name'> 
-              <Grid.Column computer={8} tablet={8} mobile={12} className="disabled">
+              <Grid.Column computer={8} tablet={8} mobile={15} className="disabled">
                 <CustomInput placeholder="Nombre completo" type="text" value={fullName} disabled />
               </Grid.Column>
             </Grid.Row>
             <Grid.Row columns={3}>
-              <Grid.Column computer={5} tablet={5} mobile={12} className="disabled">
+              <Grid.Column computer={5} tablet={5} mobile={15} className="disabled">
                 <CustomInput placeholder="E-mail" type="email" value={email} disabled />
               </Grid.Column>
-              <Grid.Column computer={5} tablet={5} mobile={12} className="disabled">
+              <Grid.Column computer={5} tablet={5} mobile={15} className="disabled">
                 <CustomInput placeholder="Teléfono" type="text" value={phone} disabled />
               </Grid.Column>
-              <Grid.Column computer={5} tablet={5} mobile={12} className="disabled">
+              <Grid.Column computer={5} tablet={5} mobile={15} className="disabled">
                 <CustomInput placeholder="Especialidad" type="text" value={specialty} disabled />
               </Grid.Column>
             </Grid.Row>
             <Grid.Row >
-              <Grid.Column computer={15} tablet={15} mobile={12} className="line"></Grid.Column>
+              <Grid.Column computer={15} tablet={15} mobile={15} className="line"></Grid.Column>
             </Grid.Row>
           </>
         ))}
