@@ -59,6 +59,7 @@
             }
 
             .selection {
+                // margin-left: -1.5em;
                 line-height: 0.5em;
                 min-height: 0.5em !important;
                 border-color: rgba(34, 36, 38, 0.15) !important;
@@ -84,8 +85,41 @@
                 color: $main;
             }
     
-    }
+        }
 
+
+    }
+}
+
+@media (max-width: 1090px) {
+    .plate {
+        font-size: 0.9em;
+
+    }
+}
+
+@media (max-width: 767px) {
+    .plate {
+        font-size: 0.7em;
+
+        > .column {
+
+            &:last-child {
+                height: auto;
+            }
+
+            
+            > .information input, > .information .selection {
+               width: 22em;
+               height: 2.5em;
+           }
+
+           .btn-main { 
+            margin-bottom: 2em;
+
+    
+        }
+        }
 
     }
 }

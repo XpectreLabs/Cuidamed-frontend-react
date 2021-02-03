@@ -65,7 +65,7 @@ export default function Plate() {
 
   return (
     <Grid className="plate">
-      <Grid.Column width={9} verticalAlign="middle">
+      <Grid.Column computer={8} tablet={16} mobile={16} verticalAlign="middle">
         <Grid.Row className="bg-plate">
           <Grid.Column verticalAlign="middle">
             <Grid.Row>
@@ -83,7 +83,7 @@ export default function Plate() {
           </Grid.Column>
         </Grid.Row>
       </Grid.Column>
-      <Grid.Column width={7} verticalAlign="middle">
+      <Grid.Column computer={8} tablet={16} mobile={16} verticalAlign="middle">
         <Grid.Row className="logo">
           <img src={Logo} />
         </Grid.Row>

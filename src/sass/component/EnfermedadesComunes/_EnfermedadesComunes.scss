@@ -1,18 +1,113 @@
-.title-diseas {
-    margin: 0 auto;
-    margin-top: 1em !important;
-}
-
-.subtitle {
-
-    padding: 0 !important;
-    margin-bottom: 2em;
-
-    & .subtitle-diseas {
+.common-diseases {
+    width: 85% !important;
+    .title-diseas {
+        font-size: 2em;
         margin: 0 auto;
+        margin-top: 1em !important;
+    }
+    
+    .subtitle {
+    
+        padding: 0 !important;
+        margin-bottom: 2em;
+    
+        & .subtitle-diseas {
+            font-size: 1.5em;
+            margin: 0 auto;
+        }
+    }
+
+    .list-enfermedades-comunes {
+        
+        .container-enfermedades {
+            width: 95%;
+        }
     }
 }
+
 
 .swiper-button-next {
     margin-top: -3em !important;
 }
+
+@media (max-width: 1205px) {
+    .common-diseases {
+        font-size: 0.8em;
+    }
+}
+
+
+@media (max-width: 991px) {
+    .common-diseases {
+
+        .list-enfermedades-comunes {
+    
+            .container-enfermedades {
+    
+                &__btn {
+                    width: fit-content;
+                    margin: 1em;
+    
+                    >label {
+                        padding: 1em;
+                    }
+                }
+            }
+        }
+
+        .swiper-button-next {
+            top: 92%;
+            right: 30%;
+        }
+
+        .swiper-button-prev {
+            top: 90%;
+            left: 20%;
+        }
+        .arrow > .ui.button {
+            font-size: 2em;
+            width: 9em;
+        }
+    
+        .arrow.left {
+        display: block;
+        }
+    }
+
+}
+
+@media (max-width: 767px) {
+    .common-diseases {
+        font-size: 0.6em;
+
+        .title-diseas {
+            margin-top: 2em !important;
+        }
+    }
+
+   
+}
+
+// @media (max-width: 991px) {
+
+  
+//     .slider .swiper-container .swiper-button-next {
+//       top: 92%;
+//       right: 30%;
+//     }
+//     .slider .swiper-container .swiper-button-prev {
+//       top: 90%;
+//       left: 20%;
+//     }
+//     .slider .swiper-container .arrow > .ui.button {
+//       font-size: 2em;
+//       width: 9em;
+//     }
+  
+//     .slider .swiper-container .arrow.left {
+  
+//       display: block;
+//     }
+
+  
+// }
