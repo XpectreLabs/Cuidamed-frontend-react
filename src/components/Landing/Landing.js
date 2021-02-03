@@ -9,17 +9,17 @@ export default function Landing() {
   const history = useHistory();
   return (
     // <Container>
-    <Grid className="landing">
-      <Grid.Row centered>
-        <Grid.Column width={5}>
+    <Grid className="landing" verticalAlign='top'>
+      <Grid.Row centered className='logo'>
+        <Grid.Column computer={5} tablet={7} mobile={10}>
           <img src={Logo} />
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row verticalAlign="middle">
-        <Grid.Column width={5} className="band">
+      <Grid.Row verticalAlign="middle" centered className='bands'>
+        <Grid.Column computer={5} tablet={5} mobile={9} className="band">
           <img src={BandaA} />
         </Grid.Column>
-        <Grid.Column width={6}>
+        <Grid.Column computer={6} tablet={6} mobile={9}>
           <Grid.Row>
             <h1>Banda CuidaMed</h1>
           </Grid.Row>
@@ -37,7 +37,7 @@ export default function Landing() {
             </Button>
           </Grid.Row>
         </Grid.Column>
-        <Grid.Column width={5} className="band">
+        <Grid.Column computer={5} tablet={5} mobile={9} className="band">
           <img src={BandaV} />
         </Grid.Column>
       </Grid.Row>

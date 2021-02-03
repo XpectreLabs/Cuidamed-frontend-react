@@ -29,9 +29,25 @@ export default function EnfermedadesComunes() {
     }
   }, [listCommonDiseases])
 
+  const arrowNext = () => {
+    const arrowNext = document.querySelector('.swiper-button-next');
+    arrowNext.style.color = '#00a199';
+    const buttonNext = document.createElement('button');
+    buttonNext.textContent = 'Siguiente';
+    buttonNext.classList.add('ui', 'button');
+    const divNext = document.createElement('div');
+    divNext.appendChild(buttonNext);
+    divNext.classList.add('arrow', 'right');
+    arrowNext.appendChild(divNext);
+  }
+
+  useEffect(() => {
+    arrowNext();
+  }, []);
+
   return (
     <div>
-      <Container>
+      <Container className='common-diseases'>
         <Grid verticalAlign="middle">
           <Grid.Row>
             <h1 className="title-diseas">Historial Médico</h1>

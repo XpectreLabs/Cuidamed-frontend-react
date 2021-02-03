@@ -8,14 +8,14 @@ export default function Band() {
   const [mainPhoto, setMainPhoto] = useState(BandaA);
   const history = useHistory();
   return (
-    <Grid className="band">
+    <Grid className="band" centered>
       <Grid.Row>
-        <Grid.Column width={3} className="logo">
+        <Grid.Column computer={3} tablet={5} mobile={10} className="logo">
           <img src={Logo} />
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row>
-        <Grid.Column verticalAlign="middle" width={2} className="thumbnail">
+      <Grid.Row verticalAlign='middle'>
+        <Grid.Column verticalAlign="middle" computer={2} tablet={2} mobile={3} className="thumbnail">
           <div className="square" onClick={() => setMainPhoto(BandaA)}>
             <img src={BandaA} />
           </div>
@@ -29,12 +29,12 @@ export default function Band() {
             <img src={BandaA} />
           </div>
         </Grid.Column>
-        <Grid.Column width={8}>
+        <Grid.Column computer={8} tablet={8} mobile={12}>
           <img src={mainPhoto} />
         </Grid.Column>
-        <Grid.Column width={5} verticalAlign="middle">
+        <Grid.Column computer={5} tablet={5} mobile={15} verticalAlign="middle">
           <Grid.Row>
-            <h1>Banda CuidaMed</h1>
+            <h1 className='title'>Banda CuidaMed</h1>
           </Grid.Row>
           <Grid.Row className="price">
             <Grid.Column>

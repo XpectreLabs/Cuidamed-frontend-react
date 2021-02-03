@@ -1,8 +1,17 @@
 .band {
     >.row {
 
+        &:first-child {
+            margin: 1em;
+            justify-content: flex-start !important;
+        }
+
         .logo {
-            margin-left: 1em;
+            margin-left: 1.5em;
+        }
+
+        .title {
+            font-size: 2em;
         }
 
         .thumbnail {
@@ -92,5 +101,63 @@
 
             
         }
+    }
+}
+
+@media (max-width: 1065px) {
+    .band {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 991px) {
+    .band {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 767px) {
+    .band {
+        font-size: 0.75em;
+
+        >.row {
+            padding: 1em;
+
+            &:first-child {
+                margin-top: 2em;
+                justify-content: center !important;
+            }
+
+            .column {
+                .colors {
+                   
+    
+                    span {
+                        font-size: 1.4em;
+                    }
+                   
+                    
+                    .circle {
+                        width: 2.5em;
+                        height: 2.5em;
+                    
+                        
+                        &:last-child {
+                            margin-left: 2em;
+                        }
+                    }
+    
+    
+                }
+    
+            }
+        }
+
+        .title {
+            text-align: center;
+        }
+
+
+        
     }
 }

@@ -1,4 +1,10 @@
 .landing {
+    height: 80vh;
+    .logo {
+        margin-top: 2em;
+        margin-bottom: 2em;
+        // height: 5%;
+    }
 
     .row {
 
@@ -41,6 +47,30 @@
             &:hover {
                 color: $font-dark;
             }
+        }
+    }
+}
+
+@media (max-width: 1070px) {
+    .landing {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 870px) {
+    .landing {
+        font-size: 0.7em;
+    }
+}
+
+
+@media (max-width: 767px) {
+    .landing {
+        font-size: 0.6em;
+
+        .logo {
+            margin-top: 3em;
+            margin-bottom: 3em;
         }
     }
 }
