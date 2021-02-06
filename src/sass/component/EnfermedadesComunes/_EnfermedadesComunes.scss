@@ -23,12 +23,12 @@
             width: 95%;
         }
     }
+    .swiper-button-next {
+        margin-top: -3em !important;
+    }
 }
 
 
-.swiper-button-next {
-    margin-top: -3em !important;
-}
 
 @media (max-width: 1205px) {
     .common-diseases {
@@ -53,25 +53,28 @@
                     }
                 }
             }
+
+            .arrow-next {
+                position: absolute !important;
+                bottom: -3em;
+                right: 50%;
+            }
         }
 
         .swiper-button-next {
-            top: 92%;
-            right: 30%;
+            top: 90%;
+            right: 25%;
         }
 
-        .swiper-button-prev {
-            top: 90%;
-            left: 20%;
-        }
+        // .swiper-button-prev {
+        //     top: 90%;
+        //     left: 20%;
+        // }
         .arrow > .ui.button {
             font-size: 2em;
             width: 9em;
         }
     
-        .arrow.left {
-        display: block;
-        }
     }
 
 }
@@ -81,33 +84,32 @@
         font-size: 0.6em;
 
         .title-diseas {
-            margin-top: 2em !important;
+            font-size: 2.5em !important;
+        }
+
+        .subtitle {
+
+            & .subtitle-diseas {
+                font-size: 1.8em;
+            }
+        }
+
+        .list-enfermedades-comunes {
+    
+            .container-enfermedades {
+                height: 58vh;
+                
+            }
+
+            .arrow-next {
+                right: 42%;
+            }
+        }
+
+        .arrow > .ui.button {
+            width: 80vw;
         }
     }
 
    
 }
-
-// @media (max-width: 991px) {
-
-  
-//     .slider .swiper-container .swiper-button-next {
-//       top: 92%;
-//       right: 30%;
-//     }
-//     .slider .swiper-container .swiper-button-prev {
-//       top: 90%;
-//       left: 20%;
-//     }
-//     .slider .swiper-container .arrow > .ui.button {
-//       font-size: 2em;
-//       width: 9em;
-//     }
-  
-//     .slider .swiper-container .arrow.left {
-  
-//       display: block;
-//     }
-
-  
-// }

@@ -36,10 +36,26 @@ export default function Sistemas() {
           setCarpSystem(newData);
         }
       })
-  }, [])
+  }, []);
+
+  const arrowNext = () => {
+    const arrowNext = document.querySelector('.swiper-button-next');
+    arrowNext.style.color = '#00a199';
+    const buttonNext = document.createElement('button');
+    buttonNext.textContent = 'Siguiente';
+    buttonNext.classList.add('ui', 'button');
+    const divNext = document.createElement('div');
+    divNext.appendChild(buttonNext);
+    divNext.classList.add('arrow', 'right');
+    arrowNext.appendChild(divNext);
+  }
+
+  useEffect(() => {
+    arrowNext();
+  }, []);
 
   return (
-    <Container>
+    <Container className='sistemas'>
       <Grid className="carpeta-enfermedades" centered>
         <Grid.Row>
           <h1 className="title-diseas">Historial Médico</h1>
@@ -47,7 +63,7 @@ export default function Sistemas() {
         <Grid.Row className="subtitle-diseas">
           <h3>Enfermedades de:</h3>
         </Grid.Row>
-        <Grid.Column width={15}>
+        <Grid.Column width={15} className='carpetas'>
           {carpSystem
             .map((carpeta, index) => (
               <div className="carpeta" key={carpeta.id}>
@@ -72,15 +88,15 @@ export default function Sistemas() {
                     {carpeta.is_completed ? 'Completo' : 'Incompleto'}
                   </Button>
                   <Button>Editar</Button>
-                </Grid.Row>
                 <Grid.Row>
                   <p>{carpeta.human_system_Id.name}</p>
+                </Grid.Row>
                 </Grid.Row>
               </div>
             ))
           }
         </Grid.Column>
-        <Grid.Column width={1}>
+        <Grid.Column width={1} className='arrow-next'>
           <Link to={'/dashboard/antecedentes'}>
             <div
               className="swiper-button-next"

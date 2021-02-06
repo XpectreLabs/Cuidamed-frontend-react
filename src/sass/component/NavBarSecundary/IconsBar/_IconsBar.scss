@@ -18,6 +18,7 @@
     margin: 0.5em 0px;
     margin-left: 5px;
     height: 3.5em;
+    // width: 3.5em;
   }
 
   &:hover {
@@ -28,10 +29,19 @@
 @media (max-width: 767px) {
 
   .icon-container {
-    
+    margin: 0;
+    padding-left: 0.35em;
+    padding-right: 0.35em;
+
     > svg {
-      height: 2.5em;
+      width: 2.9em;
+      // height: 2.9em;
+      margin-left: 0;
     }
+
+    // &:last-child {
+    //   margin-right: 0.5em;
+    // }
   }
 
   .icon-selected {

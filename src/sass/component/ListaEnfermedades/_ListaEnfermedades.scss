@@ -30,6 +30,7 @@
         padding-top: 0 !important;
 
         >h3 {
+            font-size: 1.5em;
             margin: 0;
             margin-top: -1em;
         }
@@ -41,15 +42,16 @@
         margin-top: 1em;
 
         .diseases.left {
-            height: 68vh;
+            height: 33em;
             
     
             h3 {
+                font-size: 1.5em;
                 text-align: center;
                 margin-bottom: 1em;
             }
             
-            .plate {
+            .plate-diseases {
                 margin-left: 4em;
                 margin-right: 4em;
                 // padding: 1em;
@@ -78,9 +80,9 @@
                     outline: none;
                 }
                 
-                >.row:nth-child(3) {
-                    height: 80%;
-                    // overflow-y: auto;
+                >.list-diseases {
+                    height: 82%;
+                    // overflow: hidden;
                 }
     
                 .no-disease {
@@ -133,9 +135,10 @@
         }
     
         .diseases.right {
-            height: 68vh;
+            height: 33em;
     
             h3 {
+                font-size: 1.5em;
                 text-align: center;
                 margin-bottom: 1em;
             }
@@ -155,8 +158,8 @@
             }
     
             .folder {
-                height: 64vh;
-                margin-right: 3.5em;
+                height: 31em;
+                // margin-right: 3.5em;
                 border: 3px solid green;
                 border-radius: 2em;
                 border-top-left-radius: 0;
@@ -257,8 +260,169 @@
     }
 }
 
-// @media (max-width: 1024px) {
-//     .container-enfermedades {
-//       font-size: 0.75em ;
-//     }
-// }
+@media (max-width: 1130px) {
+    .lista-enfermedades {
+        .plate-diseases, .folder >.drag {
+            font-size: 0.9em;
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .lista-enfermedades  {
+        font-size: 0.8em;
+        .container-diseases {
+    
+            .diseases.left {
+                height: 28em;
+
+                .plate-diseases {
+                    // font-size: 0.8em;
+                    >.list-diseases {
+                        height: 75%;
+                    }
+
+                    >i {
+                        top: -25px;
+                        
+                    }
+                    >input {
+                        top: -27px;
+                    }
+
+                }
+            }
+
+            .diseases.right {
+                height: 28em;
+                >.row {
+                    &:first-child {
+                        margin-top: 6em;
+                    }
+                }
+                
+                .folder {
+                    height: 29em;
+
+                    >.drag {
+
+                        >.row {
+                            >.col-wrapper {
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .lista-enfermedades  {
+        font-size: 0.75em;
+
+        .title-list {
+            margin-top: 1em;
+            font-size: 2em;
+    
+            .title-list-icon {
+                svg {
+                    width:  1.5em;
+                }
+            }
+        }
+
+        .instructions {
+            margin-top: 0.5em;
+    
+        }
+
+        .container-diseases {
+            margin-top: 0.5em;
+            .diseases.left {
+                height: 20em;
+
+                h3 {
+                    margin: 0;
+                }
+
+                .plate-diseases {
+                    // font-size: 0.8em;
+                    >.list-diseases {
+                        >.col-wrapper {
+                            margin: 0;
+                            margin-top: 1em;
+                        }
+                    }
+
+                    .ui.button.disease {
+                        width: fit-content;
+                        height: auto;
+                        padding: 0;
+                        padding-top: 0.5em;
+                        padding-bottom: 0.5em;
+                        margin-bottom: 0.5em;
+                        font-size: 1.2em;
+                    }
+                }
+            }
+
+            .diseases.right {
+                height: 20em;
+                >.row {
+                    &:first-child {
+                        margin-top: 2.5em;
+                    }
+                    h3 {
+                        margin-bottom: 0;
+                    }
+                }
+
+                .folder {
+                    height: 18em;
+
+                    >.drag {
+
+                        .ui.button.disease {
+                            width: fit-content;
+                            height: auto;
+                            padding: 0;
+                            padding-top: 0.5em;
+                            padding-bottom: 0.5em;
+                            margin-bottom: 0.5em;
+                            font-size: 1.2em;
+                        }
+                    }
+
+                    & .no-disease {
+        
+                            & .button {
+                                margin-top: -0.5em;
+                                font-size: 1.2em;
+                            }
+                    }
+                }
+
+            }
+
+            
+        }
+
+        .drop-wrapper {
+            min-width: auto;
+            min-height: auto;
+            & > .col {
+                min-width: auto;
+                min-height: auto;
+                &>.item {
+                    &>p {
+                        margin-left: 0.2em;
+                        margin-right: 0.2em;
+                    }
+                }
+            }
+        }
+    }
+}

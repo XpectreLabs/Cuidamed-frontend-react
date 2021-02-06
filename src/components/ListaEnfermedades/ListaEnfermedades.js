@@ -274,16 +274,16 @@ const ListaEnfermedades = React.memo(() => {
         <Grid.Row className="instructions" centered>
           <h3>Arrastre las enfermedades que tenga a mis enfermedades</h3>
         </Grid.Row>
-        <Grid.Row columns="2" className="container-diseases">
-          <Grid.Column className="diseases left">
+        <Grid.Row columns="2" className="container-diseases" centered>
+          <Grid.Column className="diseases left" computer={8} tablet={16} mobile={16}>
             <Grid.Row>
               <h3>Enfermedades</h3>
             </Grid.Row>
-            <Grid.Row className="plate">
+            <Grid.Row className="plate-diseases">
               <Icon name='search' />
               <input type='text' id='search' placeholder='Buscar' onKeyUp={handleSearch} />
               <DndProvider backend={isMobile() !== null ? TouchBackend : HTML5Backend}>
-                <div className={'row'}>
+                <div className={'row list-diseases'}>
                   <div className={'col-wrapper'}>
                     <DropWrapper onDrop={onDrop} status={VERIFICAR}>
                       <Col>
@@ -307,7 +307,7 @@ const ListaEnfermedades = React.memo(() => {
               </Grid.Row>
             </Grid.Row>
           </Grid.Column>
-          <Grid.Column className="diseases right">
+          <Grid.Column className="diseases right" computer={7} tablet={14} mobile={14}> 
             <Grid.Row>
               <h3>Mis enfermedades</h3>
             </Grid.Row>

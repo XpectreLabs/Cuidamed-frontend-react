@@ -291,7 +291,7 @@ export default function SliderGinecologia() {
 
 
   return (
-    <Grid centered className="slider historial">
+    <Grid centered className="slider historial slider-gynecology">
       <Grid.Row>
         <Swiper
           spaceBetween={55}
@@ -306,7 +306,7 @@ export default function SliderGinecologia() {
           <SwiperSlide>
             <Container className="gynecology">
               <Grid centered>
-                <Grid.Row>
+                <Grid.Row className="title-gynecology">
                   <h1 className="title">Historial Médico</h1>
                 </Grid.Row>
                 <Grid.Row className="subtitle">
@@ -413,7 +413,7 @@ export default function SliderGinecologia() {
               <SwiperSlide>
                 <Container className="gynecology">
                   <Grid centered>
-                    <Grid.Row>
+                    <Grid.Row className="title-gynecology">
                       <h1 className="title">Historial Médico</h1>
                     </Grid.Row>
                     <Grid.Row className="subtitle">
@@ -474,7 +474,7 @@ export default function SliderGinecologia() {
           <SwiperSlide>
             <Container className="gynecology">
               <Grid centered>
-                <Grid.Row>
+                <Grid.Row className="title-gynecology">
                   <h1 className="title">Historial Médico</h1>
                 </Grid.Row>
                 <Grid.Row className="subtitle">

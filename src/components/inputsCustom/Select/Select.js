@@ -9,6 +9,7 @@ export const SelectCustom = React.memo(
     setValue = (e) => { },
     id,
     value,
+    upward
   }) => {
     const [addClass, setAddClass] = useState(false);
     const handleSetValue = async (event) => {
@@ -33,6 +34,7 @@ export const SelectCustom = React.memo(
           onChange={handleSetValue}
           onOpen={handleOpen}
           value={value}
+          upward
         />
         <label placeholder={placeholder}></label>
         {/* <input
