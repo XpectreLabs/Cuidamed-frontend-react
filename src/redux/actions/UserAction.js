@@ -183,11 +183,11 @@ export const updateGinecologia = (pInfo, history) => {
         console.log(response);
         if (response.message) {
           Swal.fire({
-            title: "Datos Actualizados",
+            title: "!Sus datos fueron guardados exitosamente!",
             icon: "success",
           });
           //dispatch({ type: types.saveAndContinue });
-          //history.push('/dashboard/enfermedades-comunes');
+          history.push('/dashboard/tratamiento');
         }
       }
     } catch (e) { }
