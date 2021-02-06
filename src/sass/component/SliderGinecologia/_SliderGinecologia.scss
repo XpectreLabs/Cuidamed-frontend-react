@@ -1,70 +1,79 @@
-.gynecology {
-   &.container {
-       width: 100% !important;
-   }
-    >.grid {
+.slider-gynecology {
+    >.row {
+        >.swiper-container {
+            height: 100vh;
+        }
+    }
 
-    
-        >.row {
-            &.subtitle {
-                margin-bottom: 0;
-            }
+    .gynecology {
+        &.container {
+            width: 100% !important;
+        }
 
-            &.answers{
-                .column{
-                    >label{ 
-                        padding-top: 1rem;
-                    }
-                    >input[type='radio']:checked + label {
-                        background-color: $secondary;
-                        color: $white;
-                      }
+        >.grid {
+
+
+            >.row {
+                &.subtitle {
+                    margin-bottom: 0;
                 }
-            }
 
-            .question {
-                font-size: 2em;
-                color: $secondary;
-            }
+                &.answers {
+                    .column {
+                        >label {
+                            padding-top: 1rem;
+                        }
 
-            & svg {
-                width: 15em;
-            }
+                        >input[type='radio']:checked+label {
+                            background-color: $secondary;
+                            color: $white;
+                        }
+                    }
+                }
 
-            &.small-icon {
+                .question {
+                    font-size: 2em;
+                    color: $secondary;
+                }
 
                 & svg {
-                    width: 10em;
+                    width: 15em;
+                }
+
+                &.small-icon {
+
+                    & svg {
+                        width: 10em;
+                    }
                 }
             }
-        }
 
-        >.answers.menopause {
-            >.column {
+            >.answers.menopause {
+                >.column {
 
-                >.button {
-                    width: 3em;
+                    >.button {
+                        width: 3em;
+                    }
                 }
             }
-        }
 
-        .title {
-            font-size: 2em;
-        }
-
-        .subtitle {
-            h2 {
-                font-size: 1.5em;
-
+            .title {
+                font-size: 2em;
             }
+
+            .subtitle {
+                h2 {
+                    font-size: 1.5em;
+
+                }
+            }
+
+
+
         }
-
-        
-
     }
-}
 
-.resume {
+    .resume {
         >.row {
             &:first-child {
                 margin-top: 1em;
@@ -73,8 +82,10 @@
             &:nth-child(5) {
                 margin-bottom: 5em;
             }
+
             >.column {
                 margin-right: 1em;
+
                 &.icon {
                     svg {
                         width: 10em;
@@ -94,10 +105,11 @@
                 }
 
                 &.edit {
+
                     // position: absolute;
                     // right: 150px;
                     // margin-left: -100px;
-                    > label {
+                    >label {
                         text-align: left;
                         font-size: 1em;
                         background-color: $background-grey-light;
@@ -111,40 +123,50 @@
             .title {
                 font-size: 2em;
             }
-    
+
             .subtitle {
                 h2 {
                     font-size: 1.5em;
-    
+
                 }
             }
 
             // &:last-child {
             //     margin-bottom: 5em;
             // }
-            
+
 
             // &.save {
             //     margin-bottom: 10em;
             // }
 
-       
-    
+
+
+        }
+    }
+
+    .resume.resume-gynecology {
+        height: 78% ;
     }
 }
 
+
 @media (max-width: 1235px) {
-    .gynecology {
-        &.container {
-            >.grid {
-                .title {
-                    font-size: 2.5em;
-                }
-        
-                .subtitle {
-                    h2 {
-                        font-size: 2em;
-        
+    .slider-gynecology {
+
+        .gynecology {
+            &.container {
+                >.grid {
+
+                    .title {
+                        font-size: 2.5em;
+                    }
+
+                    .subtitle {
+                        h2 {
+                            font-size: 2em;
+
+                        }
                     }
                 }
             }
@@ -153,122 +175,151 @@
 }
 
 @media (max-width: 991px) {
-    .gynecology {
-        font-size: 0.9em;
-        &.container {
-            height: 100vh !important;
+    .slider-gynecology {
 
-            >.grid {
-                height: 88%;
+        .gynecology {
+            font-size: 0.9em;
 
-                .title {
-                    font-size: 2.5em;
-                }
-        
-                .subtitle {
-                    h2 {
-                        font-size: 2em;
-        
+            &.container {
+                // height: 85vh !important;
+
+                >.grid {
+                    height: 90%;
+
+                    .title {
+                        font-size: 2.5em;
+                    }
+
+                    .subtitle {
+                        h2 {
+                            font-size: 2em;
+
+                        }
                     }
                 }
-            }
-        }
-    }
 
-    .resume.resume-gynecology {
-        height: 78% !important;
+                .ui.dropdown .menu>.item {
+                    font-size: 0.7em;
+                }
+            }
+
+            .swiper-button-next {
+                top: 90%;
+            }
+
+
+        }
+
+        // .resume.resume-gynecology {
+        //     height: 78% !important;
+        // }
     }
-}
 
 @media (max-width: 767px) {
-    .gynecology {
-        // font-size: 1.2em;
-        &.container {
+        .gynecology {
 
-            >.grid {
-                height: 72%;
-                overflow: auto;
+            // font-size: 1.2em;
+            &.container {
+                height: 80vh !important;
 
-                >.row {
+                >.grid {
+                    height: 90% !important;
+                    overflow: auto;
 
-                    &.small-icon {
+                    >.title-gynecology {
+                        margin-top: 2em;
 
-                        & svg {
-                            width: 8em;
+                        >.title {
+                            height: 0;
                         }
                     }
 
-                    &.options-gynecology, &.menstruation {
-                        div {
-                            margin-bottom: 1.3em;
+                    >.row {
+
+                        &.small-icon {
+
+                            & svg {
+                                width: 8em;
+                            }
                         }
+
+                        &.options-gynecology,
+                        &.menstruation {
+                            div {
+                                // margin-bottom: 1em;
+                                margin-bottom: 1.3em;
+                            }
+                        }
+
+                        // &.menstruation {
+                        //     div {
+                        //         margin-bottom: 1em;
+                        //     }
+                        // }
                     }
 
-                    // &.menstruation {
-                    //     div {
-                    //         margin-bottom: 1em;
-                    //     }
+                    >.answers.menopause {
+                        padding-bottom: 1em;
+                    }
+
+                    // &:first-child {
+                    //     // margin-top: 1em;
+                    //     height: 0.5em;
                     // }
+
+                    >.icon {
+                        align-items: baseline;
+                        margin: 1em;
+                    }
+
+                    .title {
+                        font-size: 2.8em;
+                    }
+
+                    .subtitle {
+
+                        // margin-top: -2em;
+                        h2 {
+                            // margin-top: -1.5em;
+                            font-size: 2.2em;
+
+                        }
+                    }
+
+                    >.pregnant {
+                        div {
+                            margin-bottom: 0.5em;
+                        }
+                    }
+
                 }
+            }
+        }
 
-                >.answers.menopause {
-                    padding-bottom: 1em;
-                }
+        .resume {
 
-                // &:first-child {
-                //     // margin-top: 1em;
-                //     height: 0.5em;
-                // }
+            &.resume-gynecology {
+                height: 90% !important;
+            }
 
-                >.icon {
-                    align-items: baseline;
-                    margin: 1em;
+            >.row {
+
+                &:first-child {
+                    margin-top: 0;
                 }
 
                 .title {
-                    font-size: 2.8em;
+                    font-size: 2em;
                 }
-        
-                .subtitle {
-                    // margin-top: -2em;
+
+                &.subtitle {
                     h2 {
-                        // margin-top: -1.5em;
-                        font-size: 2.2em;
-        
+                        font-size: 1.5em;
+
                     }
                 }
-
-                >.pregnant {
-                    div {
-                        margin-bottom: 0.5em;
-                    }
-                }
-
             }
+
         }
-    }
-
-    .resume {
-
-        &.resume-gynecology {
-            height: 90% !important;
-        }
-        >.row {
-
-            &:first-child {
-                margin-top: 0;
-            }
-            .title {
-                font-size: 2em;
-            }
-    
-            &.subtitle {
-                h2 {
-                    font-size: 1.5em ;
-    
-                }
-            }
-        }
-
     }
 }

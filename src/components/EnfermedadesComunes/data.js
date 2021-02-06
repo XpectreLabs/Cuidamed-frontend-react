@@ -4,24 +4,25 @@ const commonDiseases = [
         name: "Diabetes",
     },
     {
-        id: "epoc",
-        name: "EPOC",
-    },
-    {
-        id: "IRenal",
-        name: "I. Renal",
-    },
-    {
         id: "hipertension",
         name: "Hipertensión",
     },
+    {
+        id: "eReumatologica",
+        name: "E. Reumatológica",
+    },
+
     {
         id: "asma",
         name: "Asma",
     },
     {
-        id: "hipotiroidismo",
-        name: "Hipotiroidismo",
+        id: "hipertoroidismo",
+        name: "Hipertoroidismo",
+    },
+    {
+        id: "IRenal",
+        name: "I. Renal",
     },
     {
         id: "vihSida",
@@ -31,18 +32,20 @@ const commonDiseases = [
         id: "cancer",
         name: "Cáncer",
     },
-    {
-        id: "hipertoroidismo",
-        name: "Hipertoroidismo",
-    },
+    
     {
         id: "eCardiaca",
         name: "E. Cardiaca",
     },
     {
-        id: "eReumatologica",
-        name: "E. Reumatológica",
+        id: "epoc",
+        name: "EPOC",
     },
+    {
+        id: "hipotiroidismo",
+        name: "Hipotiroidismo",
+    },
+    
 ]
 
 

@@ -1,94 +1,191 @@
-.carpeta-enfermedades {
+.sistemas {
 
+    > .carpeta-enfermedades {
+    
+    
+        & >.row {
+            padding-bottom: 0;
 
-    & >.row {
-        padding-bottom: 0;
+            &:first-child {
+                margin-top: 1em;
+            }
 
-        &.subtitle-diseas {
+            >.title-diseas {
+                font-size: 2em;
+            }
+    
+            &.subtitle-diseas {
+                
+                padding: 0;
+    
+                > h3 {
+                    font-size: 1.5em;
+                }
+            }
+    
             
-            padding: 0;
+        }
+    
+        >.column.carpetas {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center;
+            flex-wrap: wrap;
+            height: 83vh;
+            width: 80% !important;
+            // >div {
+                // display: flex;
+                // justify-content: space-around;
+                // align-items: center;
+                // &.row-carpetas {
+                //     padding: 0.5em;
+                // }
+                .carpeta {
+                    width: 22%;
+                    text-align: center;
+    
+                    .is_complete {
+                        background-color: $dark-red;
+                        border-color: $dark-red;
+                    }
+    
+                    .no_complete {
+                        background-color: $dark-red !important;
+                        border-color: $dark-red !important;
+                    }
+    
+                    .button {
+                    font-size: 0.8em;
+                    margin-top: -2em;
+                    display: inline-block;
+                    width: fit-content;
+                    padding: 0.5em;
+                    background-color: $gray;
+                    border-color: $gray;
+                    color: #000000;
+                    margin-bottom: 0.5em;
+        
+                    &:first-child {
+                        margin-right: 1em;
+                        color: white;
+                        // background-color: $dark-red;
+                        // border-color: $dark-red;
+                    }
+                    }
+        
+                    & svg {
+                        width: 8em;
+                        transition: all 300ms;
+    
+                        &:hover {
+                            transform: scale(1.1);
+                        }
+                    }
+                        
+                }
+        
+        
+                .column {
+                    > div {
+                    text-align: center;
+                    }
+                    svg {
+                    width: 8em;
+                    margin-bottom: 1em;
+                    text-align: center;
+                    margin-bottom: 0;
+                    }
+                }
+            // }
+        }
+    
+        
+    }
+}
 
-            > h3 {
-                font-size: 1.5em;
+@media (max-width: 1080px) {
+    .sistemas {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 991px) {
+    .sistemas {
+        > .carpeta-enfermedades {
+
+            >.column.carpetas {
+                width: 100% !important;
+    
+                .carpeta {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 50%;
+
+                    >.row {
+                        margin-left: 1em;
+                    }
+                }
+    
+            }
+
+            .arrow-next {
+                position: absolute !important;
+                bottom: 5em;
+                right: 50%;
             }
         }
 
-        
+        .swiper-button-next {
+            top: 92%;
+            right: 25%;
+        }
+
+        .arrow > .ui.button {
+            font-size: 2em;
+            width: 9em;
+        }
     }
+}
 
-    .column {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center;
-        flex-wrap: wrap;
-        height: 83vh;
+@media (max-width: 767px) {
+    .sistemas {
+        // font-size:  0.7em;
+        > .carpeta-enfermedades {
 
-        // >div {
-            // display: flex;
-            // justify-content: space-around;
-            // align-items: center;
-            // &.row-carpetas {
-            //     padding: 0.5em;
-            // }
-            .carpeta {
-                width: 22%;
-                text-align: center;
-
-                .is_complete {
-                    background-color: $dark-red;
-                    border-color: $dark-red;
-                }
-
-                .no_complete {
-                    background-color: $dark-red !important;
-                    border-color: $dark-red !important;
-                }
-
-                .button {
-                font-size: 0.8em;
-                margin-top: -2em;
-                display: inline-block;
-                width: fit-content;
-                padding: 0.5em;
-                background-color: $gray;
-                border-color: $gray;
-                color: #000000;
-                margin-bottom: 0.5em;
-    
+            & >.row {
                 &:first-child {
-                    margin-right: 1em;
-                    color: white;
-                    // background-color: $dark-red;
-                    // border-color: $dark-red;
+                    margin-top: 2em ;
                 }
-                }
-    
-                & svg {
-                    width: 8em;
-                    transition: all 300ms;
+            }
+            >.column.carpetas {
+                height: 60vh;
 
-                    &:hover {
-                        transform: scale(1.1);
+                .carpeta {
+                    & svg {
+                        width: 4em;
                     }
                 }
-                    
             }
-    
-    
-            .column {
-                > div {
-                text-align: center;
-                }
-                svg {
-                width: 8em;
-                margin-bottom: 1em;
-                text-align: center;
-                margin-bottom: 0;
-                }
-            }
-        // }
-    }
 
-    
+            // .swiper-button-next {
+            //     top: 5vh;
+            // }
+
+            .arrow-next {
+                right: 42%;
+                bottom: 4em;
+            }
+
+            .arrow > .ui.button {
+                font-size: 1.5em;
+            }
+
+        }
+
+        .arrow > .ui.button {
+            width: 80vw;
+        }
+
+    }
 }
-  

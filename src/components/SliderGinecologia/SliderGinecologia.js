@@ -266,80 +266,6 @@ export default function SliderGinecologia() {
     return null;
   }
 
-  // function Menstruation() {
-  //   //let menstruation = props.menstruation;
-  //   if (formValues.has_menstruation === 'I_HAVE') {
-  //     return (
-  //         <Grid.Row>
-  //           <Grid.Column width={6}>
-  //             <CustomInput
-  //               placeholder="Edad de primera menstruación"
-  //               type="number"
-  //               setValue={(e) => handleCounter(e)}
-  //             />
-  //           </Grid.Column>
-  //           <Grid.Column width={6}>
-  //             <SelectCustom
-  //               placeholder="Tipo de periodo"
-  //               dataOptions={period}
-  //               setValue={e => {
-  //                 setFormValues({ ...formValues, kind_mestruation: e });
-  //               }}
-  //               value={formValues.kind_mestruation}
-  //             />
-  //           </Grid.Column>
-  //         </Grid.Row>
-  //     );
-  //   // } else {
-  //   //   return (
-  //   //     <Grid.Row className="answers">
-  //   //       <Grid.Column width={5}>
-  //   //         <input
-  //   //           id="notHad"
-  //   //           type="radio"
-  //   //           name="menstruation"
-  //   //           className="hidden"
-  //   //           readOnly=""
-  //   //           tabIndex="0"
-  //   //         />
-  //   //         <label
-  //   //           htmlFor="notHad"
-  //   //           className={'ui button'}
-  //   //           onClick={(e) => {
-  //   //             setFormValues({ ...formValues, has_menstruation: 'NOT_HAD' })
-  //   //           }}
-  //   //         >
-  //   //           Ya no la tengo
-  //   //         </label>
-  //   //       </Grid.Column>
-  //   //       <Grid.Column width={5}>
-  //   //         <input
-  //   //           id="notHave"
-  //   //           type="radio"
-  //   //           name="menstruation"
-  //   //           className="hidden"
-  //   //           readOnly=""
-  //   //           tabIndex="0"
-  //   //         />
-  //   //         <label
-  //   //           htmlFor='notHave'
-  //   //           className={'ui button'}
-  //   //           onClick={() => {
-  //   //             setFormValues({ ...formValues, has_menstruation: 'NOT_HAVE' })
-  //   //           }}
-  //   //         >
-  //   //           No la tengo
-  //   //                 </label>
-  //   //       </Grid.Column>
-  //   //     </Grid.Row>
-  //   //   );
-  //   // return null;
-  //   }
-
-
-  //   return null;
-  // }
-
   const slide = (s) => {
     const mySwiper = document.querySelector('.swiper-container').swiper;
     mySwiper.slideTo(s);
@@ -403,7 +329,7 @@ export default function SliderGinecologia() {
 
 
   return (
-    <Grid centered className="slider historial">
+    <Grid centered className="slider historial slider-gynecology">
       <Grid.Row>
         <Swiper
           spaceBetween={55}
@@ -418,7 +344,7 @@ export default function SliderGinecologia() {
           <SwiperSlide>
             <Container className="gynecology">
               <Grid centered>
-                <Grid.Row>
+                <Grid.Row className="title-gynecology">
                   <h1 className="title">Historial Médico</h1>
                 </Grid.Row>
                 <Grid.Row className="subtitle">
@@ -513,7 +439,7 @@ export default function SliderGinecologia() {
           <SwiperSlide>
             <Container className="gynecology">
               <Grid centered>
-                <Grid.Row>
+                <Grid.Row className="title-gynecology">
                   <h1 className="title">Historial Médico</h1>
                 </Grid.Row>
                 <Grid.Row className="subtitle">
@@ -574,7 +500,7 @@ export default function SliderGinecologia() {
           <SwiperSlide>
             <Container className="gynecology">
               <Grid centered>
-                <Grid.Row>
+                <Grid.Row className="title-gynecology">
                   <h1 className="title">Historial Médico</h1>
                 </Grid.Row>
                 <Grid.Row className="subtitle">

@@ -59,7 +59,7 @@ export default function EnfermedadesComunes() {
           </Grid.Row>
           <Grid.Row
             verticalAlign="middle"
-            className="list-enfermedades-comunes">
+            className="list-enfermedades-comunes" centered>
             <Grid.Column width={15} verticalAlign="middle">
               <div className="container-enfermedades">
                 {commonDiseases.map((disease, index) => (
@@ -76,7 +76,7 @@ export default function EnfermedadesComunes() {
                 ))}
               </div>
             </Grid.Column>
-            <Grid.Column width={1}>
+            <Grid.Column width={1} className='arrow-next'>
               <Link to={'/dashboard/sistemas'}>
                 <div
                   className="swiper-button-next"

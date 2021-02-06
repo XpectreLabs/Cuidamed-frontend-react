@@ -111,7 +111,7 @@ const SliderAntecedentesComponent = ({
         {hasRecord && (
           <>
             <Grid.Row className="vacunas__record">
-            <Grid.Column width={15}>
+            <Grid.Column computer={12} tablet={12} mobile={15}>
               <div className="quantity">
                 <CustomInput
                   placeholder={placeholderNumber}

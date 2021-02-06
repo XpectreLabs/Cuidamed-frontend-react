@@ -492,8 +492,16 @@ export default function Slider() {
 
   useEffect(() => {
     // console.log('Banderaaaa', flagNext)
-    arrowPrev();
-  }, []);
+
+    if(activeIndex === 6) {
+      removeArrowPrev();
+    } else {
+      removeArrowPrev();
+      arrowPrev();
+    }
+
+    console.log(':):)'+activeIndex);
+  }, [activeIndex]);
 
 
 
@@ -802,10 +810,10 @@ export default function Slider() {
             <div className="vacunas">
               <Grid centered columns={16}>
                 <Grid.Column computer={6} tablet={12} mobile={12}>
-                  <h1
+                  <h3
                     className={`title ${titleInfoBasic ? '' : 'hidden-title'}`}>
                     Información Básica
-                  </h1>
+                  </h3>
                   <Grid.Row className="vacunas__title" width={50}>
                     <h3>¿Te has vacunado en estos ultimos 6 meses?</h3>
                   </Grid.Row>
@@ -887,10 +895,10 @@ export default function Slider() {
               <Grid centered columns={16}>
                 {/* <h1 className="title">Información Básica</h1> */}
                 <Grid.Column computer={14} tablet={12} mobile={14}>
-                  <h1
+                  <h3
                     className={`title ${titleInfoBasic ? '' : 'hidden-title'}`}>
                     Información Básica
-                  </h1>
+                  </h3>
                   {infoBasicDescriptionIcons.map((value, index) => (
                     <Grid.Row className="description" key={index}>
                       <div className="description-container">

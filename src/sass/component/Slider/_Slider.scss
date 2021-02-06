@@ -9,6 +9,7 @@
 
   .title {
     text-align: center;
+    font-size: 2em;
     // top: 4em;
     // opacity: 1;
     // z-index: 3;
@@ -198,7 +199,7 @@
       margin-bottom: 2em;
 
       &:first-of-type {
-        margin-top: 8em;
+        margin-top: 4em;
       }
 
       & > .description-container {
@@ -301,7 +302,7 @@
   }
 
   .slider .swiper-container .swiper-button-next {
-    top: 92%;
+    top: 90%;
     right: 30%;
   }
   .slider .swiper-container .swiper-button-prev {
@@ -343,6 +344,10 @@
  
   .slider {
     font-size: 0.6em;
+
+    .hidden-title {
+      opacity: 1;
+    }
 
 
     & .swiper-container {
@@ -416,11 +421,11 @@
   .mobile-title {
     text-align: center;
     margin-top: 10em;
-     > h3 {
-       text-align: center;
-       margin: 0 auto;
-      font-size: 2.5em;
-     }
+    > h3 {
+      text-align: center;
+      margin: 0 auto;
+      font-size: 2.5em !important;
+    }
   }
 
   .button-info-basic {
@@ -460,6 +465,10 @@
 
   .info-basic {
     .description {
+      &:first-of-type {
+        margin-top: 2em !important;
+      }
+
       flex-wrap: wrap;
 
       & .description-container {
@@ -470,7 +479,7 @@
     }
 
     .title {
-      margin-top: 3em;
+      margin-top: 4em;
     }
   }
 
