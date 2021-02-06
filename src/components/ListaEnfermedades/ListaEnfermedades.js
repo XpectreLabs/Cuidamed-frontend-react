@@ -5,6 +5,8 @@ import { arrayIconHumanSys } from './data';
 
 //DRAG ANDD DROP
 import { HTML5Backend } from 'react-dnd-html5-backend';
+// import { TouchBackend } from 'react-dnd-touch-backend'
+import { TouchBackend } from 'react-dnd-touch-backend'
 import { DndProvider } from 'react-dnd';
 
 import Item from '../DragAndDrop/Item';
@@ -245,6 +247,17 @@ const ListaEnfermedades = React.memo(() => {
 
   }
 
+  function isMobile() {
+    return (
+      (navigator.userAgent.match(/Android/i)) ||
+      (navigator.userAgent.match(/webOS/i)) ||
+      (navigator.userAgent.match(/iPhone/i)) ||
+      (navigator.userAgent.match(/iPod/i)) ||
+      (navigator.userAgent.match(/iPad/i)) ||
+      (navigator.userAgent.match(/BlackBerry/i))
+    );
+  }
+
   return (
     <div>
       <Grid centered className="lista-enfermedades">
@@ -269,7 +282,7 @@ const ListaEnfermedades = React.memo(() => {
             <Grid.Row className="plate-diseases">
               <Icon name='search' />
               <input type='text' id='search' placeholder='Buscar' onKeyUp={handleSearch} />
-              <DndProvider backend={HTML5Backend}>
+              <DndProvider backend={isMobile() !== null ? TouchBackend : HTML5Backend}>
                 <div className={'row list-diseases'}>
                   <div className={'col-wrapper'}>
                     <DropWrapper onDrop={onDrop} status={VERIFICAR}>
@@ -307,7 +320,7 @@ const ListaEnfermedades = React.memo(() => {
               className="folder"
               style={{ border: `3px solid ${color}` }}>
               <Grid.Row className="drag">
-                <DndProvider backend={HTML5Backend}>
+                <DndProvider backend={isMobile() !== null ? TouchBackend : HTML5Backend}>
                   <div className={'row'}>
                     <div className={'col-wrapper'}>
                       <DropWrapper onDrop={onDrop} status={VERIFICADO}>
