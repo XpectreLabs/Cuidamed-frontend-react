@@ -1,21 +1,21 @@
 .modal__title {
   color: $red;
-  font-size: 3rem;
+  font-size: 3em;
 }
 .modal-form {
   &__paragraph {
     color: $text-secondary;
     text-align: center;
-    font-size: 2rem;
+    font-size: 2em;
   }
   &__input-container {
     margin: 0 auto;
-    padding-top: 40px;
-    width: 40%;
+    padding-top: 1em;
+    width: 70%;
   }
   &__button-submit-container {
     text-align: center;
-    margin-top: 45px;
+    margin-top: 2.5em;
   }
   &__button-submit {
     outline: none;
@@ -23,10 +23,10 @@
     border: none;
     font-family: "Comfortaa";
     color: white;
-    width: 20rem;
-    height: 70px;
-    border-radius: 80px;
-    font-size: 3rem;
+    width: 70%;
+    height: 2em;
+    border-radius: 2em;
+    font-size: 2.5em;
   }
 }
 
@@ -37,4 +37,28 @@
 
 .hidden-icon {
   display: none;
+}
+
+
+@media (max-width: 991px) {
+  .ui.modal {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 767px) {
+  .ui.modal {
+    font-size: 0.7em;
+
+    .modal-form {
+      &__input-container {
+        margin: 0 auto;
+        padding-top: 4em;
+        width: 90%;
+      }
+      &__button-submit {
+        width: 90%;
+      }
+    }
+  }
 }

@@ -14,6 +14,7 @@ import DropWrapper from '../DragAndDrop/DropWrapper';
 import Col from '../DragAndDrop/Col';
 
 import ModalComponent from '../ModalComponent';
+import { Carpeta } from '../../images/icons/icons'
 
 import { useHistory } from 'react-router-dom';
 import { CONECTION } from '../../conection';
@@ -356,7 +357,7 @@ const ListaEnfermedades = React.memo(() => {
         textModal='Ingrese la enfermedad que tenga en el sistema.'
         buttonText='Ingresar al expediente'
         placeholder='Enfermedad'
-        icon={true}
+        Icon={Carpeta}
         setInputData={(e) => { setAddDiseaNotExist(e) }}
         onClick={handleAddDiseaNotExist}
       />
