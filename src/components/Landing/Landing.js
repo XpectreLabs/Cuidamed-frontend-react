@@ -1,14 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import { Container, Grid, Button } from "semantic-ui-react";
 import Logo from "../../images/CuidaMEDLogo.png";
 import BandaA from "../../images/pulcera.jpg";
 import BandaV from "../../images/pulcera2.jpg";
+import {Pulsera} from  '../../images/icons/icons';
+import ModalComponent from '../ModalComponent';
 
 export default function Landing() {
   const history = useHistory();
+
+  const [open, setOpen] = useState(false);
   return (
-    // <Container>
+    <>
     <Grid className="landing" verticalAlign='top'>
       <Grid.Row centered className='logo'>
         <Grid.Column computer={5} tablet={7} mobile={10}>
@@ -32,7 +36,7 @@ export default function Landing() {
             </Button>
           </Grid.Row>
           <Grid.Row>
-            <Button onClick={() => history.push("/login")} className="btn-main">
+            <Button onClick={() => setOpen(true)} className="btn-main">
               Ya tengo cuidaband
             </Button>
           </Grid.Row>
@@ -42,6 +46,15 @@ export default function Landing() {
         </Grid.Column>
       </Grid.Row>
     </Grid>
-    // </Container>
+    <ModalComponent
+        open={open}
+        onClose={() => setOpen(false)}
+        title='Cuidaband'
+        textModal='Ingresa el código de tu cuidaband'
+        buttonText='Agregar código'
+        placeholder='Código'
+        Icon={Pulsera}
+      />
+    </>
   );
 }

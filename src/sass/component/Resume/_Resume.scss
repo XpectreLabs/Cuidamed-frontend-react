@@ -1,4 +1,9 @@
 .resume {
+
+    &>.logo {
+        margin-top: 1em;
+    }
+
     >.profile {
 
         >.center.aligned.four.wide.computer.eight.wide.mobile.eight.wide.tablet.column.figcaption {
@@ -141,5 +146,25 @@
             }
     }
 
+    
 
+
+}
+
+@media (max-width: 767px) {
+    .resume {
+
+        
+        &>.row, &>.column:not(.row) {
+            margin: 1em;
+        }
+        
+        &>.logo {
+            margin-top: 2em !important;
+        }
+
+        &>.row.information {
+            margin: 0;
+        }
+    }
 }
