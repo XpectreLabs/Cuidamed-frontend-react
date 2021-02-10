@@ -173,6 +173,8 @@ export default function SliderGinecologia() {
               <CustomInput
                 placeholder="Número de embarazos"
                 type="number"
+                min= '1'
+                max='999'
                 // value={1}
                 setValue={(e) => setFormValues({ ...formValues, embarazos: e })}
               />
@@ -181,6 +183,8 @@ export default function SliderGinecologia() {
               <CustomInput
                 placeholder="Número de partos"
                 type="number"
+                min= '1'
+                max='999'
                 // value="0"
                 setValue={(e) => setFormValues({ ...formValues, partos: e })} />
             </Grid.Column>
@@ -190,6 +194,8 @@ export default function SliderGinecologia() {
               <CustomInput
                 placeholder="Número de cesareas"
                 type="number"
+                min= '1'
+                max='999'
                 // value="0"
                 setValue={(e) => setFormValues({ ...formValues, cesarea: e })}
               />
@@ -198,6 +204,8 @@ export default function SliderGinecologia() {
               <CustomInput
                 placeholder="Número de abortos"
                 type="number"
+                min= '1'
+                max='999'
                 setValue={(e) => setFormValues({ ...formValues, abortos: e })}
               />
             </Grid.Column>
@@ -376,6 +384,8 @@ export default function SliderGinecologia() {
                       <CustomInput
                         placeholder="Edad de primera menstruación"
                         type="number"
+                        min= '1'
+                        max='999'
                         setValue={e => {
                           setFormValues({ ...formValues, age_mestruation: e });
                         }}

@@ -116,6 +116,8 @@ const SliderAntecedentesComponent = ({
                 <CustomInput
                   placeholder={placeholderNumber}
                   type="number"
+                  min= '1'
+                  max='999'
                   setValue={(e) => handleCounter(e)}
                   value={numberInput}
                 />
