@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Grid, Button, Icon } from 'semantic-ui-react';
+import {  Grid, Button, Icon } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
 import Moment from 'react-moment';
 import 'moment/locale/es';
 
 import {
-  Abuelo,
-  Abuela,
   Alergias,
   Bisturi,
-  Embarazada,
   Fractura,
-  Hombre,
   Madre,
-  Mujer,
   Padre,
   Protesis,
   Silla,
@@ -73,7 +68,7 @@ export default function SliderHistorialMedico() {
     e.preventDefault();
     let objFracture = {};
     objFracture['objFracture'] = formValues;
-    fetch(`${CONECTION}api/Prelation`, {
+    fetch(`${CONECTION}api/test`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -81,58 +76,47 @@ export default function SliderHistorialMedico() {
         'x-auth-token': localStorage.getItem('refreshToken'),
       },
       body: JSON.stringify({
-        parentesco: {
-          madre: {
-            Renfermedades: {
-              enfermedad1: formValuesIllnessFamily.illnessFirstMon,
-              enfermedad2: formValuesIllnessFamily.illnessSecondMon
-            }
-          },
-          padre: {
-            Renfermedades: {
-              enfermedad1: formValuesIllnessFamily.illnessFirstDad,
-              enfermedad2: formValuesIllnessFamily.illnessSecondDad
-            }
-          }
-        }
+        objP:[
+          {parentesco:"Padre", enfermedad:[formValuesIllnessFamily.illnessFirstDad,formValuesIllnessFamily.illnessSecondDad]},
+          {parentesco:"Madre",enfermedad:[formValuesIllnessFamily.illnessFirstMon,formValuesIllnessFamily.illnessSecondMon]}
+        ]
       }),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
       });
-    dispatch(updateHistoryMedical(objFracture, history));
+    //dispatch(updateHistoryMedical(objFracture, history));
   };
 
   const [responseDataHistorial, setResponseDataHistorial] = useState();
   useEffect(() => {
-    // fetch(`${CONECTION}api/get-all-historial`, {
-    //   method: 'GET',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     Authorization: `Bearer ${localStorage.getItem('token')}`,
-    //     'x-auth-token': localStorage.getItem('refreshToken'),
-    //   },
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     if (data) {
-    //       setResponseDataHistorial(data);
-    //       setFormValues({
-    //         ...formValues,
-    //         covid: data.covid,
-    //         transplantes: data.transplantes,
-    //         cirujias: data.cirujias,
-    //         alergias: data.alergias,
-    //         discapacidad: data.discapacidad,
-    //         transplantes: data.transplantes,
-    //         other: data.other,
-    //         sangre: data.sangre,
-    //         fracturas: data.fracturas,
-    //       });
-    //     }
-    //   });
+     fetch(`${CONECTION}api/get-all-historial`, {
+       method: 'GET',
+       headers: {
+         'Content-Type': 'application/json',
+         Authorization: `Bearer ${localStorage.getItem('token')}`,
+         'x-auth-token': localStorage.getItem('refreshToken'),
+       },
+     })
+       .then((response) => response.json())
+       .then((data) => {
+         if (data) {
+           setResponseDataHistorial(data);
+           setFormValues({
+             ...formValues,
+             covid: data.covid,
+             transplantes: data.transplantes,
+             cirujias: data.cirujias,
+             alergias: data.alergias,
+             discapacidad: data.discapacidad,
+             transplantes: data.transplantes,
+             other: data.other,
+             sangre: data.sangre,
+             fracturas: data.fracturas,
+           });
+         }
+       });
   }, []);
 
   useEffect(() => {

@@ -319,6 +319,8 @@ export const uploadImage = (img) => {
     try {
       if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
         const formData = new FormData();
+        
+        console.log("Hola mundo11");
         formData.append('perfil', img);
         const request = await fetch(`${CONECTION}api/file`, {
           method: 'POST',
