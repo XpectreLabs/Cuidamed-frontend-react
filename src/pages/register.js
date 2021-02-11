@@ -38,20 +38,7 @@ const Register = () => {
       <Grid.Row>
         <Grid.Column computer={6} tablet={10} mobile={14}>
           <form onSubmit={handleSubmit(onSubmit)}>
-          <CustomInput
-            type="text"
-            setRef={register({ required: true })}
-            areYouInLogin={true}
-            placeholder="Identificador"
-            name="identifier"
-            errorComponent={
-              <div>
-                {errors.identifier && errors.identifier.type === 'required' && (
-                  <p className="error_form">Este campo es requerido</p>
-                )}
-              </div>
-            }
-          />
+
           <CustomInput
             type="text"
             areYouInLogin={true}

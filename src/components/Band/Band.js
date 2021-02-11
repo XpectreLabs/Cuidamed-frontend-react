@@ -11,7 +11,9 @@ export default function Band() {
     <Grid className="band" centered>
       <Grid.Row>
         <Grid.Column computer={3} tablet={5} mobile={10} className="logo">
-          <img src={Logo} />
+          <a href='/landing' className="obo">
+            <img src={Logo} className="obo2" />
+          </a>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row verticalAlign='middle'>
