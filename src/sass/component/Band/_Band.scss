@@ -1,4 +1,9 @@
 .band {
+
+    .obo2{
+        width: 100%;
+    }
+
     >.row {
 
         &:first-child {
@@ -8,6 +13,7 @@
 
         .logo {
             margin-left: 1.5em;
+            margin-top: 10px;
         }
 
         .title {
@@ -25,8 +31,9 @@
                 margin-bottom: 1em;
                 cursor: pointer;
 
+
                 >img {
-                    width: 4.5em;
+                    width: 100%;
                 }
             }
         }
