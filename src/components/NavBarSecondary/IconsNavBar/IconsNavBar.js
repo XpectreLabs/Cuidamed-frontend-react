@@ -111,6 +111,12 @@ export default function IconsNavBar() {
           }
           alt="profile photo"
         />
+        <input
+            type="file"
+            id="file_upload"
+            onChange={handleImage}
+            accept="image/*"
+          />
       </label>)}
       {map(dataIcons, (icon, index) => {
         // if( icon.link === '/dashboard/ginecologia'){
