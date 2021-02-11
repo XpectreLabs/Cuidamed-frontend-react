@@ -21,7 +21,7 @@ export const login = (email, password) => {
           localStorage.setItem('user', JSON.stringify(resp.data));
           dispatch({ type: types.login, payload: { ...resp } });
         } else {
-          Swal.fire('Error', resp.err.message, 'error');
+          Swal.fire('Error', 'Se produjo error al generar  el token', 'error');
         }
       }
     } catch (e) {}

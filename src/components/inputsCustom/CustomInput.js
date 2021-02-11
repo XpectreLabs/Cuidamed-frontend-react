@@ -1,3 +1,4 @@
+import { min } from 'moment';
 import React from 'react';
 
 export const CustomInput = React.memo(
@@ -5,6 +6,7 @@ export const CustomInput = React.memo(
     placeholder = 'Input Example',
     labelPlaceholder = placeholder,
     type = 'text',
+    min,
     value,
     areYouInLogin = false,
     functionPlaces = null,
@@ -15,13 +17,16 @@ export const CustomInput = React.memo(
     required = false,
     onblur = (e) => { },
     errorComponent,
+    
   }) => {
+
     return (
       <div
         className={`input-container ${areYouInLogin ? 'newDesign' : ''} ${smallStyle ? 'smallStyle' : ''
           }`}>
         <input
           ref={(e) => setRef(e)}
+          min={min}
           type={type}
           placeholder={placeholder}
           value={value}

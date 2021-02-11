@@ -427,12 +427,13 @@ export default function Slider() {
   useEffect(() => {
     setFormValues({ ...formValues, vaccine: JSON.stringify(totalVacunas) });
   }, [totalVacunas]);
-
+// aqui hay un errpr cpm eñ eñ swipér
   const slide = (s) => {
     const mySwiper = document.querySelector('.swiper-container').swiper;
     setTimeout(
       () => {
         mySwiper.slideTo(s);
+       
       },
       500
     );
@@ -664,6 +665,8 @@ export default function Slider() {
                       placeholder="Altura (cm)"
                       type="number"
                       name="height"
+                      min= '1'
+                      max='999'
                       setValue={(e) =>
                         setFormValues({ ...formValues, height: e })
                       }
@@ -677,7 +680,10 @@ export default function Slider() {
                     <CustomInput
                       placeholder="Peso (kg)"
                       type="number"
-                      name="weight"
+                      name="height"
+                      min= '1'
+                      max='999'
+
                       setValue={(e) => {
                         console.log(e);
                         setFormValues({ ...formValues, weight: e });
@@ -852,6 +858,8 @@ export default function Slider() {
                         <CustomInput
                           placeholder="¿Cuantas fueron?"
                           type="number"
+                          min= '1'
+                          max='999'
                           setValue={(e) => {
                             setFormValues({ ...formValues, vaccine_number: e });
                             handleInputsVacunas(e);

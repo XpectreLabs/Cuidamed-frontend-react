@@ -29,7 +29,7 @@ const VerifyCode = () => {
         <Grid.Column computer={6} tablet={10} mobile={14}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <CustomInput
-            type="number"
+            type="text"
             areYouInLogin={true}
             placeholder="Codigo"
             name={'code'}
