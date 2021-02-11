@@ -84,7 +84,7 @@ export default function Plate() {
         </Grid.Row>
       </Grid.Column>
       <Grid.Column computer={8} tablet={16} mobile={16} verticalAlign="middle">
-        <Grid.Row className="logo">
+        <Grid.Row className="logo" style={{marginTop: 10}}>
           <img src={Logo} />
         </Grid.Row>
         <Grid.Row className="description">
