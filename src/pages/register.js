@@ -38,97 +38,83 @@ const Register = () => {
       <Grid.Row>
         <Grid.Column computer={6} tablet={10} mobile={14}>
           <form onSubmit={handleSubmit(onSubmit)}>
-          <CustomInput
-            type="text"
-            setRef={register({ required: true })}
-            areYouInLogin={true}
-            placeholder="Identificador"
-            name="identifier"
-            errorComponent={
-              <div>
-                {errors.identifier && errors.identifier.type === 'required' && (
+            <CustomInput
+              type="text"
+              areYouInLogin={true}
+              setRef={register({ required: true })}
+              placeholder="Nombre completo"
+              name={'name'}
+              errorComponent={
+                errors.name &&
+                errors.name.type === 'required' && (
                   <p className="error_form">Este campo es requerido</p>
-                )}
-              </div>
-            }
-          />
-          <CustomInput
-            type="text"
-            areYouInLogin={true}
-            setRef={register({ required: true })}
-            placeholder="Nombre completo"
-            name={'name'}
-            errorComponent={
-              errors.name &&
-              errors.name.type === 'required' && (
-                <p className="error_form">Este campo es requerido</p>
-              )
-            }
-          />
-          <CustomInput
-            type="email"
-            areYouInLogin={true}
-            placeholder="Correo electrónico"
-            setRef={register({
-              required: true,
-              validate: (input) => {
-                return validator.isEmail(input);
-              },
-            })}
-            name={'email'}
-            errorComponent={
-              <div>
-                {errors.email && errors.email.type === 'required' && (
-                  <p className="error_form">Este campo es requerido</p>
-                )}
-                {errors.email && errors.email.type === 'validate' && (
-                  <p className="error_form">Este campo no es un email</p>
-                )}
-              </div>
-            }
-          />
-          <CustomInput
-            type="password"
-            areYouInLogin={true}
-            name={'password'}
-            setValue={(e) => {
-              setPassword(e);
-            }}
-            placeholder="Contraseña"
-            setRef={register({ required: true })}
-            errorComponent={
-              errors.password &&
-              errors.password.type === 'required' && (
-                <p className="error_form">Este campo es requerido</p>
-              )
-            }
-          />
-          <CustomInput
-            type="password"
-            areYouInLogin={true}
-            name={'repeat_password'}
-            placeholder="Confirmar contraseña"
-            setRef={register({
-              required: true,
-              validate: (input) => {
-                return input === password;
-              },
-            })}
-            errorComponent={
-              <div>
-                {errors.repeat_password &&
-                  errors.repeat_password.type === 'required' && (
+                )
+              }
+            />
+            <CustomInput
+              type="email"
+              areYouInLogin={true}
+              placeholder="Correo electrónico"
+              setRef={register({
+                required: true,
+                validate: (input) => {
+                  return validator.isEmail(input);
+                },
+              })}
+              name={'email'}
+              errorComponent={
+                <div>
+                  {errors.email && errors.email.type === 'required' && (
                     <p className="error_form">Este campo es requerido</p>
                   )}
-                {errors.repeat_password &&
-                  errors.repeat_password.type === 'validate' && (
-                    <p className="error_form">Las contraseñas no coinciden</p>
+                  {errors.email && errors.email.type === 'validate' && (
+                    <p className="error_form">Este campo no es un email</p>
                   )}
-              </div>
-            }
-          />
-          <Button type="submit">Seguir</Button>
-        </form>
+                </div>
+              }
+            />
+            <CustomInput
+              type="password"
+              areYouInLogin={true}
+              name={'password'}
+              setValue={(e) => {
+                setPassword(e);
+              }}
+              placeholder="Contraseña"
+              setRef={register({ required: true })}
+              errorComponent={
+                errors.password &&
+                errors.password.type === 'required' && (
+                  <p className="error_form">Este campo es requerido</p>
+                )
+              }
+            />
+            <CustomInput
+              type="password"
+              areYouInLogin={true}
+              name={'repeat_password'}
+              placeholder="Confirmar contraseña"
+              setRef={register({
+                required: true,
+                validate: (input) => {
+                  return input === password;
+                },
+              })}
+              errorComponent={
+                <div>
+                  {errors.repeat_password &&
+                    errors.repeat_password.type === 'required' && (
+                      <p className="error_form">Este campo es requerido</p>
+                    )}
+                  {errors.repeat_password &&
+                    errors.repeat_password.type === 'validate' && (
+                      <p className="error_form">Las contraseñas no coinciden</p>
+                    )}
+                </div>
+              }
+            />
+            <Button type="submit">Seguir</Button>
+          </form>
         </Grid.Column>
       </Grid.Row>
       <div className="background_container"></div>
