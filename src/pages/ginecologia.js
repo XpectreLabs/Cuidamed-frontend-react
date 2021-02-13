@@ -1,13 +1,17 @@
-import React from 'react'
-import BasicLayout from "../layouts/BasicLayout"
-import SliderGinecologia from "../components/SliderGinecologia"
+import React from 'react';
+import BasicLayout from '../layouts/BasicLayout';
+import SliderGinecologia from '../components/SliderGinecologia';
+import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 export default function Ginecologia() {
-    return (
-        <div>
-            <BasicLayout>
-                <SliderGinecologia />
-            </BasicLayout>
-        </div>
-    )
+  const state = useSelector((state) => state.login.user);
+  if (state.sex !== 'F') return <Redirect to="/dashboard/info-basic" />;
+  return (
+    <div>
+      <BasicLayout>
+        <SliderGinecologia />
+      </BasicLayout>
+    </div>
+  );
 }

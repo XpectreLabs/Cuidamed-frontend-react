@@ -8,7 +8,7 @@
   border-radius: 2em;
   color: #00a199;
   border: 2px solid #00a199;
-  font-family: "Comfortaa";
+  font-family: 'Comfortaa';
   font-size: 2em;
   font-weight: 400;
 }
@@ -17,4 +17,22 @@
   background-color: #ff0101;
   border: 2px solid #ff0101;
   width: 20rem;
+}
+.buttons {
+  width: 100px;
+  border: none;
+  height: 60px;
+  border-radius: 10px;
+  color: black;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+}
+.buttons.update {
+  background-color: orange;
+  margin-right: 10px;
+}
+.buttons.delete {
+  background-color: red;
+  color: white;
 }

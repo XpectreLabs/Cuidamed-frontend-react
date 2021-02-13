@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { Grid, Button, Icon } from 'semantic-ui-react'
+import React, { useState, useEffect } from 'react';
+import { Grid, Button, Icon } from 'semantic-ui-react';
 
 import { arrayIconHumanSys } from './data';
 
 //DRAG ANDD DROP
 import { HTML5Backend } from 'react-dnd-html5-backend';
 // import { TouchBackend } from 'react-dnd-touch-backend'
-import { TouchBackend } from 'react-dnd-touch-backend'
+import { TouchBackend } from 'react-dnd-touch-backend';
 import { DndProvider } from 'react-dnd';
 
 import Item from '../DragAndDrop/Item';
@@ -14,7 +14,7 @@ import DropWrapper from '../DragAndDrop/DropWrapper';
 import Col from '../DragAndDrop/Col';
 
 import ModalComponent from '../ModalComponent';
-import { Carpeta } from '../../images/icons/icons'
+import { Carpeta } from '../../images/icons/icons';
 
 import { useHistory } from 'react-router-dom';
 import { CONECTION } from '../../conection';
@@ -25,7 +25,6 @@ import { saveIllnessSystem } from '../../redux/actions/UserAction';
 //
 
 const ListaEnfermedades = React.memo(() => {
-
   const history = useHistory();
   const { name } = JSON.parse(localStorage.getItem('user'));
   const { humanSystem, color, carpetaId, systemId } = history.location.state;
@@ -48,7 +47,9 @@ const ListaEnfermedades = React.memo(() => {
         if (data.data) {
           console.log(data.data);
           const newData = data.data.map((d) => {
-            const commonDiseases = JSON.parse(localStorage.getItem('commonDiseases'));
+            const commonDiseases = JSON.parse(
+              localStorage.getItem('commonDiseases')
+            );
             if (commonDiseases) {
               commonDiseases.map((disease) => {
                 if (disease.trim() === d.name.trim()) {
@@ -60,12 +61,11 @@ const ListaEnfermedades = React.memo(() => {
             //console.log(commonDiseases);
             d.isShow = true;
             return d;
-          })
+          });
           setItems(newData);
         }
-      })
-  }, [])
-
+      });
+  }, []);
 
   // console.log(arrayData);
   const [dragItem, setDragItem] = useState([]);
@@ -87,7 +87,7 @@ const ListaEnfermedades = React.memo(() => {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
         'x-auth-token': localStorage.getItem('refreshToken'),
       },
-      body: JSON.stringify({ systemId })
+      body: JSON.stringify({ systemId }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -95,25 +95,27 @@ const ListaEnfermedades = React.memo(() => {
           console.log(data.data);
           data.data.map((d) => {
             console.log(d.illnessId.name);
-            setItems((prevState) => prevState.map((i) => {
-              if (i.name === d.illnessId.name) {
-                i.status = VERIFICADO;
-              }
-              return i;
-            }))
+            setItems((prevState) =>
+              prevState.map((i) => {
+                if (i.name === d.illnessId.name) {
+                  i.status = VERIFICADO;
+                }
+                return i;
+              })
+            );
           });
         }
-      })
-  }, [])
+      });
+  }, []);
 
   const saveAndContinue = (e) => {
     const obj = {
       illness: JSON.stringify(dragItem),
       carpetaId,
-      systemId
-    }
+      systemId,
+    };
     dispatch(saveIllnessSystem(obj, history));
-  }
+  };
 
   useEffect(() => {
     if (dragItem.length > 0) {
@@ -147,8 +149,7 @@ const ListaEnfermedades = React.memo(() => {
   const [open, setOpen] = useState(false);
 
   const handleSearch = async (e) => {
-
-    const search = e.currentTarget.value
+    const search = e.currentTarget.value;
     if (search.length >= 3) {
       fetch(`${CONECTION}api/filter`, {
         method: 'POST',
@@ -160,8 +161,8 @@ const ListaEnfermedades = React.memo(() => {
         body: JSON.stringify({
           name: search,
           limit: 5,
-          human_systems_Id: systemId
-        })
+          human_systems_Id: systemId,
+        }),
       })
         .then((response) => response.json())
         .then((data) => {
@@ -170,35 +171,35 @@ const ListaEnfermedades = React.memo(() => {
             let newDatas = [];
             items.map((item) => {
               newDatas = data.data.filter((d) => d.id !== item.id);
-
-            })
+            });
             console.log(newDatas);
-            // const newData = data.data.filter((d, index) => {
-            //   //d.isShow = true;
-            //   const itemsss = items.map((item) => {
-            //     if (item.id === d.id) {
-            //       console.log(item);
-            //       return true;
-            //     }
-            //   })
-            //   console.log(itemsss);
-            //   //d.isShow = true;
-            //   //return d;
-            // });
-            // console.log(newData);
-            // setItems((prevState) => {
-            //   const newItems = prevState
-            //     .filter((data) => !data.name.toUpperCase().includes(search.toUpperCase()))
-            //     .map((itemd) => {
-            //       itemd.isShow = false;
-            //       return itemd;
-            //     })
-            //     .concat(...newData);
-
-            //   return [...newItems];
-            // })
+            const newData = data.data.filter((d, index) => {
+              d.isShow = false;
+              items.forEach((item) => {
+                if (item.id === d.id) {
+                  console.log(item);
+                  d.isShow = true;
+                }
+              });
+              //d.isShow = true;
+              return d;
+            });
+            console.log(newData);
+            setItems((prevState) => {
+              const newItems = prevState
+                .filter(
+                  (data) =>
+                    !data.name.toUpperCase().includes(search.toUpperCase())
+                )
+                .map((itemd) => {
+                  itemd.isShow = false;
+                  return itemd;
+                })
+                .concat(...newData);
+              return [...newItems];
+            });
           }
-        })
+        });
       // const newItemsTrue = items
       //   .filter((item) => item.name.toUpperCase()
       //     .includes(search.toUpperCase()))
@@ -208,9 +209,6 @@ const ListaEnfermedades = React.memo(() => {
       //   });
 
       // console.log(newItemsTrue);
-
-
-
     } else {
       setItems((prevState) => {
         console.log(prevState);
@@ -221,41 +219,40 @@ const ListaEnfermedades = React.memo(() => {
             itemdx.isShow = false;
           }
           return itemdx;
-        })
+        });
         return [...newItems];
-      })
+      });
     }
-  }
+  };
 
   const [addDiseaNotExist, setAddDiseaNotExist] = useState();
 
   const handleAddDiseaNotExist = () => {
     setOpen(false);
     const item = {
-      id: items.length + Math.floor((Math.random() * 100) + 1),
+      id: items.length + Math.floor(Math.random() * 100 + 1),
       status: VERIFICADO,
       name: addDiseaNotExist,
       isShow: false,
-    }
+    };
     setItems((prevState) => {
       const newDragItem = prevState.concat(item);
-      return [...newDragItem]
-    })
+      return [...newDragItem];
+    });
     setDragItem((prevState) => {
       const newDragItem = prevState.concat(item);
-      return [...newDragItem]
-    })
-
-  }
+      return [...newDragItem];
+    });
+  };
 
   function isMobile() {
     return (
-      (navigator.userAgent.match(/Android/i)) ||
-      (navigator.userAgent.match(/webOS/i)) ||
-      (navigator.userAgent.match(/iPhone/i)) ||
-      (navigator.userAgent.match(/iPod/i)) ||
-      (navigator.userAgent.match(/iPad/i)) ||
-      (navigator.userAgent.match(/BlackBerry/i))
+      navigator.userAgent.match(/Android/i) ||
+      navigator.userAgent.match(/webOS/i) ||
+      navigator.userAgent.match(/iPhone/i) ||
+      navigator.userAgent.match(/iPod/i) ||
+      navigator.userAgent.match(/iPad/i) ||
+      navigator.userAgent.match(/BlackBerry/i)
     );
   }
 
@@ -276,20 +273,32 @@ const ListaEnfermedades = React.memo(() => {
           <h3>Arrastre las enfermedades que tenga a mis enfermedades</h3>
         </Grid.Row>
         <Grid.Row columns="2" className="container-diseases" centered>
-          <Grid.Column className="diseases left" computer={8} tablet={16} mobile={16}>
+          <Grid.Column
+            className="diseases left"
+            computer={8}
+            tablet={16}
+            mobile={16}>
             <Grid.Row>
               <h3>Enfermedades</h3>
             </Grid.Row>
             <Grid.Row className="plate-diseases">
-              <Icon name='search' />
-              <input type='text' id='search' placeholder='Buscar' onKeyUp={handleSearch} />
-              <DndProvider backend={isMobile() !== null ? TouchBackend : HTML5Backend}>
+              <Icon name="search" />
+              <input
+                type="text"
+                id="search"
+                placeholder="Buscar"
+                onKeyUp={handleSearch}
+              />
+              <DndProvider
+                backend={isMobile() !== null ? TouchBackend : HTML5Backend}>
                 <div className={'row list-diseases'}>
                   <div className={'col-wrapper'}>
                     <DropWrapper onDrop={onDrop} status={VERIFICAR}>
                       <Col>
                         {items
-                          .filter((i, index) => (i.status === VERIFICAR && i.isShow))
+                          .filter(
+                            (i, index) => i.status === VERIFICAR && i.isShow
+                          )
                           .map((i, idx) => (
                             <Item
                               key={i.id}
@@ -304,11 +313,17 @@ const ListaEnfermedades = React.memo(() => {
                 </div>
               </DndProvider>
               <Grid.Row className="no-disease">
-                <Button onClick={() => setOpen(true)}>No encuentro mi enfermedad</Button>
+                <Button onClick={() => setOpen(true)}>
+                  No encuentro mi enfermedad
+                </Button>
               </Grid.Row>
             </Grid.Row>
           </Grid.Column>
-          <Grid.Column className="diseases right" computer={7} tablet={14} mobile={14}> 
+          <Grid.Column
+            className="diseases right"
+            computer={7}
+            tablet={14}
+            mobile={14}>
             <Grid.Row>
               <h3>Mis enfermedades</h3>
             </Grid.Row>
@@ -321,7 +336,8 @@ const ListaEnfermedades = React.memo(() => {
               className="folder"
               style={{ border: `3px solid ${color}` }}>
               <Grid.Row className="drag">
-                <DndProvider backend={isMobile() !== null ? TouchBackend : HTML5Backend}>
+                <DndProvider
+                  backend={isMobile() !== null ? TouchBackend : HTML5Backend}>
                   <div className={'row'}>
                     <div className={'col-wrapper'}>
                       <DropWrapper onDrop={onDrop} status={VERIFICADO}>
@@ -353,12 +369,14 @@ const ListaEnfermedades = React.memo(() => {
       <ModalComponent
         open={open}
         onClose={() => setOpen(false)}
-        title='¿Qué enfermedad tienes?'
-        textModal='Ingrese la enfermedad que tenga en el sistema.'
-        buttonText='Ingresar al expediente'
-        placeholder='Enfermedad'
+        title="¿Qué enfermedad tienes?"
+        textModal="Ingrese la enfermedad que tenga en el sistema."
+        buttonText="Ingresar al expediente"
+        placeholder="Enfermedad"
         Icon={Carpeta}
-        setInputData={(e) => { setAddDiseaNotExist(e) }}
+        setInputData={(e) => {
+          setAddDiseaNotExist(e);
+        }}
         onClick={handleAddDiseaNotExist}
       />
     </div>

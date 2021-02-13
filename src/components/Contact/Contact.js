@@ -1,18 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { Container, Grid, Button } from "semantic-ui-react";
+import React, { useState, useEffect } from 'react';
+import { Container, Grid, Button } from 'semantic-ui-react';
 
-import { Contacto } from "../../images/icons/icons";
-import { CustomInput } from "../inputsCustom/CustomInput";
-import { SelectCustom } from "../inputsCustom/Select/Select";
-import { relatives } from "./data";
+import { Contacto } from '../../images/icons/icons';
+import { CustomInput } from '../inputsCustom/CustomInput';
+import { SelectCustom } from '../inputsCustom/Select/Select';
+import { relatives } from './data';
 
 import { useHistory } from 'react-router-dom';
 import { createContactoUrgente } from '../../redux/actions/UserAction';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CONECTION } from '../../conection';
+import ContactElementComponent from './ContactElementComponent';
+import { types } from '../../redux/types';
 
 export default function Contact() {
+  const state = useSelector((state) => state.user);
 
+  const dispatch = useDispatch();
+  const history = useHistory();
   useEffect(() => {
     fetch(`${CONECTION}api/emergency`, {
       method: 'GET',
@@ -33,29 +38,23 @@ export default function Contact() {
               email: item.email,
               phone: item.phone,
               relative: item.kin,
+              id: item.id,
             };
             array = [...array, obj];
-
           });
-          setContacts(array);
-
+          dispatch({ type: types.getEmergencyContacts, payload: array });
         }
       });
-  }, [])
+  }, []);
 
   const [contacts, setContacts] = useState([]);
   const [formValues, setFormValues] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    relative: "",
+    fullName: '',
+    email: '',
+    phone: '',
+    relative: '',
   });
 
-
-
-
-  const dispatch = useDispatch();
-  const history = useHistory();
   const { fullName, email, phone, relative } = formValues;
 
   const handleContact = () => {
@@ -73,22 +72,22 @@ export default function Contact() {
       name: formValues.fullName,
       phone: formValues.phone,
       email: formValues.email,
-      kin: formValues.relative
-    }
+      kin: formValues.relative,
+    };
 
     dispatch(createContactoUrgente(sendFormValues, history));
     setFormValues({
       ...formValues,
-      fullName: "",
-      email: "",
-      phone: "",
-      relative: "",
+      fullName: '',
+      email: '',
+      phone: '',
+      relative: '',
     });
   };
 
   useEffect(() => {
     console.log(formValues);
-  }, [formValues])
+  }, [formValues]);
 
   return (
     <Container className="medical-contact">
@@ -103,7 +102,11 @@ export default function Contact() {
           <Contacto />
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column width={15} tablet={15} mobile={15} className='data-contact'>
+          <Grid.Column
+            width={15}
+            tablet={15}
+            mobile={15}
+            className="data-contact">
             <CustomInput
               placeholder="Nombre completo"
               type="text"
@@ -113,7 +116,11 @@ export default function Contact() {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row columns={3}>
-          <Grid.Column computer={5} tablet={5} mobile={15} className='data-contact'>
+          <Grid.Column
+            computer={5}
+            tablet={5}
+            mobile={15}
+            className="data-contact">
             <CustomInput
               placeholder="E-mail"
               type="text"
@@ -121,7 +128,11 @@ export default function Contact() {
               value={email}
             />
           </Grid.Column>
-          <Grid.Column computer={5} tablet={5} mobile={15} className='data-contact'>
+          <Grid.Column
+            computer={5}
+            tablet={5}
+            mobile={15}
+            className="data-contact">
             <CustomInput
               placeholder="Teléfono"
               type="text"
@@ -129,63 +140,30 @@ export default function Contact() {
               value={phone}
             />
           </Grid.Column>
-          <Grid.Column computer={5} tablet={5} mobile={15} className='data-contact'>
+          <Grid.Column
+            computer={5}
+            tablet={5}
+            mobile={15}
+            className="data-contact">
             <SelectCustom
               placeholder="Parentesco"
               dataOptions={relatives}
-              setValue={(e) => setFormValues({ ...formValues, relative: e })}
+              setValue={(e) => {
+                console.log(e);
+                setFormValues({ ...formValues, relative: e });
+              }}
               value={relative}
             />
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row className='btn-add'>
+        <Grid.Row className="btn-add">
           <Grid.Column computer={15} tablet={15} mobile={15}>
             <Button onClick={() => handleContact()}>Agregar contacto</Button>
           </Grid.Column>
         </Grid.Row>
 
-        {contacts.map(({ fullName, email, phone, relative }, i) => (
-          <>
-            <Grid.Row columns={1} className='data-name'>
-              <Grid.Column computer={8} tablet={8} mobile={15} className="disabled" >
-                <CustomInput
-                  placeholder="Nombre completo"
-                  type="text"
-                  value={fullName}
-                  disabled
-                />
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row columns={3}>
-              <Grid.Column computer={5} tablet={5} mobile={15} className="disabled" >
-                <CustomInput
-                  placeholder="E-mail"
-                  type="email"
-                  value={email}
-                  disabled
-                />
-              </Grid.Column>
-              <Grid.Column computer={5} tablet={5} mobile={15} className="disabled">
-                <CustomInput
-                  placeholder="Teléfono"
-                  type="text"
-                  value={phone}
-                  disabled
-                />
-              </Grid.Column>
-              <Grid.Column computer={5} tablet={5} mobile={15} className="disabled">
-                <CustomInput
-                  placeholder="Parentesco"
-                  type="text"
-                  value={relative}
-                  disabled
-                />
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-              <Grid.Column computer={15} tablet={15} mobile={15} className="line"></Grid.Column>
-            </Grid.Row>
-          </>
+        {state.emergencyContacts.map((item, i) => (
+          <ContactElementComponent key={item.id} {...item} />
         ))}
       </Grid>
     </Container>

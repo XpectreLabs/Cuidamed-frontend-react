@@ -89,12 +89,14 @@ export const updateInfoBasic = (pInfo, history) => {
           body: JSON.stringify(pInfo),
         });
         const response = await request.json();
-
         if (response.message) {
+          let obj = response.data[0];
+          localStorage.setItem('user', JSON.stringify(obj));
           Swal.fire({
             title: 'Usuario Actualizado',
             icon: 'success',
           });
+          dispatch({ type: types.updateUser, payload: obj });
           dispatch({ type: types.saveAndContinue });
           history.push('/dashboard/enfermedades-comunes');
         }
@@ -240,14 +242,77 @@ export const createContactoUrgente = (pInfo, history) => {
           body: JSON.stringify(pInfo),
         });
         const response = await request.json();
-        console.log(response);
         if (response.message) {
           Swal.fire({
             title: 'Contacto creado',
             icon: 'success',
           });
-          //dispatch({ type: types.saveAndContinue });
+
+          let { name, email, phone, kin, id } = response.data;
+          let obj = { fullName: name, email, phone, relative: kin, id };
+          dispatch({ type: types.setEmergencyContacts, payload: obj });
+          //dispatch({ type: types.setEmergencyContacts,payload: });
           //history.push('/dashboard/enfermedades-comunes');
+        }
+      }
+    } catch (e) {}
+  };
+};
+export const deleteContactUrgente = (id) => {
+  return async (dispatch) => {
+    dispatch({ type: types.loading });
+    try {
+      if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+        const request = await fetch(`${CONECTION}api/emergency/${id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('refreshToken'),
+          },
+        });
+        if (request.status === 201) {
+          Swal.fire({
+            title: 'Contacto eliminado',
+            icon: 'success',
+          });
+          dispatch({ type: types.deleteEmergencyContacts, payload: id });
+        } else
+          Swal.fire({ title: 'Error al eliminar contacto', icon: 'error' });
+      }
+    } catch (e) {}
+  };
+};
+export const updateUrgente = (pInfo) => {
+  return async (dispatch) => {
+    dispatch({ type: types.loading });
+    let { id, name, email, relative } = pInfo;
+    let obj = {
+      id,
+      name,
+      email,
+      kin: relative,
+    };
+    try {
+      if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+        const { id } = JSON.parse(localStorage.getItem('user'));
+        const request = await fetch(`${CONECTION}api/emergency/${pInfo.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('refreshToken'),
+          },
+          body: JSON.stringify(obj),
+        });
+
+        const response = await request.json();
+        if (response.message) {
+          Swal.fire({
+            title: 'Contacto creado',
+            icon: 'success',
+          });
+          dispatch({ type: types.updateEmergencyContacts, payload: pInfo });
         }
       }
     } catch (e) {}
@@ -270,14 +335,65 @@ export const createContactoMedico = (pInfo, history) => {
           body: JSON.stringify(pInfo),
         });
         const response = await request.json();
-        console.log(response);
-        if (response.message) {
+        if (request.status === 200) {
           Swal.fire({
             title: 'Contacto medico creado',
             icon: 'success',
           });
-          //dispatch({ type: types.saveAndContinue });
+          dispatch({ type: types.setMedical, payload: response.data });
+        }
+      }
+    } catch (e) {}
+  };
+};
+export const updateContactoMedico = (pInfo) => {
+  return async (dispatch) => {
+    dispatch({ type: types.loading });
+    try {
+      if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+        const request = await fetch(`${CONECTION}api/medic/${pInfo.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('refreshToken'),
+          },
+          body: JSON.stringify(pInfo),
+        });
+        const response = await request.json();
+        console.log(response);
+        if (request.status === 200) {
+          Swal.fire({
+            title: 'Contacto medico actualizado',
+            icon: 'success',
+          });
+          dispatch({ type: types.updateMedical, payload: pInfo });
           //history.push('/dashboard/enfermedades-comunes');
+        }
+      }
+    } catch (e) {}
+  };
+};
+export const deleteContactoMedico = (pInfo, history) => {
+  return async (dispatch) => {
+    dispatch({ type: types.loading });
+    try {
+      if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+        const request = await fetch(`${CONECTION}api/medic/${pInfo}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('refreshToken'),
+          },
+        });
+        const response = await request.json();
+        if (request.status === 201) {
+          Swal.fire({
+            title: 'Contacto medico eliminado',
+            icon: 'success',
+          });
+          dispatch({ type: types.deleteMedical, payload: pInfo });
         }
       }
     } catch (e) {}
@@ -306,8 +422,60 @@ export const createAseguradora = (pInfo, history) => {
             title: 'Aseguradora creada!',
             icon: 'success',
           });
-          //dispatch({ type: types.saveAndContinue });
+          dispatch({ type: types.setSeguro, payload: response.data });
           //history.push('/dashboard/enfermedades-comunes');
+        }
+      }
+    } catch (e) {}
+  };
+};
+export const deleteAseguradora = (pInfo, history) => {
+  return async (dispatch) => {
+    dispatch({ type: types.loading });
+    try {
+      if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+        const { id } = JSON.parse(localStorage.getItem('user'));
+        const request = await fetch(`${CONECTION}api/seguro/${pInfo}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('refreshToken'),
+          },
+        });
+        const response = await request.json();
+        if (request.status === 201) {
+          Swal.fire({
+            title: '¡Aseguradora eliminada!',
+            icon: 'success',
+          });
+          dispatch({ type: types.deleteSeguro, payload: pInfo });
+        }
+      }
+    } catch (e) {}
+  };
+};
+export const updateAseguradora = (pInfo, history) => {
+  return async (dispatch) => {
+    dispatch({ type: types.loading });
+    try {
+      if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+        const request = await fetch(`${CONECTION}api/seguro/${pInfo.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('refreshToken'),
+          },
+          body: JSON.stringify(pInfo),
+        });
+        const response = await request.json();
+        if (request.status === 200) {
+          Swal.fire({
+            title: '¡Aseguradora Actualizada!',
+            icon: 'success',
+          });
+          dispatch({ type: types.updateSeguro, payload: pInfo });
         }
       }
     } catch (e) {}
@@ -319,8 +487,8 @@ export const uploadImage = (img) => {
     try {
       if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
         const formData = new FormData();
-        
-        console.log("Hola mundo11");
+
+        console.log('Hola mundo11');
         formData.append('perfil', img);
         const request = await fetch(`${CONECTION}api/file`, {
           method: 'POST',

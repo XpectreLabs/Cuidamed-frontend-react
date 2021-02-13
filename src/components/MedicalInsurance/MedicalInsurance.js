@@ -1,17 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { Container, Grid, Button } from "semantic-ui-react";
-import { SeguroMedico } from "../../images/icons/icons";
-import { CustomInput } from "../inputsCustom/CustomInput";
-import { SelectCustom } from "../inputsCustom/Select/Select";
-import { insuranceList } from "./data";
+import React, { useState, useEffect } from 'react';
+import { Container, Grid, Button } from 'semantic-ui-react';
+import { SeguroMedico } from '../../images/icons/icons';
+import { CustomInput } from '../inputsCustom/CustomInput';
+import { SelectCustom } from '../inputsCustom/Select/Select';
+import { insuranceList } from './data';
 
 import { useHistory } from 'react-router-dom';
 import { createAseguradora } from '../../redux/actions/UserAction';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CONECTION } from '../../conection';
+import { types } from '../../redux/types';
+import InsuranceElement from './InsuranceElement';
 
 export default function MedicalInsurance() {
+  const seguros = useSelector((state) => state.user.seguro);
 
+  const dispatch = useDispatch();
+  const history = useHistory();
   useEffect(() => {
     fetch(`${CONECTION}api/seguros`, {
       method: 'GET',
@@ -23,32 +28,28 @@ export default function MedicalInsurance() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.data) {
           let array = [];
           data.data.map((item) => {
             let obj = {
-              insuranceCarrier: item.aseguradora,
-              policy: item.poliza,
+              aseguradora: item.aseguradora,
+              poliza: item.poliza,
               phone: item.phone,
+              id: item.id,
             };
             array = [...array, obj];
           });
-          setInsurance(array);
-
+          dispatch({ type: types.getSeguro, payload: array });
         }
       });
-  }, [])
+  }, []);
 
   const [insurance, setInsurance] = useState([]);
   const [formValues, setFormValues] = useState({
-    insuranceCarrier: "",
-    policy: "",
-    phone: "",
+    insuranceCarrier: '',
+    policy: '',
+    phone: '',
   });
-
-  const dispatch = useDispatch();
-  const history = useHistory();
 
   const { insuranceCarrier, policy, phone } = formValues;
 
@@ -65,22 +66,22 @@ export default function MedicalInsurance() {
     const sendFormValues = {
       aseguradora: formValues.insuranceCarrier,
       phone: formValues.phone,
-      poliza: formValues.policy
-    }
+      poliza: formValues.policy,
+    };
 
     dispatch(createAseguradora(sendFormValues, history));
 
     setFormValues({
       ...formValues,
-      insuranceCarrier: "",
-      policy: "",
-      phone: "",
+      insuranceCarrier: '',
+      policy: '',
+      phone: '',
     });
   };
 
   useEffect(() => {
     console.log(formValues);
-  }, [formValues])
+  }, [formValues]);
 
   return (
     <Container className="medical-contact">
@@ -106,7 +107,11 @@ export default function MedicalInsurance() {
             />
             {/* <CustomInput placeholder="Aseguradora" type="text"/> */}
           </Grid.Column>
-          <Grid.Column computer={5} tablet={5} mobile={15} className='data-contact'>
+          <Grid.Column
+            computer={5}
+            tablet={5}
+            mobile={15}
+            className="data-contact">
             <CustomInput
               placeholder="Póliza"
               type="text"
@@ -114,7 +119,11 @@ export default function MedicalInsurance() {
               value={policy}
             />
           </Grid.Column>
-          <Grid.Column computer={5} tablet={5} mobile={15} className='data-contact'>
+          <Grid.Column
+            computer={5}
+            tablet={5}
+            mobile={15}
+            className="data-contact">
             <CustomInput
               placeholder="No. telefónico"
               type="text"
@@ -123,48 +132,20 @@ export default function MedicalInsurance() {
             />
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row className='btn-add'>
-          <Grid.Column computer={15} tablet={15} mobile={13} className='data-contact'>
+        <Grid.Row className="btn-add">
+          <Grid.Column
+            computer={15}
+            tablet={15}
+            mobile={13}
+            className="data-contact">
             <Button onClick={() => handleInsurance()}>
               Agregar aseguradora
             </Button>
           </Grid.Column>
         </Grid.Row>
 
-        {insurance.map(({ insuranceCarrier, policy, phone }, i) => (
-          <>
-            <Grid.Row columns={1} className='data-name'>
-              <Grid.Column computer={8} tablet={8} mobile={15} className="disabled">
-                <CustomInput
-                  placeholder="Aseguradora"
-                  type="text"
-                  value={insuranceCarrier}
-                  disabled
-                />
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row columns={3}>
-              <Grid.Column computer={5} tablet={5} mobile={15} className="disabled">
-                <CustomInput
-                  placeholder="Póliza"
-                  type="text"
-                  value={policy}
-                  disabled
-                />
-              </Grid.Column>
-              <Grid.Column computer={5} tablet={5} mobile={15} className="disabled">
-                <CustomInput
-                  placeholder="No. telefónico"
-                  type="text"
-                  value={phone}
-                  disabled
-                />
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-              <Grid.Column computer={15} tablet={15} mobile={15} className="line"></Grid.Column>
-            </Grid.Row>
-          </>
+        {seguros.map((item, i) => (
+          <InsuranceElement key={item.id} {...item} />
         ))}
       </Grid>
     </Container>

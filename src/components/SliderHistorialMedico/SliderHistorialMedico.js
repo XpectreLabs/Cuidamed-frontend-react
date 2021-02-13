@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {  Grid, Button, Icon } from 'semantic-ui-react';
+import { Grid, Button, Icon } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
 import Moment from 'react-moment';
 import 'moment/locale/es';
@@ -14,18 +14,13 @@ import {
   Silla,
   UnidadSangre,
   Virus,
-  IconDonador
-} from "../../images/icons/icons";
+  IconDonador,
+} from '../../images/icons/icons';
 
 import { records, relativeRecords } from './data';
 
 // import Swiper core and required components
-import SwiperCore, {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-} from 'swiper';
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { CONECTION } from '../../conection';
@@ -54,13 +49,12 @@ const slide = (s) => {
 // onClick={() => slide(value.slideFirst)}
 
 export default function SliderHistorialMedico() {
-
   const [isValidIndex, setIsValidIndex] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const [formValues, setFormValues] = useState({});
   const [formValuesIllnessFamily, setFormValuesIllnessFamily] = useState({});
-
+  const [valesFamily, setValuesFamily] = useState(null);
   const dispatch = useDispatch();
 
   const history = useHistory();
@@ -76,10 +70,22 @@ export default function SliderHistorialMedico() {
         'x-auth-token': localStorage.getItem('refreshToken'),
       },
       body: JSON.stringify({
-        objP:[
-          {parentesco:"Padre", enfermedad:[formValuesIllnessFamily.illnessFirstDad,formValuesIllnessFamily.illnessSecondDad]},
-          {parentesco:"Madre",enfermedad:[formValuesIllnessFamily.illnessFirstMon,formValuesIllnessFamily.illnessSecondMon]}
-        ]
+        objP: [
+          {
+            parentesco: 'Padre',
+            enfermedad: [
+              formValuesIllnessFamily.illnessFirstDad,
+              formValuesIllnessFamily.illnessSecondDad,
+            ],
+          },
+          {
+            parentesco: 'Madre',
+            enfermedad: [
+              formValuesIllnessFamily.illnessFirstMon,
+              formValuesIllnessFamily.illnessSecondMon,
+            ],
+          },
+        ],
       }),
     })
       .then((response) => response.json())
@@ -91,37 +97,38 @@ export default function SliderHistorialMedico() {
 
   const [responseDataHistorial, setResponseDataHistorial] = useState();
   useEffect(() => {
-     fetch(`${CONECTION}api/get-all-historial`, {
-       method: 'GET',
-       headers: {
-         'Content-Type': 'application/json',
-         Authorization: `Bearer ${localStorage.getItem('token')}`,
-         'x-auth-token': localStorage.getItem('refreshToken'),
-       },
-     })
-       .then((response) => response.json())
-       .then((data) => {
-         if (data) {
-           setResponseDataHistorial(data);
-           setFormValues({
-             ...formValues,
-             covid: data.covid,
-             transplantes: data.transplantes,
-             cirujias: data.cirujias,
-             alergias: data.alergias,
-             discapacidad: data.discapacidad,
-             transplantes: data.transplantes,
-             other: data.other,
-             sangre: data.sangre,
-             fracturas: data.fracturas,
-           });
-         }
-       });
+    fetch(`${CONECTION}api/get-all-historial`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'x-auth-token': localStorage.getItem('refreshToken'),
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          setResponseDataHistorial(data);
+          setFormValues({
+            ...formValues,
+            covid: data.covid,
+            transplantes: data.transplantes,
+            cirujias: data.cirujias,
+            alergias: data.alergias,
+            discapacidad: data.discapacidad,
+            transplantes: data.transplantes,
+            other: data.other,
+            sangre: data.sangre,
+            fracturas: data.fracturas,
+          });
+          setValuesFamily(data.relatives);
+        }
+      });
   }, []);
-
   useEffect(() => {
-    console.log(formValues);
     console.log(formValuesIllnessFamily);
+  }, [formValuesIllnessFamily]);
+  useEffect(() => {
     switch (activeIndex) {
       case 0:
         if (formValues.covid) {
@@ -129,9 +136,9 @@ export default function SliderHistorialMedico() {
           removeArrowNext();
           arrowNext();
         } else {
-          setIsValidIndex(false)
+          setIsValidIndex(false);
           removeArrowNext();
-        };
+        }
         break;
       case 1:
         if (formValues.cirujias) {
@@ -139,9 +146,9 @@ export default function SliderHistorialMedico() {
           removeArrowNext();
           arrowNext();
         } else {
-          setIsValidIndex(false)
+          setIsValidIndex(false);
           removeArrowNext();
-        };
+        }
         break;
       case 2:
         if (formValues.fracturas) {
@@ -149,9 +156,9 @@ export default function SliderHistorialMedico() {
           removeArrowNext();
           arrowNext();
         } else {
-          setIsValidIndex(false)
+          setIsValidIndex(false);
           removeArrowNext();
-        };
+        }
         break;
       case 3:
         if (formValues.sangre) {
@@ -159,9 +166,9 @@ export default function SliderHistorialMedico() {
           removeArrowNext();
           arrowNext();
         } else {
-          setIsValidIndex(false)
+          setIsValidIndex(false);
           removeArrowNext();
-        };
+        }
         break;
       case 4:
         if (formValues.alergias) {
@@ -169,9 +176,9 @@ export default function SliderHistorialMedico() {
           removeArrowNext();
           arrowNext();
         } else {
-          setIsValidIndex(false)
+          setIsValidIndex(false);
           removeArrowNext();
-        };
+        }
         break;
       case 5:
         if (formValues.discapacidad) {
@@ -179,9 +186,9 @@ export default function SliderHistorialMedico() {
           removeArrowNext();
           arrowNext();
         } else {
-          setIsValidIndex(false)
+          setIsValidIndex(false);
           removeArrowNext();
-        };
+        }
         break;
       case 6:
         if (formValues.other) {
@@ -189,9 +196,9 @@ export default function SliderHistorialMedico() {
           removeArrowNext();
           arrowNext();
         } else {
-          setIsValidIndex(false)
+          setIsValidIndex(false);
           removeArrowNext();
-        };
+        }
         break;
       case 7:
         if (formValues.transplantes) {
@@ -199,9 +206,9 @@ export default function SliderHistorialMedico() {
           removeArrowNext();
           arrowNext();
         } else {
-          setIsValidIndex(false)
+          setIsValidIndex(false);
           removeArrowNext();
-        };
+        }
         break;
       case 8:
         if (formValuesIllnessFamily) {
@@ -209,18 +216,15 @@ export default function SliderHistorialMedico() {
           removeArrowNext();
           arrowNext();
         } else {
-          setIsValidIndex(false)
+          setIsValidIndex(false);
           removeArrowNext();
-        };
+        }
         break;
-      default: removeArrowNext();
+      default:
+        removeArrowNext();
         break;
     }
   }, [activeIndex, formValues, formValuesIllnessFamily]);
-
-  // useEffect(() => {
-  //   console.log(formValuesIllnessFamily);
-  // }, [formValuesIllnessFamily])
 
   const arrowNext = () => {
     const arrow = document.querySelector('.swiper-button-next');
@@ -232,7 +236,7 @@ export default function SliderHistorialMedico() {
     div.appendChild(button);
     div.classList.add('arrow', 'right');
     arrow.appendChild(div);
-  }
+  };
 
   const removeArrowNext = () => {
     const arrow = document.querySelector('.swiper-button-next');
@@ -240,13 +244,10 @@ export default function SliderHistorialMedico() {
     if (arrow) {
       arrow.style.color = 'transparent';
       while (arrow.firstChild) {
-
         arrow.removeChild(arrow.firstChild);
       }
-
     }
-
-  }
+  };
 
   const arrowPrev = () => {
     const arrowPrev = document.querySelector('.swiper-button-prev');
@@ -258,7 +259,7 @@ export default function SliderHistorialMedico() {
     divPrev.appendChild(buttonPrev);
     divPrev.classList.add('arrow', 'left');
     arrowPrev.appendChild(divPrev);
-  }
+  };
 
   const removeArrowPrev = () => {
     const arrowPrev = document.querySelector('.swiper-button-prev');
@@ -266,18 +267,15 @@ export default function SliderHistorialMedico() {
     if (arrowPrev) {
       arrowPrev.style.color = 'transparent';
       while (arrowPrev.firstChild) {
-
         arrowPrev.removeChild(arrowPrev.firstChild);
       }
-
     }
-  }
+  };
 
   useEffect(() => {
     // console.log('Banderaaaa', flagNext)
     arrowPrev();
   }, []);
-
 
   return (
     <Grid centered className="slider historial">
@@ -295,9 +293,11 @@ export default function SliderHistorialMedico() {
           simulateTouch={false}>
           {records.map((record, index) => (
             <SwiperSlide data-hash="slide1" key={index}>
-              <SliderAntecedentesComponent {...record} getValue={(e) => {
-                setFormValues({ ...formValues, ...e });
-              }}
+              <SliderAntecedentesComponent
+                {...record}
+                getValue={(e) => {
+                  setFormValues({ ...formValues, ...e });
+                }}
                 objResponse={responseDataHistorial}
               />
             </SwiperSlide>
@@ -306,585 +306,715 @@ export default function SliderHistorialMedico() {
             <SwiperSlide data-hash="slide1" key={index}>
               <SliderFamiliaresComponent
                 {...relativeRecord}
-                getValue={e => { setFormValuesIllnessFamily(e) }}
+                values={valesFamily}
+                getValue={(e) => {
+                  setFormValuesIllnessFamily(e);
+                }}
               />
             </SwiperSlide>
           ))}
           <SwiperSlide style={{ position: 'relative' }} data-hash="slide10">
             {/* <Container> */}
-              
-              {/* <h3 className="subtitle-record"></h3> */}
-              <Grid centered className="resume">
-                <Grid.Row>
-                  <h1 className="title">Historial Médico</h1>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={3} className="icon">
-                    <Virus />
+
+            {/* <h3 className="subtitle-record"></h3> */}
+            <Grid centered className="resume">
+              <Grid.Row>
+                <h1 className="title">Historial Médico</h1>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={3} className="icon">
+                  <Virus />
+                </Grid.Column>
+                {formValues.covid && formValues.covid === 'N/A' && (
+                  <Grid.Column width={8} verticalAlign="middle">
+                    <Grid.Row>
+                      <h3 className="subtitle">Covid 19</h3>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column verticalAlign="middle" width={6}>
+                        <Grid.Row className="question">
+                          No tiene covid 19
+                        </Grid.Row>
+                      </Grid.Column>
+                    </Grid.Row>
                   </Grid.Column>
-                  {formValues.covid && formValues.covid === 'N/A' && (
-                    <Grid.Column width={8} verticalAlign="middle">
+                )}
+                {formValues.covid && formValues.covid !== 'N/A' && (
+                  <>
+                    <Grid.Column width={4} verticalAlign="middle">
                       <Grid.Row>
                         <h3 className="subtitle">Covid 19</h3>
                       </Grid.Row>
                       <Grid.Row>
                         <Grid.Column verticalAlign="middle" width={6}>
-                          <Grid.Row className="question">No tiene covid 19</Grid.Row>
+                          <Grid.Row className="question">
+                            Medicamentos tomados
+                          </Grid.Row>
+                          {formValues.covid &&
+                            formValues.covid.map((co) => (
+                              <Grid.Row className="answer">{co.name}</Grid.Row>
+                            ))}
+                          {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
+                            <Grid.Row className="answer">Paracetamol</Grid.Row> */}
                         </Grid.Column>
                       </Grid.Row>
                     </Grid.Column>
-                  )}
-                  {formValues.covid && formValues.covid !== 'N/A' && (
-                    <>
-                      <Grid.Column width={4} verticalAlign="middle">
-                        <Grid.Row>
-                          <h3 className="subtitle">Covid 19</h3>
-                        </Grid.Row>
-                        <Grid.Row>
-                          <Grid.Column verticalAlign="middle" width={6}>
-                            <Grid.Row className="question">Medicamentos tomados</Grid.Row>
-                            {formValues.covid && (
-                              formValues.covid.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
-                            )}
-                            {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
-                            <Grid.Row className="answer">Paracetamol</Grid.Row> */}
-                          </Grid.Column>
-                        </Grid.Row>
-                      </Grid.Column>
-                      <Grid.Column width={4} verticalAlign="middle" className="right">
-                        <Grid.Row>
-                          <Grid.Column verticalAlign="middle" width={3}>
-                            <Grid.Row className="question">Fecha de contagio</Grid.Row>
-                            {formValues.covid && (
-                              formValues.covid.map((co) =>
-                                <Grid.Row className="answer">
-                                  <Moment date={co.year} locale="es" format="LL" />
-                                </Grid.Row>)
-                            )}
-                            {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                    <Grid.Column
+                      width={4}
+                      verticalAlign="middle"
+                      className="right">
+                      <Grid.Row>
+                        <Grid.Column verticalAlign="middle" width={3}>
+                          <Grid.Row className="question">
+                            Fecha de contagio
+                          </Grid.Row>
+                          {formValues.covid &&
+                            formValues.covid.map((co) => (
+                              <Grid.Row className="answer">
+                                <Moment
+                                  date={co.year}
+                                  locale="es"
+                                  format="LL"
+                                />
+                              </Grid.Row>
+                            ))}
+                          {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
                             <Grid.Row className="answer">12 de octubre del 2020</Grid.Row> */}
-                          </Grid.Column>
-                        </Grid.Row>
-                      </Grid.Column>
-
-                    </>
-                  )}
-                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(0)}>
-                    <label>
-                      <Icon
-                        name="pencil alternate"
-                        size="small"
-                      />
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid.Column>
+                  </>
+                )}
+                <Grid.Column
+                  className="edit"
+                  verticalAlign="middle"
+                  width={2}
+                  onClick={() => slide(0)}>
+                  <label>
+                    <Icon name="pencil alternate" size="small" />
                     Editar
                   </label>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={13} className="line"></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={3} className="icon">
+                  <Bisturi />
+                </Grid.Column>
+                {formValues.cirujias === 'N/A' && (
+                  <Grid.Column width={8} verticalAlign="middle">
+                    <Grid.Row>
+                      <h3 className="subtitle">Cirugías</h3>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column verticalAlign="middle" width={6}>
+                        <Grid.Row className="question">
+                          No tiene cirugías
+                        </Grid.Row>
+                      </Grid.Column>
+                    </Grid.Row>
                   </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={13} className="line"></Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={3} className="icon">
-                    <Bisturi />
-                  </Grid.Column>
-                  {formValues.cirujias === 'N/A' && (
-                    <Grid.Column width={8} verticalAlign="middle">
+                )}
+                {formValues.cirujias !== 'N/A' && (
+                  <>
+                    <Grid.Column width={4} verticalAlign="middle">
                       <Grid.Row>
                         <h3 className="subtitle">Cirugías</h3>
                       </Grid.Row>
                       <Grid.Row>
                         <Grid.Column verticalAlign="middle" width={6}>
-                          <Grid.Row className="question">No tiene cirugías</Grid.Row>
-
+                          <Grid.Row className="question">
+                            Tipo de cirugía
+                          </Grid.Row>
+                          {formValues.cirujias &&
+                            formValues.cirujias.map((co) => (
+                              <Grid.Row className="answer">{co.name}</Grid.Row>
+                            ))}
+                          {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
+                        <Grid.Row className="answer">Paracetamol</Grid.Row> */}
                         </Grid.Column>
                       </Grid.Row>
                     </Grid.Column>
-                  )}
-                  {formValues.cirujias !== 'N/A' && (
-                    <>
-                      <Grid.Column width={4} verticalAlign="middle">
-                        <Grid.Row>
-                          <h3 className="subtitle">Cirugías</h3>
-                        </Grid.Row>
-                        <Grid.Row>
-                          <Grid.Column verticalAlign="middle" width={6}>
-                            <Grid.Row className="question">Tipo de cirugía</Grid.Row>
-                            {formValues.cirujias && (
-                              formValues.cirujias.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
-                            )}
-                            {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
-                        <Grid.Row className="answer">Paracetamol</Grid.Row> */}
-                          </Grid.Column>
-                        </Grid.Row>
-                      </Grid.Column>
-                      <Grid.Column width={4} verticalAlign="middle" className="right">
-                        <Grid.Row>
-                          <Grid.Column verticalAlign="middle" width={3}>
-                            <Grid.Row className="question">Fecha de cirugía</Grid.Row>
-                            {formValues.cirujias && (
-                              formValues.cirujias.map((co) =>
-                                <Grid.Row className="answer">
-                                  <Moment date={co.year} locale="es" format="LL" />
-                                </Grid.Row>)
-                            )}
-                            {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                    <Grid.Column
+                      width={4}
+                      verticalAlign="middle"
+                      className="right">
+                      <Grid.Row>
+                        <Grid.Column verticalAlign="middle" width={3}>
+                          <Grid.Row className="question">
+                            Fecha de cirugía
+                          </Grid.Row>
+                          {formValues.cirujias &&
+                            formValues.cirujias.map((co) => (
+                              <Grid.Row className="answer">
+                                <Moment
+                                  date={co.year}
+                                  locale="es"
+                                  format="LL"
+                                />
+                              </Grid.Row>
+                            ))}
+                          {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
                         <Grid.Row className="answer">12 de octubre del 2020</Grid.Row> */}
-                          </Grid.Column>
-                        </Grid.Row>
-                      </Grid.Column>
-
-                    </>
-                  )}
-                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(1)}>
-                    <label>
-                      <Icon
-                        name="pencil alternate"
-                        size="small"
-                      />
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid.Column>
+                  </>
+                )}
+                <Grid.Column
+                  className="edit"
+                  verticalAlign="middle"
+                  width={2}
+                  onClick={() => slide(1)}>
+                  <label>
+                    <Icon name="pencil alternate" size="small" />
                     Editar
                   </label>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={13} className="line"></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={3} className="icon">
+                  <Fractura />
+                </Grid.Column>
+                {formValues.fracturas === 'N/A' && (
+                  <Grid.Column width={8} verticalAlign="middle">
+                    <Grid.Row>
+                      <h3 className="subtitle">Fracturas</h3>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column verticalAlign="middle" width={6}>
+                        <Grid.Row className="question">
+                          No tiene fracturas
+                        </Grid.Row>
+                      </Grid.Column>
+                    </Grid.Row>
                   </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={13} className="line"></Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={3} className="icon">
-                    <Fractura />
-                  </Grid.Column>
-                  {formValues.fracturas === 'N/A' && (
-                    <Grid.Column width={8} verticalAlign="middle">
+                )}
+                {formValues.fracturas !== 'N/A' && (
+                  <>
+                    <Grid.Column width={4} verticalAlign="middle">
                       <Grid.Row>
                         <h3 className="subtitle">Fracturas</h3>
                       </Grid.Row>
                       <Grid.Row>
                         <Grid.Column verticalAlign="middle" width={6}>
-                          <Grid.Row className="question">No tiene fracturas</Grid.Row>
-
+                          <Grid.Row className="question">
+                            Tipo de fractura
+                          </Grid.Row>
+                          {formValues.fracturas &&
+                            formValues.fracturas.map((co) => (
+                              <Grid.Row className="answer">{co.name}</Grid.Row>
+                            ))}
+                          {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
+                        <Grid.Row className="answer">Paracetamol</Grid.Row> */}
                         </Grid.Column>
                       </Grid.Row>
                     </Grid.Column>
-                  )}
-                  {formValues.fracturas !== 'N/A' && (
-                    <>
-                      <Grid.Column width={4} verticalAlign="middle">
-                        <Grid.Row>
-                          <h3 className="subtitle">Fracturas</h3>
-                        </Grid.Row>
-                        <Grid.Row>
-                          <Grid.Column verticalAlign="middle" width={6}>
-                            <Grid.Row className="question">Tipo de fractura</Grid.Row>
-                            {formValues.fracturas && (
-                              formValues.fracturas.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
-                            )}
-                            {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
-                        <Grid.Row className="answer">Paracetamol</Grid.Row> */}
-                          </Grid.Column>
-                        </Grid.Row>
-                      </Grid.Column>
-                      <Grid.Column width={4} verticalAlign="middle" className="right">
-                        <Grid.Row>
-                          <Grid.Column verticalAlign="middle" width={3}>
-                            <Grid.Row className="question">Fecha de fractura</Grid.Row>
-                            {formValues.fracturas && (
-                              formValues.fracturas.map((co) =>
-                                <Grid.Row className="answer">
-                                  <Moment date={co.year} locale="es" format="LL" />
-                                </Grid.Row>)
-                            )}
-                            {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                    <Grid.Column
+                      width={4}
+                      verticalAlign="middle"
+                      className="right">
+                      <Grid.Row>
+                        <Grid.Column verticalAlign="middle" width={3}>
+                          <Grid.Row className="question">
+                            Fecha de fractura
+                          </Grid.Row>
+                          {formValues.fracturas &&
+                            formValues.fracturas.map((co) => (
+                              <Grid.Row className="answer">
+                                <Moment
+                                  date={co.year}
+                                  locale="es"
+                                  format="LL"
+                                />
+                              </Grid.Row>
+                            ))}
+                          {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
                         <Grid.Row className="answer">12 de octubre del 2020</Grid.Row> */}
-                          </Grid.Column>
-                        </Grid.Row>
-                      </Grid.Column>
-
-                    </>
-                  )}
-                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(2)}>
-                    <label>
-                      <Icon
-                        name="pencil alternate"
-                        size="small"
-                      />
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid.Column>
+                  </>
+                )}
+                <Grid.Column
+                  className="edit"
+                  verticalAlign="middle"
+                  width={2}
+                  onClick={() => slide(2)}>
+                  <label>
+                    <Icon name="pencil alternate" size="small" />
                     Editar
                   </label>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={13} className="line"></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={3} className="icon">
+                  <UnidadSangre />
+                </Grid.Column>
+                {formValues.sangre === 'N/A' && (
+                  <Grid.Column width={8} verticalAlign="middle">
+                    <Grid.Row>
+                      <h3 className="subtitle">Transfusiones</h3>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column verticalAlign="middle" width={6}>
+                        <Grid.Row className="question">
+                          No tiene transfunsiones
+                        </Grid.Row>
+                      </Grid.Column>
+                    </Grid.Row>
                   </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={13} className="line"></Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={3} className="icon">
-                    <UnidadSangre />
-                  </Grid.Column>
-                  {formValues.sangre === 'N/A' && (
-                    <Grid.Column width={8} verticalAlign="middle">
+                )}
+                {formValues.sangre !== 'N/A' && (
+                  <>
+                    <Grid.Column width={4} verticalAlign="middle">
                       <Grid.Row>
                         <h3 className="subtitle">Transfusiones</h3>
                       </Grid.Row>
                       <Grid.Row>
                         <Grid.Column verticalAlign="middle" width={6}>
-                          <Grid.Row className="question">No tiene transfunsiones</Grid.Row>
+                          <Grid.Row className="question">
+                            Cantidad de unidades
+                          </Grid.Row>
+                          {formValues.sangre &&
+                            formValues.sangre.map((co) => (
+                              <Grid.Row className="answer">{co.name}</Grid.Row>
+                            ))}
+                          {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
+                        <Grid.Row className="answer">Paracetamol</Grid.Row> */}
                         </Grid.Column>
                       </Grid.Row>
                     </Grid.Column>
-                  )}
-                  {formValues.sangre !== 'N/A' && (
-                    <>
-                      <Grid.Column width={4} verticalAlign="middle">
-                        <Grid.Row>
-                          <h3 className="subtitle">Transfusiones</h3>
-                        </Grid.Row>
-                        <Grid.Row>
-                          <Grid.Column verticalAlign="middle" width={6}>
-                            <Grid.Row className="question">Cantidad de unidades</Grid.Row>
-                            {formValues.sangre && (
-                              formValues.sangre.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
-                            )}
-                            {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
-                        <Grid.Row className="answer">Paracetamol</Grid.Row> */}
-                          </Grid.Column>
-                        </Grid.Row>
-                      </Grid.Column>
-                      <Grid.Column width={4} verticalAlign="middle" className="right">
-                        <Grid.Row>
-                          <Grid.Column verticalAlign="middle" width={3}>
-                            <Grid.Row className="question">Fecha de tranfusión</Grid.Row>
-                            {formValues.sangre && (
-                              formValues.sangre.map((co) =>
-                                <Grid.Row className="answer">
-                                  <Moment date={co.year} locale="es" format="LL" />
-                                </Grid.Row>)
-                            )}
-                          </Grid.Column>
-                        </Grid.Row>
-                      </Grid.Column>
-
-                    </>
-                  )}
-                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(3)}>
-                    <label>
-                      <Icon
-                        name="pencil alternate"
-                        size="small"
-                      />
+                    <Grid.Column
+                      width={4}
+                      verticalAlign="middle"
+                      className="right">
+                      <Grid.Row>
+                        <Grid.Column verticalAlign="middle" width={3}>
+                          <Grid.Row className="question">
+                            Fecha de tranfusión
+                          </Grid.Row>
+                          {formValues.sangre &&
+                            formValues.sangre.map((co) => (
+                              <Grid.Row className="answer">
+                                <Moment
+                                  date={co.year}
+                                  locale="es"
+                                  format="LL"
+                                />
+                              </Grid.Row>
+                            ))}
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid.Column>
+                  </>
+                )}
+                <Grid.Column
+                  className="edit"
+                  verticalAlign="middle"
+                  width={2}
+                  onClick={() => slide(3)}>
+                  <label>
+                    <Icon name="pencil alternate" size="small" />
                     Editar
                   </label>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={13} className="line"></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={3} className="icon">
+                  <Alergias />
+                </Grid.Column>
+                {formValues.alergias === 'N/A' && (
+                  <Grid.Column width={8} verticalAlign="middle">
+                    <Grid.Row>
+                      <h3 className="subtitle">Alergias</h3>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column verticalAlign="middle" width={6}>
+                        <Grid.Row className="question">
+                          No tiene alergias
+                        </Grid.Row>
+                      </Grid.Column>
+                    </Grid.Row>
                   </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={13} className="line"></Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={3} className="icon">
-                    <Alergias />
-                  </Grid.Column>
-                  {formValues.alergias === 'N/A' && (
-                    <Grid.Column width={8} verticalAlign="middle">
+                )}
+                {formValues.alergias !== 'N/A' && (
+                  <>
+                    <Grid.Column width={4} verticalAlign="middle">
                       <Grid.Row>
                         <h3 className="subtitle">Alergias</h3>
                       </Grid.Row>
                       <Grid.Row>
                         <Grid.Column verticalAlign="middle" width={6}>
-                          <Grid.Row className="question">No tiene alergias</Grid.Row>
+                          <Grid.Row className="question">
+                            Tipo de alergia
+                          </Grid.Row>
+                          {formValues.alergias &&
+                            formValues.alergias.map((co) => (
+                              <Grid.Row className="answer">{co.name}</Grid.Row>
+                            ))}
+                          {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
+                        <Grid.Row className="answer">Paracetamol</Grid.Row> */}
                         </Grid.Column>
                       </Grid.Row>
                     </Grid.Column>
-                  )}
-                  {formValues.alergias !== 'N/A' && (
-                    <>
-                      <Grid.Column width={4} verticalAlign="middle">
-                        <Grid.Row>
-                          <h3 className="subtitle">Alergias</h3>
-                        </Grid.Row>
-                        <Grid.Row>
-                          <Grid.Column verticalAlign="middle" width={6}>
-                            <Grid.Row className="question">Tipo de alergia</Grid.Row>
-                            {formValues.alergias && (
-                              formValues.alergias.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
-                            )}
-                            {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
-                        <Grid.Row className="answer">Paracetamol</Grid.Row> */}
-                          </Grid.Column>
-                        </Grid.Row>
-                      </Grid.Column>
-                      <Grid.Column width={4} verticalAlign="middle" className="right">
-                        <Grid.Row>
-                          <Grid.Column verticalAlign="middle" width={3}>
-                            <Grid.Row className="question">Fecha de diagnóstico</Grid.Row>
-                            {formValues.alergias && (
-                              formValues.alergias.map((co) =>
-                                <Grid.Row className="answer">
-                                  <Moment date={co.year} locale="es" format="LL" />
-                                </Grid.Row>)
-                            )}
-                            {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                    <Grid.Column
+                      width={4}
+                      verticalAlign="middle"
+                      className="right">
+                      <Grid.Row>
+                        <Grid.Column verticalAlign="middle" width={3}>
+                          <Grid.Row className="question">
+                            Fecha de diagnóstico
+                          </Grid.Row>
+                          {formValues.alergias &&
+                            formValues.alergias.map((co) => (
+                              <Grid.Row className="answer">
+                                <Moment
+                                  date={co.year}
+                                  locale="es"
+                                  format="LL"
+                                />
+                              </Grid.Row>
+                            ))}
+                          {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
                         <Grid.Row className="answer">12 de octubre del 2020</Grid.Row> */}
-                          </Grid.Column>
-                        </Grid.Row>
-                      </Grid.Column>
-
-                    </>
-                  )}
-                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(4)}>
-                    <label>
-                      <Icon
-                        name="pencil alternate"
-                        size="small"
-                      />
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid.Column>
+                  </>
+                )}
+                <Grid.Column
+                  className="edit"
+                  verticalAlign="middle"
+                  width={2}
+                  onClick={() => slide(4)}>
+                  <label>
+                    <Icon name="pencil alternate" size="small" />
                     Editar
                   </label>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={13} className="line"></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={3} className="icon">
+                  <Silla />
+                </Grid.Column>
+                {formValues.discapacidad === 'N/A' && (
+                  <Grid.Column width={8} verticalAlign="middle">
+                    <Grid.Row>
+                      <h3 className="subtitle">Discapacidades</h3>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column verticalAlign="middle" width={6}>
+                        <Grid.Row className="question">
+                          No tiene discapacidades
+                        </Grid.Row>
+                      </Grid.Column>
+                    </Grid.Row>
                   </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={13} className="line"></Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={3} className="icon">
-                    <Silla />
-                  </Grid.Column>
-                  {formValues.discapacidad === 'N/A' && (
-                    <Grid.Column width={8} verticalAlign="middle">
+                )}
+                {formValues.discapacidad !== 'N/A' && (
+                  <>
+                    <Grid.Column width={4} verticalAlign="middle">
                       <Grid.Row>
                         <h3 className="subtitle">Discapacidades</h3>
                       </Grid.Row>
                       <Grid.Row>
                         <Grid.Column verticalAlign="middle" width={6}>
-                          <Grid.Row className="question">No tiene discapacidades</Grid.Row>
+                          <Grid.Row className="question">
+                            Tipo de discapacidad
+                          </Grid.Row>
+                          {formValues.discapacidad &&
+                            formValues.discapacidad.map((co) => (
+                              <Grid.Row className="answer">{co.name}</Grid.Row>
+                            ))}
+                          {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
+                        <Grid.Row className="answer">Paracetamol</Grid.Row> */}
                         </Grid.Column>
                       </Grid.Row>
                     </Grid.Column>
-                  )}
-                  {formValues.discapacidad !== 'N/A' && (
-                    <>
-                      <Grid.Column width={4} verticalAlign="middle">
-                        <Grid.Row>
-                          <h3 className="subtitle">Discapacidades</h3>
-                        </Grid.Row>
-                        <Grid.Row>
-                          <Grid.Column verticalAlign="middle" width={6}>
-                            <Grid.Row className="question">Tipo de discapacidad</Grid.Row>
-                            {formValues.discapacidad && (
-                              formValues.discapacidad.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
-                            )}
-                            {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
-                        <Grid.Row className="answer">Paracetamol</Grid.Row> */}
-                          </Grid.Column>
-                        </Grid.Row>
-                      </Grid.Column>
-                      <Grid.Column width={4} verticalAlign="middle" className="right">
-                        <Grid.Row>
-                          <Grid.Column verticalAlign="middle" width={3}>
-                            <Grid.Row className="question">Fecha de diagnóstico</Grid.Row>
-                            {formValues.discapacidad && (
-                              formValues.discapacidad.map((co) =>
-                                <Grid.Row className="answer">
-                                  <Moment date={co.year} locale="es" format="LL" />
-                                </Grid.Row>)
-                            )}
-                            {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                    <Grid.Column
+                      width={4}
+                      verticalAlign="middle"
+                      className="right">
+                      <Grid.Row>
+                        <Grid.Column verticalAlign="middle" width={3}>
+                          <Grid.Row className="question">
+                            Fecha de diagnóstico
+                          </Grid.Row>
+                          {formValues.discapacidad &&
+                            formValues.discapacidad.map((co) => (
+                              <Grid.Row className="answer">
+                                <Moment
+                                  date={co.year}
+                                  locale="es"
+                                  format="LL"
+                                />
+                              </Grid.Row>
+                            ))}
+                          {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
                         <Grid.Row className="answer">12 de octubre del 2020</Grid.Row> */}
-                          </Grid.Column>
-                        </Grid.Row>
-                      </Grid.Column>
-
-                    </>
-                  )}
-                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(5)}>
-                    <label>
-                      <Icon
-                        name="pencil alternate"
-                        size="small"
-                      />
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid.Column>
+                  </>
+                )}
+                <Grid.Column
+                  className="edit"
+                  verticalAlign="middle"
+                  width={2}
+                  onClick={() => slide(5)}>
+                  <label>
+                    <Icon name="pencil alternate" size="small" />
                     Editar
                   </label>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={13} className="line"></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={3} className="icon">
+                  <Protesis />
+                </Grid.Column>
+                {formValues.other === 'N/A' && (
+                  <Grid.Column width={8} verticalAlign="middle">
+                    <Grid.Row>
+                      <h3 className="subtitle">Características</h3>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column verticalAlign="middle" width={6}>
+                        <Grid.Row className="question">
+                          No tiene otras características
+                        </Grid.Row>
+                      </Grid.Column>
+                    </Grid.Row>
                   </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={13} className="line"></Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={3} className="icon">
-                    <Protesis />
-                  </Grid.Column>
-                  {formValues.other === 'N/A' && (
-                    <Grid.Column width={8} verticalAlign="middle">
+                )}
+                {formValues.other !== 'N/A' && (
+                  <>
+                    <Grid.Column width={4} verticalAlign="middle">
                       <Grid.Row>
                         <h3 className="subtitle">Características</h3>
                       </Grid.Row>
                       <Grid.Row>
                         <Grid.Column verticalAlign="middle" width={6}>
-                          <Grid.Row className="question">No tiene otras características</Grid.Row>
+                          <Grid.Row className="question">
+                            Tipo de característica
+                          </Grid.Row>
+                          {formValues.other &&
+                            formValues.other.map((co) => (
+                              <Grid.Row className="answer">{co.name}</Grid.Row>
+                            ))}
+                          {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
+                        <Grid.Row className="answer">Paracetamol</Grid.Row> */}
                         </Grid.Column>
                       </Grid.Row>
                     </Grid.Column>
-                  )}
-                  {formValues.other !== 'N/A' && (
-                    <>
-                      <Grid.Column width={4} verticalAlign="middle">
-                        <Grid.Row>
-                          <h3 className="subtitle">Características</h3>
-                        </Grid.Row>
-                        <Grid.Row>
-                          <Grid.Column verticalAlign="middle" width={6}>
-                            <Grid.Row className="question">Tipo de característica</Grid.Row>
-                            {formValues.other && (
-                              formValues.other.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
-                            )}
-                            {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
-                        <Grid.Row className="answer">Paracetamol</Grid.Row> */}
-                          </Grid.Column>
-                        </Grid.Row>
-                      </Grid.Column>
-                      <Grid.Column width={4} verticalAlign="middle" className="right">
-                        <Grid.Row>
-                          <Grid.Column verticalAlign="middle" width={3}>
-                            <Grid.Row className="question">Fecha de diagnóstico</Grid.Row>
-                            {formValues.other && (
-                              formValues.other.map((co) =>
-                                <Grid.Row className="answer">
-                                  <Moment date={co.year} locale="es" format="LL" />
-                                </Grid.Row>)
-                            )}
-                            {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                    <Grid.Column
+                      width={4}
+                      verticalAlign="middle"
+                      className="right">
+                      <Grid.Row>
+                        <Grid.Column verticalAlign="middle" width={3}>
+                          <Grid.Row className="question">
+                            Fecha de diagnóstico
+                          </Grid.Row>
+                          {formValues.other &&
+                            formValues.other.map((co) => (
+                              <Grid.Row className="answer">
+                                <Moment
+                                  date={co.year}
+                                  locale="es"
+                                  format="LL"
+                                />
+                              </Grid.Row>
+                            ))}
+                          {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
                         <Grid.Row className="answer">12 de octubre del 2020</Grid.Row> */}
-                          </Grid.Column>
-                        </Grid.Row>
-                      </Grid.Column>
-                    </>
-                  )}
-                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(6)}>
-                    <label>
-                      <Icon
-                        name="pencil alternate"
-                        size="small"
-                      />
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid.Column>
+                  </>
+                )}
+                <Grid.Column
+                  className="edit"
+                  verticalAlign="middle"
+                  width={2}
+                  onClick={() => slide(6)}>
+                  <label>
+                    <Icon name="pencil alternate" size="small" />
                     Editar
                   </label>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={13} className="line"></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={3} className="icon">
+                  <IconDonador />
+                </Grid.Column>
+                {formValues.transplantes === 'N/A' && (
+                  <Grid.Column width={8} verticalAlign="middle">
+                    <Grid.Row>
+                      <h3 className="subtitle">Transplantes</h3>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column verticalAlign="middle" width={6}>
+                        <Grid.Row className="question">
+                          No tiene transplantes
+                        </Grid.Row>
+                      </Grid.Column>
+                    </Grid.Row>
                   </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={13} className="line"></Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={3} className="icon">
-                    <IconDonador />
-                  </Grid.Column>
-                  {formValues.transplantes === 'N/A' && (
-                    <Grid.Column width={8} verticalAlign="middle">
+                )}
+                {formValues.transplantes !== 'N/A' && (
+                  <>
+                    <Grid.Column width={4} verticalAlign="middle">
                       <Grid.Row>
                         <h3 className="subtitle">Transplantes</h3>
                       </Grid.Row>
                       <Grid.Row>
                         <Grid.Column verticalAlign="middle" width={6}>
-                          <Grid.Row className="question">No tiene transplantes</Grid.Row>
+                          <Grid.Row className="question">
+                            Tipo de transplante
+                          </Grid.Row>
+                          {formValues.transplantes &&
+                            formValues.transplantes.map((co) => (
+                              <Grid.Row className="answer">{co.name}</Grid.Row>
+                            ))}
+                          {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
+                        <Grid.Row className="answer">Paracetamol</Grid.Row> */}
                         </Grid.Column>
                       </Grid.Row>
                     </Grid.Column>
-                  )}
-                  {formValues.transplantes !== 'N/A' && (
-                    <>
-                      <Grid.Column width={4} verticalAlign="middle">
-                        <Grid.Row>
-                          <h3 className="subtitle">Transplantes</h3>
-                        </Grid.Row>
-                        <Grid.Row>
-                          <Grid.Column verticalAlign="middle" width={6}>
-                            <Grid.Row className="question">Tipo de transplante</Grid.Row>
-                            {formValues.transplantes && (
-                              formValues.transplantes.map((co) => <Grid.Row className="answer">{co.name}</Grid.Row>)
-                            )}
-                            {/* <Grid.Row className="answer">Paracetamol</Grid.Row>
-                        <Grid.Row className="answer">Paracetamol</Grid.Row> */}
-                          </Grid.Column>
-                        </Grid.Row>
-                      </Grid.Column>
-                      <Grid.Column width={4} verticalAlign="middle" className="right">
-                        <Grid.Row>
-                          <Grid.Column verticalAlign="middle" width={3}>
-                            <Grid.Row className="question">Fecha de transplante</Grid.Row>
-                            {formValues.transplantes && (
-                              formValues.transplantes.map((co) =>
-                                <Grid.Row className="answer">
-                                  <Moment date={co.year} locale="es" format="LL" />
-                                </Grid.Row>)
-                            )}
-                            {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
+                    <Grid.Column
+                      width={4}
+                      verticalAlign="middle"
+                      className="right">
+                      <Grid.Row>
+                        <Grid.Column verticalAlign="middle" width={3}>
+                          <Grid.Row className="question">
+                            Fecha de transplante
+                          </Grid.Row>
+                          {formValues.transplantes &&
+                            formValues.transplantes.map((co) => (
+                              <Grid.Row className="answer">
+                                <Moment
+                                  date={co.year}
+                                  locale="es"
+                                  format="LL"
+                                />
+                              </Grid.Row>
+                            ))}
+                          {/* <Grid.Row className="answer">1 de diciembre del 2020</Grid.Row>
                         <Grid.Row className="answer">12 de octubre del 2020</Grid.Row> */}
-                          </Grid.Column>
+                        </Grid.Column>
+                      </Grid.Row>
+                    </Grid.Column>
+                  </>
+                )}
+                <Grid.Column
+                  className="edit"
+                  verticalAlign="middle"
+                  width={2}
+                  onClick={() => slide(7)}>
+                  <label>
+                    <Icon name="pencil alternate" size="small" />
+                    Editar
+                  </label>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={13} className="line"></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={3} className="icon">
+                  <Madre />
+                </Grid.Column>
+                <Grid.Column width={3}>
+                  <Grid.Row>
+                    <h3 className="subtitle">Madre</h3>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={6}>
+                      <Grid.Row className="question">
+                        Enfermedad de madre
+                      </Grid.Row>
+                      {!formValuesIllnessFamily.illnessFirstMon && (
+                        <Grid.Row className="answer">
+                          No tiene enfermedades
                         </Grid.Row>
-                      </Grid.Column>
-
-                    </>
-                  )}
-                  <Grid.Column className="edit" verticalAlign="middle" width={2} onClick={() => slide(7)}>
-                    <label>
-                      <Icon
-                        name="pencil alternate"
-                        size="small"
-                      />
+                      )}
+                      {formValuesIllnessFamily.illnessFirstMon && (
+                        <>
+                          <Grid.Row className="answer">
+                            {formValuesIllnessFamily.illnessFirstMon}
+                          </Grid.Row>
+                          <Grid.Row className="answer">
+                            {formValuesIllnessFamily.illnessSecondMon}
+                          </Grid.Row>
+                        </>
+                      )}
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column width={3} className="icon">
+                  <Padre />
+                </Grid.Column>
+                <Grid.Column width={2}>
+                  <Grid.Row>
+                    <h3 className="subtitle">Padre</h3>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={6}>
+                      <Grid.Row className="question">
+                        Enfermedad de padre
+                      </Grid.Row>
+                      {!formValuesIllnessFamily.illnessFirstDad && (
+                        <Grid.Row className="answer">
+                          No tiene enfermedades
+                        </Grid.Row>
+                      )}
+                      {formValuesIllnessFamily.illnessFirstDad && (
+                        <>
+                          <Grid.Row className="answer">
+                            {formValuesIllnessFamily.illnessFirstDad}
+                          </Grid.Row>
+                          <Grid.Row className="answer">
+                            {formValuesIllnessFamily.illnessSecondDad}
+                          </Grid.Row>
+                        </>
+                      )}
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid.Column>
+                <Grid.Column
+                  className="edit"
+                  width={2}
+                  onClick={() => slide(8)}>
+                  <label>
+                    <Icon name="pencil alternate" size="small" />
                     Editar
                   </label>
-                  </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={13} className="line"></Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={3} className="icon">
-                    <Madre />
-                  </Grid.Column>
-                  <Grid.Column width={3}>
-                    <Grid.Row>
-                      <h3 className="subtitle">Madre</h3>
-                    </Grid.Row>
-                    <Grid.Row>
-                      <Grid.Column width={6}>
-                        <Grid.Row className="question">Enfermedad de madre</Grid.Row>
-                        {!formValuesIllnessFamily.illnessFirstMon && (
-                          <Grid.Row className="answer">No tiene enfermedades</Grid.Row>
-                        )}
-                        {formValuesIllnessFamily.illnessFirstMon && (
-                          <>
-                            <Grid.Row className="answer">{formValuesIllnessFamily.illnessFirstMon}</Grid.Row>
-                            <Grid.Row className="answer">{formValuesIllnessFamily.illnessSecondMon}</Grid.Row>
-                          </>
-                        )}
-                      </Grid.Column>
-                    </Grid.Row>
-                  </Grid.Column>
-                  <Grid.Column width={3} className="icon">
-                    <Padre />
-                  </Grid.Column>
-                  <Grid.Column width={2}>
-                    <Grid.Row>
-                      <h3 className="subtitle">Padre</h3>
-                    </Grid.Row>
-                    <Grid.Row>
-                      <Grid.Column width={6}>
-                        <Grid.Row className="question">Enfermedad de padre</Grid.Row>
-                        {!formValuesIllnessFamily.illnessFirstDad && (
-                          <Grid.Row className="answer">No tiene enfermedades</Grid.Row>
-                        )}
-                        {formValuesIllnessFamily.illnessFirstDad && (
-                          <>
-                            <Grid.Row className="answer">{formValuesIllnessFamily.illnessFirstDad}</Grid.Row>
-                            <Grid.Row className="answer">{formValuesIllnessFamily.illnessSecondDad}</Grid.Row>
-                          </>
-                        )}
-                      </Grid.Column>
-                    </Grid.Row>
-                  </Grid.Column>
-                  <Grid.Column className="edit" width={2} onClick={() => slide(8)}>
-                    <label>
-                      <Icon
-                        name="pencil alternate"
-                        size="small"
-                      />
-                    Editar
-                  </label>
-                  </Grid.Column>
+                </Grid.Column>
 
-                  {/* <Grid.Column width={4} className="right">
+                {/* <Grid.Column width={4} className="right">
                   <Grid.Row>
                     <Grid.Column width={3}>
                     <Grid.Row className="question">Fecha de transplante</Grid.Row>
@@ -902,11 +1032,11 @@ export default function SliderHistorialMedico() {
                     Editar
                   </label>
                 </Grid.Column> */}
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column width={13} className="line"></Grid.Column>
-                </Grid.Row>
-              </Grid>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={13} className="line"></Grid.Column>
+              </Grid.Row>
+            </Grid>
 
             {/* </Container> */}
             {/* <div className="info-basic">
@@ -925,17 +1055,11 @@ export default function SliderHistorialMedico() {
           </SwiperSlide>
         </Swiper>
         {activeIndex === 9 && (
-        <Grid.Row className="button-info-basic">
-          <Grid.Column width={11}>
-            <Button
-              
-              onClick={saveAndContinue}>
-              Guardar y Continuar
-          </Button>
-
-          </Grid.Column>
-        </Grid.Row>
-
+          <Grid.Row className="button-info-basic">
+            <Grid.Column width={11}>
+              <Button onClick={saveAndContinue}>Guardar y Continuar</Button>
+            </Grid.Column>
+          </Grid.Row>
         )}
       </Grid.Row>
     </Grid>

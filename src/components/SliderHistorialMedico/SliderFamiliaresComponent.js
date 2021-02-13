@@ -1,25 +1,54 @@
-import React, { useState, useEffect } from "react";
-import { Grid, Container, } from "semantic-ui-react";
-import { CustomInput } from "../inputsCustom/CustomInput";
+import React, { useState, useEffect } from 'react';
+import { Grid, Container } from 'semantic-ui-react';
+import { CustomInput } from '../inputsCustom/CustomInput';
 const SliderAntecedentesComponent = ({
   subtitle,
   iconFirst,
+  values,
   iconSecond,
-  getValue = (e) => { }
+  getValue = (e) => {},
 }) => {
-
-
   const [formValuesFamiliares, setFormValuesFamiliares] = useState({
-    illnessFirstMon: '',
-    illnessSecondMon: '',
-    illnessFirstDad: '',
-    illnessSecondDad: '',
+    illnessFirstMon: values ? values?.illnessFirstMon : '',
+    illnessSecondMon: values ? values?.illnessSecondMon : '',
+    illnessFirstDad: values ? values?.illnessFirstDad : '',
+    illnessSecondDad: values ? values?.illnessSecondMon : '',
   });
-
-  const { illnessFirstMon, illnessFirstDad, illnessSecondDad, illnessSecondMon } = formValuesFamiliares;
   useEffect(() => {
-    if (illnessFirstMon !== '' && illnessFirstDad !== '' && illnessSecondDad !== '' && illnessSecondMon !== '') {
-      getValue(formValuesFamiliares)
+    if (values) {
+      let obj = {};
+      for (let relative of values) {
+        let illness = relative.description.split(';');
+        if (relative.parentesco === 'Padre')
+          obj = {
+            ...obj,
+            illnessFirstDad: illness[0],
+            illnessSecondDad: illness[1],
+          };
+        else
+          obj = {
+            ...obj,
+            illnessFirstMon: illness[0],
+            illnessSecondMon: illness[1],
+          };
+      }
+      setFormValuesFamiliares(obj);
+    }
+  }, [values]);
+  const {
+    illnessFirstMon,
+    illnessFirstDad,
+    illnessSecondDad,
+    illnessSecondMon,
+  } = formValuesFamiliares;
+  useEffect(() => {
+    if (
+      illnessFirstMon !== '' &&
+      illnessFirstDad !== '' &&
+      illnessSecondDad !== '' &&
+      illnessSecondMon !== ''
+    ) {
+      getValue(formValuesFamiliares);
     } else {
       getValue(false);
     }
@@ -189,11 +218,9 @@ const SliderAntecedentesComponent = ({
   //   );
   // }
 
-
-
   return (
     // <Container>
-    <div className='main-container'>
+    <div className="main-container">
       <h1 className="title">Historial Médico</h1>
       <h3 className="subtitle-record">Antecedentes familiares</h3>
       <Grid centered className="records">
@@ -210,9 +237,13 @@ const SliderAntecedentesComponent = ({
                   <CustomInput
                     placeholder="Enfermedad"
                     type="text"
-                    setValue={e => {
-                      setFormValuesFamiliares({ ...formValuesFamiliares, illnessFirstMon: e })
+                    setValue={(e) => {
+                      setFormValuesFamiliares({
+                        ...formValuesFamiliares,
+                        illnessFirstMon: e,
+                      });
                     }}
+                    value={formValuesFamiliares.illnessFirstMon}
                   />
                 </div>
               </Grid.Column>
@@ -223,9 +254,13 @@ const SliderAntecedentesComponent = ({
                   <CustomInput
                     placeholder="Enfermedad"
                     type="text"
-                    setValue={e => {
-                      setFormValuesFamiliares({ ...formValuesFamiliares, illnessSecondMon: e })
+                    setValue={(e) => {
+                      setFormValuesFamiliares({
+                        ...formValuesFamiliares,
+                        illnessSecondMon: e,
+                      });
                     }}
+                    value={formValuesFamiliares.illnessSecondMon}
                   />
                 </div>
               </Grid.Column>
@@ -241,9 +276,13 @@ const SliderAntecedentesComponent = ({
                   <CustomInput
                     placeholder="Enfermedad"
                     type="text"
-                    setValue={e => {
-                      setFormValuesFamiliares({ ...formValuesFamiliares, illnessFirstDad: e })
+                    setValue={(e) => {
+                      setFormValuesFamiliares({
+                        ...formValuesFamiliares,
+                        illnessFirstDad: e,
+                      });
                     }}
+                    value={formValuesFamiliares.illnessFirstDad}
                   />
                 </div>
               </Grid.Column>
@@ -254,9 +293,13 @@ const SliderAntecedentesComponent = ({
                   <CustomInput
                     placeholder="Enfermedad"
                     type="text"
-                    setValue={e => {
-                      setFormValuesFamiliares({ ...formValuesFamiliares, illnessSecondDad: e })
+                    setValue={(e) => {
+                      setFormValuesFamiliares({
+                        ...formValuesFamiliares,
+                        illnessSecondDad: e,
+                      });
                     }}
+                    value={formValuesFamiliares.illnessSecondDad}
                   />
                 </div>
               </Grid.Column>
@@ -265,7 +308,7 @@ const SliderAntecedentesComponent = ({
           </Grid.Column>
         </Grid.Row>
       </Grid>
-    {/* </Container> */}
+      {/* </Container> */}
     </div>
   );
 };
