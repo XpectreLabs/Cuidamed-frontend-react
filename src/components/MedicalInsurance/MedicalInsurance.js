@@ -30,7 +30,7 @@ export default function MedicalInsurance() {
       .then((data) => {
         if (data.data) {
           let array = [];
-          data.data.map((item) => {
+          data.data.forEach((item) => {
             let obj = {
               aseguradora: item.aseguradora,
               poliza: item.poliza,

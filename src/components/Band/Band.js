@@ -12,27 +12,27 @@ export default function Band() {
       <Grid.Row>
         <Grid.Column computer={3} tablet={5} mobile={10} className="logo">
           <a href='/landing' className="obo">
-            <img src={Logo} className="obo2" />
+            <img src={Logo} className="obo2" alt='Logo' />
           </a>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row verticalAlign='middle'>
         <Grid.Column verticalAlign="middle" computer={2} tablet={2} mobile={3} className="thumbnail">
           <div className="square" onClick={() => setMainPhoto(BandaA)}>
-            <img src={BandaA} />
+            <img src={BandaA} alt='Img Band'/>
           </div>
           <div className="square" onClick={() => setMainPhoto(BandaA)}>
-            <img src={BandaA} />
+            <img src={BandaA} alt='Img Band'/>
           </div>
           <div className="square" onClick={() => setMainPhoto(BandaA)}>
-            <img src={BandaA} />
+            <img src={BandaA} alt='Img Band'/>
           </div>
           <div className="square" onClick={() => setMainPhoto(BandaA)}>
-            <img src={BandaA} />
+            <img src={BandaA} alt='Img Band'/>
           </div>
         </Grid.Column>
         <Grid.Column computer={8} tablet={8} mobile={12}>
-          <img src={mainPhoto} />
+          <img src={mainPhoto} alt='Img Band'/>
         </Grid.Column>
         <Grid.Column computer={5} tablet={5} mobile={15} verticalAlign="middle">
           <Grid.Row>

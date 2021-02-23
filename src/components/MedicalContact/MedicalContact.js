@@ -24,10 +24,9 @@ export default function MedicalContact() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.data) {
           let array = [];
-          data.data.map((item) => {
+          data.data.forEach((item) => {
             //console.log(item);
             let obj = {
               name: item.name,

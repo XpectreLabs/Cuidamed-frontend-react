@@ -6,13 +6,18 @@ import { Pastillas } from "../../images/icons/icons";
 import { CustomInput } from "../inputsCustom/CustomInput";
 import Date from "../inputsCustom/Date/Date";
 import TreatmentChild from "./TreatmentChild";
+//import {} from '../'
 
 import { useHistory } from 'react-router-dom';
 import { createTratamiento } from '../../redux/actions/UserAction';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { CONECTION } from '../../conection';
+import { types } from "../../redux/types";
 
 export default function Treatment() {
+  const state = useSelector( state => state.user.treatment );
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     fetch(`${CONECTION}api/tratamientos`, {
@@ -25,23 +30,21 @@ export default function Treatment() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.data) {
           let array = [];
           data.data.map((item) => {
-            console.log(item);
             let obj = {
-              medicine: item.medicamento,
-              dose: item.dosis,
-              frequency: item.frecuencia,
-              starts: item.fecha_inicio,
-              ends: item.fecha_fin,
+              id:item.id,
+              medicamento: item.medicamento,
+              dosis: item.dosis,
+              frecuencia: item.frecuencia,
+              fecha_inicio: item.fecha_inicio,
+              fecha_fin: item.fecha_fin,
             };
             array = [...array, obj];
-
           });
-          setTreatment(array);
-
+          // setTreatment(array);
+          dispatch({type:types.getTreatment,payload:array});
 
         }
       });
@@ -61,8 +64,6 @@ export default function Treatment() {
   }, [treatment])
   const { medicine, dose, frequency, starts, ends } = formValues;
 
-  const dispatch = useDispatch();
-  const history = useHistory();
 
   const handleTreatment = () => {
     let array = treatment;
@@ -163,7 +164,7 @@ export default function Treatment() {
             </Button>
           </Grid.Column>
         </Grid.Row>
-        {treatment.map((item, i) => {
+        {state.map((item, i) => {
           return (
             <TreatmentChild key={i} {...item} />
           )

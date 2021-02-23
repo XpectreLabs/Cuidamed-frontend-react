@@ -92,7 +92,7 @@ export default function SliderHistorialMedico() {
       .then((data) => {
         console.log(data);
       });
-    //dispatch(updateHistoryMedical(objFracture, history));
+    dispatch(updateHistoryMedical(objFracture, history));
   };
 
   const [responseDataHistorial, setResponseDataHistorial] = useState();

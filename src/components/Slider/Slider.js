@@ -429,14 +429,14 @@ export default function Slider() {
   }, [totalVacunas]);
 // aqui hay un errpr cpm eñ eñ swipér
   const slide = (s) => {
-    const mySwiper = document.querySelector('.swiper-container').swiper;
-    setTimeout(
-      () => {
-        mySwiper.slideTo(s);
-       
-      },
-      500
-    );
+    const mySwiper = document.querySelector('.swiper-container')
+    if(mySwiper){
+      setTimeout(
+        () => {
+          mySwiper.swiper.slideTo(s);
+        },500);
+    }
+    
     // setFlagNext(true);
   };
 

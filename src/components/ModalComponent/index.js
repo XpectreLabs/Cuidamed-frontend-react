@@ -46,7 +46,7 @@ const ModalComponent = ({
               />
             </div>
             <div className="modal-form__button-submit-container">
-              <button type="button" onClick={onClick} className="modal-form__button-submit">
+              <button type="button" onClick={() => onClick({ code })} className="modal-form__button-submit">
                 {buttonText}
               </button>
             </div>

@@ -25,4 +25,11 @@ export const types = {
   setSeguro: 'SET_SEGURO',
   getSeguro: 'GET_SEGURO',
   deleteSeguro: 'DELETE_SEGURO',
+
+  updateTreatment: 'UPDATE_TREATMENT',
+  setTreatment: 'SET_TREATMENT',
+  getTreatment: 'GET_TREATMENT',
+  deleteTreatment: 'DELETE_TREATMENT',
+
+
 };

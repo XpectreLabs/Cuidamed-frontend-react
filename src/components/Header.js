@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Image, Header, Grid } from 'semantic-ui-react';
+import { Button, Image, Grid } from 'semantic-ui-react';
 import Logo from '../images/CuidaMEDLogo.png';
 export const HeaderLogin = ({ hideElements = false, openModal }) => {
   return (

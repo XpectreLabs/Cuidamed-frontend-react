@@ -1,3 +1,12 @@
+.btn_tratamientos{
+    cursor: pointer;
+}
+.treatment_covid{
+    height: 300px;
+    &__ul{
+        list-style: none;
+    }
+}
 .resume {
 
     &>.logo {
@@ -52,7 +61,7 @@
 
     >.covid {
         margin-top: 1em;
-        background-color: #F854A6;
+        background-color: red;
         color: white;
 
         p {

@@ -29,10 +29,9 @@ export default function Contact() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.data) {
-          let array = contacts;
-          data.data.map((item) => {
+          let array = [];
+          data.data.forEach((item) => {
             let obj = {
               fullName: item.name,
               email: item.email,
@@ -43,11 +42,11 @@ export default function Contact() {
             array = [...array, obj];
           });
           dispatch({ type: types.getEmergencyContacts, payload: array });
+
         }
       });
   }, []);
 
-  const [contacts, setContacts] = useState([]);
   const [formValues, setFormValues] = useState({
     fullName: '',
     email: '',
@@ -58,16 +57,6 @@ export default function Contact() {
   const { fullName, email, phone, relative } = formValues;
 
   const handleContact = () => {
-    let array = contacts;
-    let obj = {
-      fullName: formValues.fullName,
-      email: formValues.email,
-      phone: formValues.phone,
-      relative: formValues.relative,
-    };
-    array = [...array, obj];
-    setContacts(array);
-
     const sendFormValues = {
       name: formValues.fullName,
       phone: formValues.phone,
@@ -84,10 +73,6 @@ export default function Contact() {
       relative: '',
     });
   };
-
-  useEffect(() => {
-    console.log(formValues);
-  }, [formValues]);
 
   return (
     <Container className="medical-contact">

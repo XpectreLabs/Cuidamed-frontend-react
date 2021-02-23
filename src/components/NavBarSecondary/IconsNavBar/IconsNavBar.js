@@ -85,7 +85,6 @@ export default function IconsNavBar() {
 
   useEffect(() => {
     if (state.login.user.img !== '' && state.user.imgProfile === null) {
-      console.log(state.login.user.img);
       fetch(`${CONECTION}api/file/${state.login.user.img}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -99,7 +98,6 @@ export default function IconsNavBar() {
           reader.readAsDataURL(images);
           reader.onloadend = function () {
             var base64data = reader.result;
-            console.log(base64data);
             dispatch(setImage(base64data));
           };
         });
@@ -119,7 +117,6 @@ export default function IconsNavBar() {
     }
   }, []);
 
-  const { sex } = JSON.parse(localStorage.getItem('user'));
   return (
     <>
       {isPhoneScreen && (
@@ -130,7 +127,7 @@ export default function IconsNavBar() {
                 ? state.user.imgProfile
                 : profileImg
             }
-            alt="profile photo"
+            alt="profile"
           />
           <input
             type="file"

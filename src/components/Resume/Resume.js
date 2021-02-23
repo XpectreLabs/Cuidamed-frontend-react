@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Grid, Icon, Button, Label } from "semantic-ui-react";
+import { Container, Grid, Icon, Button } from "semantic-ui-react";
 import Logo from "../../images/CuidaMEDLogo.png";
 import Profile from "../../images/profile.jpg";
 import {
@@ -24,6 +24,7 @@ import {
 import FlagMexico from "../../images/Flag-Mexico.png";
 import { useHistory } from 'react-router-dom';
 import { CONECTION } from '../../conection';
+import { Modal } from 'semantic-ui-react';
 
 import Card from './Card';
 import CardPhone from './CardPhone';
@@ -39,6 +40,7 @@ export default function Resume() {
   const { name, birth_date, sex, place, type_blood, ocupation, weight, height, id } = JSON.parse(localStorage.getItem('emergency'));
   const [isMedic, setIsMedic] = useState(false);
   const [isShow, setIsShow] = useState(false);
+  const [isVisible,setIsVisible] = useState(false);
 
   const [formValues, setFormValues] = useState({
     covid: [],
@@ -108,9 +110,6 @@ export default function Resume() {
       })
   }, [])
 
-  useEffect(() => {
-    console.log(formValues.ginecologia);
-  }, [formValues])
 
   function calcularEdad(fecha) {
     var hoy = new Date();
@@ -179,7 +178,7 @@ export default function Resume() {
                       {/* <span>02/09/2020</span>
                     <span>12/10/2020</span> */}
                     </p>
-                    <p><u>Tratamiento</u></p>
+                    <p class="btn_tratamientos" onClick={() => setIsVisible(true)}><u>Tratamiento</u></p>
                   </Grid.Row>
 
                 </Grid.Row>
@@ -369,6 +368,18 @@ export default function Resume() {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+      <Modal open={isVisible} onClose={() => setIsVisible(false)}>
+        <Modal.Content>
+            <div className="treatment_covid">
+                <h1>Tratamientos</h1>
+                <ul className="treatment__ul"> 
+                    {formValues.covid.map((item, index) =>
+                      <li key={index} >{item.name}</li>
+                    )}
+                </ul>        
+            </div>           
+        </Modal.Content>
+      </Modal>
     </Container>
   );
 }

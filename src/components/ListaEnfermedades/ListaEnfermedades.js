@@ -45,7 +45,6 @@ const ListaEnfermedades = React.memo(() => {
       .then((response) => response.json())
       .then((data) => {
         if (data.data) {
-          console.log(data.data);
           const newData = data.data.map((d) => {
             const commonDiseases = JSON.parse(
               localStorage.getItem('commonDiseases')
@@ -92,8 +91,7 @@ const ListaEnfermedades = React.memo(() => {
       .then((response) => response.json())
       .then((data) => {
         if (data.data) {
-          console.log(data.data);
-          data.data.map((d) => {
+          data.data.forEach((d) => {
             console.log(d.illnessId.name);
             setItems((prevState) =>
               prevState.map((i) => {
@@ -168,11 +166,10 @@ const ListaEnfermedades = React.memo(() => {
         .then((data) => {
           if (data.data) {
             console.log(data.data);
-            let newDatas = [];
-            items.map((item) => {
+            /*let newDatas = [];
+            items.forEach((item) => {
               newDatas = data.data.filter((d) => d.id !== item.id);
-            });
-            console.log(newDatas);
+            });*/
             const newData = data.data.filter((d, index) => {
               d.isShow = false;
               items.forEach((item) => {
@@ -184,7 +181,6 @@ const ListaEnfermedades = React.memo(() => {
               //d.isShow = true;
               return d;
             });
-            console.log(newData);
             setItems((prevState) => {
               const newItems = prevState
                 .filter(

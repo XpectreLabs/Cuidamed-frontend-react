@@ -218,13 +218,71 @@ export const createTratamiento = (pInfo, history) => {
             title: 'Tratamiento creado',
             icon: 'success',
           });
-          //dispatch({ type: types.saveAndContinue });
+          dispatch({ type: types.setTreatment,payload:response.data});
           //history.push('/dashboard/enfermedades-comunes');
         }
       }
     } catch (e) {}
   };
 };
+export const updateTratamiento = (pInfo) => {
+  return async (dispatch) => {
+    dispatch({ type: types.loading });
+    try {
+      if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+        const { id } = JSON.parse(localStorage.getItem('user'));
+        const request = await fetch(`${CONECTION}api/tratamiento/${pInfo.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('refreshToken'),
+          },
+          body: JSON.stringify(pInfo),
+        });
+        const response = await request.json();
+        if (response.message) {
+          Swal.fire({
+            title: 'Tratamiento creado',
+            icon: 'success',
+          });
+          dispatch({ type: types.updateTreatment,payload:pInfo });
+        }
+      }
+    } catch (e) {}
+  };
+};
+export const deleteTratamiento = (pInfo) => {
+  return async (dispatch) => {
+    dispatch({ type: types.loading });
+    try {
+      if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+        console.log(pInfo);
+        const request = await fetch(`${CONECTION}api/tratamiento/${pInfo}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('refreshToken'),
+          },
+        });
+        const response = await request.json();
+        console.log(response);
+        if (response.message) {
+          Swal.fire({
+            title: 'Tratamiento creado',
+            icon: 'success',
+          });
+          dispatch({ type: types.deleteTreatment,payload:pInfo });
+          //history.push('/dashboard/enfermedades-comunes');
+        }
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
 
 export const createContactoUrgente = (pInfo, history) => {
   return async (dispatch) => {
@@ -258,6 +316,7 @@ export const createContactoUrgente = (pInfo, history) => {
     } catch (e) {}
   };
 };
+
 export const deleteContactUrgente = (id) => {
   return async (dispatch) => {
     dispatch({ type: types.loading });
@@ -510,3 +569,5 @@ export const setImage = (img) => ({
   type: types.uploadImgUser,
   payload: img,
 });
+
+

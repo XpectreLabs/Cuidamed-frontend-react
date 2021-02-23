@@ -7,6 +7,10 @@ import { CONECTION } from '../../conection';
 export default function Sistemas() {
 
   const [carpSystem, setCarpSystem] = useState([]);
+  const [objectState,setObjectState] = useState({
+    total:1,
+    totalCompleted:0
+  })
   useEffect(() => {
     fetch(`${CONECTION}api/system`, {
       method: 'GET',
@@ -32,7 +36,7 @@ export default function Sistemas() {
             d.arrayData = newItem[0].arrayData;
             return d;
           });
-          console.log(newData);
+          setObjectState({...objectState,total:newData.length,totalCompleted:newData.filter((value) => value.is_completed && value).length});
           setCarpSystem(newData);
         }
       })
@@ -50,9 +54,9 @@ export default function Sistemas() {
     arrowNext.appendChild(divNext);
   }
 
-  useEffect(() => {
+  /*useEffect(() => {
     arrowNext();
-  }, []);
+  }, []);*/
 
   return (
     <Container className='sistemas'>
@@ -96,6 +100,7 @@ export default function Sistemas() {
             ))
           }
         </Grid.Column>
+        { objectState.totalCompleted === objectState.total && (
         <Grid.Column width={1} className='arrow-next'>
           <Link to={'/dashboard/antecedentes'}>
             <div
@@ -104,9 +109,12 @@ export default function Sistemas() {
               role="button"
               aria-label="Next slide"
               aria-controls="swiper-wrapper-5ee101923810c92463"
-              aria-disabled="false"></div>
+              aria-disabled="false">
+                 <div class="arrow right"><button class="ui button">Siguiente</button></div>
+              </div>
           </Link>
         </Grid.Column>
+        )}
       </Grid>
     </Container>
   );

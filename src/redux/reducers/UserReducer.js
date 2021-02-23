@@ -10,6 +10,7 @@ const initialState = {
   emergencyContacts: [],
   medicalContacts: [],
   seguro: [],
+  treatment:[]
 };
 export const UserReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -107,6 +108,15 @@ export const UserReducer = (state = initialState, action) => {
       };
     case types.uploadImgUser:
       return { ...state, imgProfile: action.payload };
+
+    case types.getTreatment:
+      return { ...state, treatment:action.payload };
+    case types.setTreatment:
+      return { ...state, treatment:[ ...state.treatment,action.payload ] };
+    case types.updateTreatment:
+      return { ...state, treatment:state.treatment.map((value) => value.id === action.payload.id ? action.payload:value) };
+    case types.deleteTreatment:
+      return { ...state, treatment:state.treatment.filter((value) => value.id !== action.payload)};
     default:
       return state;
   }
