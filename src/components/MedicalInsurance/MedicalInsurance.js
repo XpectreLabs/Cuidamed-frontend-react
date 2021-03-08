@@ -147,6 +147,18 @@ export default function MedicalInsurance() {
         {seguros.map((item, i) => (
           <InsuranceElement key={item.id} {...item} />
         ))}
+
+        <Grid.Row className="btn-add">
+          <Grid.Column
+            computer={15}
+            tablet={15}
+            mobile={13}
+            className="data-contact">
+            <Button onClick={() => handleInsurance()}>
+              Continuar
+            </Button>
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     </Container>
   );

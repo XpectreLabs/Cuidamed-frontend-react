@@ -24,6 +24,7 @@ const religionArray = [
   { key: 'r2', value: 'Evangélico', text: 'Evangélico' },
   { key: 'r3', value: 'Cristianismo', text: 'Cristianismo' },
   { key: 'r4', value: 'Testigos de Jehová', text: 'Testigos de Jehová' },
+  { key: 'r5', value: 'No aplica', text: 'No aplica' }
 ];
 
 const hospitals = [
@@ -47,6 +48,7 @@ const hospitals = [
   { key: 'h18', value: 'ISSTEY', text: 'ISSTEY'},
   { key: 'h19', value: 'HOSPITAL DE PEMEX', text: 'HOSPITAL DE PEMEX'},
   { key: 'h20', value: 'PENSIONES CIVILES DEL ESTADO DE CHIHUAHUA', text: 'PENSIONES CIVILES DEL ESTADO DE CHIHUAHUA'},
+  { key: 'h21', value: 'NO APLICA', text: 'NO APLICA'},
 ];
 
 const maritalStatus = [

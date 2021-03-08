@@ -33,42 +33,6 @@ import { CONECTION } from '../../conection';
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 export default function SliderGinecologia() {
-
-  // useEffect(() => {
-  //   fetch(`${CONECTION}api/ginecologia`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: `Bearer ${localStorage.getItem('token')}`,
-  //       'x-auth-token': localStorage.getItem('refreshToken'),
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       if (data.data) {
-  //         const { has_menstruation, menopause, embarazos } = data.data[0];
-  //         let meno = "";
-  //         if (menopause === 'NO') {
-  //           meno = false;
-  //         } else if (menopause === 'YES') {
-  //           meno = true;
-  //         }
-  //         if (embarazos === 0) {
-  //           setIsPregnant(false);
-  //         } else if (embarazos > 0) {
-  //           setIsPregnant(true);
-  //         }
-  //         setMenopause(meno);
-  //         setFormValues({
-  //           ...formValues,
-  //           has_menstruation,
-  //           menopause: menopause
-  //         });
-  //       }
-  //     });
-  // }, [])
-
   const [isValidIndex, setIsValidIndex] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -81,6 +45,41 @@ export default function SliderGinecologia() {
     { key: 're1', value: 'REGULAR', text: 'REGULAR' },
     { key: 'ire2', value: 'IRREGULAR', text: 'IRREGULAR' },
   ];
+
+  useEffect(() => {
+    fetch(`${CONECTION}api/ginecologia`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'x-auth-token': localStorage.getItem('refreshToken'),
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.data) {
+          const { has_menstruation, menopause, embarazos } = data.data[0];
+          let meno = "";
+          if (menopause === 'NO') {
+            meno = false;
+          } else if (menopause === 'YES') {
+            meno = true;
+          }
+          if (embarazos === 0) {
+            setIsPregnant(false);
+          } else if (embarazos > 0) {
+            setIsPregnant(true);
+          }
+          setMenopause(meno);
+          setFormValues({
+            ...formValues,
+            has_menstruation,
+            menopause: menopause
+          });
+        }
+      });
+  }, [])
 
   const handleCounter = (e) => {
     console.log(e);

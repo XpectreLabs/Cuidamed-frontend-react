@@ -35,3 +35,7 @@
 @import './component/Emergency/Emergency';
 @import './component/Resume/Resume';
 @import './component/register';
+
+.slider .swiper-container .grid span {
+    line-height: 28px;
+}

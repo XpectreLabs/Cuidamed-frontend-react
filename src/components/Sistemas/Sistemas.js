@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Button, Container } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { carpetaSistemas } from './data';
 import { CONECTION } from '../../conection';
 
 export default function Sistemas() {
-
+  const history = useHistory();
   const [carpSystem, setCarpSystem] = useState([]);
   const [objectState,setObjectState] = useState({
     total:1,
@@ -22,7 +22,9 @@ export default function Sistemas() {
     })
       .then((response) => response.json())
       .then((data) => {
+
         if (data.data) {
+
           const newData = data.data.map((d) => {
             if (d.is_completed === 'NO') {
               d.is_completed = false;
@@ -41,18 +43,6 @@ export default function Sistemas() {
         }
       })
   }, []);
-
-  const arrowNext = () => {
-    const arrowNext = document.querySelector('.swiper-button-next');
-    arrowNext.style.color = '#00a199';
-    const buttonNext = document.createElement('button');
-    buttonNext.textContent = 'Siguiente';
-    buttonNext.classList.add('ui', 'button');
-    const divNext = document.createElement('div');
-    divNext.appendChild(buttonNext);
-    divNext.classList.add('arrow', 'right');
-    arrowNext.appendChild(divNext);
-  }
 
   /*useEffect(() => {
     arrowNext();
@@ -91,9 +81,16 @@ export default function Sistemas() {
                     }}>
                     {carpeta.is_completed ? 'Completo' : 'Incompleto'}
                   </Button>
-                  <Button>Editar</Button>
+                  <Button onClick={() => {
+                    history.push('/dashboard/lista-enfermedades',{
+                        humanSystem: carpeta.human_system_Id.name.trim(),
+                        carpetaId: carpeta.id,
+                        systemId: carpeta.human_system_Id.id,
+                        color: carpeta.color
+                      })
+                  }}>Editar</Button>
                 <Grid.Row>
-                  <p>{carpeta.human_system_Id.name}</p>
+                  <p className="folder_text">{carpeta.human_system_Id.name}</p>
                 </Grid.Row>
                 </Grid.Row>
               </div>

@@ -147,7 +147,7 @@ const SliderAntecedentesComponent = ({
             <Grid.Column computer={6} tablet={6} mobile={15}>
               <Date
                 placeholder={placeholderDate}
-                year={objectKey === 'sangre' || objectKey === 'alergias' || objectKey === 'discapacidad' || objectKey === 'other' || objectKey === 'transplantes' ? true: false}
+                year={objectKey === 'sangre' || objectKey === 'alergias' || objectKey === 'fracturas' || objectKey === 'cirujias' || objectKey === 'discapacidad' || objectKey === 'other' || objectKey === 'transplantes' ? true: false}
                 id={'date_column' + i}
                 setValue={(e) => {
                   setTotalElements((numbers) => {

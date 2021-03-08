@@ -150,6 +150,18 @@ export default function Contact() {
         {state.emergencyContacts.map((item, i) => (
           <ContactElementComponent key={item.id} {...item} />
         ))}
+        
+        <Grid.Row className="btn-add">
+          <Grid.Column
+            computer={15}
+            tablet={15}
+            mobile={13}
+            className="data-contact">
+            <Button onClick={() => history.push('/dashboard/contacto-medico')}>
+              Continuar
+            </Button>
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     </Container>
   );

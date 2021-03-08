@@ -29,8 +29,10 @@
   cursor: pointer;
 }
 .buttons.update {
-  background-color: orange;
+  background-color: white;
+  color: #00a199;
   margin-right: 10px;
+  border: 2px solid #00a199;
 }
 .buttons.delete {
   background-color: red;
