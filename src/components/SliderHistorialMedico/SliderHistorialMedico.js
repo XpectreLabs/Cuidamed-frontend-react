@@ -296,6 +296,7 @@ export default function SliderHistorialMedico() {
               <SliderAntecedentesComponent
                 {...record}
                 getValue={(e) => {
+                  console.log("Antecedentes ", e)
                   setFormValues({ ...formValues, ...e });
                 }}
                 objResponse={responseDataHistorial}

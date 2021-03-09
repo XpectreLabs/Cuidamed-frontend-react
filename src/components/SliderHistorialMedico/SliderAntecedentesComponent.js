@@ -37,7 +37,7 @@ const SliderAntecedentesComponent = ({
   useEffect(() => {
     //console.log(totalElements);
     if (hasRecord) {
-      const newData = totalElements.filter((elements) => !elements.name || !elements.year);
+      const newData = totalElements.filter((elements) => !elements.name );
 
       if (newData.length === 0) {
         let obj = {};
@@ -133,6 +133,7 @@ const SliderAntecedentesComponent = ({
                 placeholder={placeholderAnswer}
                 type={typeInput}
                 setValue={(e) => {
+                  console.log("hola alergias", e)
                   setTotalElements((numbers) => {
                     let updateValue = numbers.map((number) =>
                       number.order === order ? { ...number, name: e } : number

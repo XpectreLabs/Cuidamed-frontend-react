@@ -19,6 +19,7 @@ const CardPhone = ({ title, icon, arrayData = [] }) => {
                     )}
                 </Grid.Row>
                 <Grid.Row className="box">
+                { arrayData.length > 0 ? (
                     <Grid.Column>
                         {isShow && (
                             arrayData.map((item, index) => (
@@ -33,6 +34,9 @@ const CardPhone = ({ title, icon, arrayData = [] }) => {
                             </h3>
                         )}
                     </Grid.Column>
+                ):<div class="column"><h3>No hay información</h3></div>}
+                    
+                    { arrayData.length > 1 && (
                     <Grid.Column mobile={8}>
                         {!isShow && (
                             <Button
@@ -45,6 +49,7 @@ const CardPhone = ({ title, icon, arrayData = [] }) => {
                             >Ver menos</Button>
                         )}
                     </Grid.Column>
+                    )}
                 </Grid.Row>
             </Grid.Column>
         </Grid.Row>

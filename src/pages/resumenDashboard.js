@@ -31,14 +31,13 @@ import 'moment/locale/es';
 import { useSumary } from '../hooks/useSumary';
 
 const ResumenDashboard = () => {
-    const { name, birth_date, sex, place, type_blood, ocupation, weight, height, id } = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')):{};
+    const { name, birth_date, sex, place, type_blood, ocupation, weight, height, organ_donor: organDonor } = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')):{};
     const { data } = useSumary();
     const [formValues, setFormValues] = useState({
         covid: [],
         diseases: [],
         allergies: [],
         emergencyContact: [],
-        organDonor: '',
         vacunas: [],
         cirujias: [],
         transfunciones: [],
@@ -73,14 +72,16 @@ const ResumenDashboard = () => {
             <Container>
              <Grid className="resume" centered>
                 <Grid.Row className="profile" centered>
-                <Grid.Column
-                    computer={4}
-                    tablet={8}
-                    mobile={8}
-                    textAlign="center"
-                    className="figcaption"
-                >
-                </Grid.Column>
+                    <Grid.Column
+                        computer={4}
+                        tablet={8}
+                        mobile={8}
+                        textAlign="center"
+                        className="figcaption"
+                    >
+                    </Grid.Column>
+                    
+                    <h1>Resumen General</h1>
                 </Grid.Row>
                 <Grid.Row className="information">
                     <p>{name}</p>
@@ -113,7 +114,6 @@ const ResumenDashboard = () => {
                             {/* <span>02/09/2020</span>
                             <span>12/10/2020</span> */}
                             </p>
-                            <p class="btn_tratamientos" onClick={() => {/*setIsVisible(true)*/}}><u>Tratamiento</u></p>
                         </Grid.Row>
 
                         </Grid.Row>
@@ -152,7 +152,7 @@ const ResumenDashboard = () => {
                         </Grid.Row>
                         <Grid.Row className="box">
                         <Grid.Column mobile={4}>
-                            <h3>{formValues.organDonor ? 'SÍ' : 'NO'}</h3>
+                            <h3>{ organDonor }</h3>
                         </Grid.Column>
                         </Grid.Row>
                     </Grid.Column>
