@@ -161,7 +161,7 @@ export default function MedicalContact() {
           <MedicalElement key={item.id} {...item} />
         ))}
 
-      <Grid.Row className="btn-add">
+        <Grid.Row className="btn-add">
           <Grid.Column
             computer={15}
             tablet={15}

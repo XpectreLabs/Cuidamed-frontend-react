@@ -433,8 +433,9 @@ export default function Slider() {
     if(mySwiper){
       setTimeout(
         () => {
+          
           mySwiper.swiper.slideTo(s);
-        },500);
+        },1000);
     }
     
     // setFlagNext(true);

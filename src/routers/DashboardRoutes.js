@@ -12,6 +12,7 @@ import MedicalContact from "../pages/contacto-medico";
 import MedicalInsurance from "../pages/seguro-medico";
 import Contact from "../pages/contacto";
 import Treatment from "../pages/tratamiento";
+import ResumenDashboard from '../pages/resumenDashboard';
 
 export const DashboardRoutes = () => {
   const history = useHistory();
@@ -51,6 +52,7 @@ export const DashboardRoutes = () => {
         <Route exact component={Treatment} path="/dashboard/tratamiento" />
 
         <Route exact component={InfoBasic} path="/dashboard/info-basic" />
+        <Route exact component={ResumenDashboard} path="/dashboard/resumen" />
         <Redirect to="/dashboard/info-basic" />
       </Switch>
     </>

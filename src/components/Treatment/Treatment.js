@@ -169,6 +169,17 @@ export default function Treatment() {
             <TreatmentChild key={i} {...item} />
           )
         })}
+        <Grid.Row className="btn-add">
+          <Grid.Column
+            computer={15}
+            tablet={15}
+            mobile={13}
+            className="data-contact">
+            <Button onClick={() => history.push('/dashboard/contacto')}>
+              Continuar
+            </Button>
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     </Container>
   );

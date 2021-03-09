@@ -41,7 +41,7 @@ export default function Resume() {
   const [isMedic, setIsMedic] = useState(false);
   const [isShow, setIsShow] = useState(false);
   const [isVisible,setIsVisible] = useState(false);
-
+  
   const [formValues, setFormValues] = useState({
     covid: [],
     diseases: [],
@@ -79,7 +79,6 @@ export default function Resume() {
       .then((data) => {
         if (data.data) {
           const values = data.data;
-          console.log(data.data);
           const newDesases = values[13].map((item, index) => {
             return item.illnessId;
           });

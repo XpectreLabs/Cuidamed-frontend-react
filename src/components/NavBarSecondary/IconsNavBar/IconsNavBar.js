@@ -9,6 +9,8 @@ import { ReactComponent as IconIndContacto } from '../../../images/icons/IndCont
 import { ReactComponent as IconIndContactoMedico } from '../../../images/icons/IndContactoMedico.svg';
 import { ReactComponent as IconIndSeguroMedico } from '../../../images/icons/IndSeguroMedico.svg';
 import { ReactComponent as IconIndGinecologia } from '../../../images/icons/IndGinecologia.svg';
+import { ReactComponent as NotePad } from '../../../images/icons/notepad.svg';
+
 
 import profileImg from '../../../images/profile.jpg';
 import { useDispatch, useSelector } from 'react-redux';
@@ -47,6 +49,10 @@ const dataIcons = [
     icon: <IconIndSeguroMedico></IconIndSeguroMedico>,
     link: '/dashboard/seguro-medico',
   },
+  {
+    icon: <NotePad />,
+    link: '/dashboard/resumen',
+  },
 ];
 
 const dataIconsMan = [
@@ -76,6 +82,10 @@ const dataIconsMan = [
   {
     icon: <IconIndSeguroMedico></IconIndSeguroMedico>,
     link: '/dashboard/seguro-medico',
+  },
+  {
+    icon: <NotePad />,
+    link: '/dashboard/resumen',
   },
 ];
 
