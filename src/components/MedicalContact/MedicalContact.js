@@ -13,7 +13,9 @@ import { types } from '../../redux/types';
 
 export default function MedicalContact() {
   const medicalContacts = useSelector((state) => state.user.medicalContacts);
+  
   useEffect(() => {
+    dispatch({type: types.loading});
     fetch(`${CONECTION}api/medics`, {
       method: 'GET',
       headers: {
@@ -39,6 +41,7 @@ export default function MedicalContact() {
           });
           dispatch({ type: types.getMedical, payload: array });
         }
+        dispatch({type: types.loaded});
       });
   }, []);
   const [formValues, setFormValues] = useState({

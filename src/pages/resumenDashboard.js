@@ -51,7 +51,6 @@ const ResumenDashboard = () => {
 
     useEffect(() => {
         if(Object.keys(data).length > 0) setFormValues({...formValues,...data});
-        console.log(Object.keys(data));
     }, [data])
     
 
@@ -87,9 +86,14 @@ const ResumenDashboard = () => {
                     <p>{name}</p>
                 </Grid.Row>
                 <Grid.Row className="information">
-                    <p>
-                        {calcularEdad(birth_date)} años <Icon fitted name={sex === 'F' ? 'woman' : 'men'} />
-                    </p>
+                    {!isNaN(calcularEdad(birth_date)) && (
+                        <>
+                          <p>
+                            {calcularEdad(birth_date)} años <Icon fitted name={sex === 'F' ? 'woman' : 'men'} />
+                          </p>
+                        </>
+                    )}
+                    
                 </Grid.Row>
                 <Grid.Row className="information font-gray">
                     <p>

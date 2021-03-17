@@ -59,6 +59,7 @@ import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
 import { useDispatch } from 'react-redux';
+import { types } from '../../redux/types';
 
 // import "./Slider.scss"
 // install Swiper components
@@ -92,6 +93,7 @@ export default function Slider() {
     vaccine: '',
   });
   useEffect(() => {
+    dispatch({type: types.loading });
     fetch(`${CONECTION}api/getUser/${id}`, {
       method: 'GET',
       headers: {
@@ -158,6 +160,9 @@ export default function Slider() {
           vaccine) {
           slide(6);
         }
+
+        
+        dispatch({type: types.loaded });
       });
   }, []);
   const {

@@ -18,6 +18,7 @@ export default function MedicalInsurance() {
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
+    dispatch({type: types.loading});
     fetch(`${CONECTION}api/seguros`, {
       method: 'GET',
       headers: {
@@ -41,6 +42,7 @@ export default function MedicalInsurance() {
           });
           dispatch({ type: types.getSeguro, payload: array });
         }
+        dispatch({type: types.loaded});
       });
   }, []);
 

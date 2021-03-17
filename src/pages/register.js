@@ -27,7 +27,6 @@ const Register = () => {
   if (state.createdUser) {
     return <Redirect to="/verify-code" />;
   }
-  console.log(errors);
   return (
     <Grid className="register" centered>
       {state.loading && <SpinnerComponent />}

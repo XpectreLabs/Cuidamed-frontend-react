@@ -1,6 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Container, Grid } from "semantic-ui-react";
 import NavBarSecondary from "../../components/NavBarSecondary";
+import SpinnerComponent from '../../components/spinner';
 //css
 import "../../sass/index.scss";
 
@@ -12,6 +14,7 @@ import "../../sass/index.scss";
 
 const BasicLayout = React.memo((props) => {
   const { children, view } = props;
+  const { load } = useSelector( state => state.loading );
   // const dispatch = useDispatch();
   // const state = useSelector((state) => state);
   // useEffect(() => {
@@ -62,6 +65,7 @@ const BasicLayout = React.memo((props) => {
             accept="image/*"
           /> */}
           <NavBarSecondary view={view}></NavBarSecondary>
+          { load && <SpinnerComponent /> }
           {/* <button
             className="btn-img"
             onClick={() => {

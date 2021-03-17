@@ -20,6 +20,8 @@ export default function Treatment() {
   const history = useHistory();
 
   useEffect(() => {
+    
+    dispatch({type: types.loading});
     fetch(`${CONECTION}api/tratamientos`, {
       method: 'GET',
       headers: {
@@ -43,10 +45,9 @@ export default function Treatment() {
             };
             array = [...array, obj];
           });
-          // setTreatment(array);
           dispatch({type:types.getTreatment,payload:array});
-
         }
+        dispatch({type: types.loaded});
       });
   }, [])
 

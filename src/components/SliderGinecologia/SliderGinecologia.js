@@ -27,6 +27,7 @@ import { CustomInput } from "../inputsCustom/CustomInput";
 import Date from "../inputsCustom/Date";
 import { SelectCustom } from '../inputsCustom/Select/Select';
 import { CONECTION } from '../../conection';
+import { types } from "../../redux/types";
 
 // import "./Slider.scss"
 // install Swiper components
@@ -36,7 +37,14 @@ export default function SliderGinecologia() {
   const [isValidIndex, setIsValidIndex] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState({
+    has_menstruation: '',
+    menopause: false,
+    cesarea: 0,
+    age_mestruation: null,
+    abortos: 0,
+    kind_mestruation: ''
+  });
   const [isPregnant, setIsPregnant] = useState();
   const [menopause, setMenopause] = useState();
   const [menstruation, setMenstruation] = useState(false);
@@ -47,6 +55,7 @@ export default function SliderGinecologia() {
   ];
 
   useEffect(() => {
+    dispatch({type:types.loading});
     fetch(`${CONECTION}api/ginecologia`, {
       method: 'GET',
       headers: {
@@ -57,9 +66,8 @@ export default function SliderGinecologia() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.data) {
-          const { has_menstruation, menopause, embarazos } = data.data[0];
+          const { has_menstruation, menopause, embarazos,year_menopause,cesarea,partos, age_mestruation,abortos,kind_mestruation } = data.data[0];
           let meno = "";
           if (menopause === 'NO') {
             meno = false;
@@ -75,9 +83,17 @@ export default function SliderGinecologia() {
           setFormValues({
             ...formValues,
             has_menstruation,
-            menopause: menopause
+            menopause: menopause,
+            cesarea,
+            age_mestruation,
+            abortos,
+            kind_mestruation,
+            partos,
+            embarazos,
+            year_menopause
           });
         }
+        dispatch({type:types.loaded});
       });
   }, [])
 
@@ -102,16 +118,15 @@ export default function SliderGinecologia() {
     dispatch(updateGinecologia(formValues, history));
   };
 
-  const { has_menstruation } = formValues;
   useEffect(() => {
-    console.log(formValues);
     switch (activeIndex) {
       case 0:
         if (formValues.has_menstruation) {
           if (formValues.has_menstruation === "NOT_HAVE") {
             removeArrowNext();
           } else if (formValues.has_menstruation === "I_HAVE") {
-            removeArrowNext();
+            // removeArrowNext();
+            console.log("funciona")
             if (formValues.age_mestruation && formValues.kind_mestruation) {
               setIsValidIndex(true);
               removeArrowNext();
@@ -174,7 +189,7 @@ export default function SliderGinecologia() {
                 type="number"
                 min= '1'
                 max='999'
-                // value={1}
+                value={formValues.embarazos}
                 setValue={(e) => setFormValues({ ...formValues, embarazos: e })}
               />
             </Grid.Column>
@@ -184,7 +199,7 @@ export default function SliderGinecologia() {
                 type="number"
                 min= '1'
                 max='999'
-                // value="0"
+                value={formValues.partos}
                 setValue={(e) => setFormValues({ ...formValues, partos: e })} />
             </Grid.Column>
           </Grid.Row>
@@ -195,7 +210,7 @@ export default function SliderGinecologia() {
                 type="number"
                 min= '1'
                 max='999'
-                // value="0"
+                value={formValues.cesarea}
                 setValue={(e) => setFormValues({ ...formValues, cesarea: e })}
               />
             </Grid.Column>
@@ -205,6 +220,7 @@ export default function SliderGinecologia() {
                 type="number"
                 min= '1'
                 max='999'
+                value={formValues.abortos}
                 setValue={(e) => setFormValues({ ...formValues, abortos: e })}
               />
             </Grid.Column>
@@ -342,7 +358,7 @@ export default function SliderGinecologia() {
                   </Grid.Column>
                   <Grid.Column computer={5} tablet={5} mobile={14}>
                     <Button
-                      className={menstruation ? 'isChecked' : ''}
+                      className={formValues.has_menstruation === 'I_HAVE' ? 'isChecked' : ''}
                       type="radio"
                       onClick={() => {
                         setFormValues({ ...formValues, has_menstruation: 'I_HAVE' })
@@ -354,7 +370,7 @@ export default function SliderGinecologia() {
                   </Grid.Column>
                   <Grid.Column computer={5} tablet={5} mobile={14}>
                     <Button
-                      className={menopause ? 'isChecked' : ''}
+                      className={formValues.has_menstruation === 'I_HAD' ? 'isChecked' : ''}
                       type="radio"
                       onClick={() => {
                         setFormValues({ ...formValues, has_menstruation: 'I_HAD' })
@@ -377,7 +393,7 @@ export default function SliderGinecologia() {
                     </Grid.Column>
                   </Grid.Row>
                 )}
-                {menstruation && (
+                {(menstruation || formValues.has_menstruation === 'I_HAVE') && (
                   <Grid.Row className='menstruation'>
                     <Grid.Column computer={6} tablet={7} mobile={14}>
                       <CustomInput
@@ -385,6 +401,7 @@ export default function SliderGinecologia() {
                         type="number"
                         min= '1'
                         max='999'
+                        value={formValues.age_mestruation}
                         setValue={e => {
                           setFormValues({ ...formValues, age_mestruation: e });
                         }}

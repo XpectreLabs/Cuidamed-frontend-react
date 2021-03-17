@@ -1,3 +1,15 @@
+
+.opacity_effect {
+    animation: mymove .6s;
+    transition: all .2s;
+}
+.checkboxCustom {
+    width: 100px;
+}
+.conditions_container {
+    margin: 0 auto;
+    width: 80%;
+}
 .band {
 
     .obo2{
@@ -101,6 +113,9 @@
                     &.green {
                         background-color: $secondary;
                     }
+                    &.black {
+                        background-color: #000000;
+                    }
                 }
 
 
@@ -109,6 +124,11 @@
             
         }
     }
+}
+
+@keyframes mymove {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }
 
 @media (max-width: 1065px) {

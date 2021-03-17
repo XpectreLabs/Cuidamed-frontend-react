@@ -22,6 +22,8 @@ import { VERIFICAR, VERIFICADO } from './types';
 import { useDispatch } from 'react-redux';
 
 import { saveIllnessSystem } from '../../redux/actions/UserAction';
+import { types } from '../../redux/types';
+import Swal from 'sweetalert2';
 //
 
 const ListaEnfermedades = React.memo(() => {
@@ -34,6 +36,7 @@ const ListaEnfermedades = React.memo(() => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch({type: types.loading});
     fetch(`${CONECTION}api/IllnessBySystem/${systemId}`, {
       method: 'GET',
       headers: {
@@ -63,6 +66,7 @@ const ListaEnfermedades = React.memo(() => {
           });
           setItems(newData);
         }
+        dispatch({type: types.loaded});
       });
   }, []);
 
@@ -223,22 +227,44 @@ const ListaEnfermedades = React.memo(() => {
 
   const [addDiseaNotExist, setAddDiseaNotExist] = useState();
 
-  const handleAddDiseaNotExist = () => {
-    setOpen(false);
-    const item = {
-      id: items.length + Math.floor(Math.random() * 100 + 1),
-      status: VERIFICADO,
-      name: addDiseaNotExist,
-      isShow: false,
-    };
-    setItems((prevState) => {
-      const newDragItem = prevState.concat(item);
-      return [...newDragItem];
-    });
-    setDragItem((prevState) => {
-      const newDragItem = prevState.concat(item);
-      return [...newDragItem];
-    });
+  const handleAddDiseaNotExist = async () => {
+    dispatch({type: types.loading});
+    try {
+      const request = await fetch(`${CONECTION}api/Illness`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          'x-auth-token': localStorage.getItem('refreshToken'),
+        },
+        body: JSON.stringify({name: addDiseaNotExist,status: 'VERIFICADO',human_systems_Id: systemId })
+      });
+      const response = await request.json();
+      const item = {
+        id: response.data.id,
+        status: VERIFICADO,
+        name: addDiseaNotExist,
+        isShow: false,
+      };
+      setItems((prevState) => {
+        const newDragItem = prevState.concat(item);
+        return [...newDragItem];
+      });
+      setDragItem((prevState) => {
+        const newDragItem = prevState.concat(item);
+        return [...newDragItem];
+      });
+      
+      dispatch({type: types.loaded});
+      setOpen(false);
+    }catch(e) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'No se pudo guardar la enfermedad'
+      })  
+      dispatch({type: types.loaded});
+    }
   };
 
   function isMobile() {

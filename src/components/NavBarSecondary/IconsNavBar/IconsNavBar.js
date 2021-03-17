@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setImage, uploadImage } from '../../../redux/actions/UserAction';
 import { CONECTION } from '../../../conection';
 import { logout } from '../../../redux/actions/LoginAction';
+import { types } from '../../../redux/types';
 const dataIcons = [
   {
     icon: <IconIndInfBasic></IconIndInfBasic>,
@@ -95,6 +96,7 @@ export default function IconsNavBar() {
 
   useEffect(() => {
     if (state.login.user.img !== '' && state.user.imgProfile === null) {
+      dispatch({type:types.loading});
       fetch(`${CONECTION}api/file/${state.login.user.img}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -109,6 +111,7 @@ export default function IconsNavBar() {
           reader.onloadend = function () {
             var base64data = reader.result;
             dispatch(setImage(base64data));
+            dispatch({type:types.loaded});
           };
         });
     }

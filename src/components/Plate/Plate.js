@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
-import { Grid, Input, Button } from "semantic-ui-react";
+import { Grid, Input, Button, Modal } from "semantic-ui-react";
 import Logo from "../../images/CuidaMEDLogo.png";
 import { SelectCustom } from "../inputsCustom/Select/Select";
 import bloodType from "./data";
@@ -19,6 +19,8 @@ export default function Plate() {
   typeBlood: "",
   disease: "",
 });
+const [agree, setAgree] = useState(false);
+const [open,setOpen] = useState(false);
 const { name, emergencyContact, typeBlood, disease } = formValues;
 
   useEffect(() => {
@@ -50,48 +52,57 @@ const { name, emergencyContact, typeBlood, disease } = formValues;
 
   const handleClick = async (event) => {
     // Get Stripe.js instance
-    const stripe = await stripePromise;
+    if(name.length >0 && emergencyContact.length >0 && typeBlood.length >0 && disease.length >0 && agree){
+      const stripe = await stripePromise;
 
-    // Call your backend to create the Checkout Session
-    const response = await fetch(`${CONECTION}api/create-checkout-session`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-        "x-auth-token": localStorage.getItem("refreshToken"),
-      },
-    });
-
-    if(response.status === 401){
-      Swal.fire({
-        type: 'error',
-        title:'Error en la petición',
-        text: 'Necesita iniciar sesión para comprar la pulsera',
-      }).then((result) => {
-        if (result.isConfirmed) history.replace('/login');
-      });
-    }else if( response.status !== 200 ){
-      let resp = await response.json();
-      Swal.fire({
-        type: 'error',
-        title:'Error en la petición',
-        text: resp.message,
-      });
-    }else{
-      const session = await response.json();
-      localStorage.setItem('labelCuidaband', `${name};${emergencyContact};${typeBlood};${disease}`);
-      
-      // When the customer clicks on the button, redirect them to Checkout.
-      const result = await stripe.redirectToCheckout({
-        sessionId: session.id,
+      // Call your backend to create the Checkout Session
+      const response = await fetch(`${CONECTION}api/create-checkout-session`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "x-auth-token": localStorage.getItem("refreshToken"),
+        },
       });
 
-      if (result.error) {
-        // If `redirectToCheckout` fails due to a browser or network
-        // error, display the localized error message to your customer
-        // using `result.error.message`.
+      if(response.status === 401 || response.status === 403){
+        Swal.fire({
+          icon: 'error',
+          title:'Error en la petición',
+          text: 'Necesita iniciar sesión para comprar la pulsera',
+        }).then((result) => {
+          if (result.isConfirmed) history.replace('/login');
+        });
+      }else if( response.status !== 200 ){
+        let resp = await response.json();
+        Swal.fire({
+          icon: 'error',
+          title:'Error en la petición',
+          text: resp.message,
+        });
+      }else{
+        const session = await response.json();
+        localStorage.setItem('labelCuidaband', `${name};${emergencyContact};${typeBlood};${disease}`);
+        
+        // When the customer clicks on the button, redirect them to Checkout.
+        const result = await stripe.redirectToCheckout({
+          sessionId: session.id,
+        });
+
+        if (result.error) {
+          // If `redirectToCheckout` fails due to a browser or network
+          // error, display the localized error message to your customer
+          // using `result.error.message`.
+        }
       }
+    }else {
+      Swal.fire({
+        icon: 'error',
+        title:'Error',
+        text: 'Rellene los campos y acepte los terminos y condiciones'
+      })
     }
+    
     
   };
 
@@ -190,6 +201,16 @@ const { name, emergencyContact, typeBlood, disease } = formValues;
           </span>
         </Grid.Row>
         <Grid.Row>
+            <input
+              className="checkboxCustom"
+              type="checkbox"
+              onChange={(e) => {
+                setAgree(!agree);
+              }}
+            />
+            <span>Aceptar <a href="#" onClick={() => setOpen(true)}>terminos y condiciones.</a></span>
+        </Grid.Row>
+        <Grid.Row>
           <Button
             className="btn-main"
             id="checkout-button"
@@ -200,6 +221,20 @@ const { name, emergencyContact, typeBlood, disease } = formValues;
           </Button>
         </Grid.Row>
       </Grid.Column>
+      <Modal open={open} onClose={() => setOpen(false)}>
+      <Modal.Content>
+        <h1 style={{ textAlign: 'center' }} >
+          Terminos y condiciones
+        </h1>
+        <div className="conditions_container">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, mi vitae finibus rutrum, odio neque maximus lacus, eu euismod ex lorem et est. Pellentesque vulputate sapien dui, at maximus turpis mollis a. Integer tempor blandit orci eget accumsan. Nulla facilisi. Nunc sit amet erat lacus. Vestibulum efficitur lectus quis leo blandit pulvinar. Suspendisse auctor nisi est, porttitor cursus dui dapibus quis. Fusce laoreet pellentesque sem. Curabitur et fermentum tortor.
+            Vivamus eros nisi, malesuada rutrum faucibus vel, suscipit eu mauris. Curabitur gravida lorem ac justo interdum, vitae accumsan ipsum tempus. Sed sit amet consectetur dui. Donec sit amet enim sed dui malesuada fermentum sed iaculis nisl. Fusce gravida tincidunt lacus, pulvinar tincidunt orci venenatis eget. Etiam dictum volutpat urna, sit amet volutpat sapien mollis a. Nam sit amet enim euismod tellus condimentum lacinia vitae vel tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Pellentesque nec egestas elit. Etiam fringilla auctor leo, et vehicula risus sagittis placerat. Sed et felis pellentesque, sodales tortor sit amet, eleifend massa. Phasellus maximus elit ac dictum maximus. Proin pulvinar luctus mollis. Cras posuere, nisl sit amet interdum molestie, nulla mauris molestie orci, in tincidunt metus metus vitae erat.
+            In ullamcorper quam eu diam lacinia ultrices id vitae dolor. Cras id velit ut diam consequat facilisis in vel ligula. In dignissim lacus ut neque vestibulum, ac scelerisque libero venenatis. Quisque dui tortor, luctus eu sodales vel, mattis non nisl. Ut nisl nibh, consequat ut tincidunt ultrices, viverra et nulla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Etiam odio lectus, hendrerit a tellus at, fringilla sagittis mi. Proin tincidunt nisl at ex convallis, at condimentum magna accumsan. Donec commodo quam sit amet tempus cursus.
+          </p>
+        </div>
+      </Modal.Content>
+    </Modal>
     </Grid>
   );
 }

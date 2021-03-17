@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
+import {useDispatch} from 'react-redux';
 import {CONECTION} from '../conection';
+import { types } from '../redux/types';
 export const useSumary = () => {
+    const dispatch = useDispatch();
     const [state, setState] = useState({
         loading: true,
         error: null,
@@ -8,6 +11,7 @@ export const useSumary = () => {
     });
 
     useEffect(() => {
+        dispatch({type:types.loading});
         fetch(`${CONECTION}api/sumary`,{
             method: 'GET',
             headers: {
@@ -18,6 +22,7 @@ export const useSumary = () => {
         }).then(resp => resp.json()).then((json) => {
             let { data } = json;
             setState({...state, loading: false, data});
+            dispatch({type:types.loaded});
         }).catch(e => setState({...state,loading: false, error: 'Error al cargar los datos'})) 
     },[])
 

@@ -3,8 +3,12 @@ import { Grid, Button, Container } from 'semantic-ui-react';
 import { Link, useHistory } from 'react-router-dom';
 import { carpetaSistemas } from './data';
 import { CONECTION } from '../../conection';
+import { useDispatch } from 'react-redux';
+import { types } from '../../redux/types';
 
 export default function Sistemas() {
+  
+  const dispatch = useDispatch();
   const history = useHistory();
   const [carpSystem, setCarpSystem] = useState([]);
   const [objectState,setObjectState] = useState({
@@ -12,6 +16,7 @@ export default function Sistemas() {
     totalCompleted:0
   })
   useEffect(() => {
+    dispatch({type:types.loading});
     fetch(`${CONECTION}api/system`, {
       method: 'GET',
       headers: {
@@ -41,6 +46,8 @@ export default function Sistemas() {
           setObjectState({...objectState,total:newData.length,totalCompleted:newData.filter((value) => value.is_completed && value).length});
           setCarpSystem(newData);
         }
+        
+        dispatch({type:types.loaded});
       })
   }, []);
 

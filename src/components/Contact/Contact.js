@@ -19,6 +19,7 @@ export default function Contact() {
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
+    dispatch({type: types.loading});
     fetch(`${CONECTION}api/emergency`, {
       method: 'GET',
       headers: {
@@ -42,7 +43,7 @@ export default function Contact() {
             array = [...array, obj];
           });
           dispatch({ type: types.getEmergencyContacts, payload: array });
-
+          dispatch({type: types.loaded});
         }
       });
   }, []);

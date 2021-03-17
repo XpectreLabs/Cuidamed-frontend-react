@@ -8,59 +8,65 @@ import {
     Urinario,
     Muscular,
     Digestivo,
-    Circulatorio
+    Circulatorio,
+    CarpCancer
 } from '../../images/icons/icons'
 
 const arrayIconHumanSys = [
     {
         name: "óseo",
-        component: <Oseo></Oseo>,
+        component: <Oseo />,
         system: "Sistema óseo"
     },
     {
         name: "respiratorio",
-        component: <Respiratorio></Respiratorio>,
+        component: <Respiratorio />,
         system: "Sistema respiratorio"
     },
     {
         name: "reproductivo",
-        component: <Reproductivo></Reproductivo>,
+        component: <Reproductivo />,
         system: "Sistema reproductivo"
     },
     {
         name: "piel",
-        component: <Piel></Piel>,
+        component: <Piel />,
         system: "Piel"
     },
     {
         name: "endocrino",
-        component: <Endocrino></Endocrino>,
+        component: <Endocrino />,
         system: "Sistema endocrino"
     },
     {
         name: "urinario",
-        component: <Urinario></Urinario>,
+        component: <Urinario />,
         system: "Sistema urinario"
     },
     {
         name: "muscular",
-        component: <Muscular></Muscular>,
+        component: <Muscular />,
         system: "Sistema muscular"
     },
     {
         name: "nervioso",
-        component: <Nervioso></Nervioso>,
+        component: <Nervioso />,
         system: "Sistema nervioso"
     },
     {
         name: "digestivo",
-        component: <Digestivo></Digestivo>,
+        component: <Digestivo />,
         system: "Sistema digestivo"
     },
     {
         name: "circulatorio",
-        component: <Circulatorio></Circulatorio>,
+        component: <Circulatorio />,
         system: "Sistema circulatorio"
+    },
+    {
+        name: "cancer",
+        component: <CarpCancer />,
+        system: "Cancer"
     }
 
 ]

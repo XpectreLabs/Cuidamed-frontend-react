@@ -88,6 +88,8 @@ export const updateInfoBasic = (pInfo, history) => {
           },
           body: JSON.stringify(pInfo),
         });
+        
+        dispatch({ type: types.loaded });
         const response = await request.json();
         if (response.message) {
           let obj = response.data[0];
@@ -136,7 +138,6 @@ export const saveIllnessSystem = (pInfo, history) => {
 
 export const updateHistoryMedical = (pInfo, history) => {
   return async (dispatch) => {
-    dispatch({ type: types.loading });
     try {
       if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
         const { id } = JSON.parse(localStorage.getItem('user'));
@@ -150,7 +151,7 @@ export const updateHistoryMedical = (pInfo, history) => {
           body: JSON.stringify(pInfo),
         });
         const response = await request.json();
-        console.log(response);
+        dispatch({type: types.loaded});
         if (response.message) {
           Swal.fire({
             title: '¡Antecedentes actualizados!',
@@ -162,7 +163,10 @@ export const updateHistoryMedical = (pInfo, history) => {
           else history.push('/dashboard/tratamiento');
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      
+      dispatch({type: types.loaded});
+    }
   };
 };
 
@@ -544,10 +548,9 @@ export const updateAseguradora = (pInfo, history) => {
 export const uploadImage = (img) => {
   return async (dispatch) => {
     try {
+      dispatch({type:types.loading});
       if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
         const formData = new FormData();
-
-        console.log('Hola mundo11');
         formData.append('perfil', img);
         const request = await fetch(`${CONECTION}api/file`, {
           method: 'POST',
@@ -561,8 +564,13 @@ export const uploadImage = (img) => {
         const response = await request.json();
         localStorage.setItem('user', JSON.stringify(response.user[0]));
         dispatch(setImage(URL.createObjectURL(img)));
+        
+        dispatch({type:types.loaded});
       }
-    } catch (e) {}
+    } catch (e) {
+      
+      dispatch({type:types.loaded});
+    }
   };
 };
 export const setImage = (img) => ({

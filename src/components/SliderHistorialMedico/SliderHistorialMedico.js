@@ -36,6 +36,7 @@ import SliderFamiliaresComponent from './SliderFamiliaresComponent';
 
 import { updateHistoryMedical } from '../../redux/actions/UserAction';
 import { useDispatch } from 'react-redux';
+import { types } from '../../redux/types';
 
 // import "./Slider.scss"
 // install Swiper components
@@ -59,6 +60,9 @@ export default function SliderHistorialMedico() {
 
   const history = useHistory();
   const saveAndContinue = (e) => {
+    
+    
+    dispatch({type: types.loading});
     e.preventDefault();
     let objFracture = {};
     objFracture['objFracture'] = formValues;
@@ -90,13 +94,13 @@ export default function SliderHistorialMedico() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
       });
     dispatch(updateHistoryMedical(objFracture, history));
   };
 
   const [responseDataHistorial, setResponseDataHistorial] = useState();
   useEffect(() => {
+    dispatch({type: types.loading});
     fetch(`${CONECTION}api/get-all-historial`, {
       method: 'GET',
       headers: {
@@ -123,6 +127,7 @@ export default function SliderHistorialMedico() {
           });
           setValuesFamily(data.relatives);
         }
+      dispatch({type: types.loaded});
       });
   }, []);
   useEffect(() => {

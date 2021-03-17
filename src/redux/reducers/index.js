@@ -1,3 +1,4 @@
 import { LoginReducer } from './LoginReducer';
 import { UserReducer } from './UserReducer';
-export { LoginReducer, UserReducer };
+import { LoadingReducer } from './LoadingReducer';
+export { LoginReducer, UserReducer, LoadingReducer };
