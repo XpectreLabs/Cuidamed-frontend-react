@@ -24,13 +24,13 @@ const CardPhone = ({ title, icon, arrayData = [] }) => {
                         {isShow && (
                             arrayData.map((item, index) => (
                                 <h3>
-                                    {item.name} <br /><a href={`+52${item.phone}`}>{`+52${item.phone}`}</a>
+                                    {item.name} <br /><a href={`tel: +52${item.phone}`}>{`+52${item.phone}`}</a>
                                 </h3>
                             ))
                         )}
                         {!isShow && arrayData.length > 0 && (
                             <h3>
-                                {arrayData[0].name} <br /><a href={`+52${arrayData[0].phone}`}>{`+52${arrayData[0].phone}`}</a>
+                                {arrayData[0].name} <br /><a href={`tel: +52${arrayData[0].phone}`}>{`+52${arrayData[0].phone}`}</a>
                             </h3>
                         )}
                     </Grid.Column>

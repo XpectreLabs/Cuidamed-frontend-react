@@ -22,13 +22,12 @@ export default function Login() {
   const [inputEmergency, setInputEmergency] = useState();
 
   const onSubmit = (e) => {
-    console.log(e);
     dispatch(login(e.email, e.password));
   };
 
   const history = useHistory();
   const handleEmergency = (e) => {
-    console.log(e);
+    console.log("gioa que tal")
     if (inputEmergency) {
       fetch(`${CONECTION}api/codeMedband`, {
         method: 'POST',
@@ -41,6 +40,7 @@ export default function Login() {
       })
         .then((response) => response.json())
         .then((data) => {
+          console.log("gola");
           if (data.err) {
             Swal.fire({
               title: 'Código de pulsera incorrecto',
