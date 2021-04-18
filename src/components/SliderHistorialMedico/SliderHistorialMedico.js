@@ -130,9 +130,7 @@ export default function SliderHistorialMedico() {
       dispatch({type: types.loaded});
       });
   }, []);
-  useEffect(() => {
-    console.log(formValuesIllnessFamily);
-  }, [formValuesIllnessFamily]);
+  
   useEffect(() => {
     switch (activeIndex) {
       case 0:

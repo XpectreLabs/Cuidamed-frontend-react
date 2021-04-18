@@ -450,7 +450,7 @@ export default function SliderGinecologia() {
                       <Menopausia />
                     </Grid.Row>
                     <Grid.Row>
-                      <h3 className="question">¿Tienes la menopausia?</h3>
+                      <h3 className="question">¿Estas en la menopausia?</h3>
                     </Grid.Row>
                     <Grid.Row className="answers menopause">
                       <Grid.Column width={3}>
@@ -460,7 +460,7 @@ export default function SliderGinecologia() {
                           onClick={() => {
                             setMenopause(true);
                             setFormValues({ ...formValues, menopause: 'YES' });
-                          }}>Si</Button>
+                          }}>Sí</Button>
                       </Grid.Column>
                       <Grid.Column width={3}>
                         <Button
@@ -520,7 +520,7 @@ export default function SliderGinecologia() {
                       onClick={() => {
                         setIsPregnant(true);
                         setFormValues({ ...formValues, isPregnancy: 'YES' })
-                      }}>Si</Button>
+                      }}>Sí</Button>
                   </Grid.Column>
                   <Grid.Column width={3}>
                     <Button
@@ -605,7 +605,7 @@ export default function SliderGinecologia() {
                 <Grid.Column verticalAlign="middle" width={4}>
                   <Grid.Row className="question">Num. de embarazos</Grid.Row>
                   <Grid.Row className="answer">{formValues.embarazos ? formValues.embarazos : 0}</Grid.Row>
-                  <Grid.Row className="question">Num. de cesareas</Grid.Row>
+                  <Grid.Row className="question">Num. de cesáreas</Grid.Row>
                   <Grid.Row className="answer">{formValues.cesarea ? formValues.cesarea : 0}</Grid.Row>
                 </Grid.Column>
                 <Grid.Column verticalAlign="middle" width={3}>

@@ -87,7 +87,7 @@ const InsuranceElement = ({
             className="buttons delete"
             onClick={() => {
               Swal.fire({
-                title: '¿Estas seguro de eliminar este contacto?',
+                title: '¿Estas seguro de eliminar este seguro?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

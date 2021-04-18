@@ -9,7 +9,7 @@ const commonDiseases = [
     },
     {
         id: "eReumatologica",
-        name: "E. Reumatológica",
+        name: "Enfermedad Reumatológica",
     },
 
     {
@@ -22,7 +22,7 @@ const commonDiseases = [
     },
     {
         id: "IRenal",
-        name: "I. Renal",
+        name: "Insuficiencia renal",
     },
     {
         id: "vihSida",
@@ -35,7 +35,7 @@ const commonDiseases = [
     
     {
         id: "eCardiaca",
-        name: "E. Cardiaca",
+        name: "Enfermedad cardiaca",
     },
     {
         id: "epoc",

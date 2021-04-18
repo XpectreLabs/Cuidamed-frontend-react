@@ -254,6 +254,7 @@ export default function Slider() {
       dataSecond: sex,
       labelSecond: 'Sexo',
       lideSecond: 0,
+      center: true
     },
     // ,
     // ,
@@ -360,9 +361,7 @@ export default function Slider() {
         // setTitleInfoBasic(true);
         removeArrowNext();
         removeArrowPrev();
-        console.log('toatl vacunas: ', totalVacunas);
         if (vacunado === false) {
-          console.log('llega aqui');
           setVacunaText('N');
           // if(flagNext) slide(7);
         } else if (vacunado === true) {
@@ -826,7 +825,7 @@ export default function Slider() {
                     Información Básica
                   </h3>
                   <Grid.Row className="vacunas__title" width={50}>
-                    <h3>¿Te has vacunado en estos ultimos 6 meses?</h3>
+                    <h3>¿Te has vacunado en estos últimos 6 meses?</h3>
                   </Grid.Row>
                   <Grid.Row className="vacunas__center">
                     <IconVacuna />
@@ -861,7 +860,7 @@ export default function Slider() {
                     <>
                       <Grid.Row className="vacunas__title-description">
                         <CustomInput
-                          placeholder="¿Cuantas fueron?"
+                          placeholder="¿Cuántas fueron?"
                           type="number"
                           min= '1'
                           max='999'
@@ -917,7 +916,7 @@ export default function Slider() {
                       <div className="description-container">
                         <div className="icon">{value.iconFirst}</div>
                         <div className="data">
-                          <label>
+                          <label style={value.center ? {textAlign: 'center'}:{}}>
                             {value.labelFirst} {/* <a href="#"> */}
                             <Icon
                               name="pencil alternate"
@@ -933,7 +932,7 @@ export default function Slider() {
                       <div className="description-container">
                         <div className="icon">{value.iconSecond}</div>
                         <div className="data">
-                          <label>
+                          <label >
                             {value.labelSecond}{' '}
                             <Icon
                               name="pencil alternate"

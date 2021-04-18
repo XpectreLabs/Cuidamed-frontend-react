@@ -226,6 +226,8 @@ export const createTratamiento = (pInfo, history) => {
           //history.push('/dashboard/enfermedades-comunes');
         }
       }
+      
+      dispatch({type: types.loaded});
     } catch (e) {}
   };
 };
@@ -253,6 +255,8 @@ export const updateTratamiento = (pInfo) => {
           dispatch({ type: types.updateTreatment,payload:pInfo });
         }
       }
+      
+      dispatch({type: types.loaded});
     } catch (e) {}
   };
 };
@@ -281,6 +285,8 @@ export const deleteTratamiento = (pInfo) => {
           //history.push('/dashboard/enfermedades-comunes');
         }
       }
+      
+      dispatch({type: types.loaded});
     } catch (e) {
       console.log(e);
     }
@@ -342,8 +348,13 @@ export const deleteContactUrgente = (id) => {
           dispatch({ type: types.deleteEmergencyContacts, payload: id });
         } else
           Swal.fire({ title: 'Error al eliminar contacto', icon: 'error' });
+          
+        dispatch({ type: types.loaded });
       }
-    } catch (e) {}
+    } catch (e) {
+      
+      dispatch({ type: types.loaded });
+    }
   };
 };
 export const updateUrgente = (pInfo) => {
@@ -376,9 +387,13 @@ export const updateUrgente = (pInfo) => {
             icon: 'success',
           });
           dispatch({ type: types.updateEmergencyContacts, payload: pInfo });
-        }
+        }  
       }
-    } catch (e) {}
+      dispatch({ type: types.loaded });
+    } catch (e) {
+      dispatch({ type: types.loaded });
+   
+    }
   };
 };
 
@@ -404,9 +419,13 @@ export const createContactoMedico = (pInfo, history) => {
             icon: 'success',
           });
           dispatch({ type: types.setMedical, payload: response.data });
-        }
+        }  
       }
-    } catch (e) {}
+      dispatch({ type: types.loaded });
+    } catch (e) {
+
+      dispatch({ type: types.loaded });
+    }
   };
 };
 export const updateContactoMedico = (pInfo) => {
@@ -434,7 +453,10 @@ export const updateContactoMedico = (pInfo) => {
           //history.push('/dashboard/enfermedades-comunes');
         }
       }
-    } catch (e) {}
+      dispatch({ type: types.loaded });
+    } catch (e) {
+      dispatch({ type: types.loaded });
+    }
   };
 };
 export const deleteContactoMedico = (pInfo, history) => {
@@ -459,7 +481,12 @@ export const deleteContactoMedico = (pInfo, history) => {
           dispatch({ type: types.deleteMedical, payload: pInfo });
         }
       }
-    } catch (e) {}
+      
+      dispatch({ type: types.loaded });
+    } catch (e) {
+      
+      dispatch({ type: types.loaded });
+    }
   };
 };
 
@@ -479,17 +506,19 @@ export const createAseguradora = (pInfo, history) => {
           body: JSON.stringify(pInfo),
         });
         const response = await request.json();
-        console.log(response);
         if (response.message) {
           Swal.fire({
-            title: 'Aseguradora creada!',
+            title: '¡Aseguradora creada!',
             icon: 'success',
           });
           dispatch({ type: types.setSeguro, payload: response.data });
           //history.push('/dashboard/enfermedades-comunes');
         }
+        dispatch({ type: types.loaded });
       }
-    } catch (e) {}
+    } catch (e) {
+      dispatch({ type: types.loaded });
+    }
   };
 };
 export const deleteAseguradora = (pInfo, history) => {
@@ -515,7 +544,12 @@ export const deleteAseguradora = (pInfo, history) => {
           dispatch({ type: types.deleteSeguro, payload: pInfo });
         }
       }
-    } catch (e) {}
+      
+      dispatch({ type: types.loaded });
+    } catch (e) {
+      
+      dispatch({ type: types.loaded });
+    }
   };
 };
 export const updateAseguradora = (pInfo, history) => {
@@ -541,7 +575,10 @@ export const updateAseguradora = (pInfo, history) => {
           dispatch({ type: types.updateSeguro, payload: pInfo });
         }
       }
-    } catch (e) {}
+      dispatch({ type: types.loaded });
+    } catch (e) {
+      dispatch({ type: types.loaded });
+    }
   };
 };
 

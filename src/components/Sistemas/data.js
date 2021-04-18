@@ -98,7 +98,7 @@ const carpetaSistemas = [
     },
     {
         svg: <CarpCancer />,
-        name: "Cancer",
+        name: "Cáncer",
         humanSystem: 'cancer',
         // arrayData: arrayPiel,
         color: '#d30194'

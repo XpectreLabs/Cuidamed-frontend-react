@@ -23,7 +23,7 @@ const VerifyCode = () => {
       <HeaderLogin hideElements={true} />
       <div className="background_container"></div>
       <Grid.Row>
-        <h1 className="title">Ingrese el codigo de verificación del correo</h1>
+        <h1 className="title">Ingrese el código de verificación del correo</h1>
       </Grid.Row>
       <Grid.Row>
         <Grid.Column computer={6} tablet={10} mobile={14}>
@@ -31,7 +31,7 @@ const VerifyCode = () => {
           <CustomInput
             type="text"
             areYouInLogin={true}
-            placeholder="Codigo"
+            placeholder="Código"
             name={'code'}
             setRef={register({ required: true, maxLength: 4 })}
             errorComponent={
@@ -55,7 +55,7 @@ const VerifyCode = () => {
       <Grid.Row>
         <Grid.Column computer={6} tablet={10} mobile={14} className="information">
         <p>
-            Si no le llego el correo, presione el siguiente boton para
+            Si no le llegó el correo, presione el siguiente botón para
             reenviar
         </p>
         </Grid.Column>

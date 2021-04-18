@@ -11,7 +11,7 @@ const bloodType = [
 
 const gradesStudy = [
   { key: 'g1', value: 'Doctorado', text: 'Doctorado' },
-  { key: 'g2', value: 'Maestria', text: 'Maestria' },
+  { key: 'g2', value: 'Maestría', text: 'Maestría' },
   { key: 'g3', value: 'Licenciatura', text: 'Licenciatura' },
   { key: 'g4', value: 'Bachillerato', text: 'Bachillerato' },
   { key: 'g5', value: 'Secundaria', text: 'Secundaria' },

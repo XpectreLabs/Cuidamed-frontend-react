@@ -93,7 +93,7 @@ const TreatmentChild = ({medicamento,dosis,frecuencia,fecha_inicio,fecha_fin,id}
             className="buttons delete"
             onClick={() => {
               Swal.fire({
-                title: '¿Estas seguro de eliminar este contacto?',
+                title: '¿Estas seguro de eliminar este tratamiento?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

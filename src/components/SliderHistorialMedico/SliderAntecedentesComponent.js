@@ -88,7 +88,7 @@ const SliderAntecedentesComponent = ({
               readOnly=""
               tabIndex="0"
               onClick={() => setHasRecord(true)}>
-              Si
+              Sí
             </Button>
           </Grid.Column>
           <Grid.Column computer={3} tablet={5} mobile={5}>

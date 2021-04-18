@@ -237,7 +237,7 @@ const ListaEnfermedades = React.memo(() => {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
           'x-auth-token': localStorage.getItem('refreshToken'),
         },
-        body: JSON.stringify({name: addDiseaNotExist,status: 'VERIFICADO',human_systems_Id: systemId })
+        body: JSON.stringify({name: addDiseaNotExist,status: 'VERIFICAR',human_systems_Id: systemId })
       });
       const response = await request.json();
       const item = {
