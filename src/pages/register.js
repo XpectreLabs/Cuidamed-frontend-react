@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { Label, Button, Grid } from 'semantic-ui-react';
 import { HeaderLogin } from '../components/Header';
 import { CustomInput } from '../components/inputsCustom/CustomInput';
@@ -12,8 +12,9 @@ import validator from 'validator';
 
 const Register = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const state = useSelector((state) => {
-    return state.user;
+    return state.loading;
   });
 
   const { register, handleSubmit, errors } = useForm();
@@ -21,7 +22,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
 
   const onSubmit = (e) => {
-    dispatch(createUser(e));
+    dispatch(createUser(e, history));
   };
 
   if (state.createdUser) {
@@ -29,7 +30,7 @@ const Register = () => {
   }
   return (
     <Grid className="register" centered>
-      {state.loading && <SpinnerComponent />}
+      {state.load && <SpinnerComponent />}
       <HeaderLogin hideElements={true} />
       <Grid.Row>
         <h1 className="title">Crear perfil</h1>

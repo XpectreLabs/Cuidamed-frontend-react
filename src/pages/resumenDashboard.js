@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import BasicLayout from "../layouts/BasicLayout";
-import { Container, Grid, Icon, Button } from "semantic-ui-react";
+import { Container, Grid, Icon } from "semantic-ui-react";
 
 import Card from '../components/Resume/Card';
 import CardPhone from '../components/Resume/CardPhone';
+import Swal from 'sweetalert2'
 
 import {
     IconMapa,
@@ -25,6 +26,8 @@ import {
     SeguroMedicoWhite,
   } from "../images/icons/icons";
 
+import { useSelector } from 'react-redux';
+
 //moment
 import Moment from 'react-moment';
 import 'moment/locale/es';
@@ -33,14 +36,16 @@ import { useSumary } from '../hooks/useSumary';
 const ResumenDashboard = () => {
     const { name, birth_date, sex, place, type_blood, ocupation, weight, height, organ_donor: organDonor } = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')):{};
     const { data } = useSumary();
+    const {imgProfile} = useSelector((state) => state.user)
     const [formValues, setFormValues] = useState({
         covid: [],
         diseases: [],
         allergies: [],
-        emergencyContact: [],
+        contactos: [],
         vacunas: [],
         cirujias: [],
         transfunciones: [],
+        tratamientos: [],
         discapacidad: [],
         medicalContact: [],
         seguros: [],
@@ -51,6 +56,7 @@ const ResumenDashboard = () => {
 
     useEffect(() => {
         if(Object.keys(data).length > 0) setFormValues({...formValues,...data});
+        console.log(data)
     }, [data])
     
 
@@ -83,6 +89,9 @@ const ResumenDashboard = () => {
                     <h1>Resumen General</h1>
                 </Grid.Row>
                 <Grid.Row className="information">
+                    <img className="img_resume_dash" src={imgProfile} />
+                </Grid.Row>
+                <Grid.Row className="information">
                     <p>{name}</p>
                 </Grid.Row>
                 <Grid.Row className="information">
@@ -113,7 +122,12 @@ const ResumenDashboard = () => {
                         <Grid.Row>
                             <p>Ha tenido, {formValues.covid.length} {formValues.covid.length === 1 ? 'vez' : 'veces'}
                             {formValues.covid.map((item, index) =>
-                                <span key={index} ><Moment date={item.year} locale="es" format="LL" /></span>
+                                <span key={index} style={{cursor:"pointer"}} onClick={() => {
+                                    Swal.fire({
+                                        title:"Tratamiento",
+                                        html: item.name
+                                    })
+                                }} ><Moment date={item.year} locale="es" format="LL" /></span>
                             )}
                             {/* <span>02/09/2020</span>
                             <span>12/10/2020</span> */}
@@ -144,7 +158,7 @@ const ResumenDashboard = () => {
                 <CardPhone
                     icon={<IconContact />}
                     title={'Contactos de emergencia'}
-                    arrayData={formValues.emergencyContact}
+                    arrayData={formValues.contactos}
                 />
                     <Grid.Row className="diseases">
                     <Grid.Column mobile={15}>
@@ -162,9 +176,15 @@ const ResumenDashboard = () => {
                     </Grid.Column>
                     </Grid.Row>
                     <Card
-                    icon={<IconVacunaWhite />}
-                    title={'Vacunas'}
-                    arrayData={formValues.vacunas}
+                        icon={<IconVacunaWhite />}
+                        title={'Vacunas'}
+                        arrayData={formValues.vacunas}
+                    />
+                    <Card
+                        icon={<IconVacunaWhite />}
+                        title={'Tratamientos'}
+                        treatement={true}
+                        arrayData={formValues.tratamientos}
                     />
                     <Card
                     icon={<BisturiWhite />}
@@ -221,22 +241,10 @@ const ResumenDashboard = () => {
                         </Grid.Row>
                         <Grid.Row className="box">
                             <Grid.Column mobile={4}>
-                                <h3>Menstruación: {formValues.ginecologia.has_menstruation === 'NOT_HAD' ? 'Ya no la tiene' : 'La tiene'}</h3>
-                                <>
-                                    <h3>Menstruación: {formValues.ginecologia.has_menstruation === 'NOT_HAD' ? 'Ya no la tiene' : 'La tiene'}</h3>
-                                    <h3>embarazos: {formValues.ginecologia.embarazos}</h3>
-                                    <h3>partos: {formValues.ginecologia.partos}</h3>
-                                    <h3>abortos: {formValues.ginecologia.abortos}</h3>
-                                </>
-                            
-                            </Grid.Column>
-                            <Grid.Column mobile={8}>
-                                <Button
-                                onClick={() => {/* setIsShow(true) */}}
-                                >Ver más</Button>
-                                <Button
-                                onClick={() => {/* setIsShow(true) */}}
-                                >Ver menos</Button>
+                                <h3>Menstruación: {formValues.ginecologia[0]?.has_menstruation === 'NOT_HAD' ? 'Ya no la tiene' : 'La tiene'}</h3>
+                                <h3>embarazos: {formValues.ginecologia[0]?.embarazos}</h3>
+                                <h3>partos: {formValues.ginecologia[0]?.partos}</h3>
+                                <h3>abortos: {formValues.ginecologia[0]?.abortos}</h3>
                             </Grid.Column>
                         </Grid.Row>
                         </Grid.Column>

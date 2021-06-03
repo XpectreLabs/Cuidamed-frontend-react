@@ -21,8 +21,6 @@ export const UserReducer = (state = initialState, action) => {
         createdUser: action.payload.created,
         emailRegistered: action.payload.email,
       };
-    case types.loading:
-      return { ...state, loading: true };
     case types.setUserCreated:
       return { ...state, createdUser: false };
     case types.verifyUser:

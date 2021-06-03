@@ -72,9 +72,10 @@ export default function Slider() {
   const [selectSex, setSelectSex] = useState(<IconMen />);
 
   const [totalVacunas, setTotalVacunas] = useState([]);
-  const { id } = JSON.parse(localStorage.getItem('user'));
+  const { id, name:userName } = JSON.parse(localStorage.getItem('user'));
   const [vacunaText, setVacunaText] = useState('');
   const [formValues, setFormValues] = useState({
+    name: userName,
     sex: '',
     birthDate: '',
     birth_place: '',
@@ -166,6 +167,7 @@ export default function Slider() {
       });
   }, []);
   const {
+    name,
     sex,
     birthDate,
     birth_place,
@@ -911,6 +913,17 @@ export default function Slider() {
                     className={`title ${titleInfoBasic ? '' : 'hidden-title'}`}>
                     Información Básica
                   </h3>
+                  <Grid.Row>
+                    <div style={{padding:"15px 0"}}>
+                      <div className="data">
+                        <CustomInput 
+                          placeholder="Nombre del paciente" 
+                          value={name}
+                          setValue={(e) => setFormValues({...formValues, name: e})}
+                        />
+                      </div>
+                    </div>
+                  </Grid.Row>
                   {infoBasicDescriptionIcons.map((value, index) => (
                     <Grid.Row className="description" key={index}>
                       <div className="description-container">

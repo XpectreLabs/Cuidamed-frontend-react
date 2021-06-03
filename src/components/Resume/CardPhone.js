@@ -4,7 +4,6 @@ import { Grid, Button, Label } from "semantic-ui-react";
 const CardPhone = ({ title, icon, arrayData = [] }) => {
 
     const [isShow, setIsShow] = useState(false);
-    console.log(arrayData);
 
     return (
         <Grid.Row className="diseases">

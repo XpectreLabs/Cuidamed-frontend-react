@@ -3,12 +3,15 @@
     flex-direction: column;
     margin-top: 1em;
 }
+.icon-container {
+}
 
 @media (max-width: 767px) {
 
     .nav-bar {
         position: fixed;
         bottom: 0;
+        overflow: scroll;
         left: 0;
         right: 0;
         background-color: $main;

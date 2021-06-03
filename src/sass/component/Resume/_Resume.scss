@@ -1,9 +1,23 @@
 .btn_tratamientos{
     cursor: pointer;
 }
-.treatment_covid{
+
+.resume {
+    height: 100vh;
+}
+.img_resume_dash {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+
+.resume::-webkit-scrollbar {
+    display: none;
+}
+
+.treatment_covid {
     height: 300px;
-    &__ul{
+    &__ul {
         list-style: none;
     }
 }

@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cuidamed-dev-203122-authRole",
+      "UnauthRoleArn": "arn:aws:iam::124303942542:role/amplify-cuidamed-dev-203122-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::124303942542:role/amplify-cuidamed-dev-203122-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-cuidamed-dev-203122-deployment",
+      "UnauthRoleName": "amplify-cuidamed-dev-203122-unauthRole",
+      "StackName": "amplify-cuidamed-dev-203122",
+      "StackId": "arn:aws:cloudformation:us-east-1:124303942542:stack/amplify-cuidamed-dev-203122/1edd9450-aae6-11eb-9b38-0a1e17b4f729",
+      "AmplifyAppId": "d1sj7ls7pt0gld"
+    }
+  }
+}

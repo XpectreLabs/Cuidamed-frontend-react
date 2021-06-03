@@ -25,7 +25,8 @@ const dataIcons = [
   },
   {
     icon: <IconIndMedHistorial></IconIndMedHistorial>,
-    link: '/dashboard/enfermedades-comunes',
+    // link: '/dashboard/enfermedades-comunes',
+    link: '/dashboard/sistemas',
     link2: '/dashboard/sistemas',
     link3: '/dashboard/lista-enfermedades',
     link4: '/dashboard/antecedentes',
@@ -63,7 +64,8 @@ const dataIconsMan = [
   },
   {
     icon: <IconIndMedHistorial></IconIndMedHistorial>,
-    link: '/dashboard/enfermedades-comunes',
+    // link: '/dashboard/enfermedades-comunes',
+    link: '/dashboard/sistemas',
     link2: '/dashboard/sistemas',
     link3: '/dashboard/lista-enfermedades',
     link4: '/dashboard/antecedentes',
@@ -182,7 +184,7 @@ export default function IconsNavBar() {
       )}
       {isPhoneScreen && (
         <button
-          className="btn-img"
+          className="btn-img icon-container"
           onClick={() => {
             dispatch(logout());
           }}>

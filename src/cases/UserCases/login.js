@@ -15,7 +15,7 @@ const login = async (email,password) => {
             localStorage.setItem('user', JSON.stringify(resp.data));
             return {success: true, data: resp};
         } else {
-            Swal.fire('Error', 'Se produjo error al generar  el token', 'error');
+            Swal.fire('Error', 'Usuario o contraseña incorrecta', 'error');
             return {success: false, data: null};
         }
     }

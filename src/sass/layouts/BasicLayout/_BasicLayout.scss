@@ -1,5 +1,4 @@
 .basic-layout {
-
   > .ui.grid {
     margin: 0 !important;
     min-height: 100vh;
@@ -9,6 +8,10 @@
 
       &:first-of-type {
         background-color: $main;
+        /*position: fixed;
+        z-index: 10;
+        left: 0;
+        height: 100%;*/
       }
 
       &:last-of-type {
@@ -81,7 +84,6 @@
 }
 
 @media (max-width: 767px) {
-
   .basic-layout .main-grid {
     flex-direction: column-reverse;
     

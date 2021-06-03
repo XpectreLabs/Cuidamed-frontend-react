@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'semantic-ui-react';
 import { HeaderLogin } from '../Header';
 import { CustomInput } from '../inputsCustom/CustomInput';
@@ -12,10 +12,16 @@ import Swal from 'sweetalert2';
 import { CONECTION } from '../../conection';
 import { Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import SpinnerComponent from '../../components/spinner';
 
 
 export default function Login() {
   const dispatch = useDispatch();
+
+  const state = useSelector((state) => {
+    return state.loading;
+  });
+
   const [open, setOpen] = useState(false);
 
   //btn emergency data
@@ -27,7 +33,6 @@ export default function Login() {
 
   const history = useHistory();
   const handleEmergency = (e) => {
-    console.log("gioa que tal")
     if (inputEmergency) {
       fetch(`${CONECTION}api/codeMedband`, {
         method: 'POST',
@@ -40,7 +45,6 @@ export default function Login() {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("gola");
           if (data.err) {
             Swal.fire({
               title: 'Código de pulsera incorrecto',
@@ -67,6 +71,7 @@ export default function Login() {
   const { register, handleSubmit, errors } = useForm();
   return (
     <Grid className="login" centered>
+      {state.load && <SpinnerComponent />}
       <HeaderLogin openModal={() => setOpen(true)} />
       <Grid.Row>
         <h1 className="title">Iniciar sesión</h1>

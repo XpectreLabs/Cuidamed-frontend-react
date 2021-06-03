@@ -145,18 +145,18 @@ export default function MedicalInsurance() {
             </Button>
           </Grid.Column>
         </Grid.Row>
-
         {seguros.map((item, i) => (
           <InsuranceElement key={item.id} {...item} />
         ))}
-
         <Grid.Row className="btn-add">
           <Grid.Column
             computer={15}
             tablet={15}
             mobile={13}
             className="data-contact">
-            <Button onClick={() => handleInsurance()}>
+            <Button onClick={() => {
+              history.push('/dashboard/resumen')
+            }}>
               Continuar
             </Button>
           </Grid.Column>

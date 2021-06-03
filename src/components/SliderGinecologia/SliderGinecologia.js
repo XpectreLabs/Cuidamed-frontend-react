@@ -66,7 +66,8 @@ export default function SliderGinecologia() {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.data) {
+        const { data: dataA } = data;
+        if (dataA && dataA.length) {
           const { has_menstruation, menopause, embarazos,year_menopause,cesarea,partos, age_mestruation,abortos,kind_mestruation } = data.data[0];
           let meno = "";
           if (menopause === 'NO') {
@@ -96,19 +97,6 @@ export default function SliderGinecologia() {
         dispatch({type:types.loaded});
       });
   }, [])
-
-  const handleCounter = (e) => {
-    console.log(e);
-    if (e > 0) {
-      // console.log('entramos aquí chavo');
-      setFormValues({ ...formValues, age_mestruation: e });
-      setMenstruationAge(true);
-    } else {
-      setMenstruationAge(false);
-      setFormValues({ ...formValues, age_mestruation: null });
-    }
-
-  };
 
   const dispatch = useDispatch();
   const history = useHistory();
