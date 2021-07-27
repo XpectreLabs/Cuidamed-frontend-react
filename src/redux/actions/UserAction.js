@@ -641,7 +641,7 @@ export const uploadImage = (img) => {
   return async (dispatch) => {
     try {
       dispatch({type:types.loading});
-      if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+      if (localStorage.getItem('user') || localStorage.getItem('user') !== '') {
         const formData = new FormData();
         formData.append('perfil', img);
         const request = await fetch(`${CONECTION}api/file`, {
@@ -665,6 +665,42 @@ export const uploadImage = (img) => {
     }
   };
 };
+
+export const resendEmail = (email) => {
+  return async (dispatch) => {
+    try {
+      dispatch({type:types.loading});
+      const request = await fetch(`${CONECTION}api/resendMesage`, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({email})
+      });
+      if(request.status === 200) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Enviado',
+          message: 'su correo ha sido enviado'
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          message: 'Error al enviar mensaje, intentelo mas tarde'
+        })
+      }  
+      dispatch({type:types.loaded});
+    }catch(e) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        message: 'Error al enviar mensaje, intentelo mas tarde'
+      })
+      dispatch({type:types.loaded});
+    }
+  }
+}
 export const setImage = (img) => ({
   type: types.uploadImgUser,
   payload: img,

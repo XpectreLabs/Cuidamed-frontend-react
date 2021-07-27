@@ -1,11 +1,12 @@
 import React from 'react';
 import { HeaderLogin } from '../components/Header';
-import { Label, Button, Grid } from 'semantic-ui-react';
+import { Button, Grid } from 'semantic-ui-react';
 import { CustomInput } from '../components/inputsCustom/CustomInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { verifyCode } from '../redux/actions/UserAction';
+import { verifyCode, resendEmail } from '../redux/actions/UserAction';
 import { Redirect } from 'react-router-dom';
+import SpinnerComponent from '../components/spinner';
 
 const VerifyCode = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,9 @@ const VerifyCode = () => {
   };
   const { createdUser } = useSelector((state) => state.user);
   const { register, handleSubmit, errors } = useForm();
+  const state = useSelector((state) => {
+    return state.loading;
+  });
 
   if (!createdUser) {
     return <Redirect to="/login" />;
@@ -26,6 +30,7 @@ const VerifyCode = () => {
         <h1 className="title">Ingrese el código de verificación del correo</h1>
       </Grid.Row>
       <Grid.Row>
+        {state.load && <SpinnerComponent />}
         <Grid.Column computer={6} tablet={10} mobile={14}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <CustomInput
@@ -62,7 +67,9 @@ const VerifyCode = () => {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column computer={6} tablet={10} mobile={14}>
-            <Button type="button">Reenviar</Button>
+            <Button type="button" onClick={() => {
+              dispatch(resendEmail(localStorage.getItem('email')))
+            }}>Reenviar</Button>
         </Grid.Column>
       </Grid.Row>
     </Grid>
