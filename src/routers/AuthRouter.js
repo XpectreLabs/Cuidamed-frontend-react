@@ -7,6 +7,7 @@ import Register from "../pages/register";
 import Error404 from "../pages/404";
 import Emergency from "../pages/emergencia";
 import Resume from "../pages/resumen";
+import UpdatePassword from "../pages/UpdatePassword";
 
 export const AuthRouter = () => {
   return (
@@ -17,6 +18,7 @@ export const AuthRouter = () => {
         <Route exact component={VerifyCode} path="/verify-code" />
         <Route exact component={Emergency} path="/emergencia" />
         <Route exact component={Resume} path="/resumen" />
+        <Route exact component={UpdatePassword} path="/update-password" />
 
         <Route component={Error404} path="/404" exact />
         <Redirect to="/landing" />

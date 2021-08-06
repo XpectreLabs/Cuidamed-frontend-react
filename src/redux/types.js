@@ -3,6 +3,7 @@ export const types = {
   logout: 'LOGOUT',
   loading: 'LOADING',
   loaded: 'LOADED',
+  loadingEmail: 'LOADING EMAIL',
 
   createUser: 'CREATE_USER',
   loading: 'LOADING',

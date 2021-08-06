@@ -17,9 +17,8 @@ export const CustomInput = React.memo(
     required = false,
     onblur = (e) => { },
     errorComponent,
-    
+    disabled=false
   }) => {
-
     return (
       <div
         className={`input-container ${areYouInLogin ? 'newDesign' : ''} ${smallStyle ? 'smallStyle' : ''
@@ -30,6 +29,7 @@ export const CustomInput = React.memo(
           type={type}
           placeholder={placeholder}
           value={value}
+          disabled={disabled}
           onChange={(e) => {
             setValue(e.currentTarget.value);
 

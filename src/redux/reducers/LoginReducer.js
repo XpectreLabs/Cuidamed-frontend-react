@@ -4,6 +4,7 @@ const initState = {
   user: localStorage.getItem('user')
     ? JSON.parse(localStorage.getItem('user'))
     : null,
+  emailLoad: false
 };
 export const LoginReducer = (state = initState, action) => {
   switch (action.type) {
@@ -27,6 +28,8 @@ export const LoginReducer = (state = initState, action) => {
         ...state,
         user: action.payload,
       };
+    case types.loadingEmail:
+      return {...state, emailLoad: !state.emailLoad}  
     case types.logout:
       return { isLogged: false };
     default:
