@@ -10,12 +10,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CONECTION } from '../../conection';
 import MedicalElement from './MedicalElement';
 import { types } from '../../redux/types';
+import Swal from 'sweetalert2';
 
 export default function MedicalContact() {
   const medicalContacts = useSelector((state) => state.user.medicalContacts);
-  
+
   useEffect(() => {
-    dispatch({type: types.loading});
+    dispatch({ type: types.loading });
     fetch(`${CONECTION}api/medics`, {
       method: 'GET',
       headers: {
@@ -41,9 +42,10 @@ export default function MedicalContact() {
           });
           dispatch({ type: types.getMedical, payload: array });
         }
-        dispatch({type: types.loaded});
+        dispatch({ type: types.loaded });
       });
   }, []);
+
   const [formValues, setFormValues] = useState({
     fullName: '',
     email: '',
@@ -65,6 +67,19 @@ export default function MedicalContact() {
       phone: formValues.phone,
       specialty: formValues.specialty,
     };
+
+    if (
+      formValues.fullName.trim().length <= 0 ||
+      formValues.email.trim().length <= 0 ||
+      formValues.phone.trim().length <= 0 ||
+      formValues.specialty.trim().length <= 0
+    ) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Favor de rellenar los campos',
+      });
+      return;
+    }
     array = [...array, obj];
     setContacts(array);
 

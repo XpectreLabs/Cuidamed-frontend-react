@@ -6,7 +6,6 @@ export const types = {
   loadingEmail: 'LOADING EMAIL',
 
   createUser: 'CREATE_USER',
-  loading: 'LOADING',
   setUserCreated: 'SET_CREATED',
   verifyUser: 'VERIFY_USER',
   updateInfoBasic: 'UPDATE_INFO_BASIC',
@@ -33,6 +32,4 @@ export const types = {
   setTreatment: 'SET_TREATMENT',
   getTreatment: 'GET_TREATMENT',
   deleteTreatment: 'DELETE_TREATMENT',
-
-
 };

@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CONECTION } from '../../conection';
 import ContactElementComponent from './ContactElementComponent';
 import { types } from '../../redux/types';
+import Swal from 'sweetalert2';
 
 export default function Contact() {
   const state = useSelector((state) => state.user);
@@ -19,7 +20,7 @@ export default function Contact() {
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
-    dispatch({type: types.loading});
+    dispatch({ type: types.loading });
     fetch(`${CONECTION}api/emergency`, {
       method: 'GET',
       headers: {
@@ -43,7 +44,7 @@ export default function Contact() {
             array = [...array, obj];
           });
           dispatch({ type: types.getEmergencyContacts, payload: array });
-          dispatch({type: types.loaded});
+          dispatch({ type: types.loaded });
         }
       });
   }, []);
@@ -64,6 +65,19 @@ export default function Contact() {
       email: formValues.email,
       kin: formValues.relative,
     };
+
+    if (
+      formValues.fullName.trim().length <= 0 ||
+      formValues.phone.trim().length <= 0 ||
+      formValues.email.trim().length <= 0 ||
+      formValues.relative.trim().length <= 0
+    ) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Favor de rellenar los campos',
+      });
+      return;
+    }
 
     dispatch(createContactoUrgente(sendFormValues, history));
     setFormValues({
@@ -151,7 +165,7 @@ export default function Contact() {
         {state.emergencyContacts.map((item, i) => (
           <ContactElementComponent key={item.id} {...item} />
         ))}
-        
+
         <Grid.Row className="btn-add">
           <Grid.Column
             computer={15}

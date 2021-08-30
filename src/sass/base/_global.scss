@@ -7,16 +7,16 @@
   outline: none;
 }
 @font-face {
-  font-family: "Comfortaa";
-  src: url("../../fonts/comfortaa/Comfortaa-Regular.woff") format("woff");
+  font-family: 'Comfortaa';
+  src: url('../../fonts/comfortaa/Comfortaa-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Myanmar Text";
-  src: url("../../fonts/myanmar/MyanmarText.woff") format("woff");
+  font-family: 'Myanmar Text';
+  src: url('../../fonts/myanmar/MyanmarText.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -30,7 +30,7 @@ h3,
 h4,
 h5,
 input {
-  font-family: "Comfortaa";
+  font-family: 'Comfortaa';
 }
 
 p {
@@ -38,7 +38,7 @@ p {
 }
 
 .label {
-  font-family: "Myanmar Text";
+  font-family: 'Myanmar Text';
 }
 
 .places-complete {
@@ -107,7 +107,7 @@ input {
   background-color: transparent;
   margin-top: 3em;
   margin-bottom: 1.5em;
-  font-family: "Comfortaa";
+  font-family: 'Comfortaa';
   font-size: 4.5em;
   font-weight: lighter;
   color: #ffffff;
@@ -196,7 +196,12 @@ input {
   color: $white !important;
 }
 
-
-.btn-ginecologia{
-  
+.medical-contact > .ui.centered.grid {
+  height: 99vh;
+  overflow-y: scroll;
+}
+.medical-contact > .ui.centered.grid::-webkit-scrollbar {
+  display: none;
+}
+.btn-ginecologia {
 }

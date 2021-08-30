@@ -12,6 +12,7 @@ const MedicalElement = ({
   email = '',
   phone = '',
   specialty = '',
+  city,
   id = '',
 }) => {
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ const MedicalElement = ({
           <CustomInput
             placeholder="E-mail"
             type="email"
-            value={state.email}
+            value={city ? city : state.email}
             setValue={(e) => {
               setState({ ...state, email: e });
             }}

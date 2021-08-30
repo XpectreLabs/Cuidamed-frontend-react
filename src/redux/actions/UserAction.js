@@ -26,15 +26,15 @@ export const createUser = (pInfo, history) => {
         Swal.fire({
           title: 'Informacion guardada correctamente',
           icon: 'success',
-          onClose: ()  => {
-            history.push("/verify-code")
-          }
+          onClose: () => {
+            history.push('/verify-code');
+          },
         });
         dispatch({
           type: types.createUser,
           payload: { created: true, email: pInfo.email },
         });
-        
+
         dispatch({ type: types.loaded });
       }
     } catch (e) {
@@ -51,7 +51,7 @@ export const createUser = (pInfo, history) => {
 export const verifyCode = (pInfo) => {
   return async (dispatch, getState) => {
     const { emailRegistered } = getState().user;
-    
+
     try {
       dispatch({ type: types.loading });
       let request = await fetch(`${CONECTION}api/verify`, {
@@ -96,7 +96,7 @@ export const updateInfoBasic = (pInfo, history) => {
           },
           body: JSON.stringify(pInfo),
         });
-        
+
         dispatch({ type: types.loaded });
         const response = await request.json();
         if (response.message) {
@@ -140,9 +140,7 @@ export const saveIllnessSystem = (pInfo, history) => {
           history.push('/dashboard/sistemas');
         }
       }
-    } catch (e) {
-
-    }
+    } catch (e) {}
   };
 };
 
@@ -161,7 +159,7 @@ export const updateHistoryMedical = (pInfo, history) => {
           body: JSON.stringify(pInfo),
         });
         const response = await request.json();
-        dispatch({type: types.loaded});
+        dispatch({ type: types.loaded });
         if (response.message) {
           Swal.fire({
             title: '¡Antecedentes actualizados!',
@@ -174,8 +172,7 @@ export const updateHistoryMedical = (pInfo, history) => {
         }
       }
     } catch (e) {
-      
-      dispatch({type: types.loaded});
+      dispatch({ type: types.loaded });
     }
   };
 };
@@ -204,7 +201,7 @@ export const updateGinecologia = (pInfo, history) => {
           });
           //dispatch({ type: types.saveAndContinue });
           history.push('/dashboard/tratamiento');
-        }else {
+        } else {
           Swal.fire({
             title: 'Hubo un error al guardar los datos, intentelo mas tarde',
             icon: 'error',
@@ -226,14 +223,19 @@ export const createTratamiento = (pInfo, history) => {
   return async (dispatch, getState) => {
     dispatch({ type: types.loading });
     try {
-      const {user: { treatment }} = getState();
-      if(treatment.length >= 3) {
+      const {
+        user: { treatment },
+      } = getState();
+      if (treatment.length >= 3) {
         Swal.fire({
-          icon:"error",
-          text:"No se pueden agregar mas de 3 datos"
-        })
+          icon: 'error',
+          text: 'No se pueden agregar mas de 3 datos',
+        });
         dispatch({ type: types.loaded });
-      }else if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+      } else if (
+        localStorage.getItem('user') ||
+        localStorage.getItem('user') != ''
+      ) {
         const { id } = JSON.parse(localStorage.getItem('user'));
         const request = await fetch(`${CONECTION}api/tratamiento`, {
           method: 'POST',
@@ -251,12 +253,12 @@ export const createTratamiento = (pInfo, history) => {
             title: 'Tratamiento creado',
             icon: 'success',
           });
-          dispatch({ type: types.setTreatment,payload:response.data});
+          dispatch({ type: types.setTreatment, payload: response.data });
           //history.push('/dashboard/enfermedades-comunes');
         }
       }
-      
-      dispatch({type: types.loaded});
+
+      dispatch({ type: types.loaded });
     } catch (e) {}
   };
 };
@@ -281,11 +283,11 @@ export const updateTratamiento = (pInfo) => {
             title: 'Tratamiento creado',
             icon: 'success',
           });
-          dispatch({ type: types.updateTreatment,payload:pInfo });
+          dispatch({ type: types.updateTreatment, payload: pInfo });
         }
       }
-      
-      dispatch({type: types.loaded});
+
+      dispatch({ type: types.loaded });
     } catch (e) {}
   };
 };
@@ -310,32 +312,36 @@ export const deleteTratamiento = (pInfo) => {
             title: 'Tratamiento creado',
             icon: 'success',
           });
-          dispatch({ type: types.deleteTreatment,payload:pInfo });
+          dispatch({ type: types.deleteTreatment, payload: pInfo });
           //history.push('/dashboard/enfermedades-comunes');
         }
       }
-      
-      dispatch({type: types.loaded});
+
+      dispatch({ type: types.loaded });
     } catch (e) {
       console.log(e);
     }
   };
 };
 
-
 export const createContactoUrgente = (pInfo, history) => {
   return async (dispatch, getState) => {
     dispatch({ type: types.loading });
     try {
-      const {user: { emergencyContacts }} = getState();
-      if(emergencyContacts.length >= 3) {
+      const {
+        user: { emergencyContacts },
+      } = getState();
+      if (emergencyContacts.length >= 3) {
         Swal.fire({
-          icon:"error",
-          text:"No se pueden agregar mas de 3 datos"
-        })
-        
+          icon: 'error',
+          text: 'No se pueden agregar mas de 3 datos',
+        });
+
         dispatch({ type: types.loaded });
-      }else if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+      } else if (
+        localStorage.getItem('user') ||
+        localStorage.getItem('user') != ''
+      ) {
         const { id } = JSON.parse(localStorage.getItem('user'));
         const request = await fetch(`${CONECTION}api/emergency`, {
           method: 'POST',
@@ -388,11 +394,10 @@ export const deleteContactUrgente = (id) => {
           dispatch({ type: types.deleteEmergencyContacts, payload: id });
         } else
           Swal.fire({ title: 'Error al eliminar contacto', icon: 'error' });
-          
+
         dispatch({ type: types.loaded });
       }
     } catch (e) {
-      
       dispatch({ type: types.loaded });
     }
   };
@@ -427,12 +432,11 @@ export const updateUrgente = (pInfo) => {
             icon: 'success',
           });
           dispatch({ type: types.updateEmergencyContacts, payload: pInfo });
-        }  
+        }
       }
       dispatch({ type: types.loaded });
     } catch (e) {
       dispatch({ type: types.loaded });
-   
     }
   };
 };
@@ -440,16 +444,21 @@ export const updateUrgente = (pInfo) => {
 export const createContactoMedico = (pInfo, history) => {
   return async (dispatch, getState) => {
     dispatch({ type: types.loading });
-    
+
     try {
-      const {user: { medicalContacts }} = getState();
-      if(medicalContacts.length >= 3) {
+      const {
+        user: { medicalContacts },
+      } = getState();
+      if (medicalContacts.length >= 3) {
         Swal.fire({
-          icon:"error",
-          text:"No se pueden agregar mas de 3 datos"
-        })
+          icon: 'error',
+          text: 'No se pueden agregar mas de 3 datos',
+        });
         dispatch({ type: types.loaded });
-      }else if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+      } else if (
+        localStorage.getItem('user') ||
+        localStorage.getItem('user') != ''
+      ) {
         const { id } = JSON.parse(localStorage.getItem('user'));
         const request = await fetch(`${CONECTION}api/medic`, {
           method: 'POST',
@@ -466,12 +475,13 @@ export const createContactoMedico = (pInfo, history) => {
             title: 'Contacto medico creado',
             icon: 'success',
           });
-          dispatch({ type: types.setMedical, payload: response.data });
-        }  
+          const payload = { ...response.data, email: response.data.city };
+          delete payload.city;
+          dispatch({ type: types.setMedical, payload });
+        }
       }
       dispatch({ type: types.loaded });
     } catch (e) {
-
       dispatch({ type: types.loaded });
     }
   };
@@ -481,7 +491,6 @@ export const updateContactoMedico = (pInfo) => {
     dispatch({ type: types.loading });
     try {
       if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
-
         const request = await fetch(`${CONECTION}api/medic/${pInfo.id}`, {
           method: 'PUT',
           headers: {
@@ -489,7 +498,7 @@ export const updateContactoMedico = (pInfo) => {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
             'x-auth-token': localStorage.getItem('refreshToken'),
           },
-          body: JSON.stringify({...pInfo, city: pInfo.email}),
+          body: JSON.stringify({ ...pInfo, city: pInfo.email }),
         });
         const response = await request.json();
         if (request.status === 200) {
@@ -529,10 +538,9 @@ export const deleteContactoMedico = (pInfo, history) => {
           dispatch({ type: types.deleteMedical, payload: pInfo });
         }
       }
-      
+
       dispatch({ type: types.loaded });
     } catch (e) {
-      
       dispatch({ type: types.loaded });
     }
   };
@@ -542,14 +550,19 @@ export const createAseguradora = (pInfo, history) => {
   return async (dispatch, getState) => {
     dispatch({ type: types.loading });
     try {
-      const {user: { seguro }} = getState();
-      if(seguro.length >= 3) {
+      const {
+        user: { seguro },
+      } = getState();
+      if (seguro.length >= 3) {
         Swal.fire({
-          icon:"error",
-          text:"No se pueden agregar mas de 3 datos"
-        })
+          icon: 'error',
+          text: 'No se pueden agregar mas de 3 datos',
+        });
         dispatch({ type: types.loaded });
-      }else if (localStorage.getItem('user') || localStorage.getItem('user') != '') {
+      } else if (
+        localStorage.getItem('user') ||
+        localStorage.getItem('user') != ''
+      ) {
         const { id } = JSON.parse(localStorage.getItem('user'));
         const request = await fetch(`${CONECTION}api/seguro`, {
           method: 'POST',
@@ -599,10 +612,9 @@ export const deleteAseguradora = (pInfo, history) => {
           dispatch({ type: types.deleteSeguro, payload: pInfo });
         }
       }
-      
+
       dispatch({ type: types.loaded });
     } catch (e) {
-      
       dispatch({ type: types.loaded });
     }
   };
@@ -640,7 +652,7 @@ export const updateAseguradora = (pInfo, history) => {
 export const uploadImage = (img) => {
   return async (dispatch) => {
     try {
-      dispatch({type:types.loading});
+      dispatch({ type: types.loading });
       if (localStorage.getItem('user') || localStorage.getItem('user') !== '') {
         const formData = new FormData();
         formData.append('perfil', img);
@@ -656,12 +668,11 @@ export const uploadImage = (img) => {
         const response = await request.json();
         localStorage.setItem('user', JSON.stringify(response.user[0]));
         dispatch(setImage(URL.createObjectURL(img)));
-        
-        dispatch({type:types.loaded});
+
+        dispatch({ type: types.loaded });
       }
     } catch (e) {
-      
-      dispatch({type:types.loaded});
+      dispatch({ type: types.loaded });
     }
   };
 };
@@ -669,41 +680,39 @@ export const uploadImage = (img) => {
 export const resendEmail = (email) => {
   return async (dispatch) => {
     try {
-      dispatch({type:types.loading});
+      dispatch({ type: types.loading });
       const request = await fetch(`${CONECTION}api/resendMesage`, {
         method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({email})
+        body: JSON.stringify({ email }),
       });
-      if(request.status === 200) {
+      if (request.status === 200) {
         Swal.fire({
           icon: 'success',
           title: 'Enviado',
-          message: 'su correo ha sido enviado'
+          message: 'su correo ha sido enviado',
         });
       } else {
         Swal.fire({
           icon: 'error',
           title: 'Error',
-          message: 'Error al enviar mensaje, intentelo mas tarde'
-        })
-      }  
-      dispatch({type:types.loaded});
-    }catch(e) {
+          message: 'Error al enviar mensaje, intentelo mas tarde',
+        });
+      }
+      dispatch({ type: types.loaded });
+    } catch (e) {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        message: 'Error al enviar mensaje, intentelo mas tarde'
-      })
-      dispatch({type:types.loaded});
+        message: 'Error al enviar mensaje, intentelo mas tarde',
+      });
+      dispatch({ type: types.loaded });
     }
-  }
-}
+  };
+};
 export const setImage = (img) => ({
   type: types.uploadImgUser,
   payload: img,
 });
-
-
